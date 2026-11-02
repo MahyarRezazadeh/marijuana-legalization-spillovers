@@ -1,0 +1,347 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{assumption}{Assumption}
+
+\title{Cross-Border Demand, License Caps, and the Timing of Entry\\
+in U.S.\ Cannabis Retail Markets}
+\author{Mahyar Rezazadeh \\ Babak Sahragard}
+\date{August 8, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent We document three facts about cannabis retailers in U.S.\ counties located near the border of a
+state where recreational cannabis remains illegal. First, revenue per dispensary is significantly higher in
+these border counties, both at a 70-mile threshold and continuously in distance to the nearest non-legal
+county. Second, this pattern is consistent with a license-cap mechanism: in Colorado and Washington, where
+the number of retail licenses is constrained by state or local policy, the border effect appears in revenue
+per store rather than in the number of stores or in revenue per capita; in Montana, the one state in our
+sample with no statewide numerical cap, the same border proximity instead raises revenue per capita while
+leaving revenue per store unaffected. Third, using each dispensary's own opening date across a nine-state
+sample, we show that a county's \emph{second} dispensary opens significantly faster the closer that county
+is to a non-legal border, even though its first dispensary does not, and that this effect fades by the third
+and fourth entrant. We then develop a simple entry game, in the spirit of Bayesian learning models of
+industry evolution, in which a first entrant's regulatory delay is unrelated to local demand, but its
+operation reveals a signal about previously uncertain cross-border demand that a potential second entrant
+conditions on. The model reproduces all three timing facts and explains, rather than merely reports, why a
+classical cross-sectional entry-threshold test does not show the same distance gradient the timing result
+does.
+\end{abstract}
+
+\section{Introduction}
+
+A recurring question in the economics of regulated retail markets is how demand from outside a market's
+official boundaries -- a nearby jurisdiction with different tax or legal treatment of the same good --
+affects entry, pricing, and market structure inside that market. We study this question using U.S.\
+recreational cannabis retail, where state-level legalization has proceeded unevenly and many legal-market
+counties sit directly adjacent to a state where cannabis remains illegal. \citet{HansenMillerWeber2020} and
+\citet{HaoCowan2020} establish that cross-border cannabis demand is real: Washington retailers near the
+Oregon border lost a substantial share of sales once Oregon's own market opened, and marijuana-related
+arrests respond to legal availability across a border. We build on this evidence in three steps and then
+develop a simple theoretical account of the third.
+
+\emph{First}, we show that revenue per dispensary is higher in counties near a non-legal border, both using
+a 70-mile threshold and a continuous distance measure (Section~\ref{sec:result1}). \emph{Second}, we ask what
+mechanism can explain this and argue, using Montana as a within-sample contrast, that state licensing caps
+are doing the work: where entry is capped, captive demand shows up as revenue per existing store; where it
+is not, it shows up as more stores instead (Section~\ref{sec:result2}). \emph{Third}, we turn to entry
+\emph{timing} rather than revenue levels: using each dispensary's own opening date, we show a county's second
+dispensary arrives significantly faster the closer that county is to a non-legal border, even though its
+first dispensary does not, and that the effect is gone by the third and fourth entrant
+(Section~\ref{sec:result3}). \emph{Fourth}, we build a simple entry game that explains this specific pattern
+-- why the first entrant's timing is unrelated to demand, why the second entrant's timing responds to
+proximity rather than population size, why the effect disappears after the second entrant, and why a
+classical cross-sectional entry-threshold test need not show the same distance gradient the timing result
+does (Section~\ref{sec:model}).
+
+We are explicit throughout about what is well identified and what is not. The revenue result
+(Section~\ref{sec:result1}) is robust across specifications and to excluding the largest outlier county. The
+entry-timing result (Section~\ref{sec:result3}) is a real, placebo-tested pattern, but it is statistically
+concentrated in three of the nine sample states, and a natural cross-sectional counterpart to the timing
+story does not corroborate it. The model in Section~\ref{sec:model} is built to explain the timing pattern
+including that last complication, not to paper over it.
+
+\section{Data and Empirical Setting}
+\label{sec:data}
+
+The revenue results (Sections~\ref{sec:result1}--\ref{sec:result2}) use a county-year panel for Colorado
+(2014--2025) and Washington (2015--2025), $n=706$ county-years with at least one open dispensary, built from
+each state's cannabis-tax administrative data (Colorado Department of Revenue Socrata series; Washington
+State Liquor and Cannabis Board fiscal-year sales reports) and a geocoded dispensary license registry used to
+construct a current store count for each county-year. Montana's contrast case
+(Section~\ref{sec:result2}) uses its Department of Revenue's monthly county sales reports, 2022--2025.
+``Border'' counties are those within 70 miles of the nearest county in a state where recreational retail is
+not yet legal, using each county's population-weighted centroid; we also report a continuous version of this
+distance.
+
+The entry-timing results (Section~\ref{sec:result3}) use a broader nine-state sample (California, Colorado,
+Illinois, Massachusetts, Maine, New York, Ohio, Oregon, and Washington; 479 counties), each dispensary's own
+opening date from a geocoded license registry, and each state's own retail-legalization date. This is a
+different, larger sample than the two-state revenue panel, a distinction we return to in
+Section~\ref{sec:result3} because it matters for how the timing result should be interpreted.
+
+\section{Result 1: Revenue per Dispensary Is Higher in Border Counties}
+\label{sec:result1}
+
+Table~\ref{tab:a8_revenue_border} reports the core border-proximity specification. Counties within 70 miles
+of a non-legal border earn significantly higher revenue per dispensary than interior counties of the same
+two states: a coefficient of $+0.395$ (county-clustered $p=0.015$) with the full control set (log
+population, year and state fixed effects), corresponding to roughly 48 percent higher revenue per store.
+This is not driven by a single county -- excluding Sedgwick County, Colorado, a small, heavily touristed
+county on the Nebraska border, the estimate falls only to $+0.302$ and remains significant. The continuous
+version of the same relationship, log(distance to the nearest non-legal county), is negative as expected and
+significant under heteroskedasticity-robust inference but not once standard errors are clustered by county;
+we report both figures rather than the more favorable one alone.
+
+\input{tables/a8_table1_revenue_border}
+
+Figure~\ref{fig:a8_levels} shows the raw difference in levels, and Figure~\ref{fig:a8_dose} shows the
+continuous relationship directly as a residualized binned scatter: revenue per store falls smoothly as
+distance to the border grows, not merely at the 70-mile cutoff.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.62\textwidth]{figures/a8_fig1_revenue_levels.png}
+\caption{Mean revenue per dispensary, border vs.\ interior counties, Colorado and Washington, 2014--2025.}
+\label{fig:a8_levels}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/a8_fig2_doseresponse.png}
+\caption{Revenue per dispensary against distance to the nearest non-legal county, both residualized on
+log(population), year fixed effects, and state fixed effects. Points are 10-bin (decile) means; point size
+reflects the number of observations in each bin.}
+\label{fig:a8_dose}
+\end{figure}
+
+\section{Result 2: A License-Cap Mechanism}
+\label{sec:result2}
+
+Why would extra demand show up as higher revenue per store rather than more stores? The natural candidate is
+that the number of dispensaries is not free to adjust. Both Colorado and Washington constrain retail entry:
+Washington capped the statewide number of licenses at 334 from the outset, allocating them by lottery in
+oversubscribed jurisdictions \citep{WSLCB2014LotteryPR}; Colorado imposes no statewide cap but gives local
+governments full authority under Amendment 64 to ban retail marijuana outright or to regulate its number,
+and most Colorado municipalities have exercised this option to prohibit it entirely. \citet{HollenbeckUetake2021}
+show directly that Washington's licensing restrictions produced substantial market power among incumbent
+retailers. Under the classic entry-and-market-size logic of \citet{BresnahanReiss1990} and
+\citet{BresnahanReiss1991}, if the number of firms a market supports is constrained below what demand would
+otherwise justify, additional demand must appear as higher revenue per existing firm rather than more firms.
+
+Montana offers a within-sample test of this logic, since it is the one state in our data with no statewide
+numerical cap on dispensary licenses. If the license-cap story is right, Montana's border counties should
+show the \emph{opposite} pattern: captive demand absorbed through more stores (higher revenue per capita)
+rather than through higher revenue at each existing store.
+
+\input{tables/a8_table2_montana_contrast}
+
+This is exactly what we find. In Colorado and Washington, the border effect is significant in revenue per
+store ($p=0.015$) and null in revenue per capita ($p=0.833$). In Montana, the pattern reverses: the border
+effect is significant in revenue per capita ($p=0.036$) and a precise null in revenue per store ($p=0.958$).
+A single coefficient could be a coincidence; a predicted reversal that shows up in exactly the state whose
+institutional structure differs in exactly the relevant way is harder to dismiss as one.
+
+\section{Result 3: The Second Entrant Arrives Faster Near the Border}
+\label{sec:result3}
+
+Revenue levels do not tell us whether sellers perceived the border opportunity and acted on it, or whether
+demand simply sorted itself out after entry happened on its own schedule. We use each dispensary's own
+opening date to ask about entry \emph{speed} rather than the eventual count, via Cox proportional-hazards
+models stratified by state, over the nine-state entry-timing sample described in Section~\ref{sec:data}.
+
+\input{tables/a8_table3_hazard_by_rank}
+
+The pattern is specific to the second entrant. There is no relationship between border distance and how
+quickly a county gets its \emph{first} dispensary after its state's own retail launch (hazard ratio $0.97$,
+$p=0.80$) -- consistent with regulatory and capital-raising delay, not demand, governing first entry. But
+conditional on a county already having a first dispensary, a second one follows significantly faster the
+closer that county is to a non-legal border (hazard ratio $0.70$, $p=0.003$): each additional log-mile of
+distance lowers the hazard of a second entrant by roughly 30 percent. The effect weakens at the third entrant
+and is gone by the fourth. Figure~\ref{fig:a8_hazard} plots all four ranks together.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.68\textwidth]{figures/a8_fig3_hazard_by_rank.png}
+\caption{Hazard ratio on log(distance to non-legal border), by entrant rank, with 95\% confidence
+intervals. A ratio below 1 means faster entry closer to the border.}
+\label{fig:a8_hazard}
+\end{figure}
+
+This pattern is consistent with -- though narrower than -- the general finding in the entry literature that a
+market's second or third entrant matters disproportionately more than later ones
+\citep{BresnahanReiss1990,BresnahanReiss1991}. Two further checks discipline what kind of effect this is.
+
+\input{tables/a8_table4_mechanism_placebo}
+
+The effect survives a placebo test: distance to the nearest county in \emph{any} other state, regardless of
+legal status, is not significant on its own and loses a horse race against the nonlegal-border-specific
+measure. This rules out a generic ``border towns compete faster'' story. But the effect does \emph{not} scale
+with the \emph{size} of the population behind the border -- a captive-population measure is insignificant
+alone and wrong-signed when raced against distance. Whatever this is, it responds to proximity, not to the
+size of the market being revealed.
+
+Two further limitations deserve equal billing with the finding itself. First, the statistical significance
+of the pooled result is concentrated in Illinois, Massachusetts, and Ohio -- three states outside this
+paper's core two-state revenue sample, with licensing regimes (merit-scored lotteries, locally negotiated
+host-community agreements, and staged medical-to-adult-use conversion, respectively) different from Colorado
+and Washington's. Colorado alone shows a same-direction but statistically insignificant version of the
+pattern; Washington shows none. Second, a classical cross-sectional entry-threshold comparison -- the
+population a county needs to support a second store, following \citet{BresnahanReiss1990} -- does not
+corroborate the timing result: border counties need a \emph{larger}, not smaller, population increase to
+reach a second store (a threshold ratio of $1.67$ versus $1.27$ in interior counties). We take this
+seriously rather than set it aside, and the model below is built specifically to address it.
+
+\section{Result 4: A Simple Entry Game for the Second Entrant}
+\label{sec:model}
+
+We now ask whether a simple, formal model can reproduce all three timing facts in Section~\ref{sec:result3}
+at once: no effect at the first entrant, a significant effect at the second, no effect by the fourth, and no
+corresponding shift in the cross-sectional population threshold. A model that reproduces only the headline
+coefficient is not informative; one that also explains why the threshold test looks the way it does is a
+real test of the story.
+
+\subsection{Setup}
+
+Consider a county $i$ with an unknown demand type $\theta_i \in \{L, H\}$. Type $H$ means residents of the
+neighboring non-legal jurisdiction actually cross the border in meaningful numbers to buy legally; type $L$
+means they do not, even if the county is geographically close, because of idiosyncratic factors such as road
+access, local enforcement on the non-legal side, or consumer habits that a simple distance measure cannot
+capture. Neither the analyst nor, initially, any potential entrant observes $\theta_i$ directly. The prior
+probability of the high-demand type is
+\begin{equation}
+\Pr(\theta_i = H) = p(d_i), \qquad p'(d_i) < 0,
+\end{equation}
+decreasing in distance $d_i$ to the nearest non-legal county: proximity makes captive demand \emph{more
+likely}, not \emph{certain} or \emph{proportionally larger}.
+
+\begin{assumption}[Regulatory delay]
+\label{as:delay}
+Opening a dispensary requires clearing a licensing, zoning, and capital-raising process that takes random
+time $\tau$, independent of $\theta_i$ and $d_i$.
+\end{assumption}
+
+\begin{assumption}[First-entry profitability]
+\label{as:first}
+Local, in-state demand alone is sufficient to make a first dispensary profitable in expectation, regardless
+of $\theta_i$: $E_{\theta}[\pi_1(\theta_i, P_i)] > F$ for both types, where $P_i$ is local population and $F$
+is the fixed cost of entry.
+\end{assumption}
+
+Assumption~\ref{as:first} is not imposed to fit the data; it is consistent with the model's own prediction
+below and with a fact we already document in Section~\ref{sec:result1}: border counties support a first
+dispensary at a smaller local population than interior counties (35,436 versus 44,602 residents in our data),
+suggesting the demand bonus from a nearby border, even in expectation before it is confirmed, already lowers
+the bar for a first entrant.
+
+Under Assumptions~\ref{as:delay}--\ref{as:first}, the first entrant opens as soon as $\tau$ resolves,
+regardless of $\theta_i$. This immediately delivers the first empirical fact: \textbf{first-entry timing does
+not depend on $d_i$.}
+
+Once open, the first dispensary's realized sales, foot traffic, and local reputation constitute a public
+signal. We model this as a revealing event that arrives at rate $\mu_H$ if $\theta_i = H$ and never (or at a
+negligible rate $\mu_L \approx 0$) if $\theta_i = L$ -- a type-$H$ market generates enough activity to be
+locally noticeable within a random but bounded time; a type-$L$ market never does. A risk-neutral second
+entrant from a competitive fringe monitors each county and enters as soon as the revealing signal arrives,
+provided $\pi_2(H, P_i) > F > \pi_2(L, P_i)$: entering only once a high-demand market is confirmed, and never
+absent that confirmation, is sequentially rational given a prior $p(d_i)$ too low, on its own, to justify
+entry without the signal. This constitutes a perfect Bayesian equilibrium of the second-stage entry game: the
+second entrant's threshold strategy (enter iff signal observed) is optimal given its beliefs, and its beliefs
+(certainty of type $H$ upon the signal; unrevised prior absent it) are consistent with Bayes' rule on the
+equilibrium path.
+
+\subsection{Comparative statics}
+
+\begin{proposition}
+\label{prop:main}
+Under Assumptions~\ref{as:delay}--\ref{as:first} and the equilibrium described above:
+\begin{enumerate}
+  \item First-entry timing does not depend on $d_i$.
+  \item The hazard of second entry, averaged over the (econometrically unobserved) type $\theta_i$, is
+        approximately $h_2(d_i) \approx p(d_i)\,\mu_H$, so that $\partial h_2/\partial d_i < 0$: second entry
+        is faster the closer a county is to the border.
+  \item If $p(d_i)$ falls off sharply beyond a travel-cost reach $\bar{d}$ rather than declining smoothly
+        with the population behind the border, then conditional on being within reach, second-entry speed
+        should respond weakly to the \emph{size} of that population.
+  \item Once $\theta_i$ is revealed by the second entrant's arrival, no further private information remains
+        to be resolved; entry beyond the second store follows an ordinary, $d_i$-independent process common
+        to both types.
+  \item A cross-sectional comparison of the population needed to support a second store, conditional on a
+        county already having reached two stores, implicitly conditions on $\theta_i = H$ -- since only
+        type-$H$ counties reach $N_i=2$ in this model. Conditional on $\theta_i=H$, the population threshold
+        is a property of $\pi_2(H, \cdot)$ alone and need not vary systematically with $d_i$: $d_i$ affects
+        the \emph{probability} of being selected into the high-demand group and the \emph{speed} of that
+        selection being revealed, not the profit function of an already-confirmed high-demand market.
+\end{enumerate}
+\end{proposition}
+
+Points 1 through 4 reproduce Table~\ref{tab:a8_hazard_rank} and Table~\ref{tab:a8_mechanism} directly: no
+effect at rank 1, a significant effect at rank 2, insensitivity to population size conditional on reach, and
+fade-out by rank 4. Point 5 is the model's account of the entry-threshold non-finding in
+Section~\ref{sec:result3}: it is not evidence against the timing mechanism, because the timing mechanism
+operates through \emph{selection and revelation speed}, not through a shift in the profit function of markets
+that are already confirmed to be high-demand. We flag this as the model's own prediction, not a
+post-hoc rescue of an inconvenient result -- the model would be false if second entry did not respond to
+$d_i$ at all, and it does.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.68\textwidth]{figures/a8_fig4_model_hazard.png}
+\caption{Illustrative model-implied second-entry hazard, $p(d_i)\,\mu_H$, as a function of distance to the
+border, using a logistic reach function for $p(d_i)$. The vertical line marks the 70-mile threshold used
+throughout the empirical analysis.}
+\label{fig:a8_model}
+\end{figure}
+
+The model is deliberately close to two existing traditions rather than a novel construction.
+\citet{Jovanovic1982} models firms learning their own type through realized performance and exiting or
+surviving accordingly; our second entrant instead learns \emph{a rival's} type through the rival's realized
+performance, a small variation on the same Bayesian-learning logic. \citet{ChamleyGale1994} model investment
+timing as a game of strategic delay driven by an informational externality -- players wait to see what others
+reveal. Our second entrant is the limiting case in which the second mover simply reacts once the externality
+resolves rather than strategically timing its own delay; a genuinely strategic extension, in which several
+potential second entrants each wait for the others to reveal information, is a natural next step we do not
+pursue here.
+
+\section{Discussion}
+
+We want to be precise about what this exercise does and does not establish. The revenue result
+(Section~\ref{sec:result1}) is our most robust finding and the one we would lead with in any submission. The
+license-cap mechanism (Section~\ref{sec:result2}) is supported by a real within-sample contrast, not merely
+asserted, though it rests on one state's evidence and a modest sample. The entry-timing result
+(Section~\ref{sec:result3}) is real and placebo-tested but statistically narrower than the revenue result --
+concentrated in three states outside our core sample -- and we do not think it should be described as a
+central contribution of this line of work. The model in Section~\ref{sec:model} is a reduced-form-motivated
+theoretical account, not a structurally estimated one: we do not fit $\mu_H$, $p(d_i)$, or $F$ to the data,
+and the hazard-ratio comparative statics it delivers are qualitative predictions that the empirical patterns
+satisfy, not parameter estimates the model and data jointly identify. A fully structural version of this
+model -- estimating $p(d_i)$ and $\mu_H$ by maximum likelihood from the hazard data directly -- is a natural
+and, we think, tractable extension, but it is a larger undertaking than this paper attempts.
+
+\section{Conclusion}
+
+Cannabis retailers in U.S.\ counties near a non-legal state border earn more revenue per dispensary, and this
+appears to operate through a license-cap channel that we can test directly using Montana's uncapped market as
+a contrast. A second, narrower fact -- that a county's second dispensary opens faster the closer that county
+is to the border, while its first does not -- is consistent with a simple entry game in which regulatory
+delay governs first entry and Bayesian learning about a rival's revealed success governs the second. The
+model's contribution is not to claim a new economic mechanism -- the general regularity that a market's
+second entrant matters disproportionately is well established \citep{BresnahanReiss1990,BresnahanReiss1991}
+-- but to show that a standard learning-based account of \emph{why} can reproduce every feature of our
+timing evidence, including the one cross-sectional test that initially appeared to contradict it.
+
+\newpage
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

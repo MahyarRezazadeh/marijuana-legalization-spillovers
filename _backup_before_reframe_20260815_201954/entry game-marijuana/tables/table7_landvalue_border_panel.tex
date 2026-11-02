@@ -1,0 +1,38 @@
+\begin{table}[htbp]
+\centering
+\caption{Border-vs-Interior Panel Estimates: Farmland Value per Acre, 21 Legal States}
+\label{tab:landvalue_border_panel}
+\begin{tabular}{lcccc}
+\toprule
+Specification & Coefficient & SE (HC1) & SE (county-cl.) & $p$-value (county-cl.) \\
+\midrule
+No controls & $+0.310$ & $0.036$ & $0.059$ & $<0.001$ \\
++ log(pop) & $+0.335$ & $0.030$ & $0.048$ & $<0.001$ \\
++ year FE & $+0.310$ & $0.035$ & $0.059$ & $<0.001$ \\
++ state FE & $-0.035$ & $0.028$ & $0.044$ & $0.428$ \\
++ log(pop) + year FE + state FE & $+0.008$ & $0.024$ & $0.039$ & $0.836$ \\
++ log(pop) + land area + year FE + state FE & $-0.005$ & $0.020$ & $0.032$ & $0.869$ \\
+\midrule
+\multicolumn{5}{l}{\textit{Continuous distance version (full controls), log(miles to non-legal border)}} \\
++ log(pop) + land area + year FE + state FE & $+0.083$ & $0.015$ & $0.025$ & $0.001$ \\
+\midrule
+\multicolumn{5}{l}{\textit{17-state subsample, dropping AZ/CA/NV/RI (no county within 70mi of a non-legal border)}} \\
++ log(pop) + land area + year FE + state FE & $-0.006$ & $0.020$ & $0.032$ & $0.847$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(farmland asset value per acre), NASS Census of Agriculture, 2012/2017/2022.
+County-year panel, 947 counties matched across 21 states with an operating recreational retail market as
+of 2026-08-05 and available land-value data, $n=2{,}835$. Treatment (border\_70mi) is 1 for counties
+within 70 miles of a non-legal-state border, 0 otherwise (434 border counties, 513 interior). Standard
+errors clustered by county. The raw and lightly controlled specifications show a large, significant
+positive gap that is entirely a between-state artifact: it collapses to a precise null once state fixed
+effects are added, and stays null in the subsample restricted to states with genuine border-county
+variation. The continuous log-distance version, however, remains significant with the full control set --
+in the \emph{opposite} direction of the binary specification (farther from a non-legal border associated
+with \emph{higher}, not lower, land value) -- a specification-sensitivity result discussed in Section
+\ref{sec:results}, not resolved in favor of either specification.
+\end{minipage}
+\end{table}

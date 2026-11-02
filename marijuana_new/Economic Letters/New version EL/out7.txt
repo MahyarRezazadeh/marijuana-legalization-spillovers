@@ -1,0 +1,36 @@
+﻿py : C:\Users\mahya\AppData\Local\Programs\Python\Python313\Lib\site-packages\csdid\attgt_fnc\compute_att_gt.py:176: 
+UserWarning: overlap condition violated for group 2024 in time period 2021
+At line:1 char:446
++ ... llover effect\marijuana_new\Economic Letters\New version EL"; py -c "
++                                                                   ~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\mahya\...ime period 2021:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warnings.warn(
+C:\Users\mahya\AppData\Local\Programs\Python\Python313\Lib\site-packages\csdid\attgt_fnc\compute_att_gt.py:176: 
+UserWarning: overlap condition violated for group 2024 in time period 2022
+  warnings.warn(
+C:\Users\mahya\AppData\Local\Programs\Python\Python313\Lib\site-packages\csdid\attgt_fnc\compute_att_gt.py:176: 
+UserWarning: overlap condition violated for group 2024 in time period 2023
+  warnings.warn(
+g=2022 t=2021 att=-5.94013931942782
+g=2022 t=2022 att=-1.9464265917412318
+g=2022 t=2023 att=-1.5488567506781792
+g=2022 t=2024 att=-1.2872604265520458
+g=2022 t=2025 att=1.1814128071219505
+g=2023 t=2021 att=-2.572387024393012
+g=2023 t=2022 att=-0.987762666141798
+g=2023 t=2023 att=-0.7175978185982382
+g=2023 t=2024 att=-1.0190089350133182
+g=2023 t=2025 att=1.4754430616909646
+g=2024 t=2021 att=nan
+g=2024 t=2022 att=nan
+g=2024 t=2023 att=nan
+g=2024 t=2024 att=nan
+g=2024 t=2025 att=nan
+C:\Users\mahya\AppData\Local\Programs\Python\Python313\Lib\site-packages\csdid\attgt_fnc\compute_att_gt.py:176: 
+UserWarning: overlap condition violated for group 2024 in time period 2024
+  warnings.warn(
+C:\Users\mahya\AppData\Local\Programs\Python\Python313\Lib\site-packages\csdid\attgt_fnc\compute_att_gt.py:176: 
+UserWarning: overlap condition violated for group 2024 in time period 2025
+  warnings.warn(

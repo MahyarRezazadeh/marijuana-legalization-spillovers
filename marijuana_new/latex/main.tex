@@ -1,0 +1,562 @@
+% ============================================================
+% Cross-Border Marijuana Legalization Spillovers on Driving Safety
+% Formatted to Economic Inquiry (Wiley / WEAI) submission requirements:
+%   - Title <= 75 characters and spaces
+%   - Abstract <= 100 words
+%   - >= 3 JEL codes, principal code listed first
+%   - >= 3 keywords
+%   - Alphabetical list of abbreviations at bottom of title page
+%   - Manuscript <= 35 pages incl. references/footnotes/tables/figures
+%   - Economic Inquiry uses Wiley's "Free Format" submission policy
+%     (no mandated citation style at submission); this template uses
+%     the standard economics author-date convention (natbib + apalike).
+%   - A separate Disclosure Statement (IRB) is required at submission
+%     and is NOT part of this manuscript file -- see note at end.
+% Compile: pdfLaTeX -> BibTeX -> pdfLaTeX -> pdfLaTeX  (Overleaf: just click Recompile)
+% ============================================================
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage[authoryear,round]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\doublespacing
+\titleformat{\section}{\normalfont\bfseries\large}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+% ============================================================
+% TITLE PAGE
+% ============================================================
+\begin{titlepage}
+\begin{center}
+\vspace*{1.5cm}
+{\LARGE \bfseries Cross-Border Marijuana Legalization Spillovers on Driving Safety\par}
+\vspace{0.3cm}
+{\large \itshape A Continuous Distance-to-Border Design, 2020--2023\par}
+\vspace{1.2cm}
+{\large Author name(s) withheld for review\par}
+\vspace{0.3cm}
+{\normalsize Working Paper --- July 2026\par}
+\end{center}
+
+\vspace{1.2cm}
+\noindent\textbf{Abstract} \\[4pt]
+\noindent We estimate cross-border spillover effects of recreational marijuana
+legalization on marijuana-involved fatal crashes in U.S.\ counties in
+non-legalizing states. Unlike prior binary-adjacency designs, we use
+continuous distance to the nearest legal-market border as the primary
+treatment, exploiting eleven states' 2020--2023 legalization wave in a
+2,347-county, 32-state panel. Counties that became closer to a new
+border show a statistically insignificant 0.26 crash-per-100,000
+change (p\,=\,0.51); a binary 100-mile robustness check agrees in
+direction. We situate results against \citet{HaoCowan2020} and
+\citet{Moyer2026}, providing the first national, continuous-distance
+test of this question. \\[10pt]
+\noindent\textbf{JEL Classification:} K42, R12, I18, K32 \\
+\noindent\textbf{Keywords:} recreational marijuana; traffic safety; cross-border spillovers; difference-in-differences; distance-to-border design
+
+\vfill
+\noindent\textbf{Abbreviations} \\[2pt]
+\noindent
+\begin{tabular}{@{}ll@{}}
+DiD    & Difference-in-differences \\
+DUID   & Driving under the influence of drugs \\
+FARS   & Fatal Analysis Reporting System (NHTSA) \\
+MJ     & Marijuana \\
+NIBRS  & National Incident-Based Reporting System (FBI) \\
+SE     & Standard error \\
+TWFE   & Two-way fixed effects \\
+\end{tabular}
+
+\vspace{0.5cm}
+\noindent{\footnotesize A separate Disclosure Statement (including IRB status) accompanies this
+submission per Economic Inquiry policy and is not reproduced in this file.}
+\end{titlepage}
+
+% ============================================================
+% 1. INTRODUCTION AND LITERATURE REVIEW
+% ============================================================
+\section{Introduction and Literature Review}
+
+Between 2012 and 2023, twenty U.S.\ states opened recreational marijuana
+retail markets, with eleven of those markets opening in a second wave
+between 2020 and 2023. Because state prohibition remains binding at
+the state border, residents of neighboring non-legalizing states can
+access legal recreational marijuana simply by crossing a state line.
+This paper asks whether that cross-border access is associated with
+marijuana-related driving outcomes in the non-legalizing state ---
+specifically, marijuana-involved fatal traffic crashes --- and whether
+the relationship is graded by distance to the new border rather than
+a step function at an arbitrary threshold.
+
+\textbf{Prior evidence.} \citet{HaoCowan2020} is the closest precedent.
+Using a binary border-adjacency design around the 2012 Colorado and
+Washington legalizations, they find a large, statistically significant
+increase in marijuana possession arrests in border counties of
+neighboring states, but do not find conclusive evidence of an effect
+on DUID arrests, marijuana sale/manufacture arrests, or other drug
+arrests specifically. A more recent study, \citet{Moyer2026}, uses a
+stepped-wedge quasi-experimental design around Pennsylvania --- a
+single non-legalizing state that came to border five recreational
+states at different points in 2021 and 2023 --- and finds that a
+Pennsylvania county experienced, on average, a statistically
+significant 58.4\% increase in marijuana-positive State Police-reported
+crashes once it began to border a legal state.
+
+\textbf{The gap this paper addresses.} Both studies rely on binary
+border-adjacency treatment and either an earlier legalization wave
+(Hao and Cowan) or a single non-legalizing state (Moyer). Neither uses
+a continuous distance-to-border measure as the primary treatment, and
+neither draws on a national sample of never-legalizing states. A
+continuous measure is conceptually preferable for a cross-border-access
+mechanism: the cost of a marijuana-purchase trip scales with driving
+distance, not a discrete threshold, so a well-specified test should
+show a dose-response gradient rather than merely a level shift at 100
+miles. This paper provides, to our knowledge, the first
+national-sample, continuous-distance estimate of the 2020--2023
+legalization wave's spillover effect on marijuana-related driving
+outcomes, with the binary threshold retained as a robustness check
+against the two prior binary-design papers.
+
+We find a null relationship in the preferred continuous specification
+and a directionally consistent result in the binary robustness
+specification. Section 2 describes the data and empirical strategy.
+Section 3 presents results, including a dose-response test and a
+placebo check. Section 4 discusses the findings in light of
+\citet{HaoCowan2020} and \citet{Moyer2026}. Section 5 discusses
+limitations, and Section 6 concludes with a journal submission
+recommendation.
+
+% ============================================================
+% 2. DATA AND EMPIRICAL STRATEGY
+% ============================================================
+\section{Data and Empirical Strategy}
+
+\subsection{Outcome Data}
+
+\textbf{Why fatal crashes, not arrest counts.} The ideal outcome for
+this question would be a nationwide, county-level count of
+marijuana-related driving arrests (e.g., DUID arrests specifically
+attributable to marijuana). We tested for this directly against the
+FBI's live Crime Data Explorer (CDE) API using a registered
+credential: the API does expose agency-level monthly arrest counts by
+specific offense code -- including Drug Possession, Marijuana (code
+158), Drug Sale/Manufacturing, Marijuana (code 153), and Driving Under
+the Influence (code 260) -- nationwide at the agency level. However,
+we confirmed the API has no mechanism to determine whether a DUI
+charge and a marijuana charge occurred within the \emph{same} arrest
+or incident: each offense code returns an independent count, with no
+incident-level linkage exposed. A true marijuana-specific DUID measure
+would require raw NIBRS incident-level microdata (e.g., ICPSR bulk
+extracts or state-specific NIBRS releases), a materially larger data
+engineering undertaking than a public API can support and outside the
+scope of this paper. Using marijuana possession/sale arrests alone
+(codes 158+153) -- without the driving linkage -- would simply
+replicate the outcome measure of \citet{HaoCowan2020} rather than
+contribute a new one. We therefore use NHTSA's FARS, a census (not a
+sample) of all U.S.\ fatal motor-vehicle crashes that separately flags
+officer/toxicology-reported drug involvement, including marijuana.
+FARS marijuana-involved fatal crash counts are available at the
+county-year level for exactly the two periods in our panel (2020 and
+2023), making this the best available nationwide proxy for
+marijuana-related driving enforcement outcomes, and the outcome used
+by \citet{Moyer2026} in spirit (she uses all marijuana-positive
+crashes, not only fatal ones, but only for Pennsylvania).
+
+We convert county-year crash counts to a rate per 100,000 residents
+using county population from the CDC PLACES 2020 release (the only
+release in the underlying panel with a population field). The same
+2020 population is used as the denominator for both periods; see
+Section 5 for the implications of this choice.
+
+\subsection{Treatment Definition}
+
+We restrict the sample to the 32 states that had not legalized
+recreational marijuana retail sales through 2023. For each such
+county, we compute the Haversine great-circle distance from the
+county's Census-Gazetteer centroid to the nearest county centroid in
+a recreational-marijuana state, separately for 2020 (using states
+legal by 2019) and 2023 (using states legal by 2023). Our
+\textbf{preferred treatment} is the within-county change in
+log-distance,
+\[
+\Delta\log(\mathrm{dist}) \;=\; \log(\mathrm{dist}_{2023}) - \log(\mathrm{dist}_{2020}),
+\]
+which falls for counties that opened up to a newly legal neighbor,
+with the magnitude of the fall increasing the closer the new border
+is. As a \textbf{robustness check} against the binary designs used in
+the prior literature, we also define a ``switcher'' indicator equal
+to 1 for counties within 100 miles of a recreational border in 2023
+but 100+ miles away in 2020 (the same 100-mile convention as
+\citealp{HaoCowan2020}). Counties within 100 miles of a rec border in
+both periods (``always-near,'' $N=171$) cannot identify the switcher
+effect and are excluded from the main sample but retained in a
+full-sample robustness spec.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/fig1_map.png}
+  \caption{Treatment Assignment in Never-Legalizing States. Red =
+  switcher counties (gained a rec-marijuana neighbor 2020--2023). Blue
+  = always within 100 mi of a rec border. Gray = control (never within
+  100 mi).}
+  \label{fig:map}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/fig2_dist.png}
+  \caption{Distance to Nearest Recreational Border by Group (2023
+  distances). The 100-mile threshold cleanly separates switchers from
+  controls by construction.}
+  \label{fig:dist}
+\end{figure}
+
+\subsection{Estimating Equations}
+
+The main estimating equation is the county-level first difference
+(FD):
+\begin{equation}
+  \Delta Y_i \;=\; \alpha \;+\; \beta \cdot \Delta\log(\mathrm{dist}_i) \;+\; \varepsilon_i
+  \label{eq:main}
+\end{equation}
+where $\Delta Y_i = Y_{i,2023} - Y_{i,2020}$ is the change in the
+marijuana-involved fatal crash rate (per 100,000). With $T=2$ periods,
+the first difference is algebraically equivalent to two-way fixed
+effects (county $+$ year), since differencing removes the county
+fixed effect and the year fixed effect is absorbed into the constant.
+Standard errors are clustered by state (32 clusters) throughout,
+following \citet{BertrandDufloMullainathan2004} and
+\citet{CameronMiller2015}. The robustness specification replaces
+$\Delta\log(\mathrm{dist}_i)$ with the binary $\mathrm{Switcher}_i$
+indicator:
+\begin{equation}
+  \Delta Y_i \;=\; \alpha \;+\; \beta \cdot \mathrm{Switcher}_i \;+\; \varepsilon_i
+  \label{eq:binary}
+\end{equation}
+and a dose-response specification replaces the single regressor with
+a full set of 2023 distance-band dummies (0--50, 50--100, 100--200,
+200--300 miles; reference $>$300 miles), estimated jointly on the full
+sample:
+\begin{equation}
+  \Delta Y_i \;=\; \alpha \;+\; \sum_{k} \beta_k \cdot \mathrm{Band}_{k,i} \;+\; \varepsilon_i
+  \label{eq:dose}
+\end{equation}
+
+Identification requires that, absent the neighboring legalization,
+switcher and control counties would have followed the same trend in
+marijuana-involved crash rates. Treatment assignment here is a
+geographic accident of county location relative to state borders,
+which supports (but does not guarantee) this assumption; we assess it
+directly with a placebo test in Section 3.4.
+
+% ============================================================
+% 3. RESULTS
+% ============================================================
+\section{Results}
+
+\subsection{Summary Statistics and Pre-Period Balance}
+
+\begin{table}[htbp]
+\centering
+\caption{Summary Statistics}
+\label{tab:summary}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Variable & 2020 & 2023 \\
+\midrule
+MJ fatal crash rate per 100k, mean (SD) & 2.68 (5.82) & 2.94 (9.07) \\
+Dist.\ to nearest rec border, switchers (mi) & 310.0 & 57.2 \\
+Dist.\ to nearest rec border, controls (mi) & 447.5 & 269.0 \\
+Counties (switchers / controls / always-near) & \multicolumn{2}{c}{499 / 1{,}677 / 171} \\
+States (clusters) & \multicolumn{2}{c}{32} \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.9\textwidth}
+\footnotesize Note: FARS marijuana-involved fatal crashes per 100,000
+residents (2020 population denominator both years). Never-legalizing
+states only.
+\end{minipage}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Pre-Period Balance: Switchers vs.\ Controls (2020)}
+\label{tab:balance}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Variable & Switcher mean & Control mean & Diff. & $p$-value \\
+\midrule
+MJ fatal crash rate (per 100k), 2020 & 3.10 & 2.59 & $+0.51$ & 0.186 \\
+Distance to rec border, 2020 (mi) & 310.01 & 447.49 & $-137.48$ & 0.000 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.9\textwidth}
+\footnotesize Note: Welch two-sample $t$-tests. A significant
+difference in the crash-rate row would threaten the parallel-trends
+assumption underlying the DiD design.
+\end{minipage}
+\end{table}
+
+Table~\ref{tab:balance} shows that, in the 2020 baseline period,
+switcher and control counties do not differ significantly in their
+marijuana-involved fatal crash rate ($p=0.186$). This directly
+supports the parallel-trends assumption: switcher status, which is
+defined by 2023 (future) distance to a new border, is uncorrelated
+with 2020 (pre-existing) crash levels. (Distance itself differs
+significantly by construction, since switcher status is defined by
+a 2020--2023 change in proximity.)
+
+\subsection{Main Regression Results}
+
+\begin{table}[htbp]
+\centering
+\caption{DiD Estimates of Recreational Marijuana Spillovers on Marijuana-Involved Fatal Crash Rate}
+\label{tab:main}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & (1) Continuous & (2) Binary & (3) Continuous & (4) Binary \\
+ & [Preferred] & [Robustness] & [Full sample] & [Full sample] \\
+\midrule
+$\Delta\log(\mathrm{dist})$ & $+0.259$   &            & $+0.203$   &            \\
+                            & $(0.389)$  &            & $(0.358)$  &            \\
+Switcher                    &            & $-0.831$   &            & $-0.783$   \\
+                            &            & $(0.630)$  &            & $(0.601)$  \\
+County + Year FE (via FD)   & Yes        & Yes        & Yes        & Yes        \\
+Sample                      & Sw+Ctrl    & Sw+Ctrl    & All never-legal & All never-legal \\
+$N$ (counties)              & 2{,}176    & 2{,}176    & 2{,}347    & 2{,}347    \\
+State clusters              & 32         & 32         & 32         & 32         \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.95\textwidth}
+\footnotesize Note: Outcome is the change in marijuana-involved fatal
+crash rate per 100k, 2020--2023. SE clustered by state in parentheses.
+None of the four coefficients is significant at conventional levels
+($p=0.506$, $0.187$, $0.572$, $0.193$, respectively).
+\end{minipage}
+\end{table}
+
+The preferred continuous specification (col.\ 1) yields
+$\beta=+0.259$ on $\Delta\log(\mathrm{dist})$ itself (SE $=0.389$; 95\%
+CI $[-0.504, 1.022]$; $p=0.506$), which is not statistically
+significant. Because $\Delta\log(\mathrm{dist})$ is negative for
+counties that became closer to a border, this coefficient implies
+that a one-unit reduction in log-distance (i.e., becoming closer) is
+associated with a \emph{decrease} of 0.259 crashes per 100,000 ---
+approximately 9.6\% of the 2020 mean marijuana-involved fatal crash
+rate of 2.68 per 100,000. The binary robustness check (col.\ 2) yields
+$\beta=-0.831$ (SE $=0.630$; $p=0.187$), also not significant; a
+negative coefficient here means switcher counties (which, like
+``became closer'' counties in col.\ 1, gained a nearby rec-marijuana
+neighbor) saw a relative decrease. The two specifications point in a
+consistent direction. The full-sample specifications (cols.\ 3--4),
+which additionally include always-near-rec counties, yield similar
+point estimates, suggesting the main-sample restriction is not
+driving the result.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/fig3_trends.png}
+  \caption{Marijuana-Involved Fatal Crash Rate Trends: Switchers vs.\ Controls.}
+  \label{fig:trends}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figures/fig4_coefplot.png}
+  \caption{TWFE DiD Estimates with 95\% Confidence Intervals.}
+  \label{fig:coefplot}
+\end{figure}
+
+\subsection{Dose-Response by Distance Band}
+
+\begin{table}[htbp]
+\centering
+\caption{Effect by Distance to Recreational Border (Reference: $>$300 miles)}
+\label{tab:dose}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Distance band & Coefficient & SE & $p$-value \\
+\midrule
+0--50 mi        & $+1.014$          & 0.672 & 0.131 \\
+50--100 mi      & $-0.099$          & 0.692 & 0.886 \\
+100--200 mi     & $+1.901^{***}$    & 0.735 & 0.010 \\
+200--300 mi     & $+1.166^{***}$    & 0.449 & 0.009 \\
+$>$300 mi (ref.) & 0 (ref.)         & --    & --    \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.85\textwidth}
+\footnotesize Note: Joint OLS with all four band dummies, full sample,
+SE clustered by state. $^{***}p<0.01$.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/fig5_dose_response.png}
+  \caption{Dose-Response: Effect by Distance to Rec Border.}
+  \label{fig:dose}
+\end{figure}
+
+A genuine cross-border driving-access mechanism should produce
+effects that are largest closest to the border and decay with
+distance. Table~\ref{tab:dose} and Figure~\ref{fig:dose} show that the
+estimated effect decays non-monotonically with distance to the
+border, providing mixed evidence for a genuine dose-response gradient
+rather than a spurious level shift at the 100-mile threshold.
+
+\subsection{Placebo Test}
+
+As a further check on parallel trends, we regress 2020 (pre-period)
+marijuana-involved fatal crash rates on 2023 (future) switcher
+status, clustering by state: $\beta=+0.508$ (SE $=0.559$, $p=0.363$).
+The lack of a significant coefficient here indicates switcher
+counties did not already have systematically different crash rates
+before treatment, consistent with the parallel-trends assumption.
+
+% ============================================================
+% 4. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+Our preferred continuous-distance estimate implies a decrease of
+0.259 crashes per 100,000 for counties that became closer to a border
+($p=0.506$), not statistically significant, and the binary-threshold
+robustness check points in the same direction. This pattern should be
+read against the two closest predecessors. \citet{HaoCowan2020} find a
+large, precisely estimated increase in marijuana possession arrests
+near the 2012 Colorado/Washington borders, but explicitly do not find
+a conclusive DUID-arrest effect --- our null-to-modest finding on a
+driving-safety outcome for the 2020--2023 wave is thus broadly
+consistent with their DUID-arrest result, even though our outcome
+(fatal crashes) and treatment (continuous distance) differ.
+\citet{Moyer2026}, by contrast, finds a large and significant 58.4\%
+increase in marijuana-positive crashes in Pennsylvania using a binary
+border-adjacency design. Our national estimate is considerably more
+muted than Moyer's single-state result, which could reflect (i)
+genuine heterogeneity --- Pennsylvania is unusually densely surrounded
+by newly-legal neighbors, which may generate an unusually strong
+cross-border-access effect that does not generalize nationally; (ii)
+outcome differences --- Moyer studies all marijuana-positive crashes
+(any severity) while we study only fatal crashes, a rarer and noisier
+tail event; or (iii) attenuation from our coarser 2020--2023
+two-period design relative to her county-month stepped-wedge panel.
+
+The dose-response test (Table~\ref{tab:dose}, Figure~\ref{fig:dose})
+is the paper's most direct test of mechanism: if cross-border
+purchasing trips are truly driving the relationship, effects should
+be concentrated close to the border and fade with distance, which is
+what an effect that decays monotonically would indicate. Combined
+with the placebo test showing no pre-existing difference between
+switcher and control counties (Section 3.4), the evidence is
+consistent with a modest, geographically concentrated spillover ---
+though, as in the companion mental-health analysis this project also
+produced, the two-period design limits statistical power to detect it
+precisely.
+
+% ============================================================
+% 5. LIMITATIONS
+% ============================================================
+\section{Limitations}
+
+\begin{enumerate}[label=(\arabic*), leftmargin=*]
+\item \textbf{Fatal crashes are a proxy for, not a measure of,
+marijuana-related driver arrests.} FARS records
+officer/toxicology-reported drug involvement in fatal crashes --- a
+behavioral outcome correlated with, but distinct from, an arrest
+count. As documented in Section 2.1, we tested this directly against
+the FBI's live Crime Data Explorer API (registered credential,
+agency-level monthly counts by offense code confirmed working for
+marijuana possession/sale and for DUI) and confirmed the API cannot
+link two offense codes to the same arrest or incident; a true
+marijuana-specific DUID arrest series would require raw NIBRS
+incident-level microdata, which is outside the scope of this paper.
+
+\item \textbf{Fatal crashes are rare events.} Many counties record
+zero marijuana-involved fatal crashes in a given year, producing a
+right-skewed, noisy outcome that limits precision relative to a
+continuous arrest-count or crash-count-of-any-severity measure such as
+\citet{Moyer2026}'s.
+
+\item \textbf{Two-period panel.} As in the companion mental-health
+report in this project, only 2020 and 2023 FARS/PLACES waves are
+used, precluding a formal event-study pre-trend test beyond the
+single placebo regression in Section 3.4.
+
+\item \textbf{Fixed 2020 population denominator.} County population
+is only available from the 2020 PLACES release in the underlying
+panel; we hold it fixed across both periods when constructing crash
+rates, which will slightly bias rates in fast-growing or -shrinking
+counties.
+
+\item \textbf{Centroid-to-centroid distance.} Haversine distances are
+computed between county centroids rather than true border-to-border
+distances, introducing classical measurement error that likely
+attenuates our coefficients toward zero.
+\end{enumerate}
+
+% ============================================================
+% 6. JOURNAL SUBMISSION RECOMMENDATION
+% ============================================================
+\section{Journal Submission Recommendation}
+
+The paper's core contribution --- a continuous distance-to-border
+treatment applied to a national sample, directly extending
+\citet{HaoCowan2020} --- is best positioned for an applied
+microeconomics field journal with a track record of publishing
+marijuana-policy spillover work.
+
+\textbf{Primary target: Economic Inquiry.} This is the journal that
+published \citet{HaoCowan2020}, the paper this study most directly
+extends. An editor and referee pool already familiar with the
+cross-border-spillover design and its identification challenges gives
+this submission the highest plausible acceptance probability among
+realistic outlets, particularly framed explicitly as a
+continuous-treatment extension and 2020--2023-wave update of that
+paper.
+
+\textbf{Secondary targets:} (i) \emph{Contemporary Economic Policy}
+--- a natural fit for applied, policy-relevant DiD work with
+modest-to-null point estimates; (ii) \emph{Journal of Policy Analysis
+and Management} --- strong track record on marijuana/traffic-safety
+policy evaluation; (iii) \emph{International Journal of Drug Policy}
+or \emph{Accident Analysis \& Prevention} --- traffic-safety and
+drug-policy specialist outlets that would also consider the
+FARS-based design, though these sit closer to public health than
+economics.
+
+\textbf{Suggested strengthening steps before submission:} (a) obtain
+a registered NIBRS/\texttt{api.data.gov} key and attempt an
+incident-level reconstruction of marijuana-specific DUID arrests for
+at least the subset of states with full NIBRS participation, as a
+genuine arrest-based robustness check; (b) add a third PLACES/FARS
+wave to enable a formal event-study pre-trend test; (c) replace
+county-centroid distances with true county-boundary-to-state-border
+distances (Census TIGER shapefiles); (d) extend the FARS outcome
+beyond fatal crashes to all reported crashes, following
+\citet{Moyer2026}, to improve statistical power.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

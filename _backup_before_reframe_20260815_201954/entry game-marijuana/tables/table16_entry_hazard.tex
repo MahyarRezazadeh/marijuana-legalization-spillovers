@@ -1,0 +1,30 @@
+\begin{table}[htbp]
+\centering
+\caption{Entry Timing: Cox Proportional-Hazards Models}
+\label{tab:entry_hazard}
+\begin{tabular}{lccccc}
+\toprule
+Outcome & Border measure & Hazard ratio & Coef. & SE & $p$ \\
+\midrule
+Time to 1st dispensary & border $\le$70mi (binary) & $1.138$ & $+0.130$ & $0.135$ & $0.337$ \\
+(state-launch clock, $n=479$, 346 events) & log(dist.\ to non-legal border) & $0.974$ & $-0.027$ & $0.107$ & $0.803$ \\
+\midrule
+Time from 1st to 2nd dispensary & border $\le$70mi (binary) & $1.259$ & $+0.230$ & $0.164$ & $0.159$ \\
+($n=346$, 271 events) & log(dist.\ to non-legal border) & $0.696$ & $-0.362$ & $0.124$ & $0.003$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} All models stratified by state (state fixed effects) and control for log(population); the
+9-state, 479-county entry-density universe and county-level open-date data described in
+Section~\ref{sec:data} and used in the companion entry-density analysis. ``Time to 1st dispensary'' is
+measured in days from a county's own state's retail-launch date; counties with no dispensary as of the
+2026-08-05 data cutoff are right-censored at that date rather than dropped. ``Time from 1st to 2nd
+dispensary'' restricts to the 346 counties that ever received a first entrant and is right-censored for
+counties still at exactly one dispensary. A hazard ratio above 1 means faster entry (shorter survival time)
+for counties closer to a non-legal border. The 546 dispensary records with a missing open date (including
+New York's $\sim$485 license-valid-but-undated records, included in the static count analysis via lat/lon
+alone) cannot be ordered in event time and are excluded here.
+\end{minipage}
+\end{table}

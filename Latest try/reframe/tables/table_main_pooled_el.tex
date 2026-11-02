@@ -1,0 +1,22 @@
+\begin{table*}[htbp]
+\centering
+\caption{Border $\times$ entry-regime interaction, pooled 5-state panel}
+\label{tab:main_pooled}
+\small
+\begin{tabular}{lccccccc}
+\toprule
+& \multicolumn{2}{c}{Border} & \multicolumn{2}{c}{Capped} & \multicolumn{2}{c}{Border $\times$ Capped} & \\
+Outcome & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & $n$ \\
+\midrule
+Revenue per store & $+0.412$ ($+51.0\%$) & 0.161 & $+1.074$ ($+192.6\%$) & 0.000 & $+0.017$ ($+1.7\%$) & 0.959 & 964 \\
+Revenue per capita & $+1.086$ ($+196.3\%$) & 0.000 & $+0.130$ ($+13.9\%$) & 0.165 & $-0.792$ ($-54.7\%$) & 0.013 & 1283 \\
+Dispensary density & $+0.703$ ($+102.0\%$) & 0.000 & $-0.213$ ($-19.2\%$) & 0.142 & $-0.826$ ($-56.2\%$) & 0.000 & 964 \\
+\bottomrule
+\end{tabular}
+\footnotesize
+\vspace{0.2em}
+
+\noindent\textit{Notes:} Pooled across CO, WA, OR, MT, NM. \% is $(e^{\hat\beta}-1)\times 100$; $p$ (cl.) is
+county-clustered. Per-store/density omit state FE (collinear with \texttt{Capped} in that sample -- see text);
+per-capita includes state FE.
+\end{table*}

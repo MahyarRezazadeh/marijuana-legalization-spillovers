@@ -1,0 +1,35 @@
+\begin{table}[htbp]
+\centering
+\caption{Store-Level Bunching Toward the Non-Legal State Line}
+\label{tab:border_bunching}
+\begin{tabular}{lccc}
+\toprule
+Group & Counties & Stores & Mean store-dist.\ / county-centroid-dist.\ ratio \\
+\midrule
+Border counties ($\le$70mi) & 133 & 1{,}542 & $0.604$ (median $0.681$) \\
+Interior counties (placebo) & 215 & 4{,}162 & $0.867$ (median $0.878$) \\
+\midrule
+\multicolumn{4}{l}{Welch $t$-test, border vs.\ interior ratio: $t=-10.88$, $p=6.8\times10^{-21}$} \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} For every geocoded, currently-open dispensary (same definition as
+Section~\ref{sec:data}'s entry-density count), we compute the point-to-polygon distance in miles from the
+store's exact coordinates to the dissolved state polygon of its county's nearest non-legal state
+(projected to EPSG:5070, CONUS Albers equal-area), and compare it to that same county's own centroid-to-
+polygon distance (the measure used everywhere else in this paper). The ratio is the county's mean
+store-to-line distance divided by its centroid-to-line distance; a ratio below 1 means stores sit closer to
+the line, on average, than the county's own geographic center does. A simpler ``share of stores on the
+border-facing side of the county centroid'' statistic was also computed but is not reported as a finding:
+it is $94.6\%$ in border counties versus $91.8\%$ in interior counties -- both far above the 50\% a random
+placement would imply, which shows this particular statistic is dominated by a generic, border-irrelevant
+fact (incorporated towns are essentially never sited at a county's literal geometric centroid) rather than
+anything specific to cross-border demand. The ratio measure controls for this by asking how much closer,
+relative to the county's own scale, and it does cleanly separate the two groups: interior counties'
+dispensaries sit only marginally closer to their (typically very distant and economically irrelevant)
+nearest non-legal state than the county center does, while border counties' dispensaries sit
+substantially closer to the actual, economically relevant line.
+\end{minipage}
+\end{table}

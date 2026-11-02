@@ -1,0 +1,33 @@
+\begin{table}[htbp]
+\centering
+\caption{Comparison of entry-regulation groupings: border $\times$ regime interaction $p$-values (county-clustered)}
+\label{tab:grouping_comparison}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{2}{c}{Density} & \multicolumn{2}{c}{Revenue per capita} & \multicolumn{2}{c}{Revenue per store} \\
+Grouping & Standard & Balanced & Standard & Balanced & Standard & Balanced \\
+\midrule
+A. Main Capped (CO/WA/MT capped, OR switches, NM free) & 0.000 & 0.000 & 0.008 & 0.010 & 0.905 & 0.273 \\
+B. Strict state-cap (WA + OR-2022 only) & 0.667 & 0.595 & 0.268 & 0.756 & 0.443 & 0.697 \\
+C. Local barrier (CO+MT) vs.\ non-local (WA+OR+NM) & 0.037 & 0.065 & 0.353 & 0.149 & 0.175 & 0.261 \\
+\textbf{D. Local (CO+MT) vs.\ Free (NM+OR-free), WA dropped} & \textbf{0.000} & \textbf{0.005} & \textbf{0.009} & \textbf{0.007} & 0.633 & 0.145 \\
+E. WA-as-free (CO+MT+OR2022 capped vs.\ WA+NM+OR-free) & 0.020 & 0.035 & 0.477 & 0.213 & 0.100 & 0.103 \\
+\bottomrule
+\end{tabular}
+}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Each row re-estimates the pooled border $\times$ regime interaction under a different
+entry-regulation classification, for both the standard panel and the balanced-panel restriction (counties
+present in every year within their own state's window). Grouping D is the only one significant on both
+density and revenue per capita under both specifications, and the only one where revenue per capita's
+significance strengthens (rather than weakens) under the balanced panel. Groupings B and C, which both retain
+Washington in some form, never reach significance on revenue per capita, and C's density result loses
+significance once panel churn is removed. Revenue per store is a precise, stable null across every grouping
+and specification -- the one result in this table that does not depend on how entry regulation is classified.
+Full results in \texttt{tables/grouping\_comparison\_full.csv}.
+\end{minipage}
+\end{table}

@@ -1,0 +1,24 @@
+﻿
+
+   ATT Std. Error  [95.0%  Conf. Int.] 
+0.7662     0.7606 -0.7247        2.257 
+
+
+---
+Signif. codes: `*' confidence band does not cover 0
+Control Group:  Never Treated , 
+Anticipation Periods:  0
+Estimation Method:  Doubly Robust
+
+
+CS excl. g=2024, +baseline_rate: att=+0.7662 se=0.7606 p=0.3138
+g=2022 t=2021 att=-4.287
+g=2022 t=2022 att=-0.164
+g=2022 t=2023 att=-0.780
+g=2022 t=2024 att=+0.495
+g=2022 t=2025 att=+1.772
+g=2023 t=2021 att=-2.320
+g=2023 t=2022 att=-1.509
+g=2023 t=2023 att=-0.953
+g=2023 t=2024 att=+0.957
+g=2023 t=2025 att=+3.102

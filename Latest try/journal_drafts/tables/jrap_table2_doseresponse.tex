@@ -1,0 +1,26 @@
+\begin{table}[htbp]
+\centering
+\caption{Dose-Response: Does the Premium Rise with Nonlegal-Side Population?}
+\label{tab:jrap_dose}
+\small
+\begin{tabular}{p{7.2cm}cccc}
+\toprule
+Specification & Coef. & SE (HC1) & SE (cl.) & $p$ (cl.) \\
+\midrule
+log(captive nonlegal population, 70mi) + full controls & $+0.035$ & -- & -- & $0.014$ \\
+\quad excluding Sedgwick County, CO & $+0.027$ & -- & -- & $0.034$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(revenue per active dispensary). The captive-population measure sums the
+population of \emph{all} nonlegal-state counties within 70 miles of a given county (not merely the nearest
+one), via a radius query against national county population centroids, capturing $P_i$ from the conceptual
+framework directly. Only 10 of the 71 Colorado and Washington counties in this panel have any nonlegal
+population within 70 miles at all, so this reweights the same identifying set of border counties by market
+size rather than adding new geographic variation; it is nonetheless the most robust mechanism evidence in
+this paper, since it survives county-clustered inference where a simpler continuous-distance measure
+(Table~\ref{tab:jrap_border}) does not.
+\end{minipage}
+\end{table}

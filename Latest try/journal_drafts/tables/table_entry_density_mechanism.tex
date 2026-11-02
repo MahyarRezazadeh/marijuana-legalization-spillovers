@@ -1,0 +1,25 @@
+\begin{table}[htbp]
+\centering
+\caption{Entry Density: Border vs.\ Interior, by Licensing Regime}
+\label{tab:entry_density_mechanism}
+\small
+\begin{tabular}{p{6.4cm}ccc}
+\toprule
+& Coefficient & $p$-value & $n$ (counties) \\
+\midrule
+Colorado + Washington (capped), dispensaries per 1,000, full controls & $-0.156$ & $0.043$ & 103 \\
+Montana (uncapped), dispensaries per 1,000, full controls & $+0.142$ & $0.106$ & 23 \\
+\quad Montana, no controls & $+0.178$ & $0.035$ & 23 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is dispensary count per 1,000 residents; ``full controls'' = log(population)
+(+ state fixed effects for the CO+WA specification, which pools both states). Border counties in the two
+capped states have significantly \emph{fewer} dispensaries relative to population than interior counties,
+not merely a null -- the demand implied by the revenue results is not being met by additional entry.
+Montana's much smaller sample (23 counties, 8 border) limits precision, but the coefficient is
+directionally consistent with the opposite prediction: entry responds to demand where it is not capped.
+\end{minipage}
+\end{table}

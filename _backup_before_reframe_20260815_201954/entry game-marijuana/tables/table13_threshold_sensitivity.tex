@@ -1,0 +1,38 @@
+\begin{table}[htbp]
+\centering
+\caption{Robustness: 70-Mile vs.\ 90-Mile Border Threshold}
+\label{tab:threshold_sensitivity}
+\begin{tabular}{lcccccc}
+\toprule
+Outcome & Threshold & Coefficient & SE (HC1) & $p$ (HC1) & SE (county-cl.) & $p$ (county-cl.) \\
+\midrule
+Land value (23 states) & 70mi & $-0.005$ & $0.020$ & $0.789$ & $0.032$ & $0.869$ \\
+Land value (23 states) & 90mi & $+0.016$ & $0.021$ & $0.448$ & $0.035$ & $0.644$ \\
+\midrule
+Revenue per capita (CO+WA+OR+MT) & 70mi & $+0.215$ & $0.083$ & $0.009$ & $0.193$ & $0.264$ \\
+Revenue per capita (CO+WA+OR+MT) & 90mi & $+0.132$ & $0.067$ & $0.050$ & $0.152$ & $0.386$ \\
+\midrule
+Revenue per store (CO+WA+OR) & 70mi & $+0.429$ & $0.074$ & $<0.001$ & $0.157$ & $0.006$ \\
+Revenue per store (CO+WA+OR) & 90mi & $+0.248$ & $0.068$ & $<0.001$ & $0.164$ & $0.129$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Motivated by a direct check of Nevada's computed distances (Section~\ref{sec:data}):
+Lincoln County, NV sits 79.7 miles from Utah and Elko County, NV sits 90.8 miles from Idaho, both just
+outside the paper's 70-mile cutoff, so Nevada's ``zero border counties'' status is a near-miss rather than
+a wide margin. Widening the threshold to 90 miles pulls Nevada's Lincoln County into the treated group for
+land value (Elko lacks a matched land-value record in the relevant years) and adds interior-to-border
+reclassifications within the existing revenue states. Land value's null is unaffected by the threshold
+choice -- both point estimates are small and both are statistically indistinguishable from zero, so the
+wider net does not manufacture a land-value effect that a stricter cutoff was hiding. The two revenue
+outcomes tell different stories: revenue per capita's already-fragile positive coefficient weakens further
+at 90 miles and remains insignificant under clustering at both thresholds, while revenue per store's
+robust 70-mile result \emph{loses} significance under county-clustered SEs at 90 miles ($p=0.006\to
+p=0.129$), indicating the per-store finding, while robust to which specific counties or states are
+included at a fixed 70-mile cutoff (Sections~\ref{sec:revenue_perstore} and
+\ref{tab:pooled_perstore_or}), is more sensitive to the cutoff distance itself than to sample composition.
+We report this openly rather than treat 70 miles as a free parameter to be tuned toward significance.
+\end{minipage}
+\end{table}

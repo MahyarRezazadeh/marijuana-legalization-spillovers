@@ -1,0 +1,28 @@
+{
+  "main": {
+    "design": "Main design (distance to legal-market county)",
+    "coef": -2.478015013026284,
+    "se": 0.748584425436493,
+    "population": 31885361.0,
+    "weighted_life_expectancy": 75.83521239104053,
+    "avg_age_at_death": 46.14071935067509,
+    "le_diff": 29.694493040365437,
+    "averted_deaths": 790.1240325376277,
+    "averted_deaths_lo": 322.2938935148326,
+    "averted_deaths_hi": 1257.954171560423,
+    "yll": 23462.33258521406
+  },
+  "dispensary": {
+    "design": "Dispensary design (distance to operating dispensary)",
+    "coef": -3.172805629549671,
+    "se": 1.1958634545416158,
+    "population": 16404374.0,
+    "weighted_life_expectancy": 74.86991288421002,
+    "avg_age_at_death": 46.14071935067509,
+    "le_diff": 28.729193533534932,
+    "averted_deaths": 520.4789017643826,
+    "averted_deaths_lo": 135.9780310842223,
+    "averted_deaths_hi": 904.9797724445428,
+    "yll": 14952.939098910665
+  }
+}

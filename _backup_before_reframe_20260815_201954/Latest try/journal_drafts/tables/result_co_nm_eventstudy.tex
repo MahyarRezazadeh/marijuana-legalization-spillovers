@@ -1,0 +1,25 @@
+\begin{table}[htbp]
+\centering
+\caption{Natural Experiment: Colorado's Border with New Mexico}
+\label{tab:co_nm}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Specification & Coef.\ (NM-border $\times$ post-2022) & SE (HC1) & SE (cl.) & $p$ (cl.) \\
+\midrule
+Difference-in-differences$^{a}$ & $-0.487$ & $0.106$ & $0.123$ & $<0.001$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(revenue per active dispensary). Colorado county-year panel, 2014--2025, $n=352$
+(2022, the transition year in which New Mexico's market opened partway through, is dropped). Treatment is the
+6 Colorado counties within 70 miles of New Mexico (Archuleta, Conejos, Costilla, La Plata, Las Animas,
+Montezuma); controls include the 5 Colorado counties bordering a state that remained non-legal throughout the
+sample (Utah, Wyoming, Oklahoma, Nebraska, Kansas) and the 31 Colorado interior counties, plus
+log(population) and year fixed effects. $^{a}$Post $=1$ for 2023 onward, after New Mexico's April 1, 2022
+retail opening. The implied change in revenue per dispensary in New Mexico-border counties after New Mexico's
+own market opens is $-38.6$ percent.
+\end{minipage}
+\end{table}

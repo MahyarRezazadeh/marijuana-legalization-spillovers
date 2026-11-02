@@ -1,0 +1,33 @@
+\begin{table}[htbp]
+\centering
+\caption{Callaway--Sant'Anna (2021) Group-Time ATT, 50-Mile Threshold}
+\label{tab:cs_comparison}
+\begin{tabular}{lcc}
+\toprule
+ & No covariates & + baseline-rate covariate \\
+\midrule
+Overall ATT             & $-1.905$ & $+5.992$ \\
+Std. error (county-clustered) & $1.038$  & $4.116$ \\
+$p$-value                & $0.066$  & $0.145$ \\
+\addlinespace
+Event-time-0 ATT         & $-3.191$ & $+7.506$ \\
+Std. error (county-clustered) & $0.996$  & $4.415$ \\
+$p$-value                & $0.001$  & $0.089$ \\
+\addlinespace
+Event-time-$(-2)$ ATT (largest lead) & $-4.950$ & $+6.205$ \\
+$p$-value                & $<0.001$ & $0.167$ \\
+\addlinespace
+Usable treatment cohorts & \multicolumn{2}{c}{3 (counties switching in 2022, 2023, or 2024)} \\
+$N$                       & \multicolumn{2}{c}{3{,}684 county-years (balanced panel)} \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.92\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Group-time average treatment effect on the treated, estimated via the \citet{CallawaySantAnna2021}
+estimator on the identical treatment/control/50-mile-threshold definition as Table~\ref{tab:eventstudy_main}, but
+restricted to counties with complete (non-suppressed) overdose data in every year 2020--2025, as the estimator
+requires. Never-switching counties are the comparison group. See Figure~\ref{fig:cs_comparison} for the full
+event-study path and Section~\ref{sec:cs} for discussion of why the covariate-adjusted column is unstable.
+\end{minipage}
+\end{table}

@@ -1,0 +1,46 @@
+\begin{table}[htbp]
+\centering
+\caption{Summary statistics, estimation sample}
+\label{tab:summary_stats}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Variable & Mean & SD & Min & Max & $n$ \\
+\midrule
+\multicolumn{6}{l}{\textit{Panel A: Full sample}} \\
+Revenue per capita (\$) & 336.14 & 559.13 & 0.00 & 7,986.19 & 1,283 \\
+Revenue per dispensary (\$000s) & 1,587.8 & 1,237.2 & 0.0 & 7,461.5 & 964 \\
+Dispensaries per 1,000 residents & 0.295 & 0.361 & 0.028 & 3.205 & 964 \\
+County population & 160,333 & 310,126 & 624 & 2,271,380 & 964 \\
+\addlinespace
+Border county (shares a border with a nonlegal state) & 0.227 & 0.419 & 0 & 1 & 964 \\
+Capped entry-regime state-year & 0.871 & 0.335 & 0 & 1 & 964 \\
+\addlinespace
+\multicolumn{6}{l}{\textit{Panel B: By entry regime (revenue-per-store sample)}} \\
+\quad Revenue per dispensary (\$000s), Free-entry state-years & 631.1 & 316.9 & 0.0 & 1,463.0 & 124 \\
+\quad Revenue per dispensary (\$000s), Capped-entry state-years & 1,729.0 & 1,259.8 & 26.1 & 7,461.5 & 840 \\
+\quad Dispensaries per 1,000, Free-entry state-years & 0.492 & 0.525 & 0.051 & 3.205 & 124 \\
+\quad Dispensaries per 1,000, Capped-entry state-years & 0.266 & 0.320 & 0.028 & 2.494 & 840 \\
+\bottomrule
+\end{tabular}
+}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.4em}
+\footnotesize
+\textit{Notes:} Panel A reports the pooled estimation sample: $n=1{,}283$ county-years for revenue per
+capita (Colorado, Washington, Oregon, Montana, New Mexico, 2015--2025) and $n=964$ county-years for revenue
+per dispensary and dispensary density (same states; Oregon and Montana contribute only their single 2025
+cross-section to these two outcomes, Section~\ref{sec:data}). New Mexico's incomplete 2026 partial year is
+excluded throughout, matching Table~\ref{tab:main_pooled}. Revenue per capita and revenue per dispensary are
+annual dollars; dispensaries per 1,000 residents uses each county's contemporaneous population. The minimum
+revenue-per-capita value (rounds to \$0.00) is a single sparsely populated county-year with negligible
+reported sales, not a data-entry error. Border county is an indicator for sharing a common land border with a
+nonlegal-state county as of that observation's own year (Section~\ref{sec:timevarying}); capped entry-regime
+state-year is the state-year indicator defined in Section~\ref{sec:institutional}. Panel B splits the
+revenue-per-store sample's two dollar/count outcomes by entry regime; the free-entry group ($n=124$) is New
+Mexico's entire per-store panel (2022--2025) -- Oregon's own free period (2015--2021) predates its per-store
+data, which exists only as a single 2025, already-capped cross-section (Section~\ref{sec:data}), so Oregon
+contributes zero free-entry observations to this particular split.
+\end{minipage}
+\end{table}

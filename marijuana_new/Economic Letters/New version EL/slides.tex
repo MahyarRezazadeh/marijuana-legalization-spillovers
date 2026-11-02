@@ -1,0 +1,147 @@
+% ============================================================
+% Brief research slides (4 pages): research question, literature,
+% why it matters, empirical strategy. Companion to main.tex.
+% Compile: pdflatex slides.tex
+% ============================================================
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{default}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{framesubtitle}{fg=black!55}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\definecolor{accent}{HTML}{B5622A}
+\definecolor{inksoft}{HTML}{4B554F}
+\definecolor{protective}{HTML}{4F7A5B}
+\definecolor{mixed}{HTML}{B3872F}
+\definecolor{harmful}{HTML}{A83E32}
+\definecolor{precedent}{HTML}{626B64}
+\definecolor{panel}{HTML}{EEEEE7}
+
+\newcommand{\littag}[2]{\textcolor{#1}{\scriptsize\bfseries #2}}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+% ---------------- SLIDE 1: RESEARCH QUESTION ----------------
+\begin{frame}
+\frametitle{Research question}
+\vspace{0.6cm}
+{\Large\bfseries Does proximity to a legal recreational-marijuana market reduce drug-overdose mortality in states that haven't legalized it themselves?}
+
+\vspace{1cm}
+\begin{block}{}
+\small We measure \textbf{proximity} as the distance from a never-legal county to the nearest county with an open retail market, tracked as that frontier moves outward with each new state's launch, \textbf{2020--2025}.
+\end{block}
+
+\vfill
+{\scriptsize\color{inksoft} Cross-border spillover design \hfill Marijuana Legalization \& Overdose Mortality}
+\end{frame}
+
+% ---------------- SLIDE 2: LITERATURE ----------------
+\begin{frame}
+\frametitle{What does the literature say?}
+\framesubtitle{Inconclusive --- sign, mechanism, and margin all disagree}
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{tabular}{@{}p{3.0cm}p{7.6cm}r@{}}
+\textbf{Bachhuber et al.} \newline {\scriptsize 2014 \textperiodcentered\ JAMA Internal Medicine} &
+State medical-marijuana laws associated with \emph{fewer} opioid overdose deaths. &
+\littag{protective}{Protective} \\
+\textbf{Shover et al.} \newline {\scriptsize 2019 \textperiodcentered\ PNAS} &
+Re-running Bachhuber's design on more years of data --- the association \emph{reverses sign}. &
+\littag{mixed}{Reverses} \\
+\textbf{Powell, Pacula \& Jacobson} \newline {\scriptsize 2018 \textperiodcentered\ J.\ Health Econ.} &
+Any effect is specific to \emph{dispensary-based} designs --- legal status alone isn't enough. &
+\littag{mixed}{Margin-specific} \\
+\textbf{Mathur \& Ruhm} \newline {\scriptsize 2022 \textperiodcentered\ NBER WP 29802} &
+Retail dispensaries linked to \emph{higher}, not lower, opioid mortality. &
+\littag{harmful}{Opposite sign} \\
+\textbf{Denkyirah et al.} \newline {\scriptsize 2026 \textperiodcentered\ Southern Econ.\ J.} &
+State-level design on \emph{recreational} legalization: $\approx$3.5 fewer deaths per 100,000. &
+\littag{protective}{Protective} \\
+\textbf{Hao \& Cowan} \newline {\scriptsize 2020 \textperiodcentered\ Economic Inquiry} &
+Cross-border spillover design precedent --- arrests, not mortality, as the outcome. &
+\littag{precedent}{Design precedent} \\
+\end{tabular}
+
+\vspace{0.05cm}
+\begin{block}{}
+\scriptsize\color{black} No consensus on direction (protective vs.\ harmful), the relevant policy margin (medical vs.\ dispensary vs.\ recreational), or whether the effect is even stable over time.
+\end{block}
+\end{frame}
+
+% ---------------- SLIDE 3: WHY IT MATTERS ----------------
+\begin{frame}
+\frametitle{Why does it matter}
+\framesubtitle{Three reasons this question is worth answering carefully}
+
+\vspace{0.3cm}
+\begin{columns}[t,totalwidth=\textwidth]
+
+\column{0.32\textwidth}
+\begin{block}{\scriptsize\textcolor{accent}{AN OPEN DISPUTE} \\ \normalsize The literature genuinely disagrees}
+\footnotesize Existing estimates disagree on sign, on which policy margin matters, and on whether the effect is even stable over time --- this isn't a settled question with one outlier.
+\end{block}
+
+\column{0.32\textwidth}
+\begin{block}{\scriptsize\textcolor{accent}{A SUBSTITUTION QUESTION} \\ \normalsize Do people switch away from riskier drugs?}
+\footnotesize If legal access lets high-risk individuals substitute marijuana for opioids, that's a direct, testable channel for harm-reduction policy.
+\end{block}
+
+\column{0.32\textwidth}
+\begin{block}{\scriptsize\textcolor{accent}{A POLICY-SPILLOVER QUESTION} \\ \normalsize Effects reach beyond the legalizing state}
+\footnotesize Because the outcome is measured in \emph{never-legal} counties, the design speaks directly to whether one state's policy affects health outcomes next door.
+\end{block}
+
+\end{columns}
+\end{frame}
+
+% ---------------- SLIDE 4: METHODOLOGY ----------------
+\begin{frame}
+\frametitle{How we answer this question}
+\framesubtitle{A continuous distance-to-market design, on a stacked county panel}
+
+\begin{columns}[t,totalwidth=\textwidth]
+
+\column{0.48\textwidth}
+{\small\bfseries Treatment \& sample}
+\vspace{0.2cm}
+\begin{itemize}
+\small
+\item[\textcolor{accent}{$\bullet$}] \textbf{Primary treatment (continuous):} miles from a county to the nearest county with an \emph{open retail market}, recomputed each year as more states launch.
+\item[\textcolor{accent}{$\bullet$}] \textbf{Sample:} counties in the 31 states not yet legal as of the 2020 baseline --- a ``control reservoir'' whose distance to the frontier keeps shrinking.
+\item[\textcolor{accent}{$\bullet$}] \textbf{Secondary measure:} a binary ``switcher'' indicator (distance crosses 50 miles), reported alongside, not in place of, the continuous measure.
+\end{itemize}
+
+\column{0.48\textwidth}
+{\small\bfseries Specification}
+\vspace{0.2cm}
+\small Stacked cohort panel, one row per county per one-year transition it's still ``at risk'' in --- a county drops out once it switches, so later transitions never treat an already-treated county as a control.
+
+\vspace{0.35cm}
+\begin{block}{}
+\small
+$\Delta\text{Overdose}_{it} = \beta\cdot\Delta\text{Distance}_{it} + \text{Transition}_t + \text{Baseline-rate}_i + \varepsilon_{it}$
+
+\vspace{0.15cm}
+\scriptsize\color{inksoft} $\beta$ is identified off counties whose distance shrank more or less in the same transition period. The baseline-rate term corrects for mean reversion; SE clustered by state and, as a robustness check, by county.
+\end{block}
+
+\end{columns}
+\end{frame}
+
+\end{document}

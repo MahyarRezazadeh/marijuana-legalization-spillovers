@@ -1,0 +1,70 @@
+\documentclass[11pt]{beamer}
+\usetheme{default}
+\usecolortheme{seahorse}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{itemize items}[circle]
+\usepackage{booktabs}
+\setbeamertemplate{itemize item}{\small\raise1pt\hbox{\textbullet}}
+\setlength{\itemsep}{4pt plus 1pt minus 1pt}
+
+\title{Spatial Demand Spillovers and the Regulation of Entry}
+\subtitle{Evidence from U.S.\ Cannabis Markets}
+\author{Mahyar Rezazadeh \and Babak Sahragard}
+\date{August 2026}
+
+\begin{document}
+
+% ---------------------------------------------------------------
+\begin{frame}
+\frametitle{1. Main Research Question}
+\small
+\begin{itemize}
+  \item Does uneven state-level cannabis legalization create a \textbf{cross-border demand spillover}: do counties/ZIPs bordering a still-prohibited state see higher demand than interior areas of the same state?
+  \item If a spillover exists, \textbf{which margin absorbs it} -- higher revenue at existing dispensaries, or more dispensaries entering to meet the extra demand?
+  \item Central hypothesis: \textbf{entry regulation} determines the answer -- capped licensing blocks the market-expansion channel and forces the spillover into incumbent revenue instead.
+  \item Empirical focus: New Mexico (statutorily free entry) vs.\ Colorado and Montana (entry capped via local-option bans / county opt-in rules).
+  \item Border exposure is defined \textbf{before} any entry decision is observed, so treatment status cannot be an artifact of where sellers chose to locate.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}
+\frametitle{2. Why It Matters}
+\small
+\begin{itemize}
+  \item Cross-border cannabis demand is documented on the \emph{losing} side (Hansen, Miller \& Weber 2020: WA sales fell \textasciitilde36\% when OR's market opened) -- we ask what happens on the \emph{receiving} side, and through which margin.
+  \item Classic entry-regulation theory (Bresnahan \& Reiss) predicts capped supply absorbs a demand shock into rents, not quantity -- untested against a real cross-border shock in a legal retail market.
+  \item Methodological fix: prior drafts (including our own) defined "border" by where dispensaries actually opened -- outcome-dependent; we replace it with a predetermined, geography-only classification.
+  \item Institutional contribution: entry regulation is coded from actual statutes (local-option bans, county opt-in rules), not a state's own "capped" vs.\ "free" label.
+  \item Policy relevance: if caps block quantity but not revenue capture, they may leave real, quantifiable state tax revenue on the table at the border.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}
+\frametitle{3. Empirical Specification}
+\small
+\begin{itemize}
+  \item \textbf{Border classification} (predetermined, geography-only): a ZIP/county is \emph{Border}=1 if its own centroid lies within 75 miles of a state line bordering a non-legal state, \emph{and} at least 1{,}000 residents of that neighboring state live within the same 75-mile reach.
+  \item \textbf{Baseline (New Mexico, ZIP-quarter)}: $\log(y_{zt}) = \alpha + \beta\,\text{Border}_z + \gamma\log(\text{Population}_z) + \delta_t + \varepsilon_{zt}$, three outcomes (revenue/capita, dispensary density, revenue/dispensary), county-clustered SEs.
+  \item \textbf{Cross-state extension (CO, MT, NM county-quarter)}: adds $\theta\,(\text{Border}_c \times \text{Restricted}_s)$, where Restricted$_s=1$ for Colorado/Montana; estimated pooled, state-specific, and pairwise (NM-CO, NM-MT).
+  \item \textbf{Robustness}: 50/75/100-mile threshold sensitivity, a continuous nonlegal-population exposure measure, and a non-cannabis-sector placebo (alcohol, grocery, total retail).
+  \item \textbf{Counterfactual}: county-cluster bootstrapped (500 reps) free-entry revenue benchmark for capped-state border counties.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}
+\frametitle{4. Dataset}
+\small
+\begin{itemize}
+  \item \textbf{New Mexico}: dispensary-level monthly sales-tax records (\textasciitilde1{,}250 geocoded dispensaries), aggregated to ZIP-quarter, 2022Q2--2026Q2 (368 populated ZIPs; 116 with recorded dispensary activity).
+  \item \textbf{Colorado \& Montana}: county-level dispensary revenue and license-count panels from each state's own revenue agency (CO Dept.\ of Revenue; MT Dept.\ of Revenue monthly county reports).
+  \item \textbf{Geography}: Census ZIP/county centroids and cartographic boundary shapefiles (state-line distance), Census population estimates.
+  \item \textbf{Placebo data}: NM Taxation \& Revenue gross-receipts-by-industry reports and Census ZIP Business Patterns establishment counts, used to test whether the border premium is cannabis-specific.
+  \item \textbf{Panel structure}: unbalanced, quarterly, a ZIP/county enters once it records dispensary activity; sample spans roughly 2015--2026 depending on each state's own legalization date.
+\end{itemize}
+\end{frame}
+
+\end{document}

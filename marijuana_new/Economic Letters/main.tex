@@ -1,0 +1,592 @@
+% ============================================================
+% Recreational Marijuana Legalization and Drug-Overdose
+% Mortality: A Cross-Border Distance Design
+% Formatted for ECONOMICS LETTERS (Elsevier, elsarticle class).
+% REVISION (2026-07-25): full rewrite onto the stacked multi-
+% period panel (every state's actual legalization date, 2020-
+% 2025), replacing the earlier two-snapshot (Dec 2020/Dec 2023)
+% design. Incorporates: a formal pre-trends check and
+% mean-reversion correction, a medical-legalization placebo
+% check, a persistence (post-switch dynamics) check, a county
+% fixed-effects robustness check, and a corrected welfare
+% translation using (life expectancy - average age at death)
+% rather than full remaining actuarial life expectancy.
+% NOTE: Elsevier submissions typically require Highlights as a
+% SEPARATE uploaded file; included in-document here for a
+% self-contained draft.
+% Compile: pdfLaTeX -> BibTeX -> pdfLaTeX -> pdfLaTeX
+% ============================================================
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\journal{Economics Letters}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Recreational Marijuana Legalization and Drug-Overdose Mortality:\\
+A Cross-Border Distance Design}
+
+\author{Author name(s) withheld for review}
+
+\begin{abstract}
+\noindent We test whether proximity to a legal recreational-marijuana
+market reduces drug-overdose mortality, using a stacked multi-period
+panel of counties in 31 never-legalizing U.S. states and every state's
+actual legalization date, 2020--2025, rather than a single
+before/after snapshot. Switcher counties (distance to the nearest
+legal-market county crossing below 50 miles) see overdose deaths fall
+2.32 more per 100,000 than controls in the same transition
+($p=0.004$); a continuous per-mile specification agrees in sign and is
+itself significant ($p<0.001$). A formal pre-trends test shows the raw
+switcher comparison is contaminated by mean reversion, which a
+baseline-rate control corrects; the continuous specification, unlike
+the switcher indicator, remains significant even under county fixed
+effects, the most demanding test we run. A placebo check using
+medical- rather than recreational-marijuana timing is null. The effect
+does not compound in years after switching. Applying the national age
+distribution of overdose deaths, the switcher effect implies roughly
+755 averted deaths and 22,500 years of life saved -- illustrative, not
+confirmed.
+\end{abstract}
+
+\begin{keyword}
+recreational marijuana \sep opioid overdose mortality \sep cross-border spillover \sep staggered difference-in-differences \sep JEL: I18, I12, K42
+\end{keyword}
+
+\end{frontmatter}
+
+\vspace{0.3cm}
+\noindent\textbf{Highlights}
+\begin{itemize}[leftmargin=1.4em]
+\item Stacked multi-period cross-border distance design, using every state's actual legalization date, 2020--2025.
+\item Switcher counties show 2.32 fewer deaths/100k ($p{=}0.004$); the continuous per-mile result agrees in sign ($p{<}0.001$).
+\item A formal pre-trends test finds mean reversion in the raw switcher comparison; a baseline-rate control fixes it.
+\item The continuous result, unlike the switcher result, survives county fixed effects -- the most demanding robustness test.
+\item A medical-legalization placebo check is null; the effect does not compound in years after switching.
+\item Implies $\sim$755 averted deaths, $\sim$22,500 life-years saved -- illustrative, not confirmed.
+\end{itemize}
+
+\vspace{0.4cm}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+Does proximity to a legal recreational-marijuana market change
+drug-overdose mortality for residents who never cross the border
+themselves? The evidence on marijuana-opioid substitution is
+unsettled: \citet{Bachhuber2014} found state medical-marijuana laws
+associated with fewer opioid deaths, \citet{Shover2019} showed the
+association reverses sign with more years of data, and
+\citet{PowellPaculaJacobson2018} found any effect specific to
+dispensary-based designs. \citet{MathurRuhm2022} conclude retail
+dispensaries are, if anything, associated with \emph{higher} opioid
+mortality. Most recently, \citet{Denkyirah2026} use a state-level
+two-way-fixed-effects design for \emph{recreational} legalization and
+find a decline of roughly 3.5 deaths per 100,000 -- a magnitude we
+return to below.
+
+Every one of these papers identifies off policy \emph{timing}. None
+uses \emph{geography}: whether proximity to an external legal market
+predicts a non-adopting county's own overdose trajectory, in the
+spirit of \citet{HaoCowan2020}'s cross-border design for
+marijuana-possession arrests. We apply that design to overdose
+mortality using both a binary switcher indicator and a continuous,
+per-mile distance measure, built as a stacked multi-period panel that
+uses all 24 states' actual legalization dates rather than collapsing a
+multi-year staggered rollout into two snapshots. An earlier,
+two-snapshot version of this design found a null, sign-flipped
+continuous estimate that we could not resolve with a bandwidth-based
+fix; the multi-period panel resolves it directly. The multi-period
+panel also makes possible three checks unavailable in the two-snapshot
+version: a formal pre-trends test, a persistence (post-switch
+dynamics) check, and a county fixed-effects robustness test -- all
+reported below, together with a placebo-style check that swaps in
+medical- for recreational-marijuana legalization timing.
+
+% ============================================================
+% 2. DATA AND EMPIRICAL STRATEGY
+% ============================================================
+\section{Data and empirical strategy}
+
+We use 2,331 counties in the 31 U.S. states with no
+recreational-marijuana retail market as of our latest
+snapshot.\footnote{The companion project's original 32-state
+never-legalizing panel included Maine; Maine's retail market opened
+October 2020, before even our earliest snapshot, so its counties are
+excluded here.} Each county's distance to the nearest legal-market
+county is computed via Haversine distance between county centroids
+(Census Gazetteer), with ``legal-market'' defined by first retail
+sales date, for every December 2020--2025 -- the full window CDC
+publishes county-level 12-month-ending overdose data for. Rather than
+compare two fixed snapshots, we use all 24 states' actual
+retail-opening dates and build a stacked panel of year-over-year
+transitions. In transition $t-1\to t$, a county is a ``new switcher''
+if its distance to the nearest legal-market county crossed from at
+least 50 miles to below 50; a ``control'' if it stayed at least 50
+miles away at both endpoints. Once a county switches it is dropped
+from every later transition, avoiding the already-treated-unit-as-
+control bias documented in the staggered difference-in-differences
+literature \citep{GoodmanBacon2021}. Counties within 50 miles as of
+the December-2020 baseline (116 of 2,331) are ``always-near'' and
+dropped throughout.
+
+The unit of observation is a county-transition pair $(i,t)$: county
+$i$ contributes one row for each one-year transition
+$t\in\{\text{2020--21},\ldots,\text{2024--25}\}$ it is ``at risk'' of
+switching in -- every transition up to and including the one in which
+it switches, if it ever does, after which it is dropped, as just
+described. $\Delta Y_{it}$ is the change in county $i$'s overdose
+death rate per 100,000 between the start and end of transition $t$.
+$\text{Switcher}_{it}$ is a binary indicator equal to 1 if and only if
+county $i$'s distance to the nearest legal-market county crossed from
+at least 50 miles to below 50 miles \emph{during} transition $t$, so a
+given county contributes at most one $\text{Switcher}_{it}=1$
+observation across the whole panel; it equals 0 for every transition a
+county has not yet switched in, including every transition for
+counties that never switch. $\Delta\text{Dist}_{it}$ is the raw change
+in miles to the nearest legal-market county over transition $t$,
+defined for every county-transition row regardless of switcher status
+(control counties can still move closer or farther without crossing
+the threshold). $\delta_t$ denotes transition (period) fixed effects,
+common to all counties observed in a given transition. Standard errors
+are clustered by state, the level at which most of the underlying
+legal-market-timing variation occurs. We pool all (county, transition)
+observations into one stacked regression
+\citep{CengizDubeLindnerZipperer2019}:
+\begin{equation}
+  \Delta Y_{it} = \alpha + \gamma \cdot \text{Switcher}_{it} + \delta_t + \varepsilon_{it}, \qquad
+  \Delta Y_{it} = \alpha + \beta \cdot \Delta\text{Dist}_{it} + \delta_t + \varepsilon_{it}.
+  \label{eq:main}
+\end{equation}
+Equation~\ref{eq:main} imposes one switcher effect $\gamma$ and one
+distance effect $\beta$ common to all five transitions. We also
+estimate a more general version that lets both vary freely by period,
+via a full interaction with the transition dummies:
+\begin{equation}
+  \Delta Y_{it} = \alpha + \sum_t \gamma_t \cdot (\text{Switcher}_{it} \times \mathbb{1}[t])
+                        + \sum_t \beta_t \cdot (\Delta\text{Dist}_{it} \times \mathbb{1}[t])
+                        + \delta_t + \varepsilon_{it},
+  \label{eq:period}
+\end{equation}
+which nests Equation~\ref{eq:main} as the special case
+$\gamma_t=\gamma$ and $\beta_t=\beta$ for all $t$;
+Section~\ref{sec:periodeffects} reports the period-specific
+coefficients and tests whether pooling is appropriate.
+
+As of December 2020, ten states had an open retail market; by December
+2025, 23 did (Figure~\ref{fig:rollout}). Virginia has never opened a
+general retail market and so never enters the legal-market set.
+County-level overdose mortality comes from CDC's Vital Statistics
+Rapid Release (VSRR) provisional county data (data.cdc.gov); CDC
+WONDER is not reachable from our environment. NCHS confidentiality
+rules suppress county-transition cells with 1--9 deaths at either
+endpoint, leaving 4,259 of 10,313 potential observations (177 switch
+events).
+
+As a placebo-style check, we rebuild the identical stacked design
+using each state's medical-marijuana access date (first regulated
+medical dispensary sales, compiled for 39 states) in place of the
+recreational-retail date, restricting the county universe to the 17 of
+31 states not yet medically legal as of the December-2020 baseline.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig1_rollout_maps_multiperiod.png}
+  \caption{Legal-market rollout (by first retail sales date) and 50-mile treatment frontier, 2020--2025.}
+  \label{fig:rollout}
+\end{figure}
+
+% ============================================================
+% 3. RESULTS
+% ============================================================
+\section{Results}
+
+\begin{table}[htbp]
+\centering
+\caption{Effect on drug-overdose mortality, preferred specification}
+\label{tab:main}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & Switcher (binary) & Distance, per mile \\
+\midrule
+Overdose rate per 100k & $-2.320^{***}$ (0.800) & $+0.0122^{***}$ (0.0034) \\
+ & $p=0.004$ & $p<0.001$ \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.85\textwidth}
+\footnotesize\emph{Notes:} Outcome is the transition-level change in
+overdose deaths per 100{,}000. Both columns include transition fixed
+effects and a control for each county's baseline (2020) overdose-rate
+level (Section~\ref{sec:pretrends}). SE clustered by state. $N=3{,}794$.
+The distance coefficient is signed as the effect of an
+\emph{increase} in distance, so it agrees in direction with the
+(negative) switcher coefficient. $^{***}p<0.01$.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/fig2_overdose_coefplot_multiperiod.png}
+  \caption{Effect on overdose mortality, recreational (primary) vs. medical (placebo) design (95\% CI).}
+  \label{fig:coef}
+\end{figure}
+
+Switcher counties see overdose deaths fall 2.32 more per 100,000 than
+controls in the same transition ($p=0.004$; Table~\ref{tab:main}) --
+somewhat below \citet{Denkyirah2026}'s state-level estimate of roughly
+3.5, though the same direction and order of magnitude. The continuous
+per-mile specification agrees in direction and is itself significant
+($p<0.001$).
+
+\subsection{Pre-trends check and robustness to fixed effects}
+\label{sec:pretrends}
+
+Because eventual-switcher counties contribute observations to every
+transition before they switch, we can test whether their overdose
+trend was already diverging from never-switching counties
+\emph{before} switching. The raw version of this test fails: leads on
+event-time indicators (one and two-plus transitions before switching)
+are large and jointly significant ($p<0.001$), comparable in magnitude
+to the switch-transition effect itself, even though transition fixed
+effects are already present. We traced this to mean reversion --
+counties with unusually high 2020 overdose rates mechanically decline
+more -- and adding each county's baseline (2020) rate as a control
+resolves it (joint F-test on both leads, $p=0.318$; Figure~\ref{fig:pretrends}).
+We also checked Census-division-by-transition fixed effects (a
+geographic-clustering explanation); this also passes the joint test on
+this panel but leaves the switch coefficient less precisely estimated
+and proved sensitive to exact sample construction across our
+diagnostic checks, so we prefer the baseline-rate control
+(Table~\ref{tab:main}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/fig5_eventstudy_pretrends.png}
+  \caption{Pre-trends check: raw vs. mean-reversion-adjusted event-study coefficients.}
+  \label{fig:pretrends}
+\end{figure}
+
+\begin{table}[htbp]
+\centering
+\caption{Robustness of main coefficients to fixed-effects controls}
+\label{tab:fe}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Switcher (binary)} & \multicolumn{2}{c}{Distance (per mile)} \\
+Specification & Coef. & $p$ & Coef. & $p$ \\
+\midrule
+No controls & $-3.151$ & 0.005 & $+0.0128$ & $<0.001$ \\
++ Baseline overdose-rate level (preferred) & $-2.320^{***}$ & 0.004 & $+0.0122$ & $<0.001$ \\
++ State fixed effects & $-1.411$ & 0.144 & $+0.0129$ & $<0.001$ \\
++ County fixed effects & $-0.999$ & 0.532 & $+0.0122^{**}$ & 0.023 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.92\textwidth}
+\footnotesize\emph{Notes:} Each row is a separate regression on the
+same $N=3{,}794$ sample; SE clustered by state. County fixed effects
+use only within-county variation across a given county's (at most
+five) transition-rows, the most demanding test we run -- 225 of 1,249
+counties in this sample have only one transition-row and so contribute
+no within-county variation. $^{**}p<0.05$, $^{***}p<0.01$.
+\end{minipage}
+\end{table}
+
+Table~\ref{tab:fe} shows the two specifications respond very
+differently to fixed-effects controls. The continuous per-mile
+coefficient is essentially unmoved by state \emph{or} county fixed
+effects and remains significant throughout. The binary switcher
+coefficient survives the baseline-rate control but loses significance
+under state fixed effects and further under county fixed effects,
+indicating a meaningful share of its identifying variation comes from
+\emph{which} counties or states happen to border a soon-to-open
+market, not from finer within-unit proximity differences. We therefore
+treat the continuous per-mile result as this paper's primary
+quantitative claim, with the switcher result as corroborating but
+comparatively more fragile.
+
+\subsection{Period-specific effects}
+\label{sec:periodeffects}
+
+Equation~\ref{eq:main} assumes the switcher and distance effects are
+constant across all five transitions. Estimating Equation~\ref{eq:period}
+instead -- letting both vary freely by period -- and restricting to
+the three transitions with enough switch events to identify a
+period-specific coefficient (2020--2021 and 2024--2025 have zero
+switch events between them after the baseline-rate restriction, so
+contribute to the period fixed effects but not to their own
+switcher/distance coefficient), gives Table~\ref{tab:period}.
+
+\begin{table}[htbp]
+\centering
+\caption{Period-specific switcher and distance coefficients}
+\label{tab:period}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Switcher (binary)} & \multicolumn{2}{c}{Distance (per mile)} \\
+Transition & Coef. & $p$ & Coef. & $p$ \\
+\midrule
+2021--2022 & $-0.648$ & 0.547 & $+0.0014$ & 0.717 \\
+2022--2023 & $-1.718$ & 0.449 & $-0.0027$ & 0.802 \\
+2023--2024 & $+8.280^{***}$ & 0.008 & $+0.1132^{***}$ & $<0.001$ \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.85\textwidth}
+\footnotesize\emph{Notes:} One joint regression, all period
+interactions plus period fixed effects and the baseline-rate control;
+$N=3{,}794$; SE clustered by state. An F-test rejects that the three
+switcher coefficients are equal ($p=0.002$) and that the three
+distance coefficients are equal ($p=0.003$): the pooled
+Table~\ref{tab:main} coefficient is not simply the same effect
+repeated five times. $^{***}p<0.01$.
+\end{minipage}
+\end{table}
+
+The 2023--2024 transition -- which contributes 75 of the panel's 177
+switch events, concentrated in Ohio-border states (Ohio, West
+Virginia, Pennsylvania, Kentucky, Indiana) -- has a positive,
+significant coefficient on both specifications, the opposite sign from
+the pooled result. We investigated this rather than reporting it at
+face value, and three things resolve it. First, in raw, unadjusted
+terms switcher counties in this transition declined \emph{more} than
+controls (mean $\Delta$ overdose rate $-14.5$ vs.\ $-8.5$); the
+positive sign appears only after the baseline-rate control, because
+switchers in this specific transition have roughly double the 2020
+baseline rate of controls (53.4 vs.\ 26.1), a far more severe imbalance
+than in other transitions. Second, this period's control pool is
+geographically mismatched to its switcher pool -- comparing
+Appalachian counties against a national control pool concentrated in
+the South Atlantic and West South Central divisions -- and adding
+Census-division fixed effects shrinks the switcher coefficient to
+$+2.79$ ($p=0.253$) and the distance coefficient to $+0.015$
+($p=0.335$), both no longer significant. Third, a handful of
+extreme-outlier small counties (implausibly large overdose-rate swings
+driven by small population denominators) have outsized leverage on
+this single-period fit; excluding the top 5\% by Cook's distance
+likewise removes significance ($+1.82$, $p=0.166$). Combining division
+fixed effects with winsorizing the baseline-rate control at its 95th
+percentile gives $+2.33$ ($p=0.304$) for the switcher coefficient and a
+smaller, though still marginally significant, $+0.032$ ($p=0.036$) for
+distance. We read this as within-period estimation noise from
+isolating a geographically concentrated, high-baseline-rate cohort with
+few observations, not as evidence against the pooled result: it draws
+on switch events spread across many more states and periods than any
+single transition, and Table~\ref{tab:fe}'s state and county
+fixed-effects checks already show the continuous specification is not
+being driven by any one state or region.
+
+\subsection{Medical-legalization placebo check}
+
+Re-running the identical stacked design with medical- in place of
+recreational-marijuana timing, both the switcher ($b=+0.51$,
+se$=1.04$, $p=0.62$) and continuous ($b=-0.015$, se$=0.008$, $p=0.08$)
+estimates are null -- consistent with the recreational-retail effect
+reflecting retail access specifically rather than the design
+mechanically detecting any nearby marijuana-policy change
+(Figure~\ref{fig:coef}, bottom two rows).
+
+\subsection{Persistence check}
+
+Does the switcher effect continue, flatten, or reverse in the years
+after a county crosses the 50-mile threshold? We re-estimate
+Equation~\ref{eq:main} with event-time indicators for the switch
+transition and each subsequent transition (one, and two-or-more,
+transitions after switching), keeping switched counties in the panel
+afterward purely for this check (they are otherwise dropped, per
+Section~2). With the baseline-rate control, the switch-transition
+effect remains significant ($-2.42$, $p=0.001$), but neither
+subsequent-transition coefficient is significant (one transition
+after: $+1.22$, $p=0.171$; two-plus: $+1.14$, $p=0.157$;
+Figure~\ref{fig:persistence}), and a joint test rejects that the lag
+effects equal the switch effect ($p=0.006$). The one-year decline
+associated with switching does not continue to compound in later
+years; if anything, the point estimates hint at partial reversion,
+though not significantly so.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/fig6_persistence.png}
+  \caption{Persistence check: switch-transition effect vs. subsequent-transition effects.}
+  \label{fig:persistence}
+\end{figure}
+
+\subsection{Welfare translation}
+
+National age-specific overdose rates (CDC NCHS Data Query System,
+2024) imply a population-weighted average age at overdose death of
+46.1 years. We translate the switcher coefficient into years of life
+saved using the gap between life expectancy and this average age at
+death, rather than the full remaining actuarial life expectancy, since
+a person who dies of an overdose at 46 does not have the population's
+full remaining life expectancy at stake, only the gap between when
+they died and how long they could plausibly have lived absent this
+specific cause. Life expectancy is drawn from CDC's state
+life-expectancy-at-birth estimates \citep{CDCStateLE2021},
+population-weighted across the 177 switcher counties' states (75.9
+years), for a gap of 29.7 years per averted death. Applying the
+preferred switcher coefficient to the 32.5 million residents of the
+177 non-suppressed switcher counties implies approximately 755 averted
+deaths (95\% CI: 245 to 1{,}265) over 2020--2025, and roughly 22,500
+years of life saved (95\% CI: 7,300 to 37,600;
+Figure~\ref{fig:agedist}). This is illustrative of what the point
+estimate would mean, not a confirmed welfare effect: it inherits every
+caveat on the underlying coefficient, including its greater
+sensitivity to fixed-effects controls (Section~\ref{sec:pretrends}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/figC_age_distribution.png}
+  \caption{National age distribution of drug-overdose deaths, 2024.}
+  \label{fig:agedist}
+\end{figure}
+
+% ============================================================
+% 4. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+Extending the cross-border distance design to a stacked multi-period
+panel that uses every state's actual legalization date resolves a
+fragility in an earlier two-snapshot version: the continuous per-mile
+specification is now sign-consistent with, and more robust than, the
+binary switcher result, surviving even county fixed effects. A formal
+pre-trends test finds and corrects a mean-reversion problem in the raw
+switcher comparison; a persistence check finds the switch-year effect
+does not compound in subsequent years; and a medical-legalization
+placebo check is null, as it should be if the effect is specific to
+retail-market access. Main limitations: VSRR data are provisional and
+small-cell suppression removes more than half the panel, concentrated
+where identifying variation is richest; the 50-mile radius is a design
+choice; the panel is bounded to 2020--2025; and the welfare translation
+mixes a state-level life-expectancy figure with a national age-at-death
+figure. We recommend this be treated as suggestive evidence of an
+opioid-substitution channel specific to recreational retail-market
+access, meriting confirmation with final, non-provisional NCHS
+mortality data.
+
+% ============================================================
+% SUPPLEMENTARY MATERIAL
+% ============================================================
+\appendix
+\section{Supplementary figures}
+\label{sec:appendix}
+
+\noindent\emph{Full robustness-check summary.} Table~\ref{tab:robustsummary}
+consolidates every fixed-effects and sample-construction check reported
+in this paper into one place. Panel A reproduces Table~\ref{tab:fe}
+(the checks that bear directly on the pooled, headline specification
+in Table~\ref{tab:main}). Panel B reports the additional checks used
+only to diagnose and resolve the 2023--2024 period-specific sign
+reversal discussed in Section~\ref{sec:periodeffects}; these are
+estimated on that single transition in isolation ($n=691$) and were
+never substituted into the pooled specification.
+
+\begin{table}[htbp]
+\centering
+\caption{Full robustness-check summary}
+\label{tab:robustsummary}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Switcher (binary)} & \multicolumn{2}{c}{Distance (per mile)} \\
+Specification & Coef. & $p$ & Coef. & $p$ \\
+\midrule
+\multicolumn{5}{@{}l}{\emph{Panel A: Pooled specification, all periods ($N=3{,}794$) -- bears on Table~\ref{tab:main}}} \\
+No controls & $-3.151$ & 0.005 & $+0.0128^{***}$ & $<0.001$ \\
++ Baseline overdose-rate level (preferred) & $-2.320^{***}$ & 0.004 & $+0.0122^{***}$ & $<0.001$ \\
++ State fixed effects & $-1.411$ & 0.144 & $+0.0129^{***}$ & $<0.001$ \\
++ County fixed effects & $-0.999$ & 0.532 & $+0.0122^{**}$ & 0.023 \\
+\addlinespace
+\multicolumn{5}{@{}l}{\emph{Panel B: 2023--2024 transition only ($n=691$) -- diagnoses Section~\ref{sec:periodeffects}'s sign reversal}} \\
+Baseline-rate control only & $+8.280^{***}$ & 0.008 & $+0.1132^{***}$ & $<0.001$ \\
++ Census-division fixed effects & $+2.786$ & 0.253 & $+0.0149$ & 0.335 \\
++ Winsorized baseline rate (95th pctile) & $+4.574^{**}$ & 0.032 & --- & --- \\
++ Division FE \& winsorized baseline & $+2.328$ & 0.304 & $+0.0320^{**}$ & 0.036 \\
+Excluding top 5\% by Cook's distance & $+1.822$ & 0.166 & --- & --- \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.95\textwidth}
+\footnotesize\emph{Notes:} SE clustered by state throughout. Panel A:
+each row a separate regression on the identical $N=3{,}794$ pooled
+sample. Panel B: each row a separate regression restricted to the
+2023--2024 transition only; ``---'' denotes specifications where the
+distance coefficient was not separately estimated. Panel B's raw,
+unadjusted group means (no regression) show switcher counties declined
+\emph{more} than controls in this transition ($-14.5$ vs.\ $-8.5$
+deaths per 100,000); the positive sign in Panel B's first row appears
+only once a linear baseline-rate control is applied to a period with
+an unusually large baseline-rate imbalance between switchers and
+controls (Section~\ref{sec:periodeffects}). $^{**}p<0.05$,
+$^{***}p<0.01$.
+\end{minipage}
+\end{table}
+
+\noindent\emph{Nonlinearity check.} Table~\ref{tab:main}'s continuous
+specification imposes a constant marginal effect. Adding a quadratic
+term in $\Delta\text{Dist}_{it}$, the quadratic term is itself
+significant ($p=0.005$; F-test, $p=0.009$; joint F-test with a cubic
+term, $p<0.001$) -- unlike an earlier two-snapshot version of this
+design, where no nonlinearity was detectable.
+Figure~\ref{fig:doseresponse} plots the dose-response relationship and
+implied marginal effect.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/figA_doseresponse_multiperiod.png}
+  \caption{Dose-response (panel a) and implied marginal effect (panel b), pooled stacked-transition panel.}
+  \label{fig:doseresponse}
+\end{figure}
+
+\noindent\emph{Diff-in-discontinuities check.} We also tested for a
+discontinuous jump in overdose mortality exactly at the 50-mile
+threshold, with the bandwidth on each side chosen by the CCT
+MSE-optimal selector \citep{CalonicoCattaneoTitiunik2014} in each
+year's cross-section separately, differencing the 2025 and 2020
+estimates following \citet{GrembiNanniciniTroiano2016}. This check is
+inconclusive: the only significant year is 2020 (the baseline year,
+before almost any rollout had occurred, so not itself interpretable as
+a treatment effect), and the discontinuity shrinks rather than
+strengthens by 2025 (diff-in-disc $=-14.68$, se$=8.79$, $p=0.095$). We
+read this as a reason for some caution about the near/far comparison
+generally, not as confirming or overturning the main results.
+
+\noindent\emph{State-level trends and legalization timing.}
+Figure~\ref{fig:statetrends} plots monthly overdose mortality,
+2015--2026, for all 24 states in the source timing table, with both
+the policy-effective date and the first-retail-sales date marked.
+Figure~\ref{fig:eventstudy} pools the 23 states with a retail date,
+aligned by months since first retail sales; neither figure feeds into
+the county-level regression design.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/figD_state_overdose_trends_new.png}
+  \caption{State overdose mortality trends, 2015--2026, with policy-effective and retail-sales dates.}
+  \label{fig:statetrends}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/figE_eventstudy_overdose_new.png}
+  \caption{Overdose mortality around the retail-legalization cutoff, pooled across 23 states.}
+  \label{fig:eventstudy}
+\end{figure}
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

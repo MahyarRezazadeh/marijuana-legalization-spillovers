@@ -1,0 +1,401 @@
+% ============================================================
+% Local Spillovers from Recreational Marijuana Legalization:
+% Housing Markets and Drug-Overdose Mortality Near State Borders
+% Formatted to Economic Inquiry (Wiley/WEAI) submission requirements.
+% Compile: pdfLaTeX -> BibTeX -> pdfLaTeX -> pdfLaTeX (Overleaf: Recompile)
+% ============================================================
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage[authoryear,round]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\doublespacing
+\titleformat{\section}{\normalfont\bfseries\large}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+% ============================================================
+% TITLE PAGE
+% ============================================================
+\begin{titlepage}
+\begin{center}
+\vspace*{1.5cm}
+{\LARGE \bfseries Local Spillovers from Recreational Marijuana\\
+Legalization: Housing Markets and Drug-Overdose\\
+Mortality Near State Borders\par}
+\vspace{0.3cm}
+{\large \itshape Evidence from a Continuous-Distance Border Design, 2020--2023\par}
+\vspace{1.2cm}
+{\large Author name(s) withheld for review\par}
+\vspace{0.3cm}
+{\normalsize Working Paper --- July 2026\par}
+\end{center}
+
+\vspace{1.2cm}
+\noindent\textbf{Abstract} \\[4pt]
+\noindent We test for local economic and public-health spillovers from
+proximity to a newly legal recreational-marijuana market, adapting a
+switcher/control county design from a companion project to a tighter
+50-mile radius: counties in never-legalizing states whose distance to
+the nearest legal border fell below 50 miles between 2020 and 2023
+(``switchers'') versus counties that remained farther away
+(``controls''). We examine two outcomes: county home values and rents
+(Zillow), and drug-overdose mortality (CDC). Home-value growth is
+modestly higher in counties that stayed farther from a legal border
+($p=0.073$), a possible disamenity signal. Switcher counties show a
+significantly larger overdose-mortality decline than controls
+($p=0.030$), consistent with an opioid-substitution channel, though
+this does not survive a continuous-distance specification. We
+interpret both results as suggestive rather than conclusive. \\[10pt]
+\noindent\textbf{JEL Classification:} R21, I18, I12, K42 \\
+\noindent\textbf{Keywords:} recreational marijuana; housing prices;
+drug overdose mortality; opioid substitution; border spillovers;
+difference-in-differences
+
+\vfill
+\noindent\textbf{Abbreviations} \\[2pt]
+\noindent
+\begin{tabular}{@{}ll@{}}
+DiD    & Difference-in-differences \\
+FIPS   & Federal Information Processing Standard (county code) \\
+NCHS   & National Center for Health Statistics \\
+SE     & Standard error \\
+VSRR   & Vital Statistics Rapid Release \\
+ZHVI   & Zillow Home Value Index \\
+ZORI   & Zillow Observed Rent Index \\
+\end{tabular}
+
+\vspace{0.5cm}
+\noindent{\footnotesize A separate Disclosure Statement accompanies this
+submission per Economic Inquiry policy and is not reproduced in this file.}
+\end{titlepage}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+Does proximity to a legal recreational-marijuana market change local
+economic and public-health outcomes for residents who do not
+themselves cross the border? A companion project examines this
+question through the lens of drug-enforcement substitution, using a
+switcher/control county design -- counties in never-legalizing states
+whose distance to the nearest legal-market border fell below 100 miles
+between 2020 and 2023 -- and finds no robust evidence that marijuana
+and alcohol arrests move as substitutes. Arrest data, however, are
+enforcement-mediated rather than purely behavioral, and enforcement
+intensity may respond to legalization independently of underlying
+behavior. This paper adapts the same treatment design, at a tighter
+50-mile switcher/control radius (Section~2.1), to examine two outcomes
+that are not enforcement-mediated in the same way: local housing
+markets and drug-overdose mortality.
+
+The housing question follows a capitalization logic: if proximity to a
+legal market is an amenity (convenience, local retail and tourism
+spillovers) or a disamenity (traffic, stigma, perceived crime risk),
+forward-looking home buyers and renters should price it in.
+\citet{ChengMayerMayer2018} find that legalizing retail marijuana
+sales in Colorado raised nearby home values, but their design compares
+locations \emph{within} a legal state to dispensary proximity, not
+proximity to an external legal-market \emph{border} from the
+non-legal side -- the mechanism and the sign are not obviously the
+same across these two settings.
+
+The overdose-mortality question follows a substitution logic
+distinct from the alcohol-arrest test in the companion paper: if
+marijuana substitutes for opioids in pain management or recreational
+use, easier access should reduce opioid-involved mortality nearby.
+\citet{Bachhuber2014} found early evidence of this using state medical-
+marijuana laws, but \citet{Shover2019} show the association reverses
+sign once more years of data are included, and \citet{PowellPaculaJacobson2018}
+find the effect is specific to certain legal designs (dispensary
+access) rather than medical-marijuana laws generally. Whether a
+\emph{recreational}-legalization, cross-border-proximity design shows
+any such pattern in the 2020--2023 wave is, to our knowledge,
+untested.
+
+We find a marginally significant increase in home-value growth for
+counties that remained farther from a legal border ($p=0.073$ in the
+primary continuous-distance specification), not significant in the
+binary switcher specification. We find a significant decline in
+drug-overdose mortality for switcher counties relative to controls
+($p=0.030$), but this does not survive the continuous-distance
+specification, and rests on a sample reduced by roughly 60\% due to
+small-county data suppression. We report both results with their
+specific caveats rather than treating either as a settled finding.
+
+% ============================================================
+% 2. DATA
+% ============================================================
+\section{Data}
+
+\subsection{Treatment Design (Adapted from the Companion Project, at a Tighter Radius)}
+
+We reuse the underlying county panel and distance computation from the
+companion marijuana-alcohol substitution project -- 32 states that had
+not legalized recreational marijuana through 2023, with each county's
+distance to the nearest legal-market border computed in miles for 2020
+and 2023 (Haversine distance between county centroids) -- but redefine
+the switcher/control cutoff at a tighter 50-mile radius rather than the
+companion project's 100 miles. We first attempted a 20-mile radius, but
+this leaves only 32 switcher counties nationally, too few once split
+across three outcomes with very different data coverage (Section~2.2--2.3);
+50 miles yields 212 switcher counties nationally and is the radius used
+throughout this paper. A county is a ``switcher'' if its distance to
+the nearest legal-market border was at least 50 miles in 2020 and fell
+below 50 miles by 2023; a ``control'' if it remained at least 50 miles
+away in both years; counties within 50 miles of a legal border in
+\emph{both} years (54 counties) are excluded from the main sample, as
+in the companion paper.
+
+The primary treatment variable is the raw change in distance,
+\begin{equation}
+  \Delta\text{Dist}_i \;=\; \text{Dist}_{i,2023} \;-\; \text{Dist}_{i,2020},
+  \label{eq:distmi}
+\end{equation}
+negative for counties that became closer to a newly-legal border. We
+estimate first-difference regressions
+\begin{equation}
+  \Delta Y_i \;=\; \alpha \;+\; \beta \cdot \frac{\Delta\text{Dist}_i}{50} \;+\; \varepsilon_i,
+  \label{eq:distreg}
+\end{equation}
+scaling into 50-mile units to match the switcher radius, alongside the
+binary switcher indicator and a $\Delta\log(\text{distance})$
+robustness check, with standard errors clustered by state throughout
+\citep{CameronMiller2015, BertrandDufloMullainathan2004}. The full
+panel available to this treatment design is 2,347 counties (212
+switchers, 2,081 controls, 54 always-near); the two outcome sources
+below cover different, smaller subsets of it.
+
+\subsection{Housing: Zillow ZHVI and ZORI}
+
+We use Zillow Research's publicly available, county-level Zillow Home
+Value Index (ZHVI, a smoothed, seasonally-adjusted measure of the
+typical home value for the middle price tier) and Zillow Observed
+Rent Index (ZORI), both measured as of December 2020 and December
+2023. ZHVI covers 3,071 counties nationally, 2,191 of them in our
+main treatment sample (207 switchers, 1,984 controls). ZORI has
+substantially sparser rural coverage -- 1,360 counties nationally, only
+361 in our main sample (43 switchers, 318 controls) -- because Zillow
+requires a minimum volume of active rental listings to compute a
+county-level rent index, which many small, non-metropolitan counties
+in our sample do not meet. We use the log change in each index,
+$\Delta \log(\text{ZHVI})$ and $\Delta \log(\text{ZORI})$, as the
+outcome.
+
+\subsection{Drug-Overdose Mortality: CDC VSRR Provisional County Data}
+
+County-level, cause-specific mortality is not available through any
+open, unauthenticated API: CDC WONDER, the relevant query tool, is not
+reachable from our data-collection environment, and its underlying
+Multiple/Underlying Cause of Death files require a manual query
+through its web interface. We instead use the CDC's Vital Statistics
+Rapid Release (VSRR) ``Provisional County-Level Drug Overdose Death
+Counts,'' published on the open data.cdc.gov Socrata platform, which
+reports 12-month-ending drug-overdose death counts by county of
+residence. We take the count for the 12 months ending December 2020
+and December 2023 as our two periods, divide by county population to
+get a rate per 100,000, and take the first difference as the outcome.
+
+Two limitations of this source are consequential enough to state
+plainly. First, per NCHS confidentiality standards, any county-month
+cell with 1--9 deaths is suppressed; this removes 1,505 of 3,144
+counties nationally in 2020 and 1,425 in 2023, and correspondingly
+shrinks our main-sample overdose regression to 928 counties (81
+switchers, 847 controls) -- less than half of the full treatment
+panel, disproportionately excluding the smallest, most rural counties,
+and especially costly at a 50-mile radius since the switcher pool is
+already small. Second, this is \emph{provisional} surveillance data
+subject to revision as death-certificate investigations are completed
+and jurisdictions finalize reporting (the data file's own completeness
+field averages well under 100\% for our sample period); it is not the
+final vital-statistics record. We treat the overdose result below as
+suggestive for these reasons.
+
+% ============================================================
+% 3. RESULTS
+% ============================================================
+\section{Results}
+
+\begin{table}[htbp]
+\centering
+\caption{Effect on Home Values, Rent, and Overdose Mortality}
+\label{tab:regD}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & Switcher (binary) & Distance, per 50 mi & Log-distance (robustness) \\
+\midrule
+Home value (log) & $+0.011$ (0.018) & $+0.009^{*}$ (0.005) & $+0.015$ (0.010) \\
+ & $p=0.549$ & $p=0.073$ & $p=0.139$ \\
+\addlinespace
+Rent (log) & $-0.014$ (0.012) & $-0.002$ (0.003) & $+0.010$ (0.009) \\
+ & $p=0.238$ & $p=0.586$ & $p=0.257$ \\
+\addlinespace
+Overdose rate per 100k & $-3.546^{**}$ (1.632) & $-0.554$ (0.340) & $+0.738$ (1.292) \\
+ & $p=0.030$ & $p=0.103$ & $p=0.568$ \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.95\textwidth}
+\footnotesize Note: Outcome is the change (2020--2023) in the log
+index (home value, rent) or arrest-rate-style count per 100{,}000
+(overdose). SE clustered by state in parentheses. $N=2{,}191$ (home
+value), $N=361$ (rent), $N=928$ (overdose) -- see Section~2 for why
+coverage differs by outcome. $^{*}p<0.10$, $^{**}p<0.05$.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figures/figD1_coefplot.png}
+  \caption{Effect on Home Values, Rent, and Overdose Mortality, All Three Specifications (95\% CI).}
+  \label{fig:coefD}
+\end{figure}
+
+\subsection{Housing Markets}
+
+The primary, continuous-distance specification finds that a 50-mile
+\emph{increase} in distance to the nearest legal border is associated
+with 0.9 log points \emph{more} home-value growth ($p=0.073$) --
+equivalently, counties that became 50 miles \emph{closer} to a legal
+border saw about 0.9 log points \emph{less} home-value growth over
+2020--2023 than counties that stayed where they were. This is only
+marginally significant and does not appear in the binary switcher
+specification ($p=0.549$) or the log-distance robustness check
+($p=0.139$), so we read it as weak evidence, at best, of a local
+disamenity effect on home prices -- the opposite sign from
+\citet{ChengMayerMayer2018}'s within-state, dispensary-proximity
+result, though the settings are different enough (cross-border
+proximity from the non-legal side, versus within-state proximity to
+retail outlets) that the two findings are not in direct tension.
+Rent shows no significant relationship with any specification, though
+the rent sample is small enough (361 counties, only 43 of them
+switchers at this tighter radius) that this is likely underpowered
+rather than a precise null (Figure~\ref{fig:coefD}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figures/figD2_treatment_scatter.png}
+  \caption{The Continuous-Treatment Regression: Distance Change vs. Outcome Change, Home Value and Overdose Rate.}
+  \label{fig:scatterD}
+\end{figure}
+
+\subsection{Drug-Overdose Mortality}
+
+Switcher counties saw drug-overdose death rates fall by 3.5 more
+per 100,000 than control counties over the same period ($p=0.030$),
+a result of a size worth taking seriously (Figure~\ref{fig:overdosetrend}
+shows both groups' raw trends). However, the continuous-distance
+specification -- which uses the same underlying variation and is our
+preferred specification in the companion paper -- is not significant
+($p=0.103$, and the log-distance robustness check flips sign entirely,
+$p=0.568$). A result present in the binary comparison but not the
+continuous one is a meaningfully weaker form of evidence than a result
+that holds across specifications, and combined with the sample
+reduction from suppression (Section~2.3), we do not treat this as a
+confirmed opioid-substitution effect -- only as a pattern worth further
+investigation, ideally once final (non-provisional) vital-statistics
+data are available for these years.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/figD3_overdose_trends.png}
+  \caption{Drug Overdose Death Rate, Switchers vs. Controls, 2020--2023.}
+  \label{fig:overdosetrend}
+\end{figure}
+
+% ============================================================
+% 4. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+Taken together with the companion paper's null substitution result on
+arrest data, this paper's two results sit at different points on a
+spectrum of confidence. The housing result is directionally consistent
+across two of three specifications but only marginally significant in
+the one we most trust, and small in magnitude. The overdose result is
+larger and more significant in its binary form, but fails to survive
+the continuous-distance specification that is otherwise our preferred
+test throughout this line of work -- exactly the kind of
+specification-dependence that \citet{Shover2019} caution is common in
+this literature once enough data years are examined. Neither result
+should be read as a settled finding; both are more useful as a map of
+where a dedicated follow-up (a longer panel, final rather than
+provisional mortality data, or a larger rent sample) would have the
+best chance of a conclusive answer.
+
+% ============================================================
+% 5. LIMITATIONS
+% ============================================================
+\section{Limitations}
+
+\begin{enumerate}[label=(\arabic*), leftmargin=*]
+\item \textbf{Overdose mortality data are provisional, not final.}
+CDC's VSRR county-level file is explicitly a rapid-release product
+subject to revision as death investigations close; a final-data
+replication is not yet possible for 2023.
+\item \textbf{Small-cell suppression removes the majority of small
+counties from the overdose sample.} Only 928 of 2,347 treatment-panel
+counties have non-suppressed data in both years, and the excluded
+counties are disproportionately rural -- exactly the counties where a
+border-proximity design has the most identifying variation, since they
+sit closest to state lines.
+\item \textbf{Rent (ZORI) coverage is sparse for the same reason.}
+Zillow requires a minimum active-listing volume to compute a county
+rent index; only 361 of 2,347 counties qualify, limiting that
+regression's power.
+\item \textbf{The 50-mile switcher radius is itself a data-driven
+compromise.} We could not use the originally requested 20-mile radius
+because it leaves only 32 switcher counties nationally; 50 miles was
+the next threshold tested and is not derived from any theoretical
+ideal catchment distance for either outcome.
+\item \textbf{Two-period design.} As in the companion paper, the
+switcher/control comparison uses only 2020 and 2023, precluding a
+formal pre-trend test.
+\item \textbf{No demand-side decomposition.} We cannot distinguish,
+within the housing result, whether any disamenity effect reflects
+traffic, crime perception, stigma, or some other specific channel; nor,
+within the overdose result, whether any effect reflects substitution
+in pain management, recreational substitution, or a compositional
+change in who lives in switcher counties.
+\end{enumerate}
+
+% ============================================================
+% 6. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+Adapting the switcher/control, continuous-distance treatment design
+from our companion marijuana-alcohol substitution paper to a tighter
+50-mile radius, we find
+suggestive but not conclusive evidence of two local spillovers from
+proximity to a newly legal recreational-marijuana market: modestly
+slower home-value growth in counties that grew closer to a legal
+border, and a larger decline in drug-overdose mortality in switcher
+counties specifically. Both results are sensitive to specification or
+data-quality caveats detailed above, and we recommend they be treated
+as motivation for a more targeted follow-up -- particularly once final
+(non-provisional) mortality data for 2023 are released -- rather than
+as standalone evidence of either a housing disamenity or an opioid-
+substitution effect.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

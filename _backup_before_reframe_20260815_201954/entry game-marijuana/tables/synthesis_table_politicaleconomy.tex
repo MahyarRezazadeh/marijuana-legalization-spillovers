@@ -1,0 +1,31 @@
+\begin{table}[htbp]
+\centering
+\caption{Do Colorado Border Counties Opt In to Retail Marijuana at a Higher Rate?}
+\label{tab:politicaleconomy}
+\small
+\begin{tabular}{lccc}
+\toprule
+& Interior counties & Border counties & \\
+& ($n=50$) & ($n=14$) & \\
+\midrule
+Share ever with $\geq$1 dispensary & 72.0\% & 42.9\% & \\
+\midrule
+Specification & Coefficient & $p$-value & $n$ \\
+\midrule
+No controls & $-0.291$ & $0.051$ & 64 \\
++ log(population) & $-0.263^{**}$ & $0.036$ & 64 \\
++ log(population), pop.\ $\geq$5{,}000 only & $-0.258$ & $0.105$ & 52 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is a binary indicator for whether a Colorado county ever had an operating
+dispensary between 2015 and 2025, the best available proxy for effective local exclusion of retail
+marijuana under Amendment~64's opt-out authority (no compiled municipal-ordinance dataset exists; this
+proxy conflates active local bans with no operator ever entering a low-demand market). Sample is the full
+64-county Colorado universe, not only the 42 counties in the paper's revenue panel. Linear probability
+model, HC1 standard errors. \textbf{The sign is opposite to the fiscal-capture prediction}: border
+counties are less, not more, likely to have ever permitted retail marijuana. $^{**}p<0.05$.
+\end{minipage}
+\end{table}

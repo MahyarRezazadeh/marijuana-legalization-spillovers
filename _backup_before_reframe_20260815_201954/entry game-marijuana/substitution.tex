@@ -1,0 +1,1012 @@
+﻿\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+
+\title{Captive Cross-Border Demand and Rural Agriculture:\\
+Cannabis Revenue, Farmland Values, and Crop Substitution\\
+in Border Counties of Legal-Market States}
+\author{Mahyar Rezazadeh \\ Babak Sahragard}
+\date{August 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent We test whether counties in legal-cannabis states that are close to a non-legal-state border --
+and can therefore absorb captive demand from residents of the neighboring illegal-market state --
+show different economic outcomes than interior counties of the same legal states. This is an
+entry-game/border-competition design: both treatment and control counties are in already-legal states;
+the comparison is border versus interior, not legal versus illegal. Using a 70-mile border threshold
+across the 23 states with an operating recreational retail market as of August 2026, we test four
+outcomes: cannabis retail revenue per capita and revenue per dispensary store (Colorado, Washington,
+Oregon, and Montana -- the states with usable county-level revenue data), farmland asset value per acre
+(USDA NASS Census of Agriculture, available nationally), and harvested cropland acreage (Oregon). Revenue
+per capita, farmland value, and crop substitution mostly come back null or inconclusive in Colorado,
+Washington, and Oregon. Revenue \emph{per store}, however, is significantly higher in border counties in
+all three of those states -- pooling them strengthens rather than weakens the result -- robust to excluding
+a single-county outlier in each state and to estimating each state separately, even though total
+county-level revenue and dispensary counts show no border effect. An event study by state market age shows
+this premium strengthens rather than fades as a legal market matures, and two further mechanism checks --
+a continuous distance dose-response and, more robustly, a measure of the total non-legal population within
+70 miles rather than distance to the nearest non-legal county alone -- both point in the direction the
+cross-border demand hypothesis predicts, with the population-weighted measure surviving county-clustered
+inference; the per-store result is, however, sensitive to widening the border threshold from 70 to 90
+miles, a limitation we report directly. Montana reverses this pattern entirely: it is the one state in the
+sample with no statewide cap on dispensary licenses, and its revenue-per-capita coefficient is the one
+county-aggregate estimate in the paper that is positive and significant under county-clustered inference,
+while its own revenue-per-store estimate is a precise null -- consistent with captive demand being absorbed
+through new store entry rather than higher revenue per existing store when entry is not capped. A placebo
+check against Colorado's general (non-cannabis) retail sales -- the single most important robustness check
+in the paper -- finds no comparable border/interior gap in ordinary retail activity over the same period,
+arguing against the alternative explanation that border counties simply transact more retail business of
+any kind. A second placebo check, using alcohol sales in Oregon and Montana (a closer analogue to cannabis
+than general retail, being similarly regulated and excise-taxed), is more mixed: Oregon reproduces the
+general-retail null and, if anything, shows a lower per-store premium near the border, while Montana shows
+a positive border/interior gap in alcohol revenue per capita that is significant under heteroskedasticity-robust
+but not county-clustered inference -- we report this directly rather than treating it as a second clean
+pass. We also report, as suggestive context rather than a formal test, a directly relevant historical
+data point: Washington's 2014 initial license lottery shows one of this paper's own border counties
+(Spokane) was sharply oversubscribed for cannabis retail licenses, consistent with real unmet entry demand
+resolved by a binding cap rather than by market entry. We read the overall pattern as consistent with a
+demand response that is real but absorbed by a binding constraint on store entry where such a constraint
+exists (state licensing caps), exactly the explanation proposed when a companion analysis found no effect
+of border proximity on dispensary density: captive demand does not appear to draw in more stores where
+entry is capped, but it does appear to make each existing store busier -- and where entry is not capped, as
+in Montana, it draws in more stores instead. Farmland value is null in the panel specification with state and year fixed
+effects, though a continuous distance measure disagrees in sign with the binary threshold. An event study
+by state market age, extended here to include the pre-launch years that NASS's Census waves make available
+for several states, shows a significant \emph{negative} border/interior gap emerging after several years of
+legal-market operation -- but also shows the pre-launch period itself is not flat, with significant swings
+in both directions before legalization even occurs, which complicates treating the post-launch decline as a
+confident causal estimate rather than a continuation of pre-existing volatility. Crop substitution
+in Oregon is essentially untestable at this threshold: only three of Oregon's 36 counties fall within 70
+miles of its one non-legal neighbor, and the state's actual cannabis cultivation hub sits over 300 miles
+away, near the California border instead. Finally, we subject the revenue-per-store result to three checks
+that move beyond a fixed cross-sectional comparison. Following \citet{HansenMillerWeber2020}, who show
+Washington border-with-Oregon sales fell 36 percent when Oregon's own market opened, we test whether
+Colorado counties bordering New Mexico lost their premium after New Mexico's 2022 retail market opened: they
+did, by 38.6 percent, a magnitude close to \citeauthor{HansenMillerWeber2020}'s own estimate at an
+independent border; our own lower-frequency replication of their original Washington-Oregon setting,
+however, does not reproduce their result, which we attribute to this paper's coarser annual data rather
+than a genuine absence of the mechanism there. We also find that dispensaries do not open faster in border
+counties initially, but a second dispensary follows significantly faster once a border county has a first
+one, and that dispensaries within border counties are located measurably closer to the actual state line
+than the county's own geography would predict -- direct evidence that sellers respond to, rather than are
+merely correlated with, cross-border demand.
+\end{abstract}
+
+\section{Introduction}
+
+A recurring hypothesis in this research program is that counties in legal-cannabis states located near a
+non-legal-state border can capture demand from residents of the neighboring state, who may travel some
+distance to purchase legally rather than rely on an illegal supplier at home. This is distinct from every
+other design used elsewhere in this program: rather than asking how a non-legal county is affected by
+proximity to a legal market, here \emph{both} treatment and control counties are already inside a legal
+state, and the comparison is between counties near the state's outer, non-legal-adjacent border and
+counties in the interior. A companion analysis using this design and 2020--2025 dispensary data found no
+evidence that dispensary entry timing or density responds to this kind of border proximity. This paper
+extends the same treatment/control logic to three further outcomes -- retail revenue, farmland value, and
+crop substitution -- that speak to different economic channels than store counts alone: revenue captures
+demand intensity even where entry itself is capped by state licensing rules; farmland value captures
+capitalized expectations about a county's economic trajectory; and crop substitution asks whether
+cannabis cultivation displaces traditional agriculture disproportionately in these captive-demand
+counties.
+
+\citet{SchwabButsic2020} provide the most direct related evidence, finding that a 2016 Humboldt County,
+California ordinance making specific parcels eligible for a cannabis cultivation permit raised those
+parcels' sale price roughly 84 percent relative to ineligible parcels. That result identifies the value of
+\emph{cultivation-permit eligibility} within one county using bespoke parcel-level data; it does not speak
+to whether simple \emph{proximity to a captive cross-border demand pool} moves outcomes at the county
+level across many states, which is the question this paper asks instead.
+
+We test all three outcomes using the identical treatment and control definition, described precisely in
+Section~\ref{sec:data}. Revenue per capita, farmland value, and crop substitution find no robust support
+for the captive-demand hypothesis, though, as we discuss, the reasons differ meaningfully across outcomes,
+and one specification (the land-value event study by market age) surfaces a result opposite in sign to the
+hypothesis rather than a simple null. Revenue \emph{per store}, by contrast, is a robust, outlier-independent,
+multi-state positive result (Section~\ref{sec:revenue_perstore}). Section~\ref{sec:switchoff} then subjects
+that result to three additional checks that do not rely on the same fixed cross-sectional comparison:
+whether the premium switches off when a bordering state legalizes its own retail market, following
+\citet{HansenMillerWeber2020}; whether sellers entered border counties faster; and whether they located
+measurably closer to the state line itself.
+
+\section{Data}
+\label{sec:data}
+
+\subsection{Treatment and control: border versus interior counties of legal states}
+
+We identify all states with an operating recreational cannabis retail market as of August 5, 2026, using
+each state's first-retail-sale date. Twenty-three states qualify: Colorado and Washington (both legal
+since 2014) through Delaware (legal since August 2025). For every county in these 23 states, we compute
+the great-circle distance from the county's population centroid to the nearest county located in a state
+\emph{without} an operating recreational retail market, using the same centroid data and distance
+methodology used throughout this research program. This yields 991 counties across the 23 legal states.
+
+\textbf{Treatment} counties are those within 70 miles of a non-legal-state border -- close enough, under
+this design's motivating logic, to plausibly absorb demand from residents of the neighboring illegal-market
+state who travel up to roughly that distance to buy legally. \textbf{Control} counties are the interior,
+``middle-of-the-state'' counties of the same 23 legal states: more than 70 miles from any non-legal
+border. Both groups are, by construction, counties in states where cannabis is already legal; this is not
+a legal-versus-illegal comparison, and a county's own eligibility to host cultivation or retail activity
+plays no role in the treatment definition -- only its distance to a captive-demand-generating border.
+
+Border-county availability varies sharply by state. Five of the 23 states -- Arizona, California, Rhode
+Island, and (in the two outcome-specific panels below, which have slightly different state coverage due to
+data-matching) Connecticut and Alaska -- have \emph{no} county within 70 miles of a non-legal border;
+California's closest county to any non-legal state is 222 miles away, and Alaska's is 769 miles away,
+since neither is bounded by a state that remains illegal. A sixth state, Nevada, is a near-miss rather than
+a clean exclusion: its closest county, Lincoln (79.7 miles from Utah), and Elko (90.8 miles from Idaho)
+both sit just outside the 70-mile cutoff, reflecting Nevada's large, sparsely populated counties rather
+than genuine geographic remoteness from a non-legal border -- unlike California and Alaska, Nevada does
+directly border two non-legal states (Idaho and Utah), and the population centroids used throughout this
+paper simply place its nearest cities just past the line. Section~\ref{sec:threshold} reports a 90-mile
+robustness check motivated directly by this near-miss. These states can contribute control observations
+but no treated ones at the 70-mile threshold, and are excluded from the robustness checks that restrict to
+states with genuine border variation.
+
+\subsection{Outcome 1: cannabis retail revenue, per capita and per store}
+\label{sec:data_revenue}
+
+We reuse the county-fiscal-year revenue panel constructed for a companion analysis in this project: monthly
+county-level marijuana sales from Colorado's Department of Revenue (2014--2025) and Washington's Liquor
+and Cannabis Board (2015--2025). We extend this panel with two additional states' own regulator data:
+Oregon's OLCC publishes a county-by-month sales series through its open-data portal (2016--2026, all
+product and customer types combined), and Montana's Department of Revenue publishes monthly per-county
+sales as a series of static report pages (no bulk download exists; we retrieved 53 of 54 available months
+directly). Illinois, Ohio, and Maine publish statewide totals only; Massachusetts's county-level data
+exists only behind an inaccessible interactive dashboard; New York's data is a regional cumulative total,
+not a county panel; and no other state's regulator data proved retrievable at county granularity within
+the scope of this project. Colorado, Washington, Oregon, and Montana are therefore the four states this
+paper's revenue analysis draws on. Our primary revenue outcome is log(revenue per capita), using each
+county's population as the normalizing denominator.
+
+We additionally construct log(revenue per dispensary store). For Colorado and Washington this uses a
+geocoded dispensary-license dataset (759 records, license number, address, and opening date, assembled for
+a companion analysis of dispensary entry) point-in-polygon assigned to counties, counting dispensaries open
+as of each year's own reporting cutoff (December 31 for Colorado's calendar-year reporting, June 30 for
+Washington's fiscal-year reporting). The same geocoded dataset covers Oregon nominally, but proved
+unreliable specifically for Oregon: several records geocode to counties in other states entirely, and
+Baker County -- one of Oregon's three border counties -- has zero matched dispensaries despite recording
+real revenue in every year from 2017 to 2025. We instead use OLCC's own license registry, which tags
+county natively; because that registry's date field reflects each license's most recent renewal rather
+than its original opening date, it cannot support a historical panel, so Oregon's revenue-per-store check
+is a single 2025 cross-section (2025 revenue against currently-active retailer counts) rather than a
+multi-year panel. Montana's revenue-per-store check is built the same way, from the Department of
+Revenue's current licensed-dispensary list matched to county via each dispensary's city (a 99\% match
+rate against a crosswalk built from Montana's incorporated municipalities). County-years with zero open
+stores are dropped throughout, since revenue per store is undefined. This outcome asks a different
+question than revenue per capita: whether individual outlets transact more business in border counties,
+independent of how many people live there or how many stores have opened to serve them.
+
+\subsection{Placebo outcome: general retail sales}
+
+To test whether the revenue-per-store premium is specific to cannabis or simply reflects border counties
+transacting more retail business of any kind, we construct a placebo outcome from the Colorado Department
+of Revenue's county-by-industry retail sales filings \citep{CDORRetailByCounty}, which report gross retail
+sales and the number of filing retailers by county, month, and industry across all sectors of the state
+economy. We use the ``Total'' (all-industry) category, aggregated to complete calendar years,
+2016--2025. Colorado's Department of Revenue discloses this level of detail only for the state's 11
+largest counties by filing volume, which includes 3 of the 6 border counties in the main analysis
+(Larimer, Mesa, and Weld) but not the smaller ones (Montezuma, Morgan, and Sedgwick); we note this
+coverage gap explicitly rather than treating the placebo sample as identical to the main analysis's
+border group.
+
+\subsection{Outcome 2: farmland asset value per acre}
+
+Farmland value is \emph{AG LAND, INCL BUILDINGS -- ASSET VALUE, MEASURED IN \$/ACRE} from the USDA NASS
+Census of Agriculture, extracted at the county level for the 2012, 2017, and 2022 Census waves -- the only
+years this variable is published below the state level. Because NASS's Census of Agriculture is a
+national program, this outcome is available for essentially every county regardless of state, unlike
+revenue: we match 947 of the 991 legal-state counties to complete land-value records in all three years,
+across 21 of the 23 states.
+
+\subsection{Outcome 3: harvested cropland acreage}
+
+For crop substitution we use \emph{AG LAND, CROPLAND, HARVESTED -- ACRES}, again from the NASS Census of
+Agriculture, for all 36 Oregon counties in 2012, 2017, and 2022. We focus on Oregon because it is the only
+state for which we were able to independently verify a usable cannabis cultivation dataset (see the
+companion analysis in this project for why); as Section~\ref{sec:results} shows, however, Oregon turns out
+to have very little genuine border-county variation under the 70-mile threshold, since it borders only
+one non-legal state (Idaho) at a considerable remove from most of its population.
+
+\section{Empirical Strategy}
+\label{sec:methods}
+
+For revenue (per capita and per store) and farmland value, all three observed as county-year or
+county-fiscal-year panels, we estimate
+\[
+y_{ist} = \alpha + \beta \, \text{Border}_{i} + \gamma \ln(\text{population}_{i}) + \delta \ln(\text{land area}_i)
++ \theta_t + \mu_s + \varepsilon_{ist},
+\]
+where $y_{ist}$ is log(revenue per capita), log(revenue per store), or log(land value per acre) for county
+$i$ in state $s$ at time $t$, $\text{Border}_i \in \{0,1\}$ is the 70-mile treatment indicator (time-invariant, since a county's
+distance to a non-legal border does not change), and $\theta_t$, $\mu_s$ are year and state fixed effects.
+\textbf{Standard errors are clustered at the county level} throughout the panel specifications, since each
+county contributes multiple correlated observations over time. We report both heteroskedasticity-robust
+(HC1) and county-clustered standard errors for transparency; the clustered version is our preferred
+inference. We also estimate a continuous version replacing $\text{Border}_i$ with $\ln(\text{distance to
+nearest non-legal border}_i)$.
+
+For revenue per store specifically, we additionally construct a market-size measure intended to test the
+underlying mechanism more directly than distance to the nearest non-legal county alone: for each Colorado
+and Washington county we sum the population of every non-legal-state county within 70 miles (not only the
+nearest one), using a radius query against the national county centroid and population-estimate files
+already used to build the treatment panel. This $\text{CaptivePop}_{70,i}$ measure distinguishes a county
+adjacent to one small non-legal county from a county adjacent to a large non-legal metropolitan area, which
+a nearest-county distance measure cannot; we replace $\text{Border}_i$ with $\ln(\text{CaptivePop}_{70,i}+1)$
+and re-estimate the same specification.
+
+The placebo outcome (general retail sales per capita) uses the identical specification restricted to
+Colorado only, so the state fixed effect $\mu_s$ drops out; year fixed effects and the log(population)
+control are retained.
+
+Because border status does not switch over time -- a county cannot move from interior to border-adjacent --
+this is not a difference-in-differences or switcher event study in the sense used elsewhere in this
+research program. For farmland value, where we have three time points spanning a wide range of state
+market ages (Colorado's market is 12 years old by 2026; Delaware's is under one year old), we
+additionally estimate an event study by \emph{state market age} rather than calendar time: we interact
+$\text{Border}_i$ with indicators for how many years have elapsed since county $i$'s own state began
+retail sales, testing whether the border/interior gap changes as a state's legal market matures.
+
+For crop substitution, Oregon's cultivation-license data (used in a companion cross-sectional check) has
+no historical time dimension, but the border/interior treatment itself does not require it -- distance to
+Idaho is a fixed geographic fact independent of any licensing dataset. We therefore estimate a
+cross-sectional regression on Oregon's 36 counties,
+\[
+\Delta \ln(\text{cropland}_i) = \alpha + \beta \, \text{Border}_i + \gamma \ln(\text{population}_i) +
+\delta \ln(\text{land area}_i) + \varepsilon_i,
+\]
+with $\Delta\ln(\text{cropland}_i)$ the change in log harvested cropland acres, 2012--2022.
+\textbf{This is a single cross-section with one observation per county; there is no repeated
+within-county observation to cluster on, so county-clustered standard errors are not applicable here.} We
+report HC1 robust standard errors instead.
+
+\textbf{Treatment and control, restated precisely:} in every specification in this paper, the
+\emph{treatment} group is counties within 70 miles of a non-legal-state border, located inside a state
+where recreational cannabis is already legal; the \emph{control} group is interior counties of the
+\emph{same} legal states, more than 70 miles from any non-legal border. Neither group includes any county
+in a non-legal state.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Cannabis revenue: a clean, well-powered null}
+
+Table~\ref{tab:revenue_border70} reports the revenue results. At the 70-mile threshold, Colorado
+contributes 6 border counties and Washington 6, for 12 treated and 69 interior counties -- a substantial
+improvement over a 50-mile threshold used in an earlier pass of this project, where Colorado's only
+border county was Sedgwick alone, a small tourism-town outlier that drove a fragile, non-robust marginal
+result. At 70 miles, the coefficient on Border is small, positive, and never close to significant
+($b=+0.046$, county-clustered $p=0.83$ with full controls), and is essentially unchanged whether or not
+Sedgwick is included. We read this as a genuine null, not an underpowered one: the treated group is
+multi-county in composition in both states, and the point estimate itself is small.
+
+\input{tables/table1_revenue_border70}
+
+This null is not an average masking offsetting effects at different points in a state's market lifecycle:
+Table~\ref{tab:revenue_percapita_eventstudy} and Figure~\ref{fig:revenue_percapita_eventstudy} extend it
+into the same market-age event study used elsewhere in this paper, and no market-age bin approaches
+significance. As with revenue per store, there are no pre-launch bins to plot -- no legal cannabis revenue
+exists before a state's own retail market opens -- so this figure, like Figure~\ref{fig:revenue_perstore_eventstudy},
+starts cleanly at market-age year 0.
+
+\input{tables/table2_revenue_percapita_eventstudy}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig1_revenue_percapita_eventstudy.png}
+\caption{Revenue per capita: border $\times$ market-age event-study coefficients, with 95\% confidence
+intervals (county-clustered SEs). Compare with Figure~\ref{fig:revenue_perstore_eventstudy}: wide,
+zero-crossing intervals throughout, versus a premium that becomes clearly distinguishable from zero by
+market-age year 5.}
+\label{fig:revenue_percapita_eventstudy}
+\end{figure}
+
+Since neither state's data extends before its own retail launch, there is no true pre-treatment period to
+plot for either revenue outcome. The closest available substitute is to examine the control (interior)
+group's own trajectory directly, stacking Colorado (launched 2014) and Washington (launched 2015) on a
+common market-age clock rather than collapsing straight to a border-minus-interior difference.
+Figure~\ref{fig:trends_percapita} plots border and interior counties' revenue-per-capita levels
+separately: the two lines track each other closely across the entire market lifecycle, visually
+confirming the null in Table~\ref{tab:revenue_border70} rather than merely reporting it as a coefficient
+near zero.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig2_border_vs_interior_trends_percapita.png}
+\caption{Revenue per capita: border and interior counties' trends plotted separately (not as a
+difference), stacked on a common market-age clock. The two lines overlap throughout, the visual
+counterpart of the null reported in Table~\ref{tab:revenue_border70} and Table~\ref{tab:revenue_percapita_eventstudy}.}
+\label{fig:trends_percapita}
+\end{figure}
+
+\subsection{Revenue per store: the one significant result in this paper}
+\label{sec:revenue_perstore}
+
+Table~\ref{tab:revenue_perstore_border70} reports revenue per dispensary store, which tells a markedly
+different story than revenue per capita. Border counties' stores generate significantly more revenue than
+interior counties' stores: $b=+0.395$ (county-clustered $p=0.015$) with the full control set, corresponding
+to roughly 48 percent higher revenue per store. This is not an artifact of the Sedgwick County outlier
+discussed in Section~\ref{sec:data} -- excluding it, the estimate falls only modestly, to $+0.302$
+($p=0.040$), and remains significant. Nor is it driven by one state: estimated separately, Colorado shows
+$b=+0.552$ ($p=0.005$) and Washington $b=+0.441$ ($p=0.077$, marginal but directionally consistent),
+despite the two states' raw (unconditional) county-level comparisons initially looking different --
+Colorado's border stores average roughly double its interior stores' revenue, while Washington's border
+and interior stores are closer in raw terms before controls.
+
+This is, to our knowledge, the only genuinely significant result among the border-competition checks
+conducted across this research program -- entry timing, entry density, and revenue per capita have all
+come back null in various companion analyses. We think it resolves, rather than contradicts, those
+earlier nulls. A companion dispensary-density analysis found no evidence that more stores open in border
+counties, and proposed that state licensing caps on the number of dispensaries per county or population
+could mask a real demand effect: if demand is elevated near a captive-market border but the number of
+licensed stores cannot adjust to meet it, the excess demand should show up as more revenue per existing
+store, not as more stores or higher aggregate per-capita revenue (which can stay flat if border counties
+simply have fewer stores per capita, each doing more business). That is exactly the pattern in
+Table~\ref{tab:revenue_perstore_border70}: a robust, two-state, outlier-independent revenue-per-store
+premium alongside a null on both entry density and per-capita revenue.
+
+\input{tables/table3_revenue_perstore_border70}
+
+\subsubsection{Event study by market age: the premium strengthens, it does not fade}
+
+Table~\ref{tab:revenue_perstore_eventstudy} extends this result into an event study by state market age,
+the same design used for farmland value in Section~\ref{sec:landvalue_marketage}. Market-age year 0 is too
+thin to interpret (only 4 border observations, drawn from both states' earliest data), but from year 1
+onward the coefficient is positive in \emph{every} bin -- no sign reversals -- and grows from marginal or
+noisy in years 2--4 to significant and rising, from $+0.40$ at year 5 to $+0.59$ at year 9 and beyond. This
+is the opposite pattern from the farmland-value event study, which turned negative only after several
+years matured; here the premium strengthens rather than fades, consistent with a supply constraint
+(license caps) that binds more tightly relative to demand as a legal market grows and matures, rather than
+a one-time novelty effect that would be expected to fade.
+
+\input{tables/table4_revenue_perstore_eventstudy}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig3_revenue_perstore_eventstudy.png}
+\caption{Revenue per store: border $\times$ market-age event-study coefficients, with 95\% confidence
+intervals (county-clustered SEs). Unlike Figure~\ref{fig:landvalue_eventstudy}, there is no pre-launch
+period to plot: no legal cannabis revenue exists before a state's own retail market opens, so this
+coefficient path starts cleanly at year 0.}
+\label{fig:revenue_perstore_eventstudy}
+\end{figure}
+
+As with revenue per capita, Figure~\ref{fig:trends_perstore} plots border and interior counties' levels
+separately rather than only their difference, using the same stacked market-age clock. The two groups
+start close together in a market's first two years -- both near their lowest levels, since the whole
+market is still small -- and then visibly diverge from year 2 onward, with border counties pulling ahead
+and staying ahead through year 9+. Because neither state has data before its own launch, we cannot show
+the two lines were on parallel trajectories \emph{before} treatment in the way Figure~\ref{fig:landvalue_eventstudy}
+does for farmland value; what this figure does show is that the two groups are not visibly different from
+the earliest available data and diverge only afterward, which is the most this specific data can offer in
+place of a true pre-trend check.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig4_border_vs_interior_trends_perstore.png}
+\caption{Revenue per store: border and interior counties' trends plotted separately (not as a
+difference), stacked on a common market-age clock. The two groups start together and diverge from year 2
+onward -- the visual counterpart of the growing premium in Table~\ref{tab:revenue_perstore_eventstudy}.}
+\label{fig:trends_perstore}
+\end{figure}
+
+\subsubsection{Mechanism checks: does the premium behave like genuine cross-border demand?}
+\label{sec:mechanism}
+
+The results above are consistent with the captive cross-border demand hypothesis but do not directly test
+it: an observed border/interior gap in revenue per store could in principle reflect some other difference
+between border and interior counties rather than cross-border shoppers specifically. We probe the
+mechanism two further ways.
+
+First, a \emph{dose-response} check: if the effect reflects shoppers traveling from the neighboring
+non-legal state, revenue per store should rise smoothly as a county gets closer to that state's border, not
+merely jump at the 70-mile threshold used elsewhere in this paper. We replace the binary indicator with
+log(distance to the nearest non-legal-state county) and re-estimate the same specification. The
+coefficient has the expected sign (closer to the border, more revenue per store: $b=-0.182$) and is
+significant under heteroskedasticity-robust standard errors ($p=0.001$), but loses significance once
+standard errors are clustered by county ($p=0.124$), and weakens further excluding Sedgwick County
+($p=0.351$ clustered). This is suggestive of a genuine distance gradient but not, on its own, strong
+confirmatory evidence. Figure~\ref{fig:doseresponse_distance} plots this relationship directly as a
+binned scatter of revenue per store against distance, both residualized on the same controls
+(population, year, and state fixed effects) as the regression: the closest bin sits well above the fitted
+line and the two farthest bins sit well below it, consistent with the estimated slope, but the middle of
+the distribution is noisy and not monotonic, visually matching why the relationship does not survive
+clustering.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig5_doseresponse_distance.png}
+\caption{Dose-response: revenue per store against log(distance to non-legal border), both residualized
+on log(population), year fixed effects, and state fixed effects. Points are 10-bin (decile) means of the
+residualized distance variable; point size reflects the number of observations in each bin. The fitted
+line's slope matches the regression coefficient in Table~\ref{tab:revenue_perstore_mechanism} exactly, by
+construction.}
+\label{fig:doseresponse_distance}
+\end{figure}
+
+Second, a \emph{captive market size} check, which we view as a better-motivated test of the mechanism than
+distance to the nearest non-legal county alone: a county next to one small non-legal county and a county
+next to a large non-legal metropolitan area are treated identically by a nearest-county distance measure,
+but only the latter has a large population of potential cross-border shoppers to draw from. We construct,
+for each Colorado and Washington county, the total population of \emph{all} non-legal-state counties within
+70 miles -- not merely the nearest one -- via a radius query against the full national county population
+distribution, and replace the distance measure with log(captive non-legal population). This measure is
+significantly positive even under county-clustered standard errors ($b=+0.035$, $p=0.014$), and remains
+significant excluding Sedgwick ($b=+0.027$, $p=0.034$). Only 10 of the 71 Colorado and Washington counties
+in this panel have any non-legal population within 70 miles at all, so this check is still identified from
+a similar small set of border counties as the rest of this section -- it is not new geographic variation --
+but it reweights that same set by the actual size of the market each county could plausibly absorb, and it
+is the most robust mechanism evidence in this paper.
+
+\input{tables/table5_revenue_perstore_mechanism}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig6_doseresponse_captivepop.png}
+\caption{Dose-response: revenue per store against log(captive non-legal population within 70 miles), both
+residualized on log(population), year fixed effects, and state fixed effects. The x-axis makes the
+identifying variation visible directly: the large majority of counties cluster near zero captive
+population (61 of 71 have none at all), and the apparent upward slope is carried by only two
+distinctly-positioned bins at the right -- this is a real, significant relationship, but it rests on a
+handful of high-captive-population counties, not a smooth gradient sampled across many distinct exposure
+levels.}
+\label{fig:doseresponse_captivepop}
+\end{figure}
+
+Taken together, the dose-response and captive-population checks point the same direction as the main
+result but differ in how much weight they can bear on their own: the simple distance gradient is fragile
+to clustering, while the population-weighted market-size measure survives it. We read this as meaningful
+support for -- not proof of -- the cross-border demand interpretation, and note explicitly what would make
+the case stronger: direct data on customer origin (out-of-state identification records, if a state
+regulator were to publish them) would test the mechanism far more directly than any distance- or
+population-based proxy can.
+
+\subsubsection{Placebo check: the premium does not show up in general retail}
+\label{sec:placebo}
+
+A different concern than mechanism is specification: even a robust, well-identified border/interior gap in
+cannabis revenue per store could reflect something about border counties in general -- through-traffic,
+tourism, price arbitrage on goods generally -- rather than anything specific to cannabis and its captive
+non-legal-market demand. We test this directly using Colorado's general retail sales data
+\citep{CDORRetailByCounty} as a placebo outcome, applying the identical border/interior specification to
+all-industry retail sales per capita instead of cannabis revenue. Table~\ref{tab:placebo_general_retail}
+reports the result: a precise null ($b=-0.006$, $p=0.95$, county-clustered, $n=110$, 2016--2025). General
+retail activity in Colorado's border counties is statistically indistinguishable from its interior
+counties', even as cannabis revenue per store is significantly higher in the same border counties over the
+same period. This is, in our view, the single most important robustness check in this paper: it directly
+rules out the most obvious alternative explanation a referee would raise, that the revenue-per-store
+premium is a generic border-town phenomenon rather than a cannabis-specific captive-demand effect. The
+caveat, noted in Section~\ref{sec:data}, is that Colorado's disclosure rules limit this placebo's border
+group to 3 of the main analysis's 6 border counties (Larimer, Mesa, and Weld), so it is not a perfect
+match -- but it is the best available test, and it points the right direction.
+
+\input{tables/table6_placebo_general_retail}
+
+\subsubsection{Suggestive evidence on the mechanism from Washington's 2014 license lottery}
+\label{sec:lottery}
+
+One further piece of evidence, offered as suggestive context rather than a formal empirical test, comes
+from Washington's initial 2014 licensing round. Unlike Colorado, Washington capped the statewide number of
+retail licenses at 334 from the outset and allocated them by lottery in any jurisdiction where applications
+exceeded the local quota \citep{WSLCB2014LotteryPR}. Statewide, more than 2,000 applicants competed for
+those 334 licenses. Contemporary local reporting on the allocation gives a directly relevant data point:
+Spokane County -- home to Spokane, Spokane Valley, and rural Spokane County, three of the jurisdictions
+that make up one of this paper's six border counties -- received 143 applications against an 18-license
+county allocation, with the City of Spokane itself drawing 85 applications for 8 available store licenses,
+Spokane Valley 41 applications for 3, and the remainder of the county 17 applications for 7
+\citep{SpokesmanReview2014Lottery}. We do not build a formal test from this: a complete, comparable
+applicant-to-license ratio for every border and interior jurisdiction in Washington was never compiled into
+a single official dataset, and reconstructing one from scattered contemporary news coverage across the
+whole state was beyond the scope of this paper. We report the Spokane figures because they are a
+concrete, well-documented instance of exactly the mechanism this paper argues for -- real, oversubscribed
+demand for cannabis retail entry in a border county, resolved by a binding cap on the number of licenses
+rather than by the market clearing through additional entry -- consistent with, though not proof of, the
+revenue-per-store premium's interpretation in Section~\ref{sec:revenue_perstore}.
+
+\subsection{Farmland value: null in levels, but with two results worth flagging}
+\label{sec:landvalue_marketage}
+
+Table~\ref{tab:landvalue_border_panel} reports the farmland-value panel. The raw and lightly controlled
+specifications show a large, highly significant positive border/interior gap ($b=+0.31$, $p<0.001$), but
+this is entirely a between-state artifact: some states simply have systematically higher farmland values
+everywhere, for reasons unrelated to any individual county's border proximity. Once state fixed effects
+are added, the gap collapses to a precise, insignificant near-zero ($b=-0.005$, $p=0.87$), and stays there
+in the subsample restricted to the 17 states with genuine border-county variation.
+
+Two further results complicate a simple ``null'' reading. First, the continuous distance version --
+replacing the binary threshold with log-distance to the nearest non-legal border -- remains significant
+with the full control set, but in the \emph{opposite} direction: greater distance from a non-legal border
+is associated with \emph{higher}, not lower, land value ($b=+0.083$, $p=0.001$). This is the opposite sign
+from what the captive-demand hypothesis predicts, and it disagrees with the binary specification's null.
+We do not resolve this discrepancy in favor of either specification; we report both, since specification
+sensitivity of this kind is itself informative about how fragile any land-value/border relationship is in
+this data.
+
+\input{tables/table7_landvalue_border_panel}
+
+Second, Table~\ref{tab:landvalue_marketage} and Figure~\ref{fig:landvalue_eventstudy} report an event
+study by state market age, including years \emph{before} a state's own legalization, which we can observe
+because NASS's 2012/2017/2022 Census waves predate several states' launch dates entirely -- all three
+waves predate Delaware's 2025 launch, and two of the three predate Illinois's 2020 launch. An earlier
+version of this check discarded these pre-launch observations under the mistaken assumption that none
+existed; once included, they reveal a complication that changes how the post-launch pattern should be
+read. The border/interior gap is not flat before legalization: it is significantly \emph{negative} at
+2 years before launch ($b=-0.111$, $p=0.031$) and significantly \emph{positive} at 1 year before launch
+($b=+0.119$, $p=0.009$), fluctuations comparable in size to anything observed after legalization. The
+immediate transition across the launch date itself is unremarkable -- the year-before and year-of-launch
+coefficients are nearly identical ($+0.119$ and $+0.114$) -- but the pre-launch period as a whole is not the
+flat, quiet baseline a clean causal design would want. Only starting around 2 years after launch does the
+coefficient turn consistently negative and grow in magnitude, reaching $-0.384$ ($p=0.008$) at 7 years and
+$-0.390$ ($p=0.002$) at 8-plus years.
+
+We do not think this pattern can be read as a confident causal effect of legal-market access on farmland
+values. The significant pre-launch swings mean we cannot rule out that border counties in states that
+later legalize were already on a noisier or systematically different land-value trajectory than interior
+counties, for reasons unrelated to cannabis policy -- exactly the kind of parallel-trends violation this
+research program has flagged transparently elsewhere rather than smoothing over. What we can say is that
+the specific decline visible from 2 years post-launch onward does not have an obvious pre-launch analogue
+of the same sustained, growing, one-directional shape; the pre-launch swings are volatile and change sign,
+while the post-launch decline is more gradual and monotonic. We report both facts and let the reader weigh
+them, rather than asserting the post-launch pattern is definitively either a real effect or pure
+continuation of pre-existing noise. Its direction is nonetheless worth noting because it runs opposite to
+the revenue-per-store premium's own market-age pattern (Section~\ref{sec:revenue_perstore}), which strengthens
+rather than fades or reverses over the same kind of horizon and has no pre-launch period to complicate it
+in the same way, since no legal cannabis revenue exists before a state's own market opens.
+
+\input{tables/table8_landvalue_eventstudy_marketage}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig7_landvalue_eventstudy.png}
+\caption{Land value: border $\times$ market-age event-study coefficients, with 95\% confidence intervals
+(county-clustered SEs). The dashed vertical line marks each state's own retail launch. Years 1 and 5 are
+omitted (unidentified -- state fixed effects fully absorb the border indicator when only one state
+contributes observations at that age).}
+\label{fig:landvalue_eventstudy}
+\end{figure}
+
+Figure~\ref{fig:trends_landvalue} shows the same information a different way: border and interior
+counties' levels plotted separately, including the genuine pre-launch years, rather than collapsed into a
+single difference. Both groups trend upward together through the pre-launch period, with border running
+consistently a little above interior throughout -- a small, fairly stable gap that predates legalization
+entirely and is visible directly in the figure, not just inferable from the significant pre-launch
+coefficients in Table~\ref{tab:landvalue_marketage}. After launch, interior counties continue climbing
+(reaching their highest levels in the panel by 7--8 years out) while border counties' values flatten and
+stop growing. The post-launch decline reported above is thus better described as interior counties
+pulling further ahead of an already-existing gap, not border counties falling in absolute terms -- a more
+precise, and more clearly non-causal-looking, characterization than the coefficient table alone conveys.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig8_border_vs_interior_trends_landvalue.png}
+\caption{Land value: border and interior counties' trends plotted separately (not as a difference),
+including real pre-launch years. The dashed vertical line marks each state's own retail launch. Both
+groups trend upward together before launch, with border running consistently a little above interior;
+after launch, interior continues climbing while border flattens.}
+\label{fig:trends_landvalue}
+\end{figure}
+
+\subsection{Crop substitution: underpowered to the point of being uninformative}
+
+Table~\ref{tab:cropsub_border70} reports the Oregon cross-section. Oregon's only non-legal-state neighbor
+is Idaho, and only 3 of its 36 counties -- Baker, Malheur, and Wallowa -- fall within 70 miles of that
+border. With a treated group of three counties, no specification approaches significance, and the point
+estimates are not even consistently signed across the three counties themselves (Baker's cropland grew
+3.7 percent over 2012--2022; Malheur's fell 21.7 percent; Wallowa's fell 10.3 percent). We do not read
+this as evidence against a border effect on crop substitution; the design simply lacks the statistical
+power to detect one in Oregon. We note, in addition, that Jackson and Josephine counties -- which have by
+far the largest cannabis cultivation footprint of any Oregon county in a companion license-based analysis
+-- are 313 and 357 miles from Idaho, situated instead near the California border (itself a legal state).
+Oregon's actual cannabis cultivation activity is concentrated nowhere near its captive-demand border; it
+sits in the historic Emerald-Triangle-adjacent production region in the state's southwest, a legacy of
+decades of illicit cultivation predating legalization, not a response to cross-border demand. This is a
+useful negative fact in its own right: in Oregon at least, cultivation intensity and non-legal-border
+proximity are not the same geography, and a researcher using one as a proxy for the other would be
+measuring something different than intended.
+
+\input{tables/table9_cropsub_border70}
+
+\subsubsection{An event-study view, for comparability -- and why it should not be over-read}
+
+The other three outcomes in this paper are shown as event studies because either multiple states could be
+stacked on a common market-age clock (revenue) or a single state's own panel spans years before and after
+its launch (farmland value). Oregon offers neither advantage for crop substitution: it is the only state
+with usable cultivation-border data, so there is no second state to stack against it, though its 3 NASS
+waves (2012, 2017, 2022) do span Oregon's own 2015 launch, giving three points at event years $-3$, $+2$,
+and $+7$. Table~\ref{tab:cropsub_eventstudy} and Figure~\ref{fig:cropsub_eventstudy} report it for
+comparability with the rest of the paper, but it should not be read the same way. The coefficient here is
+estimated on cropland \emph{levels}, not the year-over-year change used in the main cross-section, and it
+comes back nearly identical at all three event years -- $+0.78$ in 2012, $+0.81$ in 2017, $+0.73$ in 2022 --
+\emph{including three years before Oregon had any legal cannabis market at all}. Figure~\ref{fig:cropsub_trends}
+shows why directly: border and interior counties' cropland levels run on two flat, parallel, non-converging
+lines throughout the entire period. This is not a treatment effect; it is a fixed characteristic of which
+counties happen to be near Idaho -- Baker, Malheur, and Wallowa are large wheat-growing counties in eastern
+Oregon, larger in cropland terms than most interior counties regardless of cannabis policy. It is precisely
+why the main analysis in Table~\ref{tab:cropsub_border70} uses the \emph{change} in cropland rather than its
+level: differencing removes this stable gap, which is exactly what makes the level comparison uninformative
+as a treatment estimate even though it looks superficially like a large, marginally significant effect.
+
+\input{tables/table10_cropsub_eventstudy}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/fig9_cropsub_eventstudy.png}
+\caption{Crop substitution event study, Oregon only (illustrative -- only 3 border counties at every
+year). Outcome is log(cropland) in \emph{levels}. The coefficient is essentially flat across all three
+years, including 2012, three years before Oregon's own legalization.}
+\label{fig:cropsub_eventstudy}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig10_cropsub_trends.png}
+\caption{Crop substitution: border and interior counties' cropland levels plotted separately, Oregon
+only. The two lines run flat and parallel throughout, including the pre-launch year -- visual confirmation
+that the gap in Table~\ref{tab:cropsub_eventstudy} is a fixed characteristic of these particular counties,
+not a legalization-related effect.}
+\label{fig:cropsub_trends}
+\end{figure}
+
+\subsection{Extending the design: Oregon and Montana}
+\label{sec:or_mt}
+
+Colorado and Washington's revenue-per-store result raises an obvious question: does it replicate in other
+states with genuinely independent data sources? Oregon and Montana both border non-legal states (Idaho
+for Oregon; Idaho, North Dakota, South Dakota, and Wyoming for Montana -- Montana is the only state in
+this design bordering more than one), and, as Section~\ref{sec:data_revenue} describes, both turned out to
+have usable regulator revenue data once we looked past the states with statewide-only or dashboard-only
+reporting. We treat this as an out-of-sample extension of the main result, not a re-specification: the
+treatment/control definition, control set, and estimating equation are unchanged.
+
+\input{tables/table11_pooled_perstore_with_or}
+
+Pooling Oregon into the Colorado-Washington revenue-per-store panel (Table~\ref{tab:pooled_perstore_or})
+\emph{strengthens} the result: the county-clustered $p$-value falls from $0.015$ to $0.006$, and all three
+states are independently positive and significant, despite Oregon's revenue-per-store outcome coming from
+a different underlying construction (a single-year cross-section against currently active licenses, rather
+than a historical panel of cumulative store openings) than Colorado's and Washington's. Oregon has its own
+version of the Sedgwick County pattern: Malheur County -- home to Ontario, Oregon, a border town directly
+across the Snake River from Fruitland and Payette, Idaho, and a well-known cross-border cannabis
+destination in its own right -- generates far more revenue per store than any interior Oregon county, but
+excluding it leaves the pooled estimate significant, just as excluding Sedgwick does for Colorado and
+Washington alone.
+
+\input{tables/table12_or_mt_standalone}
+
+Table~\ref{tab:or_mt_standalone} reports both states' revenue-per-capita and revenue-per-store results on
+their own. Oregon's revenue-per-capita coefficient is large but fragile -- it does not survive
+county-clustered SEs, and collapses toward zero once Malheur County is excluded, unlike its
+revenue-per-store counterpart. Montana's pattern runs the other way entirely.
+
+\subsubsection{Montana's reversed pattern: a within-design test of the license-cap mechanism}
+\label{sec:montana_mechanism}
+
+Montana's revenue-per-capita coefficient ($b=+0.654$, county-clustered $p=0.036$) is the only one of the
+four states' per-capita estimates in this paper to remain significant under clustering -- yet its
+revenue-per-store coefficient is a precise null ($b=+0.012$, $p=0.958$). This is the exact opposite of the
+pattern this paper's central result rests on for Colorado, Washington, and Oregon, where per-capita revenue
+is null and per-store revenue is where the border premium shows up. We think this reversal is not noise
+but a genuine test of the license-cap explanation proposed in Section~\ref{sec:revenue_perstore}: that
+explanation predicts captive border demand should surface as higher revenue per \emph{existing} store only
+when the number of stores cannot freely adjust to meet it. Colorado's original licensing structure and
+Washington's explicit statewide cap of 334 retail licenses (Section~\ref{sec:lottery}) both constrain
+entry; Montana, by contrast, places no statewide numerical limit on the number of dispensary locations a
+license holder may open, though some individual cities and counties impose their own local caps
+\citep{MTCannabisLicensing}. Where entry is unconstrained, the same captive border demand that raises
+revenue per store in Colorado, Washington, and Oregon should instead be absorbed by \emph{more stores}
+opening in border counties -- raising revenue per capita (more total business is done) without raising
+revenue per store (each individual outlet does not do disproportionately more business, because the market
+was free to add outlets to meet demand). Montana's data show exactly this pattern. We offer this as a
+within-design robustness check on the license-cap mechanism itself, not as an independent fourth finding:
+it is the same underlying story -- captive cross-border demand -- expressed through a different margin of
+adjustment because the regulatory environment differs.
+
+\subsection{Robustness: sensitivity to the 70-mile threshold}
+\label{sec:threshold}
+
+The 70-mile cutoff used throughout this paper is a modeling choice, not a fact given by the data, and
+Section~\ref{sec:data} shows it is close enough to binding for Nevada -- whose Lincoln and Elko Counties
+sit 79.7 and 90.8 miles from the nearest non-legal border -- that the choice of threshold plausibly matters.
+We rerun the main specification for each outcome with usable Nevada coverage at both 70 and 90 miles.
+
+\input{tables/table13_threshold_sensitivity}
+
+Land value is the one outcome where Nevada actually has data, since NASS's Census of Agriculture is a
+federal program covering every county regardless of state; widening the threshold pulls Lincoln County
+into the treated group there. The land-value null is unaffected: both the 70-mile and 90-mile point
+estimates are small and statistically indistinguishable from zero, so a wider net does not reveal an
+effect the 70-mile cutoff was suppressing. Nevada has no usable revenue data at any threshold
+(Section~\ref{sec:data_revenue}), so the revenue checks in Table~\ref{tab:threshold_sensitivity} instead
+test whether widening the net within Colorado, Washington, Oregon, and Montana changes those results. The
+already-fragile revenue-per-capita coefficient weakens further at 90 miles. More notably, the
+revenue-per-store result -- robust to excluding individual outlier counties and robust to adding an
+entirely new state (Section~\ref{sec:or_mt}) -- loses significance under county-clustered SEs at 90 miles
+($p=0.006\to p=0.129$). We read this as a genuine limitation rather than a reason to abandon the 70-mile
+specification: the result is sensitive to how far the captive-demand radius is assumed to extend, even
+though it is not sensitive to which counties or states populate a fixed radius. We report this openly, and
+note that resolving it would require external evidence on how far cannabis consumers actually travel to
+buy legally -- data this paper does not have -- rather than a further search for the threshold that
+maximizes significance.
+
+\subsection{A second placebo check: alcohol sales}
+\label{sec:placebo_alcohol}
+
+The general-retail placebo in Section~\ref{sec:placebo} tests whether border counties simply transact more
+retail business of any kind; it does not test whether they specifically transact more business in
+\emph{other regulated, excise-taxed goods with their own cross-border shopping incentive}, which is a
+closer analogue to cannabis than ordinary retail and a harder placebo to pass. Alcohol is the natural
+candidate: it is similarly age-restricted, similarly taxed, and has its own long-documented literature on
+consumers crossing jurisdictional borders for lower prices or different availability. Colorado and
+Washington, the two states behind the main revenue-per-store result, turn out to have no usable
+county-level alcohol data at all (Table~\ref{tab:placebo_alcohol}'s notes detail why), so this check instead
+uses Oregon and Montana -- the two states added to the design in Section~\ref{sec:or_mt} -- both of which
+happen to be control states for spirits distribution with a regulator that already supplies this paper's
+cannabis figures.
+
+\input{tables/table14_placebo_alcohol}
+
+Unlike the general-retail placebo, this one does not return a clean, uniform null.
+Table~\ref{tab:placebo_alcohol} shows Oregon largely replicating the general-retail pattern: alcohol
+revenue per capita is a precise null in Oregon's border counties, and alcohol revenue per store is, if
+anything, significantly \emph{lower} near the border under HC1 standard errors -- the opposite sign from
+the cannabis revenue-per-store premium -- though this loses significance under county-clustered SEs, where
+only 3 border-county clusters make the clustered estimate imprecise. Montana tells a different story:
+alcohol revenue per capita is higher in its border counties, significant under HC1 ($p=0.002$) though not
+under the paper's preferred county-clustered inference ($p=0.211$). We do not think this overturns the
+cannabis result -- Montana's alcohol regulatory structure (state-contracted agency stores) differs from its
+cannabis market, the coefficient does not survive clustering, and Oregon's own alcohol placebo still
+supports the cannabis-specific interpretation -- but we report it directly rather than describing this as
+another clean pass. Taken together with the general-retail check, we read the placebo evidence as
+supportive of, but not uniformly conclusive for, a cannabis-specific rather than a generic border-county
+interpretation of the revenue-per-store premium.
+
+\subsection{A causal check: does the border premium switch off when the neighbor legalizes, and did sellers act on it?}
+\label{sec:switchoff}
+
+Every result so far compares border and interior counties within a fixed geographic snapshot: border
+status never changes over the sample period, so none of it can rule out some other, time-invariant
+difference between border and interior counties as the true cause of the revenue-per-store premium. This
+section adds three checks that do not have that limitation, motivated directly by
+\citet{HansenMillerWeber2020}, who show that Washington border-with-Oregon retailers' sales fell 36 percent
+immediately after Oregon's own retail market opened October 1, 2015 -- i.e., that the captive-demand
+advantage is not just correlated with the border, but causally switches off once the neighboring state's
+own consumers no longer need to cross the line.
+
+\subsubsection{Event-study replication (WA-OR) and a new extension (CO-NM)}
+
+We first ask whether our own revenue-per-store construction, built independently and at annual rather than
+monthly frequency, recovers a version of \citeauthor{HansenMillerWeber2020}'s WA-OR result, and then apply
+the same switch-off logic to an event they did not study: New Mexico's own retail market opened April 1,
+2022, which should erode the premium of the six Colorado counties bordering New Mexico (Archuleta, Conejos,
+Costilla, La Plata, Las Animas, Montezuma) relative to Colorado's interior and relative to Colorado counties
+that still border a permanently non-legal state (Utah, Wyoming, Oklahoma, Nebraska, Kansas).
+
+\input{tables/table15_switch_eventstudy}
+
+The two settings diverge sharply. The Colorado-New Mexico extension works cleanly: dropping 2022 as a
+transition year, NM-border counties' revenue per store falls $38.6\%$ relative to Colorado's interior after
+New Mexico opens ($p=0.0001$, county-clustered), a magnitude close to \citeauthor{HansenMillerWeber2020}'s
+own $36\%$ despite being identified from an entirely different border, state, and neighboring-state
+legalization event. The event-study path in Figure~\ref{fig:co_nm_eventstudy} shows this is not a single
+coefficient's artifact: relative to the reference year (2021), the NM-border premium is positive and
+often significant throughout the eight pre-years, then declines monotonically from event-year 0 onward to a
+precise near-zero by event-year 3; compared against the still-illegal-border control group instead of the
+interior, the gap swings from parity in the pre-period to a large, significant, and widening deficit by
+event-year 3 ($-1.08$ log points), consistent with NM-border counties falling behind counties that keep
+their captive-demand advantage. The Washington-Oregon replication does not confirm this pattern: the point
+estimate is wrong-signed (positive, i.e.\ OR-border counties' revenue per store rises rather than falls
+after Oregon opens) and statistically indistinguishable from zero in both specifications
+($p=0.52$--$0.53$, county-clustered), and Figure~\ref{fig:wa_or_eventstudy} shows the OR-border coefficient
+climbing steadily across the full decade rather than dropping at the 2015 switch. We do not read this as
+evidence against \citeauthor{HansenMillerWeber2020}'s finding, which rests on monthly administrative data
+and a difference-in-discontinuities design built for exactly this transition; we read it as a limitation of
+this paper's coarser annual, current-dispensary-count construction, which cannot separate a single sharp
+month-level shock from a decade of differential entry and market growth at Washington's large,
+population-heavy OR-border counties (Clark County alone, across the river from Portland, has 521,000
+residents -- an order of magnitude larger than the true small border towns in \citeauthor{HansenMillerWeber2020}'s
+setting). Excluding Washington's two largest OR-border counties (Clark and Thurston) does not change the
+sign or significance. The Colorado-New Mexico setting avoids this confound because it has eight pre-event
+years of data rather than one, and because its border counties are small, rural, and geographically
+comparable to the interior comparison group. Taken together, we treat the CO-NM result as this paper's
+strongest causal evidence for the captive-demand mechanism, and the WA-OR replication as an honest data-
+resolution limitation rather than a genuine disconfirmation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig11_co_nm_eventstudy.png}
+\caption{Event-study coefficients, log(revenue per store) for Colorado counties bordering New Mexico,
+relative to 2021, shown against both an interior-county and an other-nonlegal-border-county comparison
+group. Dashed vertical line marks New Mexico's 2022-04-01 retail opening. Shaded bands are 95\% confidence
+intervals using county-clustered standard errors.}
+\label{fig:co_nm_eventstudy}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig12_wa_or_eventstudy.png}
+\caption{Event-year coefficients, log(revenue per store) for Washington counties bordering Oregon,
+relative to FY2015 (the only fully pre-Oregon-legal year in this annual panel). Dashed vertical line marks
+Oregon's 2015-10-01 retail opening, which falls inside FY2016.}
+\label{fig:wa_or_eventstudy}
+\end{figure}
+
+\subsubsection{Did sellers race for the opportunity, or only respond to it after the fact?}
+
+The revenue-per-store result says demand responds to the border; it does not say whether sellers perceived
+that opportunity early and moved to capture it, or whether entry simply happened wherever it happened and
+demand sorted itself out afterward. We test entry \emph{timing} directly using each dispensary's own
+open date (Section~\ref{sec:data}'s geocoded dispensary panel), which the static entry-density check never
+used, via Cox proportional-hazards models stratified by state.
+
+\input{tables/table16_entry_hazard}
+
+The evidence is mixed and, we think, informative precisely because of the contrast. There is no evidence
+that border counties get their \emph{first} dispensary faster: both the binary and continuous border
+measures are small in magnitude and statistically indistinguishable from no effect ($p=0.34$ and $p=0.80$),
+consistent with the existing entry-density null -- first movers do not appear to race for border counties
+specifically. But once a border county has a first entrant, a \emph{second} one follows significantly
+faster the closer that county is to the border: each log-mile increase in distance to the non-legal border
+lowers the hazard of a second entrant by roughly 30 percent ($p=0.003$), though the corresponding binary
+measure is directionally consistent but not significant ($p=0.16$). Figure~\ref{fig:entry_hazard_km} shows
+this as Kaplan-Meier survival curves: the border and interior curves for time-to-first-entrant are close
+together throughout, while the second-entrant curves separate visibly, with border counties' curve falling
+faster. We read this as evidence that sellers do not treat border counties as an obviously better
+opportunity from the outset -- consistent with the paper's other null entry-timing and entry-density
+results -- but that observed demand at an existing border store attracts a faster competitive response than
+the same signal would in an interior county, a narrower and more specific version of ``competing for the
+market'' than a simple race-to-enter story would predict.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig13_entry_hazard_km.png}
+\caption{Kaplan-Meier survival curves, border ($\le$70mi) vs.\ interior counties, for time to first
+dispensary (left) and time from first to second dispensary (right).}
+\label{fig:entry_hazard_km}
+\end{figure}
+
+\subsubsection{Do dispensaries physically locate closer to the line?}
+
+Finally, we ask whether sellers' \emph{locations within} a border county reveal the same strategic response
+that their revenue does, using each dispensary's exact coordinates rather than county centroids for the
+first time in this paper. For every border county, we compute the ratio of its dispensaries' mean distance
+to the nearest non-legal state's polygon boundary to the county's own centroid-to-boundary distance --
+a ratio below 1 means stores sit closer to the line than the county's geographic center does -- and compare
+it to the same ratio computed for interior counties as a placebo.
+
+\input{tables/table17_border_bunching}
+
+Border-county dispensaries sit, on average, at only $60\%$ of their county centroid's distance to the line,
+versus $87\%$ for interior counties' dispensaries relative to their own (typically distant and economically
+irrelevant) nearest non-legal state -- a large, highly significant difference ($p=6.8\times10^{-21}$). A
+cruder version of this exercise, the raw share of a county's stores located on the border-facing half of
+the county, is not useful on its own: it is $94.6\%$ in border counties but nearly as large, $91.8\%$, in
+interior counties, which shows it is dominated by a generic fact about where towns sit within a county
+rather than anything specific to the border. The ratio measure, benchmarked against each county's own
+scale, is not subject to that artifact and does show real bunching: Figure~\ref{fig:border_bunching}'s left
+panel plots the raw distribution of border-county store-to-line distances directly, showing a concentration
+well inside the 70-mile threshold rather than a uniform spread, while the right panel shows the ratio
+distributions for the two groups are clearly separated rather than overlapping. This is, to our knowledge,
+the first direct, store-level (rather than county-aggregate) evidence in this research program that sellers
+physically position themselves to intercept cross-border demand, complementing the revenue-per-store result
+with a locational choice that is harder to attribute to anything other than proximity to the captive market
+itself.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig14_border_bunching.png}
+\caption{Left: histogram of individual dispensaries' distance to the nearest non-legal state's polygon
+boundary, border counties only. Right: county-level distribution of the store-distance/centroid-distance
+ratio, border vs.\ interior counties.}
+\label{fig:border_bunching}
+\end{figure}
+
+\section{Discussion}
+
+The four outcomes tested here do not tell a single, uniform story, and we think the differences across
+them are more informative than a simple tally of nulls versus significant results would suggest. Revenue
+per capita is a fragile-to-null result overall: it is a clean, well-powered null in Colorado and
+Washington, weak and outlier-dependent in Oregon, and -- uniquely -- the one significant, clustering-robust
+positive result in Montana, whose unlicensed-cap entry regime lets border demand show up through more
+stores rather than more revenue per store (Section~\ref{sec:montana_mechanism}). Revenue per store is the
+outcome with the most consistent result across states: significant and positive in Colorado, Washington,
+and Oregon independently, robust to the single-county outlier in each of the two states where that check
+is possible, strengthened rather than weakened by pooling a third, independently sourced state
+(Section~\ref{sec:or_mt}), and -- unlike every other border-competition result in this paper or its
+companion analyses -- one that \emph{strengthens} rather than fades across a state's market lifecycle in
+Colorado and Washington. It is, however, sensitive to the 70-mile threshold itself
+(Section~\ref{sec:threshold}), which we report as a genuine limitation rather than smooth over. The two
+mechanism checks in Section~\ref{sec:mechanism} add real but unequal support: a population-weighted
+captive-market-size measure survives county-clustered inference, while a simpler distance dose-response
+does not, so we would characterize the mechanism evidence as meaningful but short of definitive -- direct
+customer-origin data, which we do not have, would settle the question more cleanly than any proxy built
+from geography alone. Read together, these revenue results suggest that the captive-demand hypothesis may
+be substantively correct at the level of individual stores, but structurally invisible at the
+county-aggregate level specifically where the number of stores is constrained by a policy choice (a
+licensing cap) rather than left to adjust as a market outcome -- Montana's reversed pattern is the clearest
+evidence for this reading, since it is the one state in the sample without such a cap, and the one state
+where the per-capita/per-store roles of significance and nullity swap places.
+
+The land-value result is null in its primary specification but is not simple: it depends on functional
+form (binary threshold versus continuous distance disagree in sign), and its event study by market age
+reveals a real, significant, growing negative gap several years into a state's legal market -- but only
+after also revealing that the pre-launch period is itself significantly volatile in both directions, which
+is precisely the kind of parallel-trends complication this research program reports transparently rather
+than omits. We do not think the post-launch decline can be read as a confident causal estimate on its own;
+it runs counter to the demand-absorption hypothesis, and unlike the pre-launch swings it is monotonic and
+growing rather than sign-switching, but we stop short of asserting it is definitely a real effect of legal
+market access rather than a continuation of whatever generates the pre-launch volatility. The
+crop-substitution result is not really a null at all in the
+informative sense -- it is a design that could not be tested with adequate power in the one state where we
+have cultivation data, because that state's actual non-legal border is geographically distant from its
+population and from where cultivation has historically concentrated.
+
+Extending the revenue-per-store design to Oregon and Montana (Section~\ref{sec:or_mt}) was itself this kind
+of test, and it held up: the mechanism identified in Section~\ref{sec:revenue_perstore} predicts that any
+state with a binding license cap and genuine non-legal-border variation should show the same pattern, and
+Oregon does, while Montana's absence of a statewide cap produces the theory's own predicted reversal rather
+than a failure to replicate. A natural further step, beyond the scope of this paper, would be extending the
+design again to additional states with binding license caps and county-level regulator data -- Michigan and
+New Jersey both border non-legal states and were not reachable within this project's data-collection effort
+(Section~\ref{sec:data_revenue}) but may become tractable as their own open-data infrastructure matures.
+Finding cultivation data for a state with a more extensive non-legal border -- Illinois or Ohio, both of
+which have substantial county-level border variation at the 70-mile threshold -- would also be considerably
+better candidates than Oregon for the crop-substitution question, if comparable license data can be
+obtained.
+
+Section~\ref{sec:switchoff}'s three checks strengthen the causal case for revenue per store specifically,
+though unevenly. The Colorado-New Mexico switch-off is, in our view, the single most convincing piece of
+evidence in this paper: it does not rely on the assumption that border and interior counties are otherwise
+comparable, only on a within-border-county comparison before and after a specific, externally-timed policy
+change, and it recovers a magnitude close to \citet{HansenMillerWeber2020}'s independently-estimated effect
+at a different border entirely. The Washington-Oregon replication of that same design failed on our data,
+which we attribute to this paper's coarser annual, current-count revenue construction rather than to a
+genuine absence of the mechanism there, since \citeauthor{HansenMillerWeber2020}'s own monthly data already
+established it directly. The entry-timing and store-location checks add a second dimension the revenue
+results alone cannot: sellers do not appear to race to open a border county's \emph{first} dispensary
+faster than an interior county's, but once a border county has one, competitors follow measurably faster,
+and dispensaries within border counties sit measurably closer to the state line than the county's own
+geography would predict. Read together with the revenue-per-store result, this is a more complete picture
+than the revenue evidence alone could offer: not merely a demand-side association between border proximity
+and store revenue, but direct timing and locational evidence that sellers respond to, rather than are
+merely correlated with, the underlying captive-demand opportunity.
+
+\section{Conclusion}
+
+Using the entry-game/border-competition treatment definition -- counties within 70 miles of a non-legal
+state, inside an already-legal state, compared against that same state's interior counties -- we find a
+mixed picture rather than a uniform null. Cannabis revenue per capita, farmland value, and crop
+substitution show no robust evidence of a captive-demand effect in Colorado, Washington, and Oregon, though
+for different reasons: fragile-to-null revenue-per-capita results; a null accompanied by real specification
+sensitivity and a market-age pattern whose interpretation is complicated by significant pre-launch
+volatility for farmland value; and an underpowered, geographically compromised design for crop substitution
+in the one state we could test. Montana is the exception -- its revenue-per-capita result is the one
+county-aggregate measure in this paper that is both positive and significant under county-clustered
+inference, which Section~\ref{sec:montana_mechanism} argues is itself informative: Montana is also the one
+state in the sample without a statewide cap on dispensary licenses, so captive border demand there can be
+absorbed by new store entry rather than by higher revenue per existing store. Revenue \emph{per dispensary
+store}, in the three capped states we examined, is significantly and robustly higher in border counties,
+strengthens when pooled across Colorado, Washington, and Oregon rather than weakening, holds up in an event
+study that strengthens rather than fades with market age in Colorado and Washington, and is supported --
+though not conclusively proven -- by a population-weighted mechanism check that survives county-clustered
+inference where a simpler distance measure does not; it is, however, sensitive to the exact 70-mile
+threshold, a limitation we report rather than obscure. We read the combined per-store and Montana
+per-capita results as the paper's central finding: the captive cross-border demand hypothesis that
+motivated this entire research thread is not rejected once the outcome is measured at the right level of
+aggregation given each state's own licensing regime, even though every county-aggregate measure tried
+elsewhere in this project under a binding license cap -- entry timing, entry density, and revenue per
+capita alike -- has come back null. We hold this finding with appropriate caution rather than as a settled
+result: the mechanism evidence is suggestive rather than direct, and confirming it properly would require
+customer-origin data this paper does not have.
+
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{references_substitution}
+
+\end{document}

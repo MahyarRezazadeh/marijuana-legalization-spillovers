@@ -1,0 +1,31 @@
+\begin{table}[htbp]
+\centering
+\caption{Fiscal Transfer, Capped vs.\ Moratorium Regime (Coefficients Pooled 2022--2025, Applied to 2025 Revenue)}
+\label{tab:magnitude1}
+\small
+\begin{tabular}{lcc}
+\toprule
+& Colorado + Washington & Montana \\
+& (capped regime) & (moratorium regime) \\
+\midrule
+Coefficient used & $+0.559$ & $+0.654$ \\
+& (pooled 2022--2025, $p=0.002$) & (pooled 2022--2025, $p=0.036$) \\
+2025 border-county revenue & \$357.5M & \$48.3M \\
+\textbf{Attributable to border effect} & \textbf{\$153.1M} & \textbf{\$23.2M} \\
+Share of border-county revenue & 42.8\% & 48.0\% \\
+Catchment population$^{a}$ & 512{,}162 & 198{,}016 \\
+\textbf{Transferred per catchment resident} & \textbf{\$298.83} & \textbf{\$117.19} \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} $^{a}$Catchment population is the union of non-legal-state counties within 70 miles of any
+border county in that regime (20 counties across UT/WY/NE/ID for Colorado+Washington; 10 counties across
+ID/ND/WY for Montana), not a per-county sum, to avoid double-counting non-legal counties near more than
+one border county \emph{within} the same regime. See Section~\ref{sec:catchment-caveats} for a residual
+overlap \emph{between} the two regimes' catchments. Attributable revenue $= \text{actual border revenue}
+\times \text{premium}/(1+\text{premium})$, where premium $=100(e^{\beta}-1)$. This is an accounting
+decomposition of an already-estimated coefficient, not an independent causal magnitude.
+\end{minipage}
+\end{table}

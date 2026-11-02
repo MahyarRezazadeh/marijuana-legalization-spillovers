@@ -1,0 +1,174 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\title{License-Cap Policy Evaluation: Notes on Interpretation\\
+\large What the Fiscal-Transfer Numbers Mean, and a Colorado Puzzle}
+\author{Working notes -- entry game-marijuana project}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent This note walks through exactly what two summary numbers from the fiscal-transfer table mean,
+since both are easy to misread. \emph{Share of border-county revenue} is not an independently measured
+quantity, it is an algebraic transform of the regression coefficient itself, and when Montana's share
+(48.0\%) exceeds Colorado and Washington's (42.8\%) despite Montana's far smaller dollar total, that is a
+statement about relative composition within each regime's own border economy, not about which regime
+transfers more in absolute terms. \emph{Transferred per catchment resident} is explained with its
+governing assumptions made explicit, along with a genuine measurement issue discovered while writing this
+note: Colorado+Washington's and Montana's catchment populations are not fully independent, they share two
+Idaho counties. A closing discussion section takes up Colorado specifically: its border counties are less
+likely to permit retail marijuana despite standing to gain fiscally from it, a pattern read here as local
+political considerations outweighing fiscal incentives, without resolving why, which is left open for
+future work.
+\end{abstract}
+
+\input{tables/synthesis1_table_magnitude}
+
+\section{How ``Share of Border-County Revenue'' Is Actually Measured}
+\label{sec:share-measurement}
+
+It helps to be precise about this, because it is not a separate empirical measurement, it is a direct
+algebraic transformation of the regression coefficient already reported in the row above it.
+
+The logic starts from the regression itself. For Colorado and Washington, the estimated coefficient is
+$\beta=0.559$ on a binary border indicator in a regression of log revenue per dispensary, pooled over
+2022--2025, the same four-year window used for Montana below. Interpreting that coefficient causally for
+a moment (with the caveats of Section~\ref{sec:coefficient-meaning} in mind), it says a border dispensary
+earns $100(e^{0.559}-1)=74.9\%$ more revenue than an otherwise identical interior dispensary in the same
+state and year. Call this the \emph{premium}.
+
+Now suppose the actual revenue a border dispensary earns, call it $R_{\text{actual}}$, equals a
+counterfactual amount it would have earned without any border effect, $R_{\text{counterfactual}}$, scaled
+up by the premium:
+\[
+R_{\text{actual}} = R_{\text{counterfactual}} \times (1 + \text{premium}).
+\]
+Rearranging, $R_{\text{counterfactual}} = R_{\text{actual}} / (1+\text{premium})$, and the dollar amount
+attributable to the border effect is the difference:
+\[
+R_{\text{actual}} - R_{\text{counterfactual}} = R_{\text{actual}}\left(1 - \frac{1}{1+\text{premium}}\right)
+= R_{\text{actual}} \times \frac{\text{premium}}{1+\text{premium}}.
+\]
+\emph{Share of border-county revenue} is exactly this last fraction, $\text{premium}/(1+\text{premium})$,
+expressed as a percentage. For Colorado+Washington, premium $=74.9\%$, so share
+$=0.749/1.749=42.8\%$. For Montana, premium $=92.3\%$ (from $\beta=0.654$), so share
+$=0.923/1.923=48.0\%$.
+
+The important thing to notice: this share depends \emph{only} on the coefficient $\beta$, not on how much
+actual border revenue exists. It would be exactly the same 42.8\% whether Colorado and Washington's
+border counties earned \$357.5M or \$3.575M. It is a restatement of the coefficient on a more intuitive
+scale, cents attributable per dollar actually earned, not a second, independently verified fact about
+the data.
+
+\section{What the Coefficient Means, and What a Higher Share for Montana Actually Says}
+\label{sec:coefficient-meaning}
+
+The coefficient $\beta$ is a log-point gap between border and interior counties in the same state and
+year, holding population fixed (and, for Colorado+Washington, holding the state fixed too, since the
+regression pools both states with a state fixed effect). It answers: conditional on being in the same
+state, the same year, and having the same population, how much more does a border county's dispensary (or
+its per-capita cannabis market, for Montana) earn than an interior one? It is not a measure of how big a
+state's cannabis market is, nor of how many potential customers live nearby; those are controlled for
+separately elsewhere in the paper (population and, for Result 3, the captive non-legal population).
+
+So when Montana's share of border-county revenue (48.0\%) exceeds Colorado and Washington's (42.8\%),
+this is \textbf{not} a claim that Montana transfers more money in total, it obviously does not, $23.2M$
+against $153.1M$. It is a claim about \emph{composition within each regime's own border economy}: of
+every dollar a Montana border county earns in cannabis revenue, about 48 cents would not exist without the
+proximity to a non-legal-state population, versus about 43 cents in Colorado and Washington. Montana's
+border-county cannabis economy is, proportionally, slightly \emph{more} dependent on cross-border demand
+than Colorado and Washington's is, even though Colorado and Washington capture a much larger absolute
+transfer. A useful (if imperfect) analogy: a small shop very close to a state line can do the large
+majority of its business with out-of-state customers even if a much bigger shop farther from any line
+does more out-of-state business in raw dollars. Both statements can be true simultaneously, and Table~1
+reports both because they answer different questions, one about relative composition, one about absolute
+size, and the paper should be careful never to let a reader conflate the two.
+
+One further honesty point: because share is a monotonic function of $\beta$ alone, the fact that
+Montana's share exceeds Colorado and Washington's is arithmetically guaranteed the moment Montana's
+coefficient (0.654) exceeds Colorado and Washington's (0.559), it is not independent confirmatory
+evidence of anything beyond the coefficient comparison already discussed in Table~1 of the companion
+synthesis note. It should be presented as a more interpretable restatement of that comparison, not as a
+second, separate finding.
+
+\section{Transferred per Catchment Resident: What It Is, and Real Caveats}
+\label{sec:catchment-caveats}
+
+This figure takes the attributable-dollar amount from Section~\ref{sec:share-measurement} and divides it
+by \emph{catchment population}, the total number of people living in non-legal-state counties within 70
+miles of any of that regime's own border counties (computed as a union across counties, not a per-county
+sum, so a shared non-legal county near two border counties in the same regime is not counted twice). The
+result, \$298.83 per catchment resident for Colorado+Washington versus \$117.19 for Montana, is meant to
+answer whether the raw dollar gap is just a market-size artifact. It substantially is not: catchment
+population is only 2.6 times larger for Colorado+Washington, while the dollar transfer is 6.60 times
+larger ($\$153.1M$ vs.\ $\$23.2M$), so the per-resident gap of roughly 2.55 times cannot be explained by
+market size alone.
+
+This number should be handled carefully, for several real reasons, not just as a formality:
+
+\begin{itemize}
+\item \textbf{It assumes every catchment resident is an equally plausible customer.} It treats a person
+living 5 miles from the border identically to one living 69 miles away, and does not adjust for income,
+age, car ownership, or how normalized cannabis use is in that particular community. It is a rough
+intensity measure, not a per-person willingness-to-cross estimate.
+\item \textbf{It ignores price and product differences between states.} If Colorado's dispensaries charge
+different prices than Montana's, or carry a different product mix, the dollar figure conflates
+``more people crossing'' with ``each crossing person spending more,'' and this measure cannot separate the
+two, consistent with the paper's existing acknowledgment that it has no price or quantity data.
+\item \textbf{The 70-mile cutoff is the same fixed threshold used throughout the paper, not a
+per-resident travel-cost estimate.} Real travel friction (highway access, winter road conditions) varies
+within that radius and is not captured by straight-line distance.
+\item \textbf{A genuine measurement issue, found while preparing this note: the two catchments are not
+fully independent.} Idaho borders both Washington and Montana, and two Idaho counties (66{,}104
+residents combined) fall within 70 miles of \emph{both} a Washington border county and a Montana border
+county. This means about 13\% of Colorado+Washington's catchment and about 33\% of Montana's catchment is
+the same underlying population, a resident of these two Idaho counties is, geographically, a plausible
+customer for either regime's border dispensaries. This does not invalidate the comparison, both regimes'
+border stores really could be drawing on this population, but it means the two \$298.83 and \$117.19
+figures are not measuring two mutually exclusive customer pools, and this should be disclosed rather than
+left implicit if this number is used in the paper.
+\end{itemize}
+
+\section{Discussion: Colorado, Where Fiscal Revenue Loses to Something Else}
+\label{sec:colorado-puzzle}
+
+The rest of this note, and the companion synthesis document, establish that Colorado's border counties
+sit on a substantial, real fiscal opportunity: dispensaries there earn a large, statistically solid
+premium (Section~\ref{sec:coefficient-meaning}), amounting to tens of millions of dollars a year in
+revenue that would not exist without proximity to Utah, Wyoming, and Nebraska. A local government
+deciding whether to permit retail marijuana under Amendment 64's opt-out authority has a straightforward
+fiscal incentive to say yes, especially in a border county.
+
+And yet Colorado's border counties are \emph{less} likely to have ever permitted an operating dispensary
+than interior counties, 43\% versus 72\% (the political-economy result in the companion synthesis note).
+The fiscal case for opting in is, if anything, strongest exactly where local governments have opted out
+most. Put plainly: in Colorado's border region, whatever local governments are actually maximizing, it
+does not appear to be fiscal revenue, or at least not fiscal revenue alone. Something else is outweighing
+it, plausibly local political cost: retail marijuana may simply be unpopular enough in this part of the
+state, a more rural, conservative stretch bordering Utah, Wyoming, and Nebraska, that the political cost
+of allowing it exceeds the fiscal benefit a local government would otherwise capture. Call this
+\emph{political revenue} in the loose sense that a local government may be responding to constituent
+preference and electoral consequence rather than to the county budget.
+
+This framing is offered as an interpretation of a real, documented pattern, not as a finding in itself.
+\textbf{We deliberately do not test or resolve why fiscal considerations lose out here.} Doing so
+properly would require data this project does not currently have: county-level voting patterns on
+marijuana-related ballot measures, demographic or ideological measures for these specific border
+counties, or the actual municipal ordinance records themselves rather than the has-any-dispensary proxy
+used throughout. Any of these would let a future study distinguish genuine political-preference resistance
+from other explanations (for instance, that some of these counties are simply too small for any operator
+to have found retail marijuana commercially viable regardless of local policy, a possibility the
+population-restricted check in the companion note does not fully rule out). We leave this open explicitly
+as a direction for future research, rather than reaching for an explanation the current data cannot
+support.
+
+\end{document}

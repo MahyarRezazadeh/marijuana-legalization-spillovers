@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\caption{Border-vs-Interior Estimates: Cannabis Retail Revenue per Capita (CO + WA)}
+\label{tab:revenue_border70}
+\begin{tabular}{lcccc}
+\toprule
+Specification & Coefficient & Std.\ Error (HC1) & SE (county-cl.) & $p$-value (county-cl.) \\
+\midrule
+No controls & $+0.051$ & $0.116$ & $0.260$ & $0.845$ \\
++ log(pop) + year FE + state FE & $+0.046$ & $0.090$ & $0.217$ & $0.833$ \\
+\quad excluding Sedgwick County, CO & $-0.060$ & $0.083$ & $0.200$ & $0.763$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(cannabis retail revenue per capita). County-fiscal-year panel, Colorado
+(2014--2025) and Washington (2015--2025), $n=815$. Treatment is a county within 70 miles of a non-legal
+state; control is the interior counties of the same two states. At the 70-mile threshold Colorado
+contributes 6 border counties (Larimer, Mesa, Montezuma, Morgan, Sedgwick, Weld) and Washington 6
+(Asotin, Columbia, Pend Oreille, Spokane, Stevens, Whitman), for 12 border and 69 interior counties total
+-- unlike the original 50-mile threshold used earlier in this project, where Colorado's only border
+county was Sedgwick alone, a single-county outlier that drove an apparent (and non-robust) marginal
+result. At 70 miles the treated group has genuine multi-county composition and the null is robust with or
+without Sedgwick.
+\end{minipage}
+\end{table}

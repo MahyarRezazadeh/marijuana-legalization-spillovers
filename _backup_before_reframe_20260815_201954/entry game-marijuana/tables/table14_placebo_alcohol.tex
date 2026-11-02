@@ -1,0 +1,55 @@
+\begin{table}[htbp]
+\centering
+\caption{Placebo Check: Alcohol Sales, Oregon and Montana}
+\label{tab:placebo_alcohol}
+\begin{tabular}{lcccc}
+\toprule
+Specification & Coefficient & SE (HC1) & SE (county-cl.) & $p$-value (county-cl.) \\
+\midrule
+\multicolumn{5}{l}{\textit{OR+MT pooled -- outcome: log(alcohol revenue per capita), 2018--2025, $n=498$}} \\
+No controls & $-0.133$ & $0.080$ & $0.194$ & $0.494$ \\
++ log(pop) + year FE & $+0.076$ & $0.081$ & $0.189$ & $0.689$ \\
++ log(pop) + year FE + state FE & $+0.209$ & $0.070$ & $0.169$ & $0.216$ \\
+\midrule
+\multicolumn{5}{l}{\textit{By state -- outcome: log(alcohol revenue per capita), + log(pop) + year FE}} \\
+Montana (12 border counties, $n=282$) & $+0.271$ & $0.089$ & $0.217$ & $0.211$ \\
+Oregon (3 border counties, $n=216$) & $-0.026$ & $0.072$ & $0.175$ & $0.883$ \\
+\midrule
+\multicolumn{5}{l}{\textit{Oregon only -- outcome: log(alcohol revenue per store), 2020--2025, $n=216$}} \\
+No controls & $-0.848$ & $0.098$ & $0.240$ & $0.0004$ \\
++ log(pop) + year FE & $-0.245$ & $0.065$ & $0.159$ & $0.123$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Alcohol is a sharper placebo candidate than the general-retail check in
+Table~\ref{tab:placebo_general_retail}: like cannabis, it is a regulated, excise-taxed good with its own
+well-documented cross-border tax-arbitrage literature, so a null here is harder to attribute to simply not
+being a comparable enough product category. Oregon: OLCC's own monthly, store-level spirits sales series
+(the same agency that regulates cannabis retail; a control state for spirits distribution), native county
+field, all 36 counties, 2019--2026 raw data aggregated to complete calendar years. Montana: also a control
+state for spirits (private ``agency liquor stores'' under contract, same Alcoholic Beverage Control
+Division that supplies this paper's cannabis figures); no bulk API exists, so this uses the county-level
+schedule published in each year's Enterprise Fund Report of Operations (revenue.mt.gov), for the 6 fiscal
+years with a machine-readable table (FY2018--2020, FY2022--2024; FY2021's schedule is a scanned image).
+Parsed county totals were checked directly against each report's own printed statewide total and match
+exactly in 5 of 6 years; FY2020 is 0.6\% below the report's own total; we could not attribute this to any
+single county's figure and treat it as ordinary rounding in the source document rather than a parsing
+error. Colorado and Washington have no usable county-level alcohol data of any kind: Colorado's liquor
+excise tax series (data.colorado.gov) is statewide-only, and its general sales-tax filings (used in
+Table~\ref{tab:placebo_general_retail}) do not break out a liquor-specific industry code; Washington's own
+``Liquor Sales, Revenue, and Distributions'' dashboard is a non-functioning embed (confirmed directly), and
+its Department of Revenue's spirits-tax statistics, like its beer and wine sales reports, are published
+statewide only. \textbf{The result is mixed, not a clean null.} Oregon alone reproduces the general-retail
+placebo's pattern closely -- both alcohol outcomes are null-to-negative in border counties, and if anything
+alcohol revenue per store is significantly \emph{lower} near the border under HC1 (though not under
+county-clustered SEs, with only 3 border-county clusters), the opposite sign from the cannabis
+revenue-per-store premium. Montana shows a positive, marginally-sized border/interior gap in alcohol
+revenue per capita that is significant under HC1 but not under county-clustered SEs. We do not read
+Montana's result as undermining the cannabis findings -- it is a different state, product, and regulatory
+structure, and the coefficient does not survive the paper's preferred (clustered) inference standard -- but
+we report it rather than omit it: unlike the Colorado general-retail check, this placebo does not return a
+uniformly precise null across every state and specification tried.
+\end{minipage}
+\end{table}

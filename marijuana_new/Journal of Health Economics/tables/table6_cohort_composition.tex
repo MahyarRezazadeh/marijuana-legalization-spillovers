@@ -1,0 +1,29 @@
+\begin{table}[htbp]
+\centering
+\caption{Event-Study Coefficients by Switch-Year Cohort (Main Design)}
+\label{tab:cohort_composition}
+\begin{tabular}{lccc}
+\toprule
+Event time & Cohort 2022 ($n=26$) & Cohort 2023 ($n=74$) & Cohort 2024 ($n=77$) \\
+\midrule
+$t=-3$ & --- & --- & $+2.198$ (0.266) \\
+$t=-2$ & --- & $-2.873$ (0.016) & $-2.877$ (0.137) \\
+$t=-1$ & $-1.598$ (0.450) & $-1.492$ (0.229) & $-0.241$ (0.859) \\
+$t=0$ (switch) & $-1.307$ (0.285) & $-1.661$ (0.071) & $-3.570$ (0.015) \\
+$t=+1$ & $+0.504$ (0.718) & $\mathbf{+3.240\ (0.001)}$ & $-0.507$ (0.665) \\
+$t=+2$ & $-1.546$ (0.310) & $+1.916$ (0.007) & --- \\
+$t=+3$ & $+1.064$ (0.260) & --- & --- \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Cell entries are coefficient ($p$-value), same specification as Table~\ref{tab:eventstudy_main}
+(baseline-2020-rate control, transition FE, county-clustered SEs), estimated separately within each switch-year
+cohort against the same never-switching control counties. ``---'' denotes an event time outside that cohort's
+observable window given the 2020--2025 panel (e.g., the 2024 cohort has no $t=+2$ or $t=+3$, since those would fall
+in 2026--2027). The large, significant $t=+1$ coefficient in the pooled event study (Table~\ref{tab:eventstudy_main})
+is driven almost entirely by the 2023 cohort; it does not replicate in the 2022 or 2024 cohorts, the latter of
+which has the opposite sign.
+\end{minipage}
+\end{table}

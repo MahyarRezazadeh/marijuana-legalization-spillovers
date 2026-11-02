@@ -1,0 +1,33 @@
+\begin{table}[htbp]
+\centering
+\caption{Featured specification: border $\times$ regime interaction, Washington split at its 2016 cap increase}
+\label{tab:wa2016split_pooled}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+& \multicolumn{2}{c}{Border (free level)} & \multicolumn{2}{c}{Regime (capped level shift)} & \multicolumn{2}{c}{Border $\times$ Capped} & \\
+Outcome & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & $n$ \\
+\midrule
+Revenue per store & $+0.288$ ($+33.4\%$) & 0.159 & $-1.491$ ($-77.5\%$) & 0.000 & $+0.304$ ($+35.5\%$) & 0.228 & 964 \\
+Revenue per capita & $+0.637$ ($+89.0\%$) & 0.002 & $-0.201$ ($-18.2\%$) & 0.027 & $-0.325$ ($-27.8\%$) & 0.280 & 1283 \\
+Dispensary density & $+0.274$ ($+31.6\%$) & 0.020 & $+0.249$ ($+28.3\%$) & 0.033 & $-0.597$ ($-44.9\%$) & 0.006 & 964 \\
+\bottomrule
+\end{tabular}
+}
+\begin{minipage}{0.98\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Pooled single-coefficient specification, identical in form to Table~\ref{tab:main_pooled}
+(border $\times$ regime interaction, log(population) control, year and state fixed effects,
+county-clustered SEs, no captive-population control) but with Washington reclassified: capped only for its
+first two years (2014--2015, under the original 334-license lottery-rationed cap); free from 2016 onward,
+joining New Mexico and Oregon's own 2015--2021 free period. Capped otherwise unchanged (Colorado, Montana,
+Oregon 2022--2025). The 2026 partial year is excluded from all specifications in this paper as of this
+version. Implied levels: revenue-per-capita free-state premium $+89.0\%$, capped-state premium
+$\exp(0.637-0.325)-1=+36.6\%$; the interaction is directionally consistent with the paper's main
+classification (Table~\ref{tab:main_pooled}) but no longer significant under county clustering once most of
+Washington's panel is reassigned to the free group. Dispensary density is the one interaction that remains
+significant under this reclassification ($p=0.006$); revenue per store remains a null throughout.
+\end{minipage}
+\end{table}

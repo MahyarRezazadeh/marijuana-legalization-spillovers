@@ -1,0 +1,32 @@
+\begin{table}[htbp]
+\centering
+\caption{Robustness: border $\times$ local-government-barrier interaction}
+\label{tab:localbarrier_pooled}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+& \multicolumn{2}{c}{Border} & \multicolumn{2}{c}{Local barrier} & \multicolumn{2}{c}{Border $\times$ Local barrier} & \\
+Outcome & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & $n$ \\
+\midrule
+Revenue per store & $+0.197$ ($+21.7\%$) & 0.229 & $+0.525$ ($+69.1\%$) & 0.000 & $+0.315$ ($+37.0\%$) & 0.175 & 995 \\
+Revenue per capita & $+0.518$ ($+67.9\%$) & 0.007 & $+0.896$ ($+144.9\%$) & 0.000 & $-0.286$ ($-24.9\%$) & 0.353 & 1314 \\
+Dispensary density & $+0.293$ ($+34.0\%$) & 0.060 & $+0.629$ ($+87.5\%$) & 0.000 & $-0.536$ ($-41.5\%$) & 0.037 & 995 \\
+\bottomrule
+\end{tabular}
+}
+\begin{minipage}{0.98\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Pooled across all five states. \texttt{Local barrier} isolates \emph{which level of
+government} imposes the binding entry restriction, holding the main \texttt{Capped} classification's grouping
+fixed on Colorado and Montana but re-sorting Washington: Colorado and Montana are coded 1 (the restriction is
+county-level -- opt-out bans in Colorado, opt-in requirements in Montana); Washington, Oregon, and New Mexico
+are coded 0 (Washington's cap is set directly by state statute with no local opt-out/opt-in mechanism; Oregon
+and New Mexico have no local-government-imposed restriction at all). No state fixed effects: \texttt{local\_barrier}
+has no within-state variation for any state in the sample, so it is collinear with state dummies by
+construction. Only the density interaction survives county clustering; the per-capita and per-store
+interactions lose significance under clustering despite being significant under HC1, a result reported directly
+as a caveat on the main \texttt{Capped} classification's robustness (Section~\ref{sec:discussion}).
+\end{minipage}
+\end{table}

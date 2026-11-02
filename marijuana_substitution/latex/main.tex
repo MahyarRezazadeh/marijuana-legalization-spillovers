@@ -1,0 +1,625 @@
+% ============================================================
+% Testing for Drug-Enforcement Substitution After Marijuana
+% Legalization: Marijuana vs. Alcohol Arrests
+% Formatted to Economic Inquiry (Wiley/WEAI) submission requirements.
+% Compile: pdfLaTeX -> BibTeX -> pdfLaTeX -> pdfLaTeX (Overleaf: Recompile)
+% ============================================================
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage[authoryear,round]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\doublespacing
+\titleformat{\section}{\normalfont\bfseries\large}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+% ============================================================
+% TITLE PAGE
+% ============================================================
+\begin{titlepage}
+\begin{center}
+\vspace*{1.5cm}
+{\LARGE \bfseries Testing for Drug-Enforcement Substitution After\\
+Marijuana Legalization\par}
+\vspace{0.3cm}
+{\large \itshape Marijuana vs. Alcohol Arrest Trends, 2005--2023\par}
+\vspace{1.2cm}
+{\large Author name(s) withheld for review\par}
+\vspace{0.3cm}
+{\normalsize Working Paper --- July 2026\par}
+\end{center}
+
+\vspace{1.2cm}
+\noindent\textbf{Abstract} \\[4pt]
+\noindent We test for substitution between marijuana and alcohol
+using FBI arrest data: marijuana (possession/sale) and
+alcohol-specific (liquor-law/drunkenness) offenses. We use (i) a
+switcher/control county design in never-legalizing states, with
+treatment defined as the raw change in miles to the nearest legal
+border, and (ii) a 21-state staggered-adoption panel around each
+state's own legalization date. We find no evidence of substitution: a
+100-mile reduction in border distance leaves marijuana arrests
+unchanged (p\,=\,0.94) but significantly increases alcohol arrests
+(p\,=\,0.04) -- the opposite sign from substitution. The state panel
+shows both series on a common secular decline, undisturbed by
+legalization timing (p\,=\,0.95, 0.47). \\[10pt]
+\noindent\textbf{JEL Classification:} K42, I18, R12 \\
+\noindent\textbf{Keywords:} recreational marijuana; alcohol; drug
+substitution; arrest data; NIBRS; difference-in-differences
+
+\vfill
+\noindent\textbf{Abbreviations} \\[2pt]
+\noindent
+\begin{tabular}{@{}ll@{}}
+DiD    & Difference-in-differences \\
+FBI    & Federal Bureau of Investigation \\
+NIBRS  & National Incident-Based Reporting System \\
+SE     & Standard error \\
+TWFE   & Two-way fixed effects \\
+\end{tabular}
+
+\vspace{0.5cm}
+\noindent{\footnotesize A separate Disclosure Statement accompanies this
+submission per Economic Inquiry policy and is not reproduced in this file.}
+\end{titlepage}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+A long-standing question in drug policy is whether marijuana and
+alcohol are economic substitutes or complements. If substitutes, legal
+marijuana access should reduce alcohol consumption and, mechanically,
+alcohol-related law enforcement contact (drunkenness and liquor-law
+arrests). \citet{AndersonHansenRees2013} find evidence consistent with
+substitution -- medical marijuana laws are associated with reduced
+traffic fatalities and lower alcohol consumption, particularly among
+young adults. This paper asks whether the same substitution pattern is
+visible in \emph{arrest} data around the 2020--2023 recreational
+legalization wave, using the same never-legalizing-state panel and
+continuous distance-to-border design developed in the companion
+project on marijuana-related driving spillovers
+\citep{HaoCowan2020,Moyer2026}.
+
+We pursue two complementary designs. First, within never-legalizing
+states, we compare marijuana- and alcohol-arrest trends in counties
+that became closer to a newly-legal border (``switchers'') against
+counties that did not, exactly as in the companion driving-spillover
+analysis but with arrest outcomes rather than fatal crashes. Second,
+we examine the 21 states that themselves legalized recreational
+marijuana between 2014 and 2024, comparing their own marijuana and
+alcohol arrest trends before and after their individual legalization
+dates in a staggered-adoption panel.
+
+We find no robust evidence of substitution in either design. If
+anything, the county-level continuous-distance specification finds a
+statistically significant \emph{increase} in alcohol arrests among
+counties that became closer to a legal border -- the opposite sign
+from what a substitution story predicts -- while the marijuana-arrest
+response is negative but not significant. The state-level
+staggered-adoption panel finds both series on a common declining
+trend with no detectable break at each state's own legalization date.
+We also document, and correct for, a serious data-quality issue: the
+FBI's mandatory 2021 transition to NIBRS-only reporting caused a sharp,
+temporary collapse in state-level reporting coverage (to as low as 36\%
+in one state) that can mechanically distort any raw pre/post arrest
+comparison spanning that year.
+
+% ============================================================
+% 2. DATA
+% ============================================================
+\section{Data}
+
+\subsection{Arrest Measures}
+
+We use the FBI's Crime Data Explorer (CDE) API, which reports monthly
+arrest counts by specific offense code at the national, state, and
+agency level. \textbf{Marijuana arrests} combine Drug Possession,
+Marijuana (code 158) and Drug Sale/Manufacturing, Marijuana (code
+153). \textbf{Alcohol arrests} combine Liquor Law Violations (code
+270) and Drunkenness (code 280) -- offenses that, unlike Driving Under
+the Influence (code 260), are attributable to a specific substance
+rather than pooling alcohol- and drug-impaired driving together. This
+mirrors the marijuana-code construction and avoids the substance-
+attribution problem documented in the companion driving-spillover
+paper.
+
+\subsection{A Critical Data-Quality Issue: the 2021 NIBRS Transition}
+
+The FBI required all reporting agencies to transition from the legacy
+Summary Reporting System to the National Incident-Based Reporting
+System effective January 2021. Many agencies were not yet NIBRS-
+certified and temporarily stopped reporting. We document this directly:
+national population coverage fell from 96.7\% (January 2020) to 74.6\%
+(January 2021); one state in our legalizing-state panel (Illinois) saw
+coverage collapse from 94.1\% to 36.4\% over the same window, before
+recovering to 90.9\% by December 2023. Because the composition of
+agencies that continue reporting during a coverage collapse is not
+random -- larger, better-resourced (often more urban, higher-
+enforcement-intensity) agencies are more likely to remain NIBRS-
+compliant -- raw arrest rates during the transition window are not
+comparable to rates before or after it, even after adjusting for
+reporting population. Figure~\ref{fig:co} illustrates this for Colorado.
+
+We address this in two ways. First, our primary switcher/control
+comparison uses only 2020 and 2023 -- both outside the acute transition
+window -- and we confirmed that 2020-to-2023 coverage change is small
+(under 5 percentage points) for all 21 legalizing states and all but a
+handful of the 32 never-legalizing states (Florida and Pennsylvania
+show the largest shifts, $-19.3$ and $+14.9$ points respectively;
+results are robust to excluding them, available on request). Second,
+our state-panel event-study design includes year fixed effects, which
+absorb the common national 2021 coverage shock, identifying the
+legalization effect only from the \emph{relative} timing of
+legalization across states.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/figB2_colorado.png}
+  \caption{Colorado Monthly Marijuana and Alcohol Arrest Rates, 2005--2023. The shaded region marks the 2021--2022 NIBRS transition, during which state reporting coverage fell to roughly 54\%.}
+  \label{fig:co}
+\end{figure}
+
+% ============================================================
+% 3. DESIGN A: SWITCHER/CONTROL COUNTIES
+% ============================================================
+\section{Design A: Switcher vs. Control Counties}
+
+We reuse the companion project's never-legalizing-state panel: 32
+states that had not legalized recreational marijuana through 2023,
+with each county's distance to the nearest legal-market border
+computed in miles for 2020 and 2023 (Haversine distance between
+county centroids). Agency-level arrest counts were pulled from the
+FBI CDE API for all agencies in these states (13,384 agencies),
+matched to Census county FIPS by normalized county name (83.5\% match
+rate among single-county agencies), and aggregated to the county
+level. This yields matched arrest data for 1,793 counties in the main
+sample (378 switchers, 1,415 controls) -- 82.8\% of the
+never-legalizing-state county panel.
+
+\subsection{The Continuous Treatment: Miles to the Nearest Border}
+
+Our primary treatment variable is the county's raw change in distance
+to the nearest recreational-marijuana state border, in miles:
+\begin{equation}
+  \Delta\text{Dist}_i \;=\; \text{Dist}_{i,2023} \;-\; \text{Dist}_{i,2020},
+  \label{eq:distmi}
+\end{equation}
+which is negative for counties that became closer to a newly-legal
+border and positive for counties that fell further behind (e.g.,
+because a once-nearby state never opened retail sales while others
+did). Figure~\ref{fig:map} maps the resulting treatment assignment,
+and Figure~\ref{fig:distdist} shows the distribution of both the level
+(2023 distance) and the change ($\Delta\text{Dist}_i$) separately for
+switchers and controls -- switchers are, by construction, the
+counties whose distance fell below the 100-mile threshold and whose
+$\Delta\text{Dist}_i$ is concentrated in the $-400$ to $0$ mile range.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/figA0a_map.png}
+  \caption{Treatment Assignment: Switcher and Control Counties by Location.}
+  \label{fig:map}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figures/figA0b_distance_dist.png}
+  \caption{The Continuous Treatment: Distribution of Distance (Level and Change) to the Nearest Recreational Border.}
+  \label{fig:distdist}
+\end{figure}
+
+\begin{table}[htbp]
+\centering
+\caption{Summary Statistics}
+\begin{tabular}{@{}lc@{}}
+\toprule
+Variable & Value \\
+\midrule
+Marijuana arrest rate per 100k (2020) & 10.74 \\
+Marijuana arrest rate per 100k (2023) & 7.78 \\
+Alcohol arrest rate per 100k (2020) & 42.64 \\
+Alcohol arrest rate per 100k (2023) & 39.96 \\
+Switcher counties & 378 \\
+Control counties & 1{,}415 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figures/figA1_trends.png}
+  \caption{Marijuana vs. Alcohol Arrest Rate Trends, Switchers vs. Controls.}
+  \label{fig:trendsA}
+\end{figure}
+
+Table~\ref{tab:regA} reports first-difference regressions (algebraically
+equivalent to county $+$ year fixed effects for $T=2$):
+\begin{equation}
+  \Delta Y_i \;=\; \alpha \;+\; \beta \cdot \frac{\Delta\text{Dist}_i}{100} \;+\; \varepsilon_i,
+  \label{eq:distreg}
+\end{equation}
+scaling $\Delta\text{Dist}_i$ into 100-mile units so that $\beta$ is
+directly readable as ``change in arrest rate per 100,000 associated
+with a 100-mile change in distance to the nearest border,'' alongside
+the binary switcher indicator and, as a robustness check, the
+$\Delta\log(\text{dist})$ specification used in the companion
+driving-spillover paper. SE clustered by state throughout.
+
+\begin{table}[htbp]
+\centering
+\caption{Effect on Marijuana and Alcohol Arrest Rates}
+\label{tab:regA}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & Coefficient (SE) & $p$-value \\
+\midrule
+\textit{Marijuana} & & \\
+\quad Switcher (binary) & $-3.177$ (2.308) & 0.169 \\
+\quad Distance, per 100 mi [\textbf{primary}] & $-0.064$ (0.798) & 0.936 \\
+\quad Log-distance (robustness) & $+1.161$ (1.540) & 0.451 \\
+\textit{Alcohol} & & \\
+\quad Switcher (binary) & $+4.845$ (5.894) & 0.411 \\
+\quad Distance, per 100 mi [\textbf{primary}] & $-5.953^{**}$ (2.914) & 0.041 \\
+\quad Log-distance (robustness) & $-6.836^{**}$ (2.669) & 0.010 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.9\textwidth}
+\footnotesize Note: Outcome is the change in arrest rate per 100{,}000,
+2020--2023. ``Distance, per 100 mi'' is $\beta$ from
+Equation~\ref{eq:distreg}: a negative $\beta$ means the arrest rate
+\emph{fell} as distance to the border \emph{increased}, i.e., the rate
+\emph{rose} as the county became closer. SE clustered by state
+($N=1{,}793$). $^{**}p<0.05$.
+\end{minipage}
+\end{table}
+
+The primary, directly-interpretable miles specification shows no
+detectable relationship for marijuana arrests: a 100-mile change in
+distance to the border is associated with a $-0.064$ change in the
+arrest rate per 100{,}000, statistically indistinguishable from zero
+($p=0.936$). For alcohol, the coefficient is $-5.953$ and significant
+at the 5\% level ($p=0.041$): because the sign is negative on
+\emph{distance} (not distance-\emph{closeness}), this means the
+alcohol arrest rate \emph{rose} as counties became 100 miles closer to
+a newly-legal border. This is the opposite sign from a substitution
+story, which would predict alcohol arrests to \emph{fall} as
+marijuana becomes more accessible. The log-distance robustness check
+(bottom row of each panel) agrees in sign and significance with the
+miles-based primary specification for both outcomes. The binary
+switcher specification points in the same qualitative direction for
+both outcomes (marijuana $-3.177$, alcohol $+4.845$) but neither
+reaches significance -- unsurprising, since the binary indicator
+discards the within-group variation in exactly how many miles closer
+each switcher became, which Figure~\ref{fig:distdist}(b) shows is
+substantial.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figures/figA4_treatment_scatter.png}
+  \caption{The Continuous-Treatment Regression Itself: Distance Change vs. Arrest-Rate Change.}
+  \label{fig:treatscatter}
+\end{figure}
+
+Figure~\ref{fig:treatscatter} shows the regression underlying
+Table~\ref{tab:regA}'s primary specification directly: each point is a
+county, with its change in distance to the border (miles) on the
+horizontal axis and its change in arrest rate on the vertical axis.
+The near-flat fitted line for marijuana and the modestly downward-
+sloping line for alcohol (moving left, i.e.\ toward more negative
+$\Delta\text{Dist}$, the fitted alcohol line rises) are the visual
+counterpart of the coefficients in Table~\ref{tab:regA}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/figA2_coefplot.png}
+  \caption{Switcher Effect on Arrest Rates with 95\% Confidence Intervals.}
+  \label{fig:coefA}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.65\textwidth]{figures/figA3_scatter.png}
+  \caption{County-Level Co-Movement of Marijuana and Alcohol Arrest-Rate Changes.}
+  \label{fig:scatterA}
+\end{figure}
+
+As a further check, we compute the raw correlation between
+county-level changes in the two arrest rates: $r=0.12$, a weak
+\emph{positive} co-movement (Figure~\ref{fig:scatterA}). A clean
+substitution story predicts a negative correlation (counties where
+marijuana arrests fall most should see alcohol arrests rise most); a
+weak positive correlation is more consistent with both series
+responding to a common local factor (e.g., overall policing intensity
+or economic activity near the border) than with behavioral
+substitution between the two goods.
+
+\subsection{Heterogeneity by Age of Offender}
+\label{sec:agecohort}
+
+The county-level result above -- alcohol arrests rising as counties
+grow closer to a legal marijuana border -- is the paper's only
+statistically significant finding, and it points toward complementarity
+rather than substitution. A natural follow-up question is whether this
+pattern is concentrated in a particular age cohort: young adults newly
+able to buy marijuana legally, for instance, might drive the effect,
+or it could be spread evenly across ages (or driven by older
+offenders instead). We re-estimate Design A's switcher/continuous-
+distance specification separately by age of arrestee, holding the
+treatment design fixed.
+
+\subsubsection{Data: NIBRS Arrestee-Level Microdata}
+
+Age of offender is not available through the FBI Crime Data Explorer's
+live query API used elsewhere in this paper -- that API returns
+offense-level monthly counts only, with no demographic breakdown. We
+instead use the ICPSR/NACJD ``NIBRS Extract Files'' (2020: ICPSR 38566
+v3; 2023: ICPSR 39270 v2), a cleaned, arrestee-level repackaging of the
+raw National Incident-Based Reporting System microdata in which each
+row is one arrestee, carrying the linked incident's offense and
+property detail alongside the arrestee's own age. Marijuana arrests
+are identified as UCR arrest offense code 351 (Drug/Narcotic
+Violations) with a linked ``suspected drug type'' of marijuana
+recorded anywhere on the incident's property segment; alcohol arrests
+are UCR arrest offense codes 905 (Drunkenness) and 907 (Liquor Law
+Violations), again excluding Driving Under the Influence (904) for the
+same substance-attribution reason as the main analysis. We restrict to
+single-county agencies in the 32 never-legalizing states, matching
+Design A, and further restrict to the 1,861 counties with an active,
+single-county, NIBRS-reporting agency in \emph{both} 2020 and 2023, so
+that a county with zero recorded marijuana or alcohol arrests in a
+given age bin can be read as a genuine zero rather than simply missing
+NIBRS coverage. Age is grouped into four bins: under 21 (below the
+legal alcohol-purchase age), 21--30, 31--45, and 46 and older.
+
+\subsubsection{A Data-Quality Caveat: NIBRS Microdata vs.\ the SRS-Style API}
+
+Restricted to the identical set of counties and year, the NIBRS
+microdata used in this section and the FBI CDE API counts used
+everywhere else in the paper disagree substantially in scale --
+NIBRS yields roughly 13 times more marijuana arrests and roughly 9
+times fewer alcohol arrests. We could not fully reconcile this from
+public documentation, but two mechanisms plausibly explain most of
+it. First, the FBI's classic SRS-style arrest classification is
+believed to apply a substance-severity hierarchy when an arrest
+incident lists more than one drug (e.g., marijuana recovered alongside
+cocaine is classified under the more serious substance), which we
+cannot replicate from raw NIBRS incident-level drug-type flags alone;
+this would mechanically deflate SRS-style marijuana counts relative to
+a full incident-level accounting like the one used here. Second, NIBRS
+Group~B arrest-only offenses -- which include both Drunkenness and
+Liquor Law Violations -- are documented to have materially weaker
+agency reporting compliance than incident-linked Group~A offenses,
+consistent with the undercount we observe. Because of this, the
+age-cohort results below should be read as an internally consistent
+comparison \emph{across} age bins within the NIBRS source, not as a
+like-for-like replication of the paper's SRS-based headline
+coefficients in Table~\ref{tab:regA}. We also do not observe
+age-specific county population, so all rates use total county
+population as the denominator throughout; this affects the
+\emph{level} of each bin's rate but not the within-bin switcher/control
+comparison, which is what the regression coefficients capture.
+
+\subsubsection{Results}
+
+\begin{table}[htbp]
+\centering
+\caption{Effect on Marijuana and Alcohol Arrest Rates, by Age of Arrestee}
+\label{tab:regC}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Age bin & \multicolumn{2}{c}{Marijuana} & \multicolumn{2}{c}{Alcohol} \\
+ & Switcher & Dist., per 100 mi & Switcher & Dist., per 100 mi \\
+\midrule
+Under 21   & $-5.580$ (5.287)   & $+0.554$ (1.872)  & $+0.146$ (0.476)  & $+0.155$ (0.193) \\
+21--30     & $-15.129$ (11.601) & $+2.121$ (4.000)  & $-0.235$ (0.202)  & $+0.067$ (0.071) \\
+31--45     & $-7.700$ (7.669)   & $+0.310$ (2.806)  & $-0.240$ (0.204)  & $+0.014$ (0.081) \\
+46 and older & $-0.280$ (3.125) & $-0.213$ (1.069)  & $-0.057$ (0.176)  & $-0.034$ (0.045) \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.95\textwidth}
+\footnotesize Note: Cell entries are coefficient (clustered SE); none
+are statistically significant at conventional levels (all $p>0.19$).
+$N=1{,}736$ counties per cell (399 switchers, 1{,}337 controls) in
+every age bin -- the county set is fixed across bins by construction
+(Section~3.4.1), so only the arrest counts vary. Outcome, sample, and
+clustering match Table~\ref{tab:regA}.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/figC1_age_coefplot.png}
+  \caption{Primary Continuous-Distance Coefficient by Age of Arrestee, with 95\% Confidence Intervals.}
+  \label{fig:coefC}
+\end{figure}
+
+No coefficient in Table~\ref{tab:regC} is statistically distinguishable
+from zero, for either outcome, in any age bin. Most relevant to the
+paper's headline result: the alcohol distance coefficient -- significant
+and positive-on-closeness in the SRS-based Design A analysis
+(Table~\ref{tab:regA}) -- is small and statistically null in every age
+bin here, ranging from $-0.034$ to $+0.155$ with no consistent sign
+across bins (Figure~\ref{fig:coefC}). Given the data-quality caveat
+above, we do not read this as evidence that the complementarity signal
+is concentrated in, or absent from, any particular age cohort. The
+underlying alcohol cell counts are thin -- total NIBRS-recorded
+alcohol arrests per age bin across all 1,736 counties and both years
+range from roughly 200 to 1,900 -- and a measure this sparse is likely
+underpowered to detect age heterogeneity in an effect that was only
+marginally significant ($p=0.041$) in the much larger SRS-based sample
+to begin with. We view the age-disaggregated NIBRS alcohol measure, as
+constructed here, as insufficient to answer the age-cohort question
+either way; a more complete answer would require either a less sparse
+alcohol-enforcement measure or the official NIBRS-to-SRS drug
+classification crosswalk needed to reconcile the scale discrepancy
+noted above.
+
+% ============================================================
+% 4. DESIGN B: STAGGERED ADOPTION ACROSS LEGALIZING STATES
+% ============================================================
+\section{Design B: Legalizing States' Own Before/After}
+
+For the 21 states that legalized recreational marijuana between 2014
+and 2024, we pulled state-level monthly arrest data from January 2005
+through December 2023 (228 months per state) and constructed an
+annual panel (21 states $\times$ 19 years $=$ 399 observations). We
+estimate
+\begin{equation}
+  y_{it} = \alpha_i + \gamma_t + \beta \cdot \text{Post}_{it} + \varepsilon_{it},
+  \label{eq:twfe}
+\end{equation}
+with state fixed effects $\alpha_i$, year fixed effects $\gamma_t$
+(which absorb the common national 2021 reporting shock), and
+$\text{Post}_{it}=1$ in and after each state's own legalization year,
+SE clustered by state.
+
+\begin{table}[htbp]
+\centering
+\caption{Staggered-Adoption TWFE: State's Own Legalization}
+\label{tab:twfeB}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Outcome & $\beta$ (Post) & SE & $p$-value \\
+\midrule
+Marijuana arrest rate & $-0.029$ & 0.426 & 0.946 \\
+Alcohol arrest rate & $-1.950$ & 2.693 & 0.469 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.8\textwidth}
+\footnotesize Note: $N=399$ (21 states $\times$ 19 years). State and
+year fixed effects. SE clustered by state.
+\end{minipage}
+\end{table}
+
+Neither coefficient is distinguishable from zero. This may seem to
+contradict the large raw pre/post gap (marijuana: 1.70 $\to$ 0.37 per
+100{,}000; alcohol: 12.03 $\to$ 4.08), but Figure~\ref{fig:eventB}
+resolves the apparent tension: pooling all 21 states by
+years-since-own-legalization, both series decline \emph{smoothly and
+continuously} for years before legalization and show no discontinuity
+at event-year zero. The raw pre/post gap reflects a common secular
+decline in both offense categories across essentially all states
+(legalizing and not) over 2005--2023 -- plausibly reflecting broader
+shifts in enforcement priorities and criminal-justice reform -- not an
+effect specific to each state's own legalization timing.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figures/figB1_eventstudy.png}
+  \caption{Event Study: Arrest Rates Around Each State's Own Legalization Date.}
+  \label{fig:eventB}
+\end{figure}
+
+% ============================================================
+% 5. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+Across two independent designs -- a within-state continuous-distance
+comparison and a between-state staggered-adoption panel -- we find no
+consistent evidence that marijuana legalization substitutes away from
+alcohol as measured by arrest data. The one statistically significant
+result we obtain (Design A, continuous distance, alcohol arrests) runs
+in the direction opposite to substitution. We view this as suggestive
+rather than conclusive: arrest counts reflect both underlying behavior
+and enforcement intensity, and a rise in alcohol arrests near a new
+legal-market border could reflect increased cross-border commercial
+and social activity (more visitors, more nightlife, more overall
+police presence) rather than a behavioral shift toward heavier
+drinking. This is analogous to the concern raised in
+\citet{HaoCowan2020} that arrest-based measures conflate enforcement
+effort with underlying behavior.
+
+The state-panel null result (Design B) is, in our view, the more
+credible of the two: it directly controls for the strong common
+secular decline in both offense categories via year fixed effects,
+whereas the raw pre/post comparison that motivates a naive
+substitution narrative is confounded by that same secular trend. We
+therefore conclude that arrest data, at least as constructed here, do
+not support a robust marijuana-alcohol substitution story around the
+2014--2024 legalization wave -- a useful complement to
+\citet{AndersonHansenRees2013}'s consumption-based evidence, since
+arrest data capture a different (enforcement-mediated) margin of the
+same underlying question.
+
+% ============================================================
+% 6. LIMITATIONS
+% ============================================================
+\section{Limitations}
+
+\begin{enumerate}[label=(\arabic*), leftmargin=*]
+\item \textbf{Arrests reflect enforcement, not just behavior.} A
+change in arrest rates conflates true behavioral change with changes
+in policing priorities, which may themselves respond to legalization
+(e.g., reduced marijuana enforcement effort could mechanically free up
+capacity for alcohol enforcement, independent of any behavioral
+substitution).
+\item \textbf{The 2021 NIBRS transition is a first-order confound}
+for any raw pre/post design spanning that year; we mitigate but cannot
+fully eliminate this concern, particularly for states or counties with
+large 2020-to-2023 coverage changes (Florida, Pennsylvania).
+\item \textbf{County-level agency matching is incomplete.} Only 83.5\%
+of single-county agencies matched to a Census FIPS code by name;
+multi-county agencies (e.g., state police) were excluded entirely from
+the county-level rollup.
+\item \textbf{Liquor-law and drunkenness arrests are an imperfect proxy
+for alcohol-related harm.} These offenses are sensitive to local
+enforcement norms (e.g., open-container and public-intoxication
+policing varies widely by jurisdiction) independent of actual alcohol
+consumption.
+\item \textbf{Two-period main design.} As in the companion project,
+the switcher/control comparison uses only 2020 and 2023, precluding a
+formal pre-trend test beyond the coverage-stability check reported in
+Section 2.2.
+\item \textbf{The age-cohort extension uses a different, not fully
+reconciled, data source.} Section~3.4's age-of-offender breakdown uses
+raw NIBRS arrestee microdata rather than the SRS-style API used
+elsewhere, and the two disagree in scale by roughly an order of
+magnitude for both outcomes (Section~3.4.2). The age-disaggregated
+results should be read as internally consistent across age bins, not
+as a decomposition of the paper's headline coefficients.
+\end{enumerate}
+
+% ============================================================
+% 7. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+We find no robust evidence that recreational marijuana legalization
+induces substitution away from alcohol as measured by arrest data,
+across two complementary quasi-experimental designs. Where a
+statistically significant effect appears, it runs opposite to the
+substitution hypothesis. Combined with the well-known 2021 NIBRS
+reporting disruption we document here, we recommend that any future
+work in this space (a) use state and year fixed effects to absorb
+common reporting-coverage shocks, and (b) treat arrest-based
+substitution evidence as complementary to, rather than a replacement
+for, consumption- and health-outcome-based measures such as those in
+\citet{AndersonHansenRees2013}.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

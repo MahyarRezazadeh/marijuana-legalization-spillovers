@@ -1,0 +1,26 @@
+\begin{table}[htbp]
+\centering
+\caption{Placebo Check: General Retail Sales per Capita, Colorado}
+\label{tab:placebo_general_retail}
+\begin{tabular}{lcccc}
+\toprule
+Specification & Coefficient & SE (HC1) & SE (county-cl.) & $p$-value (county-cl.) \\
+\midrule
+No controls & $-0.043$ & $0.053$ & $0.069$ & $0.533$ \\
++ log(pop) + year FE & $-0.006$ & $0.028$ & $0.087$ & $0.947$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(general retail sales per capita, all industries), Colorado Department of
+Revenue, county-by-industry monthly filings aggregated to complete calendar years, 2016--2025,
+$n=110$. CDOR discloses this industry-level breakdown only for Colorado's 11 largest counties by
+filing volume (Adams, Arapahoe, Boulder, Denver, Douglas, El Paso, Jefferson, Larimer, Mesa, Pueblo,
+Weld), which includes 3 of the 6 border counties in the main cannabis-revenue analysis (Larimer, Mesa,
+Weld) and none of the smaller ones (Montezuma, Morgan, Sedgwick). County-clustered SEs. The border
+coefficient is a precise, well-powered null -- general retail activity does not respond to proximity to a
+non-legal state the way cannabis revenue per store does, supporting a cannabis-specific rather than a
+generic border-town-shopping interpretation of the main result.
+\end{minipage}
+\end{table}

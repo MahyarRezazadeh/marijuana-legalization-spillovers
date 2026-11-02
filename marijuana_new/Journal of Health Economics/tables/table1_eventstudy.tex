@@ -1,0 +1,26 @@
+\begin{table}[htbp]
+\centering
+\caption{Event-Study Coefficients: Distance to Nearest Legal-Market County}
+\label{tab:eventstudy_main}
+\begin{tabular}{lccccc}
+\toprule
+Event time & Coefficient & Std. error & $p$-value & 95\% CI & $n$ \\
+\midrule
+$t=-3$ (or earlier)  & $+1.898$  & $1.681$ & $0.259$ & $[-1.396,\ +5.191]$ & 100 \\
+$t=-2$               & $-2.308$  & $1.149$ & $0.045$ & $[-4.560,\ -0.056]$ & 168 \\
+$t=-1$               & $-1.415$  & $0.860$ & $0.100$ & $[-3.101,\ +0.271]$ & 176 \\
+$t=0$ (switch year)  & $-2.478$  & $0.749$ & $0.001$ & $[-3.945,\ -1.011]$ & 160 \\
+$t=+1$               & $+1.156$  & $0.666$ & $0.083$ & $[-0.150,\ +2.463]$ & 142 \\
+$t=+2$               & $+1.108$  & $0.637$ & $0.082$ & $[-0.141,\ +2.357]$ & 73 \\
+$t=+3$ (or later)    & $+1.189$  & $0.845$ & $0.159$ & $[-0.468,\ +2.845]$ & 21 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Dependent variable is the transition-level change in the county overdose death rate per 100,000.
+Reference/control group is far-away counties that remain at least 50 miles from any legal-market county throughout
+the panel ($n=1{,}779$). Specification includes the county's own 2020 baseline overdose rate (mean-reversion control)
+and transition fixed effects. Standard errors clustered by county. $N=4{,}030$.
+\end{minipage}
+\end{table}

@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\caption{Result 3: Does the Premium Scale with the Nonlegal-Side Population?}
+\label{tab:result3}
+\small
+\begin{tabular}{p{7.4cm}cccc}
+\toprule
+Specification & Coef. & SE (HC1) & SE (cl.) & $p$ (cl.) \\
+\midrule
+log($P_i$: captive nonlegal population, 70mi) + full controls & $+0.030$ & $0.007$ & $0.014$ & $0.036$ \\
+\quad excl.\ Sedgwick County, CO & $+0.024$ & $0.007$ & $0.014$ & $0.078$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(revenue per active dispensary), $n=787$. $P_i$ sums the population of
+\emph{all} nonlegal-state counties within 70 miles of county $i$, not only the nearest one, so it
+distinguishes a county next to a small nonlegal county from a county next to a large nonlegal metropolitan
+area, something the distance measures in Result 1 cannot do. Only 10 of the 80 Colorado and Washington
+counties in this panel have any captive nonlegal population within 70 miles at all, so this result reweights
+the same identifying set of border counties from Result 1 by market size rather than adding new geographic
+variation; combined with Result 1's continuous-distance finding, it indicates the premium responds
+continuously to both how close a county is to a nonlegal border and how large the population on the other
+side is, not only to a binary border classification.
+\end{minipage}
+\end{table}

@@ -1,0 +1,2 @@
+﻿<class 'csdid.att_gt.ATTgt'>
+<csdid.att_gt.ATTgt object at 0x0000020DAE7C41A0>

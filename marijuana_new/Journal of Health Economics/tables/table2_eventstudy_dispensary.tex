@@ -1,0 +1,28 @@
+\begin{table}[htbp]
+\centering
+\caption{Event-Study Coefficients: Distance to Nearest Operating Dispensary (Alternative Measure)}
+\label{tab:eventstudy_dispensary}
+\begin{tabular}{lccccc}
+\toprule
+Event time & Coefficient & Std. error & $p$-value & 95\% CI & $n$ \\
+\midrule
+$t=-3$ (or earlier)  & $+1.231$  & $1.368$ & $0.368$ & $[-1.449,\ +3.912]$ & 135 \\
+$t=-2$               & $-1.344$  & $1.420$ & $0.344$ & $[-4.127,\ +1.440]$ & 118 \\
+$t=-1$               & $-1.838$  & $1.252$ & $0.142$ & $[-4.293,\ +0.617]$ & 113 \\
+$t=0$ (switch year)  & $-3.173$  & $1.196$ & $0.008$ & $[-5.516,\ -0.829]$ & 94 \\
+$t=+1$               & $-0.354$  & $0.907$ & $0.697$ & $[-2.130,\ +1.423]$ & 73 \\
+$t=+2$\textsuperscript{a}  & $+1.215$  & $1.408$ & $0.388$ & $[-1.544,\ +3.975]$ & 6 \\
+$t=+3$\textsuperscript{a}  & $+1.563$  & $0.322$ & $<0.001$ & $[+0.932,\ +2.193]$ & 2 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Treatment defined by distance to the nearest \emph{actually operating} dispensary, using real
+license/opening dates geocoded from state cannabis-regulator records for 9 of the 24 legal states. Same
+specification, control group, and clustering as Table~\ref{tab:eventstudy_main}. $N=4{,}117$.
+\textsuperscript{a}$t=+2$ and $t=+3$ rest on only 6 and 2 transition-observations respectively (this design's
+partial 9-state dispensary coverage sharply limits observations at long post-switch horizons) and should not be
+interpreted as reliable estimates; they are reported for completeness only.
+\end{minipage}
+\end{table}

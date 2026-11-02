@@ -1,0 +1,39 @@
+\begin{table}[htbp]
+\centering
+\caption{Neighbor-State Legalization as a Switch-Off: Difference-in-Differences Estimates}
+\label{tab:switch_eventstudy}
+\begin{tabular}{lccccc}
+\toprule
+Setting & Event & Coef.\ (log rev./store) & \% change & SE (county-cl.) & $p$ (county-cl.) \\
+\midrule
+\citet{HansenMillerWeber2020}: WA border w/ OR & OR opens 2015-10-01 & --- & $-36\%$ & --- & --- \\
+\quad (monthly diff-in-discontinuities, their data) & & & & & \\
+\midrule
+This paper: WA border w/ OR, annual FY panel & & & & & \\
+\quad post = FY2016+ (incl.\ transition yr) & OR opens 2015-10-01 & $+0.306$ & $+35.7\%$ & $0.479$ & $0.524$ \\
+\quad post = FY2017+ (FY2016 dropped) & OR opens 2015-10-01 & $+0.310$ & $+36.3\%$ & $0.492$ & $0.529$ \\
+\midrule
+This paper: CO border w/ NM, annual panel & & & & & \\
+\quad post = 2023+ (2022 dropped) & NM opens 2022-04-01 & $-0.487$ & $-38.6\%$ & $0.123$ & $0.0001$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} All rows use this paper's own log(revenue per store) construction and the project's
+standard 70-mile border threshold, applied to a neighbor-state legalization date rather than to the
+static distance measure used elsewhere in this paper. WA-OR: 10 border counties (Asotin, Benton, Clark,
+Cowlitz, Klickitat, Lewis, Pacific, Thurston, Wahkiakum, Walla Walla) vs.\ 3 Idaho-border control counties
+(Spokane, Stevens, Whitman) and 16 interior counties, $n=314$ (main) / $286$ (FY2016 dropped), controlling
+log(population) and fiscal-year fixed effects. WA's revenue data is annual (fiscal year, July--June) rather
+than monthly, so FY2016 (Jul 2015--Jun 2016) straddles Oregon's Oct-1-2015 opening and is a genuine
+transition year, not a clean pre- or post-period; both the including- and excluding-FY2016 specifications
+are reported and agree closely with each other, but neither is statistically distinguishable from zero.
+CO-NM: 6 NM-border counties (Archuleta, Conejos, Costilla, La Plata, Las Animas, Montezuma) vs.\ 31 interior
+counties (a parallel estimate against the 5 counties still bordering a permanently non-legal state --
+Utah, Wyoming, Oklahoma, Nebraska, Kansas -- is reported in the text), $n=352$, 2022 dropped as a transition
+year since New Mexico's retail market opened April 1 of that year, controlling log(population) and
+year fixed effects. Figures~\ref{fig:co_nm_eventstudy} and \ref{fig:wa_or_eventstudy} show the full
+event-year coefficient paths underlying these single-coefficient summaries.
+\end{minipage}
+\end{table}

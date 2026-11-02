@@ -1,0 +1,12 @@
+﻿py : Traceback (most recent call last):
+At line:1 char:446
++ ... llover effect\marijuana_new\Economic Letters\New version EL"; py -c "
++                                                                   ~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "<string>", line 14, in <module>
+    se = np.asarray(mp['se']).flatten()
+                    ~~^^^^^^
+KeyError: 'se'
+dict_keys(['group', 'att', 't', 'DIDparams', 'inffunc', 'n', 'W', 'Wpval'])

@@ -1,0 +1,28 @@
+\begin{table}[htbp]
+\centering
+\caption{Border-vs-Interior Estimates: Harvested Cropland Change, Oregon}
+\label{tab:cropsub_border70}
+\begin{tabular}{lcccc}
+\toprule
+Specification & Coefficient & SE (HC1) & $p$-value & $R^2$ \\
+\midrule
+border\_70mi, no controls & $-0.045$ & $0.078$ & $0.560$ & $0.004$ \\
+border\_70mi + log(pop) + log(land area) & $-0.038$ & $0.100$ & $0.706$ & $0.007$ \\
+log(distance to non-legal border), no controls & $+0.026$ & $0.049$ & $0.587$ & $0.006$ \\
+log(distance) + log(pop) + log(land area) & $+0.022$ & $0.066$ & $0.738$ & $0.007$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log change in NASS harvested cropland acres, 2012--2022, all 36 Oregon
+counties. Cross-sectional, HC1 robust SEs (county clustering not applicable -- one observation per
+county). Oregon's only non-legal-state neighbor is Idaho; only 3 of 36 counties (Baker, Malheur, Wallowa)
+fall within 70 miles of it, so the treated group is extremely thin and no specification approaches
+significance. Notably, Jackson and Josephine counties -- which had by far the largest cannabis
+cultivation canopy in a companion license-based analysis -- are 313 and 357 miles from Idaho, near the
+California border instead (itself a legal state): the counties with the most cannabis cultivation activity
+in Oregon are not the border counties this design treats, underscoring that captive-demand-border
+proximity and cultivation intensity are empirically distinct phenomena in this state.
+\end{minipage}
+\end{table}

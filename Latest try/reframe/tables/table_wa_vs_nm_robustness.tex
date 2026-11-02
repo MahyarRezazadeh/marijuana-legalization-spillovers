@@ -1,0 +1,39 @@
+\begin{table}[htbp]
+\centering
+\caption{Robustness check: Washington (2016 onward) vs.\ New Mexico, same specification as Table~\ref{tab:main_pooled}}
+\label{tab:wa_vs_nm}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+& \multicolumn{2}{c}{Border (NM level)} & \multicolumn{2}{c}{Washington (level shift)} & \multicolumn{2}{c}{Border $\times$ Washington} & \\
+Outcome & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & $n$ \\
+\midrule
+Revenue per store & $+0.357$ ($+42.9\%$) & 0.232 & $+0.999$ ($+171.5\%$) & 0.001 & $+0.071$ ($+7.3\%$) & 0.872 & 489 \\
+Revenue per capita & $+0.967$ ($+162.9\%$) & 0.011 & $+0.212$ ($+23.6\%$) & 0.529 & $-0.483$ ($-38.3\%$) & 0.334 & 489 \\
+Dispensary density & $+0.609$ ($+83.9\%$) & 0.000 & $-0.787$ ($-54.5\%$) & 0.000 & $-0.554$ ($-42.5\%$) & 0.007 & 489 \\
+\bottomrule
+\end{tabular}
+}
+\begin{minipage}{0.98\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Same specification and column structure as Table~\ref{tab:main_pooled} -- border $\times$
+regime interaction, log(population) control, year fixed effects, county-clustered SEs -- with the regime
+indicator replaced: \texttt{Washington} $=1$ for Washington restricted to 2016 onward, $=0$ for New Mexico
+(the paper's cleanest genuinely free-entry benchmark, free for its entire panel; sample restricted to these
+two states, no other states included). The border $\times$ Washington interaction tests whether Washington's
+post-2016 border premium differs from New Mexico's; if Washington's post-2016 period genuinely behaved like
+free entry, this interaction should be a precise null, matching the free-vs-capped null already established
+for revenue per store elsewhere in this paper. On dispensary density it is not: the interaction is
+significant and negative ($p=0.007$), the same direction as the main pooled interaction. On revenue per
+capita the interaction points the same direction but is no longer significant at conventional levels under
+county-clustered SEs ($p=0.334$) -- weaker than a naive HC1 read ($p=0.091$) would suggest, and we report the
+weaker clustered result as the one to trust, consistent with this paper's practice throughout. Revenue per
+store remains a genuine null ($p=0.872$). Taken together with the institutional record that WSLCB's
+application window closed permanently in March 2016, the density result alone is enough to confirm
+Washington's post-2016 period does not behave like New Mexico's free entry on the quantity margin, supporting
+the paper's original classification (Washington capped for its entire panel) over the free-from-2016
+alternative tested here.
+\end{minipage}
+\end{table}

@@ -1,0 +1,33 @@
+\begin{table}[htbp]
+\centering
+\caption{Continuous distance gradient by entry regime (Grouping D)}
+\label{tab:continuous_distance}
+\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+Outcome & log(distance) & Local barrier & log(dist)$\times$Local & log(1+captive pop.) \\
+\midrule
+Revenue per capita & $-0.535^{***}$ & $-1.362$ & $+0.400$ & $+0.005$ \\
+ & (0.005) & (0.382) & (0.229) & (0.836) \\
+Revenue per store & $-0.411$ & $+0.779$ & $+0.060$ & $+0.007$ \\
+ & (0.370) & (0.662) & (0.885) & (0.720) \\
+Dispensary density & $-0.708^{***}$ & $-3.305^{***}$ & $+0.669^{**}$ & $-0.034$ \\
+ & (0.008) & (0.007) & (0.011) & (0.179) \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} $y = \alpha + \beta_1\ln(\text{dist}) + \beta_2\,\text{Local} + \beta_3\ln(\text{dist})\times
+\text{Local} + \gamma_1\ln(\text{population}) + \gamma_2\ln(1+\text{captive population}) + \delta_t +
+\varepsilon$, county-clustered $p$-values in parentheses ($^{**}p<0.05$, $^{***}p<0.01$). Captive population is
+the nonlegal-side "potential demand" population within 70 miles, already used as a control throughout this
+project's later specifications. Distance is log-miles to the nearest nonlegal-state county. $\beta_3$ tests
+whether the distance gradient itself differs by regime: for density, it does ($p=0.011$) -- the free-entry
+gradient is steep ($-0.708$ log points per log-mile) while the local-barrier gradient is nearly flat
+($-0.708+0.669=-0.039$), consistent with the binary border$\times$regime interaction in
+Table~\ref{tab:groupD_primary}. Revenue per capita's gradient interaction points the same direction but is not
+significant under clustering ($p=0.229$); revenue per store shows no gradient at all under either regime,
+consistent with its null border interaction throughout every grouping tested.
+\end{minipage}
+\end{table}

@@ -1,0 +1,33 @@
+\begin{table}[htbp]
+\centering
+\caption{Sample composition, by estimation sample}
+\label{tab:sample_composition}
+\begin{tabular}{lcc}
+\toprule
+ & Revenue per capita & Revenue per store / density \\
+\midrule
+County-year observations & 1,283 & 964 \\
+Unique counties & 178 & 165 \\
+\addlinespace
+Border counties (ever, in sample) & 54 & 48 \\
+Interior counties (ever, in sample) & 138 & 128 \\
+Counties that switch classification & 14 & 11 \\
+\addlinespace
+Border county-years & 280 & 219 \\
+Interior county-years & 1,003 & 745 \\
+\addlinespace
+Capped-entry county-years & 1,024 & 840 \\
+Free-entry county-years & 259 & 124 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.92\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Both columns exclude New Mexico's incomplete 2026 partial year and match
+Table~\ref{tab:main_pooled} exactly. ``Border (interior) counties, ever'' counts a county once if it is
+ever classified as border (interior) in at least one sample year; because the border classification is
+time-varying (Section~\ref{sec:timevarying}), a county can appear in both categories across different
+years -- ``counties that switch classification'' reports how many do. Capped/free-entry county-years use
+the state-year \texttt{Capped} indicator (Section~\ref{sec:institutional}).
+\end{minipage}
+\end{table}

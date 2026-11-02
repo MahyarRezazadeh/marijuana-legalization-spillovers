@@ -1,0 +1,122 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\usepackage{booktabs}
+\usepackage{amsmath}
+
+\title{Entry Regulation and the Cross-Border Cannabis Demand Premium}
+\subtitle{Grant Proposal Summary}
+\author{Mahyar Rezazadeh \and Babak Sahragard}
+\date{\today}
+
+\begin{document}
+
+% ---------------- Slide 1 ----------------
+\begin{frame}{Research Question \& Why It Matters}
+\textbf{Research question.} Does uneven state-level cannabis legalization generate a spatial demand spillover
+-- a ``border premium'' -- in legal retail markets, and does \emph{entry regulation} determine whether that
+premium is absorbed by incumbent sellers' revenue or by market expansion (more, or bigger, dispensaries)?
+
+\vspace{0.5em}
+\textbf{Why it matters -- policy.}
+\begin{itemize}
+\item 24+ U.S.\ states have legalized recreational cannabis; state legislatures are \emph{actively debating}
+license caps, moratoria, and social-equity carve-outs right now.
+\item If caps redirect a demand-driven revenue gain into concentrated incumbent rents rather than broad-based
+entry and tax revenue, that is a first-order, quantifiable fiscal and competition-policy concern.
+\item We already estimate this cost at $\sim$\$490M in foregone border-county revenue and $\sim$\$119M in
+foregone state tax revenue in a single year (CO, WA, MT), directly actionable for legislators weighing a cap.
+\end{itemize}
+
+\vspace{0.3em}
+\textbf{Why it matters -- academically.} Two literatures document each half of this story separately
+(cross-border cannabis demand; entry-cap market distortion) but have never been connected -- see next slide.
+\end{frame}
+
+% ---------------- Slide 2 ----------------
+\begin{frame}{What We Add to the Literature}
+\textbf{What is known.}
+\begin{itemize}
+\item \textbf{Cross-border demand is real:} Hansen, Miller \& Weber (2020, \emph{JPubE}) -- WA retailers near
+Oregon lost $\sim$36\% of sales when Oregon's own market opened. Hao \& Cowan (2020, \emph{Econ.\ Inquiry});
+Baggio, Chong \& Kwon (2020) confirm the mechanism in related settings.
+\item \textbf{Entry caps distort market structure:} Thomas (2019) -- WA's license quota costs $\sim$18\% of
+total surplus vs.\ free entry. Hollenbeck \& Uetake (2021, \emph{RAND JE}) -- WA's cap sustains meaningful
+incumbent markups.
+\end{itemize}
+
+\vspace{0.4em}
+\textbf{The gap.} Neither literature tests the other's variable. Border-demand papers treat the destination
+market's regulation as fixed background; entry-cap papers are single-state with no external demand shock. A
+systematic search (7 databases/repositories, 10+ keyword rounds, citation-tracing) found \textbf{no paper
+directly testing whether entry regulation moderates the cross-border demand premium.}
+
+\vspace{0.4em}
+\textbf{Our contribution.} First 5-state design (CO, WA, OR, MT, NM) combining (i) a \emph{time-varying}
+border-exposure measure that accounts for neighboring states legalizing mid-panel, (ii) an entry-regime
+classification built from actual statutes rather than state labels, and (iii) direct estimation of how the
+two interact -- separately for revenue per store, revenue per capita, and dispensary density.
+\end{frame}
+
+% ---------------- Slide 3 ----------------
+\begin{frame}{Data Summary}
+\footnotesize
+\begin{table}
+\centering
+\begin{tabular}{lccccccc}
+\toprule
+State & Years & Regime & Counties & Border cty. & Interior cty. & Dispensaries \\
+ & & & (range) & (range/yr) & (range/yr) & (latest yr.) \\
+\midrule
+Colorado   & 2015--2025 & Capped (local bans)         & 25--41 & 5--11  & 20--35 & 651 (2025) \\
+Washington & 2015--2025 & Capped (state cap)          & 30--38 & 4--12  & 18--32 & 480 (2025) \\
+Oregon     & 2017--2025 & Free 2017--21, Capped 2022+ & 22--30 & 1--4   & 18--27 & 777 (2025) \\
+Montana    & 2022--2025 & Capped (opt-in requirement) & 23--35 & 8--11  & 15--24 & 526 (2025) \\
+New Mexico & 2022--2025 & Free (statutory anti-cap)   & 29--32 & 9      & 20--23 & 696 (2025) \\
+\bottomrule
+\end{tabular}
+\end{table}
+\vspace{0.3em}
+\normalsize
+\begin{itemize}
+\item Panel: county-year, 5 states, 2014/2015--2025 depending on each state's own retail launch (incomplete
+2026 excluded); $n=964$--$1{,}283$ county-year observations depending on outcome.
+\item Border exposure (70-mile threshold) is \emph{time-varying}: recomputed every year using each
+neighboring state's own legalization date, not a single fixed snapshot.
+\item Washington's ``capped'' status is directly confirmed: WSLCB's general license application window closed
+permanently in March 2016 and has not reopened.
+\end{itemize}
+\end{frame}
+
+% ---------------- Slide 4 ----------------
+\begin{frame}{Estimation Strategy}
+\textbf{Border premium and entry-regime interaction (main specification):}
+\[
+\ln(y_{ist}) = \alpha + \beta_1\,\text{Border}_{ist} + \beta_2\,\text{Capped}_{st}
++ \beta_3\,\text{Border}_{ist}\times\text{Capped}_{st} + \gamma\ln(\text{Population}_{ist})
++ \delta_t + \eta_s + \varepsilon_{ist}
+\]
+estimated separately for $y \in \{$revenue per store, revenue per capita, dispensary density$\}$;
+county-clustered SEs. $\beta_1$ = border premium; $\beta_3$ = how capped entry changes it.
+
+\vspace{0.3em}
+\textbf{Robustness:} year-by-year event studies (Border $\times$ year); balanced panel (removes reporting
+churn); county- vs.\ state$\times$year clustering; five alternative entry-cap classifications tested
+head-to-head; continuous log-distance gradient in place of the binary threshold.
+
+\vspace{0.5em}
+\textbf{Revenue loss from capped entry (fiscal magnitude):}
+\[
+\text{Revenue gap}_s = \text{Actual revenue}_s \times \left[\frac{(1+\widehat{\text{Free premium}})}
+{(1+\widehat{\text{Capped premium}})} - 1\right], \qquad
+\text{Tax gap}_s = \text{Revenue gap}_s \times \tau_s
+\]
+where $\widehat{\text{Free premium}} = e^{\hat\beta_1}-1$, $\widehat{\text{Capped premium}} =
+e^{\hat\beta_1+\hat\beta_3}-1$, and $\tau_s$ is each state's own statutory cannabis tax rate. Applied to 2025
+border-county revenue in Colorado, Washington, and Montana: $\sim$\$490M revenue gap, $\sim$\$119M in foregone
+state tax revenue -- reported as an illustrative order of magnitude, not a causal welfare estimate.
+\end{frame}
+
+\end{document}

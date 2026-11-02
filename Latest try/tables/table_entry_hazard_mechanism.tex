@@ -1,0 +1,51 @@
+\begin{table}[htbp]
+\centering
+\caption{Second-Entrant Hazard: Mechanism and Placebo Tests}
+\label{tab:entry_hazard_mechanism}
+\begin{tabular}{lcc}
+\toprule
+Specification & Hazard ratio & $p$ \\
+\midrule
+\multicolumn{3}{l}{\textit{Is it about the SIZE of the captive nonlegal population, or just proximity?}} \\
+log(distance to nonlegal border) alone & $0.70$ & $0.003$ \\
+log(captive nonlegal population, 70mi) alone & $1.02$ & $0.111$ \\
+Both jointly: distance & $0.62$ & $0.010$ \\
+Both jointly: captive population & $0.98$ & $0.399$ \\
+Border counties only: captive population & $1.02$ & $0.864$ \\
+\midrule
+\multicolumn{3}{l}{\textit{Is it specific to NONLEGAL borders, or any state line?}} \\
+PLACEBO: log(distance to nearest county in any other state) & $0.92$ & $0.478$ \\
+Both jointly: distance to nonlegal border & $0.64$ & $0.003$ \\
+Both jointly: distance to any-state placebo & $1.15$ & $0.308$ \\
+Subsample, nearest state is itself LEGAL: distance to that neighbor & $0.98$ & $0.902$ \\
+\midrule
+\multicolumn{3}{l}{\textit{By state (log-distance measure)}} \\
+Illinois & $0.52$ & $0.049$ \\
+Massachusetts & $0.14$ & $0.032$ \\
+Ohio & $0.50$ & $0.019$ \\
+New York & $0.67$ & $0.252$ \\
+Maine & $0.60$ & $0.325$ \\
+Colorado & $0.73$ & $0.290$ \\
+Oregon & $0.93$ & $0.850$ \\
+Washington & $1.06$ & $0.877$ \\
+California & $1.22$ & $0.826$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} All models are the rank-2 (1st$\to$2nd entrant) Cox specification from
+Table~\ref{tab:entry_hazard_by_rank}, stratified by state where pooled and estimated without strata
+state-by-state. The captive-population measure is the total population of all non-legal-state counties
+within 70 miles (not just the nearest one), the same construction used for the revenue-per-store mechanism
+check. The generic-border placebo measures distance to the nearest county in \emph{any} other state,
+regardless of legal status. The effect survives a horse race against the placebo (distance to a nonlegal
+border remains significant; distance to any border does not) and vanishes entirely among counties whose
+nearest state-line neighbor happens to be a legal state -- both consistent with a nonlegal-border-specific
+channel. It does not survive a horse race against, or a subsample split on, the size of the captive
+population -- inconsistent with a channel that scales with the size of the neighboring demand pool. The
+by-state breakdown shows the pooled significance is concentrated in Illinois, Massachusetts, and Ohio;
+Colorado is directionally consistent but not significant on its own, and Washington and Oregon show no
+effect.
+\end{minipage}
+\end{table}

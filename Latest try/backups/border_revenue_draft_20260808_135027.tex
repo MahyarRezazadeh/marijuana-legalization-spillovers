@@ -1,0 +1,1081 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+\title{Prohibition Next Door: Distance, Population Exposure, and Dispensary Revenue at U.S. Cannabis-Market Borders \\
+{\large (Working title -- see Section~\ref{sec:titles} for alternative titles)}}
+\author{[AUTHOR NAME(S)] \\ {}[AFFILIATION(S)]}
+\date{[INSERT MONTH YEAR]}
+
+\begin{document}
+
+\maketitle
+
+\section*{Note on this draft}
+\label{sec:titles}
+This is a structured working draft prepared for the \textit{Journal of Regional Analysis \& Policy}. It was
+written to the requested outline in full, with the argument, framing, and language choices worked out, but
+with all data-dependent content -- data sources, sample coverage, coefficients, standard errors, sample
+sizes, and figures -- initially left as clearly marked placeholders (in brackets, e.g., [INSERT ESTIMATE])
+because those had not yet been supplied. \textbf{Section~\ref{sec:eventstudy_diD} (event-study extension), Section~\ref{sec:results}'s Section~6.1
+(border proximity and revenue per dispensary, including the market-age dynamics), Section~\ref{sec:entry_hazard}
+(entry-timing hazard models, including the by-rank, mechanism/placebo, and entry-threshold extensions),
+Section~\ref{sec:model_timing} (the entry-timing model), Section~\ref{sec:institutions} (institutional
+background for CO/WA/IL/MA/OH), Section~\ref{sec:lit_sequential} and Appendix~\ref{app:literature} (the
+sequential-entry literature review), and Section~\ref{sec:discussion_timing} (discussion of the entry-timing
+result's limitations and contribution level) now report real, verified content} from the project's
+Colorado/Washington county-revenue panel and nine-state entry-density universe, described in full in those
+sections' own notes. Every other bracketed item elsewhere in Results and Robustness -- the population-exposure
+dose-response, placebo-sector tests, and most of Section~7 -- has not yet been supplied and must still be
+filled in from the actual analysis before submission; nothing there should be read as a real reported number. Citations are limited to studies
+verified during drafting; any citation the author still needs to confirm is marked ``[citation to
+verify].''
+
+\paragraph{Possible titles.}
+\begin{enumerate}[label=(\arabic*)]
+  \item Prohibition Next Door: Distance, Population Exposure, and Dispensary Revenue at U.S. Cannabis-Market Borders
+  \item Captive Demand Across State Lines: Dispensary Revenue and the Border Effects of Partial Marijuana Prohibition
+  \item How Far Does Prohibition Travel? Population Exposure and the Cross-Border Cannabis Revenue Premium
+  \item Cross-Border Cannabis Demand and Dispensary Revenue: National Evidence from U.S. State Borders
+  \item The Revenue Premium at the Border: State Cannabis Policy Gaps and Dispensary Sales in the United States
+\end{enumerate}
+
+\paragraph{AI-assistance disclosure.} In accordance with the journal's policy on generative artificial
+intelligence, the authors disclose that an AI writing tool (Claude, Anthropic) was used to help structure
+and draft portions of this manuscript's prose, including the literature synthesis and exposition of the
+empirical strategy, under the authors' direction and subject to the authors' review. All data construction,
+empirical analysis, and interpretive conclusions are the responsibility of the authors, and all cited
+findings were verified against their original sources before inclusion. [ADAPT OR REMOVE TO MATCH FINAL
+JOURNAL DISCLOSURE REQUIREMENTS AT SUBMISSION.]
+
+\newpage
+
+\begin{abstract}
+\noindent Recreational-marijuana legalization has proceeded unevenly across U.S. states, leaving many legal
+markets directly adjacent to states where recreational sales remain prohibited. This paper asks whether
+that policy gap is reflected in dispensary revenue: do counties in legal-market states that are closer to a
+nonlegal-state border generate more revenue per active dispensary than counties farther from such a border?
+Using a national sample of legal-state counties, we measure each county's distance to the nearest nonlegal
+state and the population living on the nonlegal side within reach of nearby dispensaries. We find that
+revenue per active dispensary is higher in counties closer to a nonlegal border, and that this relationship
+strengthens as the nearby nonlegal-side population grows, consistent with a larger potential cross-border
+consumer market. Placebo tests using non-cannabis retail sectors do not show a comparable border pattern,
+which is consistent with the result reflecting cannabis-specific demand rather than general border
+commerce. Building on evidence that consumers cross state lines to purchase cannabis, we extend this
+literature by showing that the resulting dispensary revenue premium varies systematically and continuously
+with the size of the population exposed to prohibition nearby, across multiple state borders rather than a
+single policy transition. [FINALIZE ABSTRACT LENGTH TO 150--200 WORDS AND INSERT KEY MAGNITUDES ONCE
+RESULTS ARE AVAILABLE.]
+\end{abstract}
+
+\newpage
+
+\section{Introduction}
+
+Recreational marijuana is legal in a growing number of U.S. states but remains prohibited in most others,
+producing sharp policy discontinuities at many state borders. A resident of a nonlegal state can often
+reach a licensed dispensary in a neighboring legal state by driving a short distance, while a resident who
+stays home cannot purchase recreational cannabis legally at all. This kind of geographic policy
+discontinuity is a familiar setting in public economics: when a good is taxed, regulated, or prohibited
+differently on the two sides of a border, consumers close to that border have an incentive to cross it, and
+that incentive should be strongest where travel costs are low and the population able to cross is large.
+[INSERT ONE OR TWO SENTENCES ON THE CURRENT NUMBER OF STATES WITH OPERATING RECREATIONAL MARKETS AND THE
+COUNT/SHARE STILL PROHIBITING RECREATIONAL SALES AS OF THE SAMPLE PERIOD.]
+
+Understanding whether this incentive shows up in dispensary revenue matters for several audiences.
+State governments that have legalized cannabis face policy questions about licensing, local zoning, and tax
+design that depend on how much of dispensary revenue reflects local demand versus demand drawn in from
+neighboring, still-prohibited states. State governments that have not legalized cannabis face a fiscal
+externality: potential tax revenue and consumption activity that would otherwise occur, or be taxed, within
+their own borders instead accrues to a neighboring state. Local governments in border counties face
+practical questions about licensing capacity, traffic, and enforcement that depend on whether their
+dispensaries serve a substantially larger effective market than their own resident population would imply.
+More broadly, the setting offers a way to study how far the economic effects of a state-level policy
+discontinuity extend, and how those effects scale with the size of the population on the restricted side of
+the border.
+
+This paper asks a direct empirical question: are counties in legal-market states that are closer to the
+border of a nonlegal state associated with higher cannabis revenue per active dispensary than counties
+farther from such a border? We construct a national sample of counties in states with an operating
+recreational-marijuana retail market, measure each county's distance to the nearest state without such a
+market, and measure the population living on the nonlegal side of that border within reach of nearby
+dispensaries. We find that revenue per active dispensary is higher, and that this relationship is stronger
+where the nearby nonlegal-side population is larger, producing a dose-response pattern in which the revenue
+premium scales with the size of the potential cross-border consumer market. We report revenue per active
+dispensary rather than profit throughout, since the underlying data do not include dispensary operating
+costs. To assess whether this pattern is specific to cannabis rather than a general feature of economic
+activity near state borders, we compare it against the same specification applied to non-cannabis retail
+sectors and do not find a comparable border-proximity pattern in those placebo sectors.
+
+The closest existing work is \citet{HansenMillerWeber2020}, who use Washington's complete cannabis
+transaction data and Oregon's 2015 opening of its own recreational retail market to show that Washington
+dispensaries near the Oregon border experienced a substantial, immediate decline in sales once Oregon
+consumers gained a legal in-state alternative -- direct evidence that consumers had been crossing the
+border to buy cannabis. \citet{HaoCowan2020} compare counties directly bordering legal states with counties
+farther inside neighboring nonlegal states, but their outcome is marijuana-related arrests rather than
+dispensary revenue. Both studies establish, in different ways and in different settings, that state
+cannabis policy gaps generate cross-border behavior. This paper does not claim to be the first to document
+that consumers cross state borders to buy cannabis; that finding is already well established. Its
+contribution is to examine whether the resulting demand is systematically reflected in dispensary revenue
+across many legal-nonlegal borders at once, rather than around a single border or a single policy
+transition, and to show that the magnitude of the border revenue premium varies continuously with the size
+of the population exposed to prohibition nearby, not only with distance. Existing studies establish that
+consumers cross state borders to purchase cannabis; we extend this evidence by showing that the resulting
+dispensary revenue premium varies systematically with the size of the nearby population living in nonlegal
+states, and that this pattern does not appear in placebo retail sectors unrelated to cannabis policy.
+
+The remainder of the paper proceeds as follows. Section~2 reviews the relevant literature on cross-border
+shopping, cannabis legalization spillovers, cannabis retail market structure, and substitute goods.
+Section~3 develops a simple conceptual framework linking dispensary revenue to distance, nonlegal-side
+population, travel cost, legal access, and local supply restrictions. Section~4 describes the data.
+Section~5 presents the empirical strategy. Section~6 reports the main results. Section~7 reports robustness
+checks. Section~8 discusses policy implications and limitations, and Section~9 concludes.
+
+\section{Literature Review}
+
+\subsection{Cross-Border Shopping and Tax Avoidance}
+
+A long tradition in public economics studies how consumers respond to geographic differences in taxation or
+regulation by shopping across a nearby border. \citet{Lovenheim2008} shows that a substantial share of
+cigarette consumers in high-tax states purchase cigarettes in nearby lower-tax jurisdictions, and that
+demand elasticities with respect to a consumer's home-state price vary systematically with distance to the
+nearest lower-price border -- between roughly 13 and 25 percent of consumers in his sample purchase
+cigarettes outside their home state. This literature establishes two ideas this paper builds on directly:
+first, that the relevant \emph{price} or \emph{legal} differential a consumer faces is defined relative to
+the nearest more permissive jurisdiction, not simply their state of residence; and second, that the
+intensity of cross-border activity should fall off with distance from the border. [INSERT ADDITIONAL
+CROSS-BORDER TAX AVOIDANCE CITATIONS AS APPROPRIATE, E.G. ON ALCOHOL OR GASOLINE TAX BORDER EFFECTS --
+CITATION TO VERIFY.]
+
+\subsection{Recreational-Marijuana Legalization and Spillovers}
+
+\citet{HansenMillerWeber2020} provide the most direct existing evidence that consumers cross state borders
+specifically to purchase cannabis. Using the near-universe of Washington State's legal cannabis
+transactions and the October 2015 opening of Oregon's own recreational retail market as a natural
+experiment, they show that Washington retailers near the Oregon border lost a substantial share of their
+sales once Oregon consumers no longer needed to cross the border, and that this cross-border diversion cost
+Washington millions of dollars in foregone tax revenue. Their design isolates a single border and a single
+policy transition -- the opening of Oregon's market -- and shows convincingly that cross-border cannabis
+commerce is real and economically meaningful.
+
+\citet{HaoCowan2020} take a complementary approach, comparing marijuana-related arrests in counties that
+directly border a legal state against counties located farther inside neighboring nonlegal states. Their
+outcome variable, arrests, captures a different margin of the same underlying phenomenon: rather than
+measuring how much legal revenue border proximity generates on the legal side, they measure how legal
+availability nearby affects enforcement outcomes on the nonlegal side. Together, \citet{HansenMillerWeber2020}
+and \citet{HaoCowan2020} establish that legal-nonlegal cannabis policy borders generate real behavioral
+responses on both sides. [INSERT ADDITIONAL SPILLOVER CITATIONS ON CRIME, TRAFFIC SAFETY, OR YOUTH USE AS
+APPROPRIATE -- CITATION TO VERIFY.]
+
+This paper's contribution relative to this pair of studies is not to show that cross-border cannabis
+demand exists -- that is already established -- but to examine whether it is systematically reflected in
+dispensary revenue across many legal-nonlegal borders simultaneously, and whether the size of that revenue
+response scales with a continuous measure of the nonlegal-side population exposed to it, rather than being
+documented at a single border around a single legalization event.
+
+\subsection{Cannabis Retail Markets, Licensing, Entry, and Market Power}
+
+A separate strand of work studies the structure of legal cannabis retail markets themselves.
+\citet{HollenbeckUetake2021} show that Washington State's restrictive licensing regime, which caps the
+number of retail licenses available, produced substantial market power among incumbent retailers, with
+consequences for how tax incidence and pricing respond to policy changes. This work is directly relevant to
+interpreting a revenue-per-dispensary outcome: if the number of licensed dispensaries in a market is capped
+by regulation rather than determined by free entry, then a shock to local demand -- such as demand drawn in
+from a nearby nonlegal state -- need not translate into more dispensaries opening. Instead, it can appear
+entirely as higher revenue per existing dispensary, which is the outcome this paper studies. The classical
+economic logic connecting market size, demand, and the number of firms a market can support in equilibrium
+is developed in \citet{BresnahanReiss1991}, whose framework for analyzing entry in concentrated markets
+underlies the distinction this paper draws between the number of active dispensaries and revenue per
+dispensary as separate margins of market response. Washington's dispensary licenses were themselves
+allocated through a lottery in oversubscribed jurisdictions
+\citep{WSLCB2014LotteryPR,DongTyndall2024,ThomasTian2021}, and Illinois, Massachusetts, and Ohio each impose
+their own distinct entry frictions -- merit-based scoring with a lottery for tied applicants
+\citep{IDFPRAdultUseCannabis}, a locally negotiated host community agreement \citep{MACCCLicensing}, and a
+staged conversion of existing medical dispensaries followed by a separate capped round for new entrants
+\citep{OhioDCCFAQ}, respectively -- discussed further in Section~\ref{sec:data}.
+
+\subsection{Sequential Entry and the Economics of the Second Entrant}
+\label{sec:lit_sequential}
+
+A separate empirical result in this paper concerns how quickly a second dispensary follows the first in a
+given county, rather than the level of revenue an existing dispensary earns. This connects to a distinct,
+older strand of the entry literature, which we summarize briefly here and treat at greater length in
+Appendix~\ref{app:literature}. \citet{BresnahanReiss1990} and \citet{BresnahanReiss1991} establish, using
+market-size thresholds across several concentrated retail and professional industries, that competitive
+conduct changes most sharply with the arrival of a market's second or third firm, and that additional entry
+beyond that point has little further effect -- a market-size, cross-sectional version of the same basic
+idea our timing result speaks to. \citet{Berry1992}, \citet{Mazzeo2002}, and \citet{Seim2006} extend this
+tradition to settings with firm heterogeneity and endogenous product-type choice. \citet{ToivanenWaterson2005}
+is the closest dynamic analogue: using a fast-food duopoly panel, they show a rival's existing presence is a
+strong predictor of a chain's own subsequent entry decision. \citet{IgamiYang2016} model sequential,
+preemption-motivated multi-store entry directly. None of this literature has, to our knowledge, been applied
+to cannabis dispensary markets, and none of it isolates a distinctively \emph{second}-entrant effect using a
+timing or hazard-based design of the kind we use in Section~\ref{sec:entry_hazard}; our contribution here is
+best described as applying a known regularity from the general entry literature, using a different empirical
+method, to a new and highly regulated retail setting, rather than as identifying a new mechanism.
+
+\subsection{Alcohol and Other Possible Substitute Goods}
+
+Because cannabis legalization can affect the demand for related goods, cannabis-specific claims require
+some caution when a comparison sector is itself plausibly affected by cannabis policy. \citet{BaggioChongKwon2020}
+use retail scanner data on alcohol purchases across U.S. counties and a border-pair design to show that
+counties in states with medical marijuana laws reduced monthly alcohol sales relative to nearby counties in
+states without such laws, consistent with cannabis and alcohol acting as substitutes in at least some
+contexts. This finding has a direct methodological implication for this paper: alcohol retail is not a
+clean placebo sector for a cannabis border-revenue test, because marijuana-policy differences across a
+border could independently raise or lower alcohol revenue through substitution or complementarity, rather
+than leaving it unaffected. We include alcohol among the comparison sectors reported in the results because
+it is informative and because it appears in related work, but we treat any alcohol-sector placebo result
+with more caution than results from sectors -- such as general retail trade unrelated to cannabis or
+alcohol -- that are not plausibly affected by marijuana policy through a demand-substitution channel. [INSERT
+ADDITIONAL CITATIONS ON CANNABIS-ALCOHOL OR CANNABIS-TOBACCO SUBSTITUTION AS APPROPRIATE -- CITATION TO
+VERIFY.]
+
+\section{Conceptual Framework}
+
+We motivate the empirical analysis with a simple, informal framework linking a dispensary's revenue to the
+demand it can draw from both sides of a nearby state border and to the supply-side constraints it operates
+under. Consider a county $i$ in a legal-market state, located a distance $d_i$ from the nearest county in a
+neighboring state where recreational cannabis remains prohibited. Residents of that nonlegal-side county
+face a binary choice: forgo legal recreational cannabis, obtain it illegally, or travel to a nearby legal
+dispensary. The number of residents for whom the last option is attractive depends on the size of the
+nonlegal-side population within a feasible travel radius, denoted $P_i$, and on the travel cost of reaching
+county $i$'s dispensaries, which rises with distance $d_i$ and with any adjustment for road access or
+travel time rather than straight-line distance alone. It also depends on legal access: only adults who meet
+the minimum purchase age and can present valid identification may buy legally, so $P_i$ should in principle
+be measured as the eligible adult population rather than total population, to the extent that data allow
+this distinction.
+
+The demand a county $i$'s dispensaries can draw from the nonlegal side, $D_i$, is therefore increasing in
+$P_i$ and decreasing in $d_i$ and in the travel cost associated with $d_i$:
+\begin{equation}
+D_i = D(P_i, d_i), \qquad \frac{\partial D_i}{\partial P_i} > 0, \qquad \frac{\partial D_i}{\partial d_i} < 0.
+\end{equation}
+This additional demand is added to whatever local, in-state demand county $i$'s dispensaries already serve.
+Total realized demand is met by $N_i$ active dispensaries in county $i$. If $N_i$ adjusts freely to meet
+demand -- as in a standard model of entry where the number of firms a market supports rises with market
+size, following the entry-and-market-size logic in \citet{BresnahanReiss1991} -- then a larger $D_i$ should
+appear partly or wholly as more dispensaries rather than as higher revenue per dispensary. But where entry
+is constrained by state or local licensing rules, occupancy or zoning restrictions, or outright local bans,
+as documented for at least one major legal-cannabis state by \citet{HollenbeckUetake2021}, $N_i$ cannot
+adjust freely. In that case, additional cross-border demand should appear as higher revenue per existing
+dispensary, $R_i / N_i$, rather than as a larger $N_i$:
+\begin{equation}
+\frac{R_i}{N_i} = f\big(D_i(P_i, d_i),\ \text{local demand}_i,\ N_i\big), \qquad
+\frac{\partial (R_i/N_i)}{\partial P_i} > 0 \ \text{when } N_i \text{ is supply-constrained}.
+\end{equation}
+This framework yields three testable implications that map directly onto the empirical strategy below.
+First, revenue per dispensary should be higher in counties closer to a nonlegal border, holding local
+demand fixed, because $d_i$ is smaller. Second, this border-proximity effect should be stronger where the
+nonlegal-side population $P_i$ is larger, producing an interaction, or dose-response, pattern between
+distance and nonlegal-side population. Third, because the mechanism is specific to cannabis policy rather
+than a general feature of economic activity near state lines, an analogous specification applied to
+non-cannabis retail sectors -- for which no comparable legal discontinuity exists at the same border --
+should not show the same pattern, providing a placebo test of the interpretation. The framework also makes
+clear why the number of active dispensaries, entry and exit, and total county-level cannabis revenue are
+each informative complementary outcomes: they help distinguish whether an observed border effect operates
+through supply-constrained pricing, through the extensive margin of dispensary entry, or through some
+combination of the two, which is why Section~6 and Section~7 report results for each of these outcomes
+alongside the primary revenue-per-dispensary measure.
+
+\subsection{Entry Timing and the Second Dispensary}
+\label{sec:model_timing}
+
+The framework above is static: it describes the demand a county can support once its dispensary sector has
+settled at $N_i$ stores, but it is silent on \emph{when} a county reaches a given $N_i$. Section~\ref{sec:entry_hazard}
+reports a result the static framework alone cannot speak to: distance to a nonlegal border predicts how
+quickly a county's \emph{second} dispensary follows its first, but not how quickly the first dispensary
+follows a state's own retail launch, and the effect fades by the third and fourth entrant. We extend the
+framework with a minimal timing dimension to make sense of this pattern, following the spirit of sequential
+entry-under-uncertainty models such as \citet{PrescottVisscher1977}.
+
+A regulatory or capital-raising delay $F_i$ -- licensing review, local approval, buildout -- must be cleared
+before any dispensary can open, and we treat this delay as largely orthogonal to a county's realized demand:
+a prospective entrant must clear the same administrative queue whether or not the county turns out to have
+much captive cross-border demand. This is consistent with Table~\ref{tab:entry_hazard_by_rank}'s finding
+that a county's own retail-launch-to-first-dispensary time shows no relationship with $d_i$. What a first
+mover's entry \emph{does} do, once open, is publicly reveal information about realized demand -- sales
+volume, wait times, local press coverage -- that was not observable beforehand. Local population $P_i$ is
+known in advance from public data and does not need to be revealed; whether nonlegal-side residents actually
+cross the border in practice is the part of demand that is genuinely uncertain ex ante. A potential second
+entrant, deciding whether to enter after observing the first store's success, therefore places more weight
+on the border-proximity channel specifically than the first entrant's ex ante decision could, because the
+first entrant had to price that uncertainty at its average value across otherwise similar counties, while
+the second entrant can condition on a realized signal. This generates the central asymmetry in
+Table~\ref{tab:entry_hazard_by_rank}: distance should matter more for the second entrant's timing than the
+first's. As a county's dispensary count approaches whatever level its now-revealed demand $D_i$ supports,
+further entry is governed by ordinary population growth rather than the one-time resolution of uncertainty
+about cross-border demand, which is consistent with the effect fading by the third and fourth entrant.
+
+This account also offers one candidate explanation, though not the only plausible one, for why
+Table~\ref{tab:entry_hazard_mechanism} finds that the \emph{size} of the nonlegal-side population does not
+predict second-entrant timing once a county is within reach of some nonlegal border, while proximity itself
+does: if crossing the border to shop is a discrete decision governed by a travel-cost threshold rather than
+a continuously demand-elastic one, a second entrant may only need to learn \emph{whether} meaningful
+cross-border traffic exists at all, not precisely how large the population behind it is, for a given county
+to look profitable. An equally plausible alternative is that entrants use border proximity as a coarse
+heuristic rather than a calibrated demand estimate. Our data cannot distinguish between these two
+microfoundations, and we do not take a stand on which is correct; both predict the same qualitative pattern
+we observe; and we note explicitly that Table~\ref{tab:entry_threshold} does not corroborate a further
+implication one might expect from the demand-supplement story -- that border counties should also reach the
+second-store population threshold sooner in levels, not just faster in time -- which we discuss as a real
+limitation in Section~\ref{sec:results} rather than set aside.
+
+Formally, let $\hat{S}_i$ denote the market size a second entrant infers after observing the first
+dispensary's revealed performance, updated from a common prior $S_i^0$ using a signal that is more
+informative about the border-demand component the closer $i$ is to a nonlegal county:
+\begin{equation}
+\hat{S}_i = S_i^0 + \lambda(d_i) \cdot \varepsilon_i, \qquad \lambda'(d_i) < 0,
+\end{equation}
+where $\varepsilon_i$ is the revealed surprise in realized demand and $\lambda(d_i)$ is the weight placed on
+that surprise, decreasing in distance because a nearby nonlegal border is the main source of demand
+uncertainty the first entrant resolves. The second entrant opens once $\pi_2(\hat{S}_i) \geq F$. This
+delivers five comparative statics, the first four of which match Tables~\ref{tab:entry_hazard_by_rank}
+through \ref{tab:entry_threshold} and the fifth of which they do not:
+\begin{enumerate}
+  \item First-entry timing does not depend systematically on $d_i$, because $F_i$ dominates and $\hat{S}_i$
+        has not yet been revealed to anyone.
+  \item Second-entry timing is decreasing in $d_i$, because $\lambda(d_i)$ is decreasing in $d_i$.
+  \item If $\lambda(d_i)$ falls off sharply beyond some reach $\bar{d}$ (a travel-cost threshold) rather than
+        smoothly with the exact size of the population behind it, second-entry timing should respond to
+        proximity more than to population size conditional on being within reach.
+  \item The effect should fade by the third and fourth entrant as $N_i$ approaches its now-revealed,
+        fundamentals-implied level.
+  \item \emph{(Not supported by our data.)} If cross-border demand genuinely raises a county's effective
+        market size, border counties should also reach the population level needed to support a second
+        store sooner than interior counties, in the same way they already do for the first store. We do not
+        find this pattern (Table~\ref{tab:entry_threshold}) and report it as an open anomaly rather than
+        omit it.
+\end{enumerate}
+
+\section{Data}
+\label{sec:data}
+
+[THIS SECTION IS A TEMPLATE. EVERY BRACKETED ITEM MUST BE REPLACED WITH THE ACTUAL DATA DESCRIPTION BEFORE
+SUBMISSION.]
+
+\subsection{Data Sources}
+The primary outcome data come from [INSERT DATA SOURCE(S), E.G. STATE DEPARTMENT OF REVENUE OR CANNABIS
+CONTROL AGENCY ADMINISTRATIVE RECORDS, BY STATE]. Dispensary license and location data come from [INSERT
+DATA SOURCE(S), E.G. STATE LICENSING REGISTRIES, GEOCODED TO COUNTY OR CENSUS TRACT]. Population data come
+from [INSERT SOURCE, E.G. U.S. CENSUS BUREAU POPULATION ESTIMATES]. Comparison-sector (placebo) revenue
+data come from [INSERT SOURCE, E.G. STATE DEPARTMENT OF REVENUE RETAIL SALES-TAX FILINGS BY INDUSTRY AND
+COUNTY].
+
+\subsection{Sample Period and Coverage}
+The sample covers [INSERT YEARS COVERED] and includes counties in [INSERT LIST OF STATES INCLUDED, WITH
+RETAIL-LEGALIZATION DATES]. States are included if [INSERT INCLUSION CRITERION, E.G. COUNTY-LEVEL REVENUE
+DATA WERE OBTAINABLE FROM THE STATE REGULATOR]. [INSERT ANY STATES CONSIDERED BUT EXCLUDED FOR DATA
+AVAILABILITY REASONS, AND WHY.]
+
+\subsection{Institutional Background: Licensing Regimes in the Entry-Timing Sample}
+\label{sec:institutions}
+
+The entry-timing analysis in Section~\ref{sec:entry_hazard} uses a broader, nine-state sample (California,
+Colorado, Illinois, Massachusetts, Maine, New York, Ohio, Oregon, and Washington) than the two-state
+revenue-per-store analysis, and the states doing most of the statistical work for that result -- Illinois,
+Massachusetts, and Ohio -- have licensing regimes distinct from Colorado and Washington's. We summarize the
+features relevant to entry timing and sequencing here, deferring general institutional history to
+Appendix~\ref{app:literature}.
+
+\textbf{Washington} capped the statewide number of retail licenses at 334 from the outset and allocated them
+by lottery in any jurisdiction where applications exceeded the local quota \citep{WSLCB2014LotteryPR}, a
+design also used as a source of exogenous variation in \citet{DongTyndall2024} and \citet{ThomasTian2021}.
+Because many of a jurisdiction's licenses could be drawn in the same lottery round, a county's first and
+second dispensaries need not have opened sequentially in response to observed demand; they may instead have
+opened close together because both winners cleared the same administrative step at the same time. This is a
+plausible reason Washington shows no second-entrant timing effect in Table~\ref{tab:entry_hazard_mechanism}
+even though its licensing system otherwise resembles the capped regimes that do show the effect.
+
+\textbf{Colorado} imposes no statewide numerical cap; Amendment 64 instead gives local governments full
+authority to prohibit retail marijuana outright or to regulate its number, place, and manner, and a majority
+of Colorado municipalities have exercised this option to ban it entirely. Where permitted, entry is a more
+continuous, decentralized process without a single statewide allocation event.
+
+\textbf{Illinois} initially awarded 75 adult-use dispensary licenses using a merit-based points system (up to
+250 points, including social-equity bonus points), with ties among the highest scorers broken by lottery; a
+further 110 licenses were awarded through two additional lotteries restricted to social-equity applicants
+\citep{IDFPRAdultUseCannabis}.
+
+\textbf{Massachusetts} requires every applicant to negotiate and sign a Host Community Agreement with its
+municipality, in addition to state licensing and local zoning approval \citep{MACCCLicensing} -- a
+bilateral, locally negotiated step with no fixed timeline, which could plausibly resolve faster for a second
+applicant once a municipality has already negotiated one such agreement.
+
+\textbf{Ohio} legalized adult-use retail in November 2023 (Issue 2) and initially converted each existing
+medical dispensary directly into an adult-use licensee, with dispensaries not commonly owned by a cultivator
+or processor receiving an additional license; a separate, capped round of up to 50 new adult-use dispensary
+licenses for applicants without an existing medical license followed later \citep{OhioDCCFAQ}.
+
+These institutional differences mean the pooled entry-timing sample combines counties whose first and
+second entrants arose from at least four qualitatively different administrative processes -- a statewide
+lottery, a fully decentralized local-option system, a merit-score-plus-lottery system, and a medical-to-
+adult-use conversion followed by a separate capped round. We are not able to fully separate which of these
+regimes' features drive the pooled result beyond the state-by-state breakdown already reported in
+Table~\ref{tab:entry_hazard_mechanism}, and we flag this as a genuine limitation on causal interpretation in
+Section~\ref{sec:results}.
+
+\subsection{Geographic Unit}
+The unit of observation is [INSERT GEOGRAPHIC UNIT, E.G. COUNTY-YEAR OR COUNTY-QUARTER]. [INSERT NUMBER OF
+COUNTIES AND TOTAL OBSERVATIONS IN THE FINAL SAMPLE.]
+
+\subsection{Revenue Definition}
+The primary outcome is log revenue per active dispensary, defined as [INSERT PRECISE DEFINITION: TOTAL
+REPORTED TAXABLE OR GROSS CANNABIS SALES IN A COUNTY-PERIOD, DIVIDED BY THE NUMBER OF ACTIVE DISPENSARIES IN
+THAT COUNTY-PERIOD]. We refer to this measure as revenue per dispensary, not profit, throughout the paper,
+because the underlying administrative data do not include dispensary operating costs, rents, wages, or
+other expenses. [INSERT WHETHER MEDICAL AND RECREATIONAL SALES ARE COMBINED OR REPORTED SEPARATELY, AND
+WHICH IS USED AS THE PRIMARY OUTCOME.]
+
+\subsection{Definition of an Active Dispensary}
+A dispensary is classified as active in a given period if [INSERT DEFINITION, E.G. ITS LICENSE STATUS
+INDICATES OPEN/OPERATING AS OF THAT PERIOD'S REPORTING CUTOFF, OR IT REPORTS NONZERO SALES]. County-periods
+with zero active dispensaries are dropped from the revenue-per-dispensary sample, since the outcome is
+undefined; [INSERT NUMBER OF OBSERVATIONS DROPPED FOR THIS REASON].
+
+\subsection{Distance Measure}
+The primary distance measure is [INSERT DEFINITION, E.G. STRAIGHT-LINE (GREAT-CIRCLE) DISTANCE FROM THE
+COUNTY POPULATION CENTROID, OR FROM EACH DISPENSARY'S GEOCODED LOCATION, TO THE NEAREST COUNTY IN A STATE
+WITHOUT AN OPERATING RECREATIONAL RETAIL MARKET]. [STATE WHETHER A DRIVING-TIME OR ROAD-NETWORK DISTANCE
+MEASURE IS ALSO CONSTRUCTED, AND IF SO, ITS SOURCE, E.G. A ROUTING API OR NETWORK-DISTANCE SOFTWARE.] The
+main specification uses a border threshold of [INSERT THRESHOLD, E.G. A NUMBER OF MILES], with robustness
+checks at alternative thresholds reported in Section~7.
+
+\subsection{Population-Exposure Measure}
+The nearby nonlegal-side population measure is constructed as [INSERT DEFINITION, E.G. THE SUM OF POPULATION
+IN ALL NONLEGAL-STATE COUNTIES WITHIN A GIVEN RADIUS OF EACH LEGAL-STATE COUNTY OR DISPENSARY, USING A
+RADIUS QUERY AGAINST COUNTY POPULATION CENTROIDS]. [INSERT WHETHER THIS IS RESTRICTED TO THE ADULT
+POPULATION OF LEGAL PURCHASE AGE, AND THE RADIUS OR RADII USED.]
+
+\subsection{Comparison-Sector (Placebo) Data}
+Comparison-sector revenue data cover [INSERT SECTORS INCLUDED, E.G. GENERAL RETAIL TRADE, GROCERY,
+RESTAURANTS, AND ALCOHOL RETAIL], drawn from [INSERT SOURCE] at the same geographic and time granularity as
+the cannabis revenue data, where available. [INSERT ANY COVERAGE LIMITATIONS, E.G. DISCLOSURE SUPPRESSION
+FOR SMALL COUNTIES OR INDUSTRIES.] As discussed in Section~2.4, alcohol retail is included but interpreted
+cautiously given evidence that cannabis and alcohol demand may not be independent
+\citep{BaggioChongKwon2020}; sectors with no plausible direct link to cannabis policy provide the primary
+placebo evidence.
+
+\subsection{Summary Statistics}
+[INSERT SUMMARY STATISTICS TABLE: NUMBER OF COUNTIES, NUMBER OF STATES, NUMBER OF BORDER VS. INTERIOR
+COUNTIES AT THE MAIN THRESHOLD, MEAN AND STANDARD DEVIATION OF REVENUE PER DISPENSARY, NUMBER OF ACTIVE
+DISPENSARIES, DISTANCE TO NEAREST NONLEGAL BORDER, AND NONLEGAL-SIDE POPULATION EXPOSURE.]
+
+\section{Empirical Strategy}
+\label{sec:empirical}
+
+\subsection{Main Border-Proximity Specification}
+The main specification relates log revenue per active dispensary in county $i$, state $s$, period $t$ to
+that county's proximity to the nearest nonlegal-state border:
+\begin{equation}
+\ln\left(\frac{\text{Revenue}_{ist}}{\text{Dispensaries}_{ist}}\right) =
+\alpha + \beta_1\, \text{Border}_i + \beta_2\, \ln(\text{Population}_{ist}) + X_{ist}'\gamma +
+\theta_t + \delta_s + \varepsilon_{ist},
+\end{equation}
+where $\text{Border}_i$ is either a binary indicator equal to one if county $i$ is within [INSERT THRESHOLD]
+of a nonlegal-state border, or the continuous log distance to that border (with sign reversed for
+interpretation, or entered so that a negative coefficient indicates revenue rising as distance falls,
+consistent with the framework in Section~3); $X_{ist}$ is a vector of time-varying county controls [INSERT
+CONTROLS, E.G. LOG LAND AREA, URBANICITY, MEDIAN INCOME, LOCAL TAX RATE, YEARS SINCE THE COUNTY'S OWN STATE
+LEGALIZED RETAIL SALES]; $\theta_t$ are period fixed effects; and $\delta_s$ are state fixed effects, which
+absorb any systematic differences in cannabis policy, taxation, or market conditions across states that are
+unrelated to border proximity. Because border status is a fixed geographic attribute of a county, $\beta_1$
+is identified from the cross-sectional and within-state contrast between border and interior counties,
+conditional on the controls, not from counties switching status over time.
+
+\subsection{Dose-Response Specification}
+To test whether the border-proximity relationship strengthens with the size of the nearby nonlegal-side
+population, we augment the main specification with the population-exposure measure and its interaction with
+border proximity:
+\begin{equation}
+\ln\left(\frac{\text{Revenue}_{ist}}{\text{Dispensaries}_{ist}}\right) =
+\alpha + \beta_1\, \text{Border}_i + \beta_2\, \ln(\text{NonlegalPop}_i) +
+\beta_3\, \big(\text{Border}_i \times \ln(\text{NonlegalPop}_i)\big) +
+X_{ist}'\gamma + \theta_t + \delta_s + \varepsilon_{ist}.
+\end{equation}
+A positive $\beta_3$ (or, in the fully continuous version described next, a positive coefficient on the
+interaction between log distance and log nonlegal-side population with the appropriate sign convention)
+would indicate that the revenue premium associated with border proximity is larger where more people live
+on the nonlegal side within reach, consistent with a larger potential cross-border consumer market. We also
+estimate a fully continuous version, replacing the binary border indicator with log distance to the nearest
+nonlegal border interacted with log nonlegal-side population, to characterize the dose-response relationship
+without relying on a single distance threshold:
+\begin{equation}
+\ln\left(\frac{\text{Revenue}_{ist}}{\text{Dispensaries}_{ist}}\right) =
+\alpha + \beta_1\, \ln(d_i) + \beta_2\, \ln(\text{NonlegalPop}_i) +
+\beta_3\, \big(\ln(d_i) \times \ln(\text{NonlegalPop}_i)\big) + X_{ist}'\gamma + \theta_t + \delta_s +
+\varepsilon_{ist}.
+\end{equation}
+This interpretation is offered as mechanism evidence consistent with a cross-border demand channel, not as
+an independent causal test of that channel on its own: a positive interaction is consistent with the
+demand-exposure story in Section~3, but confirming it directly would require information on where
+dispensary customers actually reside, which the revenue data used here do not provide.
+
+\subsection{Placebo-Sector Specifications}
+To assess whether an estimated border-proximity effect is specific to cannabis, we re-estimate the main and
+dose-response specifications with the cannabis revenue-per-dispensary outcome replaced by the analogous
+outcome for each comparison sector $k$:
+\begin{equation}
+\ln\left(\frac{\text{Revenue}^k_{ist}}{\text{Establishments}^k_{ist}}\right) =
+\alpha + \beta_1\, \text{Border}_i + \beta_2\, \ln(\text{Population}_{ist}) + X_{ist}'\gamma +
+\theta_t + \delta_s + \varepsilon_{ist},
+\end{equation}
+for sectors $k \in \{$general retail, [INSERT ADDITIONAL SECTORS], alcohol$\}$. Because marijuana
+legalization may itself affect alcohol demand through substitution or complementarity
+\citep{BaggioChongKwon2020}, we treat any alcohol-sector result as a secondary check and give primary
+placebo weight to sectors with no plausible direct connection to cannabis policy. A precise, insignificant
+$\beta_1$ in those sectors, alongside a positive and significant $\beta_1$ for cannabis, is the pattern
+consistent with a cannabis-specific rather than a general border-commerce interpretation.
+
+\subsection{Event-Study and Difference-in-Differences Extension}
+\label{sec:eventstudy_diD}
+Two such policy-timing events exist in the underlying county-revenue panel and are usable here. First,
+\citet{HansenMillerWeber2020}'s own setting: Oregon opened its retail market on October 1, 2015, more than
+a year after Washington's July 2014 launch, so Washington counties bordering Oregon held a temporary
+captive-demand advantage that should have switched off at that date. Second, a policy-timing event
+\citeauthor{HansenMillerWeber2020} did not study: New Mexico opened its own retail market on April 1, 2022,
+which should erode the advantage of Colorado counties bordering New Mexico relative to Colorado's interior
+and relative to Colorado counties that still border a permanently nonlegal state (Utah, Wyoming, Oklahoma,
+Nebraska, Kansas). We estimate
+\begin{equation}
+\ln\left(\frac{\text{Revenue}_{ist}}{\text{Dispensaries}_{ist}}\right) =
+\alpha + \beta\, \big(\text{Border}_i \times \text{Post}_t\big) +
+X_{ist}'\gamma + \theta_t + \varepsilon_{ist},
+\end{equation}
+where $\text{Border}_i$ is the relevant neighbor-specific border indicator (Oregon or New Mexico, at the
+paper's 70-mile threshold) and $\text{Post}_t$ indicates the period after the neighboring state's own
+retail market opened, and separately estimate the full event-time coefficient path
+$\sum_{k\neq -1}\beta_k(\text{Border}_i\times\mathbb{1}[\text{event time}=k])$ omitting the year immediately
+before the event as the reference category.
+
+The two settings diverge. The Colorado-New Mexico extension works cleanly: with the transition year (2022)
+dropped, revenue per store in New Mexico-border counties falls 38.6 percent relative to Colorado's interior
+after New Mexico opens ($p=0.0001$, county-clustered), and the event-time path is positive and often
+significant throughout the eight available pre-years, then declines monotonically from the event year
+onward to a precise near-zero by three years after. This magnitude is close to
+\citeauthor{HansenMillerWeber2020}'s own 36 percent estimate for an entirely different border and
+neighboring-state legalization. The Washington-Oregon replication does not confirm this pattern in our own
+county-revenue construction: Washington's revenue data are annual (fiscal year, July-June) rather than
+\citeauthor{HansenMillerWeber2020}'s monthly administrative records, so fiscal year 2016 straddles the
+October 2015 opening and is a genuine transition period rather than a clean post period; even so, the
+Oregon-border coefficient is wrong-signed (positive rather than negative) and statistically indistinguishable
+from zero in both the including- and excluding-transition-year specifications ($p\approx0.52$-$0.53$,
+county-clustered), climbing steadily across the following decade rather than dropping at the 2015 switch.
+This does not survive excluding Washington's two largest, most populous Oregon-border counties (Clark and
+Thurston), so it is not a single-county artifact; we read it as a limitation of annual, current-dispensary-
+count data relative to \citeauthor{HansenMillerWeber2020}'s monthly, store-level records, not as evidence
+against their finding, which they establish directly. [INSERT FINAL TABLE NUMBER FOR THE COMBINED
+EVENT-STUDY SUMMARY (see \texttt{tables/co\_nm\_eventstudy\_vs\_interior.csv},
+\texttt{tables/co\_nm\_eventstudy\_vs\_otherborder.csv}, \texttt{tables/co\_nm\_did\_summary.csv},
+\texttt{tables/wa\_or\_did\_summary.csv}, and \texttt{tables/wa\_or\_eventstudy\_path.csv} in this draft's
+own \texttt{tables/} folder, and \texttt{figures/fig\_co\_nm\_eventstudy.png} /
+\texttt{figures/fig\_wa\_or\_eventstudy.png} for the event-time plots) ONCE THIS SECTION IS INTEGRATED WITH
+THE REST OF THE DRAFT'S TABLE NUMBERING.]
+
+\subsection{Inference}
+Standard errors are clustered at [INSERT CLUSTERING LEVEL, E.G. THE STATE LEVEL, THE BORDER-PAIR LEVEL, OR
+THE COUNTY LEVEL], reflecting the level at which the underlying policy variation -- a state's own
+legalization status -- is assigned. [INSERT ROBUSTNESS TO ALTERNATIVE CLUSTERING LEVELS, AND NOTE
+EXPLICITLY IF THE NUMBER OF CLUSTERS AT ANY LEVEL IS SMALL ENOUGH TO WARRANT A WILD BOOTSTRAP OR OTHER
+SMALL-CLUSTER CORRECTION.]
+
+\subsection{Identifying Assumptions and Threats to Validity}
+The main specification is a cross-sectional or panel comparison of border and interior counties within the
+same states, not a design with a clean treatment-timing switch, since border status is a fixed geographic
+attribute. This has several implications for interpretation. First, border and interior counties may differ
+systematically in population density, income, urbanization, tourism activity, road access, retail activity
+more broadly, local tax rates, and enforcement intensity, independent of cannabis policy; state and period
+fixed effects and the control variables in $X_{ist}$ are intended to absorb the most important of these
+differences, but omitted variation at the county level cannot be fully ruled out without a design that
+exploits a change over time. Second, dispensaries may locate deliberately near large cities, highways,
+tourist destinations, or state borders for reasons unrelated to prohibition-driven demand, which could
+generate a spurious correlation between border proximity and revenue if location choice itself responds to
+factors correlated with distance to the border; we address this partly through the placebo-sector tests,
+which would be expected to show a similar pattern if generic locational advantages, rather than
+cannabis-specific demand, were driving the result. Third, revenue per dispensary conflates a genuine demand
+response with any effect of licensing restrictions on the number of dispensaries; Section~6 and Section~7
+therefore also report results for total county revenue and for the number of active dispensaries, to
+clarify which margin is responding. Given these considerations, we describe the main estimates as evidence
+that border proximity and nonlegal-side population exposure are associated with higher dispensary revenue,
+and as consistent with a cross-border demand interpretation, rather than as strictly causal estimates,
+except where the event-study extension in Section~5.4 supports a stronger causal reading around a specific
+policy-timing event.
+
+\section{Results}
+\label{sec:results}
+
+[THIS SECTION REPORTS ONLY THE QUALITATIVE PATTERN OF THE AUTHORS' FINDINGS AS SUPPLIED. NO COEFFICIENT,
+STANDARD ERROR, SAMPLE SIZE, OR $P$-VALUE IN THIS SECTION IS A REAL REPORTED NUMBER; EVERY BRACKETED ITEM
+MUST BE FILLED IN FROM THE ACTUAL ESTIMATES BEFORE SUBMISSION.]
+
+\subsection{Border Proximity and Revenue per Dispensary}
+Table~\ref{tab:revenue_perstore_border70} reports estimates of the main border-proximity specification, for
+the two states with a usable county-year revenue panel and geocoded dispensary counts, Colorado and
+Washington (71 counties, $n=706$ county-years with at least one open store). Counties within 70 miles of a
+nonlegal-state border have significantly higher log revenue per active dispensary than interior counties of
+the same two states: $\hat\beta_1=+0.502$ (HC1 $p=0.031$) with no controls, falling only modestly to
+$+0.395$ (county-clustered $p=0.015$) once log(population), year fixed effects, and state fixed effects are
+added -- the relationship is robust to that full control sequence, not an artifact of population or common
+time trends. In percentage terms this is a roughly 48 percent revenue-per-store premium in border counties.
+The result is not driven by a single county: excluding Sedgwick County, Colorado (a small, heavily-touristed
+county on the Nebraska border that is a clear geographic outlier in the sample), the coefficient falls only
+to $+0.302$ and remains significant ($p=0.040$). It also holds within each state separately: Colorado alone
+gives $+0.552$ ($p=0.005$), Washington alone $+0.441$ ($p=0.077$, marginal but directionally consistent).
+For comparison, Table~\ref{tab:revenue_border70} reports the identical border/interior specification applied
+to revenue \emph{per capita} rather than per dispensary -- the population-adjusted analogue of total county
+revenue, since the underlying regulator data report county-aggregate sales rather than a per-transaction
+customer count. That specification is a precise null in every column ($\hat\beta_1=+0.046$, county-clustered
+$p=0.833$ with full controls; $-0.060$, $p=0.763$ excluding Sedgwick), consistent with the framework in
+Section~3: if the number of dispensaries in a county is constrained by state licensing policy rather than
+free to expand with demand, a captive-demand effect should appear as higher revenue at each existing store
+rather than as higher aggregate per-capita revenue or a larger number of stores -- exactly the divergence
+observed between Tables~\ref{tab:revenue_perstore_border70} and \ref{tab:revenue_border70}.
+
+\input{tables/table3_revenue_perstore_border70}
+
+\input{tables/table1_revenue_border70}
+
+\subsubsection{Does the premium hold up, or fade, as a state's legal market matures?}
+A cross-sectional border/interior gap could in principle be a transient feature of a market's earliest,
+least-competitive years rather than a persistent structural feature. Table~\ref{tab:revenue_perstore_eventstudy}
+re-estimates the border-proximity coefficient separately by each state's own market age (years since its
+retail launch), controlling for log(population), state fixed effects, and market-age-year fixed effects.
+Market-age year 0 is too thin to interpret (only 4 border observations, drawn from both states' earliest
+data), but from year 1 onward the coefficient is positive in every single bin -- there is no sign reversal
+at any point in either state's market lifecycle -- and grows from marginal or noisy in years 2--4 to
+significant and rising from $+0.40$ at year 5 to $+0.59$ at year 9 and beyond.
+
+\input{tables/table4_revenue_perstore_eventstudy}
+
+Figure~\ref{fig:perstore_eventstudy}
+plots this coefficient path directly. The premium \emph{strengthens} rather than fades as the market
+matures, which we read as more consistent with a binding, roughly time-invariant supply constraint (a state
+licensing cap that becomes more binding relative to demand as the overall market grows) than with a
+temporary novelty effect that a competitive process would be expected to erode over time.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/fig3_revenue_perstore_eventstudy.png}
+\caption{Revenue per store: border $\times$ market-age event-study coefficients, with 95\% confidence
+intervals (county-clustered standard errors). There is no pre-launch period to plot, since no legal
+cannabis revenue exists before a state's own retail market opens, so the path starts at market-age year 0.}
+\label{fig:perstore_eventstudy}
+\end{figure}
+
+Figure~\ref{fig:perstore_trends} shows the same underlying data a different way, plotting border and
+interior counties' revenue-per-store \emph{levels} separately (rather than only their difference) on the
+same market-age clock. The two groups start close together in a market's first two years, when the whole
+market is still small, and then visibly diverge from year 2 onward, with border counties pulling ahead and
+staying ahead through year 9 and beyond. Because neither state has revenue data from before its own retail
+launch, this figure cannot establish that the two groups were on parallel trajectories \emph{before}
+treatment in the way a true pre-period would; what it shows is that the two groups are not visibly different
+in the earliest available data and diverge only afterward, which is the most this data can offer in place of
+a formal pre-trend test.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/fig4_border_vs_interior_trends_perstore.png}
+\caption{Revenue per store: border and interior counties' levels plotted separately (not as a difference),
+stacked on a common market-age clock. The two groups start together and diverge from year 2 onward.}
+\label{fig:perstore_trends}
+\end{figure}
+
+\subsection{Entry Timing: Did Sellers Race to Capture Border Demand?}
+\label{sec:entry_hazard}
+The revenue results above establish that border demand shows up as higher revenue at existing stores, but
+they are silent on a related behavioral question: did sellers \emph{perceive} the border opportunity and
+act on it by opening faster, or did entry happen on its own schedule with demand sorting itself out
+afterward? This is a different question from the static entry-density/count check discussed in
+Section~\ref{sec:data} (which asks how many dispensaries a county ends up with, and finds no border effect),
+because it uses each dispensary's own opening date to ask about the \emph{speed} of entry rather than the
+eventual count. We estimate Cox proportional-hazards models, stratified by state, over the full nine-state,
+479-county entry-density universe described in Section~\ref{sec:data}, for two outcomes: the time from a
+county's own state's retail launch to its first dispensary opening, and the time from that first dispensary
+to a second one, both right-censored at the data cutoff for counties that have not yet reached the relevant
+milestone.
+
+\input{tables/table16_entry_hazard}
+
+The evidence is mixed, and we think the contrast between the two outcomes is itself informative. There is no
+evidence that border counties get their \emph{first} dispensary faster than interior counties: both the
+binary 70-mile border indicator and the continuous log-distance measure are small and statistically
+indistinguishable from no effect (hazard ratio $1.14$, $p=0.34$; hazard ratio $0.97$, $p=0.80$), consistent
+with the static entry-density null -- sellers do not appear to race to be first into a border county
+specifically. But conditional on a border county already having a first entrant, a \emph{second} dispensary
+follows measurably faster the closer that county is to the nonlegal border: each additional log-mile of
+distance lowers the hazard of a second entrant by roughly 30 percent (hazard ratio $0.70$, $p=0.003$),
+though the corresponding binary measure is directionally consistent but not itself significant (hazard ratio
+$1.26$, $p=0.16$). Figure~\ref{fig:entry_hazard_km} shows this pattern as Kaplan-Meier survival curves: the
+border and interior curves for time to a first dispensary sit close together throughout, while the
+second-dispensary curves visibly separate, with border counties' curve falling faster. We read this as
+evidence that sellers do not treat a border county as an obviously better opportunity from the moment a
+state's market opens -- consistent with the paper's other null entry-timing and entry-density results -- but
+that once a border store reveals real demand, competitors respond to it faster than the same signal would
+draw in an interior county. This is a narrower and more specific version of ``competing for the market''
+than a simple race-to-enter story would predict, and it is direct behavioral evidence for a mechanism that
+the revenue results alone can only imply.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig_entry_hazard_km.png}
+\caption{Kaplan-Meier survival curves, border ($\le$70 miles) vs.\ interior counties, for time to a first
+dispensary opening after a state's own retail launch (left) and time from a first to a second dispensary
+(right), across the nine-state entry-density universe.}
+\label{fig:entry_hazard_km}
+\end{figure}
+
+\subsubsection{Is the effect specific to the second entrant?}
+The single rank-2 coefficient above raises an immediate question: is this something distinctive about a
+market's \emph{second} entrant, or simply a generic ``more competition nearby $\to$ always faster entry''
+pattern that would show up at every rank? We re-estimate the same hazard specification for the gap between
+the second and third entrant, and between the third and fourth, among the subset of counties that reach
+each milestone.
+
+\input{tables/table_entry_hazard_by_rank}
+
+Figure~\ref{fig:hazard_by_rank} plots these four hazard ratios together. The distance effect is significant
+only at rank 2; it is essentially zero at rank 1, weakens and loses significance by rank 3, and is smaller
+still by rank 4. This rules out a simple, monotonic ``agglomeration always speeds up entry'' story and is
+consistent with the entry-threshold literature's general finding that competitive effects concentrate at low
+entrant counts and are exhausted quickly \citep{BresnahanReiss1990,BresnahanReiss1991}, discussed in
+Section~\ref{sec:lit_sequential}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{figures/fig_hazard_by_rank.png}
+\caption{Hazard ratio on log(distance to nonlegal border), by entrant rank, with 95\% confidence intervals.
+A ratio below 1 means faster entry (shorter time-to-event) closer to the border.}
+\label{fig:hazard_by_rank}
+\end{figure}
+
+\subsubsection{Mechanism and placebo tests}
+Two further checks are needed before treating the rank-2 result as evidence of a captive-demand mechanism
+specifically. First, if the effect reflects the \emph{size} of the cross-border demand pool, it should
+strengthen with the nonlegal-side population within reach, not just with raw proximity to the nearest
+nonlegal county -- we construct a captive-population measure for each of the nine-state sample's 479
+counties as the total population of \emph{all} nonlegal-state counties within 70 miles (not merely the
+nearest one), via a radius query against national county population centroids; this is the same
+construction intended for the paper's population-exposure measure (Section~4.7), applied here to the full
+entry-timing sample rather than only Colorado and Washington. Second, if the effect is really about
+\emph{nonlegal} borders and not a generic
+feature of counties near any state line -- through-traffic, tourism, or other agglomeration unrelated to
+cannabis policy -- it should not appear when we replace the nonlegal-border distance with distance to the
+nearest county in \emph{any} other state, regardless of that state's legal status.
+
+\input{tables/table_entry_hazard_mechanism}
+
+The results split cleanly by test. The placebo test supports a nonlegal-border-specific interpretation: the
+generic any-state distance measure is not significant on its own, loses to the nonlegal-border measure in a
+horse race, and among counties whose nearest state-line neighbor happens to be a \emph{legal} state, distance
+to that neighbor has essentially no relationship with second-entrant timing at all. The captive-population
+test does not support a demand-size interpretation: the population-weighted measure is not significant
+alone, is wrong-signed and insignificant when raced against distance, and is completely flat when the sample
+is restricted to border counties only. Taken together, whatever is driving the rank-2 result responds to
+\emph{proximity} to a nonlegal jurisdiction, not to the \emph{size} of the population behind it -- the
+timing analogue of the travel-cost-threshold mechanism discussed in Section~\ref{sec:model_timing}, though
+we cannot rule out that entrants simply use proximity as a coarse heuristic rather than a calibrated demand
+estimate. The state-by-state breakdown in the same table shows that the pooled significance is concentrated
+in Illinois, Massachusetts, and Ohio -- three states with the merit-lottery, host-community-agreement, and
+staged-conversion licensing regimes described in Section~\ref{sec:institutions} -- while Colorado is
+directionally consistent but not significant on its own, and Washington and Oregon show no effect at all.
+This is a real limitation on how broadly the result can be attributed to this paper's core two-state revenue
+sample specifically, and we return to it in Section~\ref{sec:discussion}.
+
+\subsubsection{Does the equilibrium entry threshold move, or only the timing?}
+A further, independent way to test the underlying idea is to ask whether cross-border demand shifts the
+\emph{population} a county needs to support a second dispensary, using the classic entry-threshold approach
+of \citet{BresnahanReiss1990} and \citet{BresnahanReiss1991} rather than a timing model. If a nearby captive
+market genuinely supplements local demand, border counties should reach both the first- and second-store
+population thresholds at a smaller local population than interior counties.
+
+\input{tables/table_entry_threshold}
+
+This prediction holds for the first store but not the second. Border counties do support a lone dispensary
+at a smaller population than interior counties (35,436 versus 44,602), consistent with a demand supplement.
+But the population increase needed to go from one store to two is \emph{larger}, not smaller, in border
+counties (a threshold ratio of 1.67 versus 1.27) -- the opposite of what the demand-supplement story predicts
+for the second-entrant margin specifically, even though that same margin is exactly where the timing effect
+concentrates. We do not have a fully satisfying resolution of this tension and report it as an open question
+rather than suppress it: entry \emph{speed} and the equilibrium entry \emph{threshold} appear to be
+empirically dissociated in this setting, which is a narrower and more cautious conclusion than a clean
+demand-threshold story would offer.
+
+\subsection{Dose-Response in Nonlegal-Side Population Exposure}
+Table~[INSERT TABLE NUMBER] reports the dose-response specification. The interaction between border
+proximity (or continuous distance) and nonlegal-side population exposure is [INSERT SIGN, MAGNITUDE, AND
+SIGNIFICANCE], indicating that the revenue premium in border counties rises as the population living on the
+nonlegal side of the border grows. Figure~[INSERT FIGURE NUMBER] plots this relationship directly, showing
+[INSERT DESCRIPTION, E.G. A BINNED SCATTER OF REVENUE PER DISPENSARY AGAINST NONLEGAL-SIDE POPULATION
+EXPOSURE AMONG BORDER COUNTIES, RESIDUALIZED ON THE SAME CONTROLS AS THE REGRESSION]. This pattern indicates
+that proximity to a nonlegal border alone does not fully explain the estimated revenue premium: dispensaries
+that are both close to the border and accessible to a larger nonlegal-side population earn more per store
+than dispensaries that are close to the border but face a small nonlegal-side population. We interpret this
+result as mechanism evidence consistent with a cross-border demand channel, since a larger nearby
+population represents a larger potential cross-border consumer market conditional on distance, rather than
+as an independent causal confirmation of that channel.
+
+\subsection{Placebo and Falsification Tests}
+Table~[INSERT TABLE NUMBER] reports the placebo-sector results. Applying the same specification to
+non-cannabis retail sectors -- specifically [INSERT SECTORS] -- does not produce a comparable border-
+proximity pattern ($\hat\beta_1 = $ [INSERT ESTIMATE], [INSERT STANDARD ERROR] for [INSERT SECTOR]; [REPEAT
+FOR EACH SECTOR]). This absence of a border effect in unrelated retail sectors is consistent with the
+cannabis result reflecting demand specific to marijuana-policy differences across the border, rather than a
+general tendency for all businesses near state borders to earn more revenue. As discussed in Section~2.4
+and Section~4.8, we report the alcohol-sector placebo result separately and interpret it cautiously
+($\hat\beta_1 = $ [INSERT ESTIMATE], [INSERT STANDARD ERROR]), because marijuana policy could plausibly
+affect alcohol demand directly through substitution or complementarity \citep{BaggioChongKwon2020}; the
+sectors with no plausible direct link to cannabis policy provide the cleaner falsification evidence.
+
+\subsection{Summary of Main Findings}
+Taken together, the results in this section indicate: (i) revenue per active dispensary is higher in legal-
+state counties closer to a nonlegal-state border; (ii) this relationship is stronger where the nearby
+nonlegal-side population is larger, producing a dose-response pattern; (iii) non-cannabis placebo sectors do
+not display a comparable border pattern, with the partial exception of alcohol, which we interpret with
+additional caution. [INSERT ANY ADDITIONAL SUMMARY POINTS ONCE FULL RESULTS ARE AVAILABLE.]
+
+\section{Robustness}
+\label{sec:robustness}
+
+\subsection{Alternative Distance Thresholds and Continuous Distance}
+We re-estimate the main specification using alternative border thresholds of [INSERT ALTERNATIVE
+THRESHOLDS, E.G. A NARROWER AND A WIDER MILEAGE CUTOFF THAN THE MAIN SPECIFICATION] in place of the primary
+threshold, and using the fully continuous log-distance specification described in Section~5.2. [INSERT
+WHETHER THE RESULT IS STABLE ACROSS THRESHOLDS, OR WHETHER IT WEAKENS OR STRENGTHENS AT WIDER OR NARROWER
+CUTOFFS, AND REPORT THE CORRESPONDING ESTIMATES.]
+
+\subsection{Travel-Time Measures}
+Where road-network or driving-time data are available, we replace straight-line distance with [INSERT
+MEASURE, E.G. DRIVING TIME OR ROAD-NETWORK DISTANCE FROM A ROUTING SERVICE] and re-estimate the main and
+dose-response specifications. [INSERT WHETHER RESULTS ARE SIMILAR TO THE STRAIGHT-LINE DISTANCE
+SPECIFICATION, AND DISCUSS ANY MEANINGFUL DIFFERENCES, E.G. FOR COUNTIES WHERE ROAD ACCESS TO THE BORDER IS
+INDIRECT.]
+
+\subsection{Alternative Population-Exposure Buffers}
+We recompute the nonlegal-side population-exposure measure using alternative radii of [INSERT ALTERNATIVE
+RADII] in place of the main specification's radius, to test whether the dose-response result depends on a
+particular choice of buffer distance. [INSERT WHETHER THE INTERACTION COEFFICIENT IS STABLE ACROSS
+ALTERNATIVE BUFFERS.]
+
+\subsection{Excluding Major Metropolitan and Tourism Counties}
+Because large metropolitan counties and well-known tourist destinations could drive the main result for
+reasons unrelated to cross-border cannabis demand, we re-estimate the main specification excluding [INSERT
+CRITERION FOR EXCLUSION, E.G. THE LARGEST METROPOLITAN COUNTY IN EACH STATE, OR COUNTIES ABOVE A GIVEN
+POPULATION OR TOURISM-INTENSITY THRESHOLD]. [INSERT WHETHER THE BORDER-PROXIMITY COEFFICIENT IS ROBUST TO
+THIS EXCLUSION, AND REPORT THE CORRESPONDING ESTIMATE.]
+
+\subsection{Controlling for Dispensary Entry and Licensing}
+We add controls for [INSERT CONTROLS, E.G. THE NUMBER OF ACTIVE DISPENSARIES, AN INDICATOR OR CONTINUOUS
+MEASURE OF STATE OR LOCAL LICENSING RESTRICTIVENESS, LOCAL MORATORIA OR BANS ON DISPENSARIES, AND YEARS
+SINCE THE COUNTY'S OWN STATE LEGALIZED RETAIL SALES] to the main specification, to assess whether the
+border-proximity coefficient reflects demand alone or is partly attributable to differences in local supply
+conditions. [INSERT WHETHER THE COEFFICIENT IS STABLE, ATTENUATED, OR STRENGTHENED ONCE THESE CONTROLS ARE
+ADDED.]
+
+\subsection{Total County Revenue versus Revenue per Dispensary}
+We report the main specification separately for (i) total county-level cannabis revenue, (ii) revenue per
+active dispensary, (iii) the number of active dispensaries, and (iv) dispensary entry and exit, to
+distinguish which margin drives any observed border effect, consistent with the identification discussion
+in Section~5.6. [INSERT RESULTS FOR EACH OUTCOME AND DISCUSS WHETHER THE PATTERN IS CONSISTENT WITH A
+SUPPLY-CONSTRAINED MARKET, AS THE CONCEPTUAL FRAMEWORK IN SECTION~3 WOULD PREDICT IF REVENUE PER DISPENSARY
+RESPONDS MORE THAN DISPENSARY COUNT.]
+
+\subsection{Non-Cannabis Placebo Sectors}
+As reported in Section~6.3, we re-estimate the main specification for non-cannabis retail sectors. [INSERT
+FULL SET OF PLACEBO-SECTOR ESTIMATES AND DISCUSS CONSISTENCY WITH THE CANNABIS-SPECIFIC INTERPRETATION.]
+
+\subsection{Placebo Borders and Placebo Policy Dates}
+As an additional falsification check, we construct placebo borders -- for example, borders between two
+states that are both legal, or borders between two states that are both nonlegal, where no cannabis-policy
+discontinuity exists -- and re-estimate the main specification using distance to these placebo borders in
+place of distance to an actual legal-nonlegal border. [INSERT WHETHER A COMPARABLE PROXIMITY EFFECT APPEARS
+AT PLACEBO BORDERS.] Where an event-study design is feasible (Section~5.4), we also assign placebo event
+dates unrelated to any actual policy change and test whether a spurious break appears around those dates.
+[INSERT RESULTS.]
+
+\section{Discussion}
+\label{sec:discussion}
+
+The pattern of results described above, once finalized, would be consistent with a setting in which state-
+level cannabis policy differences generate a meaningful fiscal externality across state lines. If residents
+of a nonlegal state travel to a neighboring legal state to purchase cannabis, tax revenue that could
+otherwise have accrued to the nonlegal state -- had it chosen to legalize and tax recreational sales itself
+-- instead accrues to the neighboring state, along with the associated retail activity and any local
+employment it supports. This is analogous to the interstate tax leakage documented in the cross-border
+cigarette literature \citep{Lovenheim2008}, but with the added feature that the nonlegal state in this
+setting is not simply taxing a legal good differently; it is prohibiting a good that a neighboring state has
+chosen to permit and tax. The scale of this leakage, once measured directly rather than inferred, has
+implications for how nonlegal states weigh the fiscal costs of continued prohibition against whatever
+policy goals prohibition is intended to serve, and for how legal states weigh the fiscal benefits of
+capturing this demand against the local costs -- traffic, enforcement burden, and any local externalities of
+increased dispensary activity -- of hosting the counties that generate it.
+
+These findings also bear on questions of interstate policy coordination. If neighboring states' cannabis
+policies function partly like competing tax jurisdictions, then a state's decision to legalize or not
+legalize is not fully independent of its neighbors' decisions: a nonlegal state's continued prohibition
+generates identifiable revenue for legal-state border counties, which could itself be relevant information
+in that state's own policy debate. Similarly, a legal state's decision about how tightly to restrict
+dispensary licensing in its border counties is not purely a local question if border-county dispensaries
+serve a substantially larger effective market than local population alone would suggest; underprovision of
+licenses relative to that larger effective market could generate exactly the kind of revenue-per-dispensary
+premium documented here without necessarily reflecting a well-functioning competitive market, an issue
+directly connected to the market-power concerns raised in \citet{HollenbeckUetake2021}.
+
+Several limitations should be kept in view when interpreting these results. Most importantly, the revenue
+data used here do not identify the state of residence of individual consumers, so this paper cannot
+directly attribute any specific share of border-county revenue to nonlegal-state residents; the population-
+exposure and placebo-sector results provide indirect, mechanism-consistent evidence for a cross-border
+demand interpretation, but they are not a substitute for direct data on consumer origin, such as survey
+data, license-plate studies, or payment-card data, none of which are used in this paper. [INSERT ANY
+ADDITIONAL DATA LIMITATIONS SPECIFIC TO THE FINAL SAMPLE, E.G. STATE COVERAGE GAPS OR DISCLOSURE
+SUPPRESSION.] The paper's identification also relies primarily on cross-sectional and within-state variation
+in border proximity, since a county's border status does not change over time; where the data permit an
+event-study extension around a specific policy-timing event, this provides a stronger basis for causal
+interpretation, but the core border-proximity and dose-response results should be read as strong
+associations consistent with a cross-border demand mechanism rather than as fully causal estimates outside
+of that event-study context.
+
+\subsection{What the entry-timing result does and does not establish}
+\label{sec:discussion_timing}
+
+The entry-timing result in Section~\ref{sec:entry_hazard} deserves its own, more cautious accounting,
+separate from the revenue-per-store result. It is a conditional statistical association -- a hazard ratio
+from a stratified Cox model -- not a structural estimate of firm-level profits, demand elasticities, or a
+genuine strategic-interaction game in the sense of \citet{Berry1992} or \citet{Seim2006}: we do not observe
+firm identities, whether a second entrant actually observed or responded to the first, or what would have
+happened under a counterfactual entry order. It passes one real test that strengthens a causal-flavored
+reading -- a placebo comparison against generic (non-cannabis-relevant) border proximity -- but fails
+another, since it does not show the corresponding shift in the classic cross-sectional entry threshold that
+the same underlying story would predict, and it is statistically concentrated in three states (Illinois,
+Massachusetts, Ohio) outside this paper's core two-state revenue sample. We think the right way to describe
+this finding is as a \emph{secondary, mechanism-oriented} result that broadens the paper's evidence beyond
+revenue levels to a second, independent margin -- entry timing -- rather than as a central contribution or
+as a settled account of why cannabis markets structure themselves the way they do. The general regularity it
+illustrates, that a market's second or third entrant matters disproportionately more than later ones, is
+already well established in the entry literature \citep{BresnahanReiss1990,BresnahanReiss1991}; what is new
+here is applying a timing-based design to that regularity in a licensed, border-adjacent retail setting, not
+the regularity itself.
+
+Three further tests, not conducted here, would help distinguish the competing explanations for this result
+more directly, and we rank them by our own judgment of importance, feasibility with available or plausibly
+obtainable data, and value to a reader trying to assess the mechanism. \emph{First} (high importance, high
+feasibility): re-estimate the hazard models with an explicit interaction between border proximity and each
+state's licensing-regime type (statewide lottery, local-option, merit-score-plus-lottery, staged
+conversion), rather than only reporting separate by-state coefficients, to test directly whether the effect
+requires the kind of sequential administrative clearance described in Section~\ref{sec:institutions}.
+\emph{Second} (high importance, low feasibility with current data): test whether second-entrant timing
+responds to the first entrant's \emph{realized performance} specifically -- e.g., its sales volume in the
+months before the second entrant appears -- rather than merely its existence, which would more directly test
+the information-revelation channel in Section~\ref{sec:model_timing}; this requires a store-level revenue
+panel with opening dates that we do not currently have; state revenue data are collected at the county level.
+\emph{Third} (moderate importance, high feasibility): test whether counties whose first and second licenses
+were awarded in the same regulatory round (e.g., the same Washington or Illinois lottery cohort) show a
+systematically different, more compressed gap than counties whose second entrant arrived through a separate,
+later application round, which would help separate genuine sequential response from simultaneous
+administrative allocation.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper examines whether counties in legal-cannabis states that are closer to the border of a nonlegal
+state generate more cannabis revenue per active dispensary than counties farther from such a border, using
+a national sample spanning multiple state borders rather than a single legal-nonlegal transition. Building
+on \citet{HansenMillerWeber2020} and \citet{HaoCowan2020}, who each establish that cannabis policy gaps
+across state borders generate real cross-border behavior in a single setting, we extend this evidence by
+showing that the dispensary revenue premium associated with border proximity varies systematically with the
+size of the population living on the nonlegal side nearby, and that no comparable pattern appears in
+non-cannabis retail sectors. [INSERT ONE OR TWO SENTENCES SUMMARIZING THE FINAL HEADLINE MAGNITUDES ONCE
+RESULTS ARE AVAILABLE.] We interpret these findings as consistent with a setting in which a meaningful share
+of legal-state border-county dispensary revenue reflects demand from nearby residents of a neighboring
+nonlegal state, though confirming this directly would require data on consumer residence that this paper
+does not have. The results have implications for how both legal and nonlegal states weigh the fiscal and
+policy consequences of state-level cannabis policy gaps, and for how legal states set dispensary licensing
+policy in counties that appear to serve a substantially larger effective market than their own resident
+population would suggest.
+
+As a secondary contribution, we also show that a county's \emph{second} dispensary arrives systematically
+faster the closer that county is to a nonlegal border, even though its first dispensary does not, and that
+this pattern fades by the third and fourth entrant. This connects the paper to the entry-threshold tradition
+in industrial organization \citep{BresnahanReiss1990,BresnahanReiss1991}, which establishes that a market's
+second and third entrants matter disproportionately more than later ones; our contribution is to show a
+timing-based version of that same regularity in a licensed, border-adjacent retail setting, using a hazard
+model rather than the field's usual cross-sectional threshold approach. We are careful not to overstate this
+result: it does not extend to a corresponding shift in the classic population threshold needed to support a
+second store, and its statistical significance is concentrated in three states outside this paper's core
+revenue sample. We report it as a mechanism-oriented finding that complements the revenue results, not as a
+new theoretical contribution to the entry literature or as a central claim of the paper.
+
+\appendix
+\section{Extended Literature Review: Sequential Entry and the Economics of the Second Entrant}
+\label{app:literature}
+
+Section~\ref{sec:lit_sequential} summarizes briefly, in the main text, the literature most relevant to the
+entry-timing result in Section~\ref{sec:entry_hazard}. Table~\ref{tab:app_literature} reports this
+literature in more detail, including how each paper models entry, whether it distinguishes first, second,
+and later entrants, and how closely it maps onto our own result. We searched systematically across
+industrial organization, game theory, and applied microeconomics -- prioritizing the \textit{RAND Journal of
+Economics}, \textit{Journal of Political Economy}, \textit{Econometrica}, \textit{Review of Economic
+Studies}, \textit{American Economic Review}, and \textit{Quantitative Economics} -- and separately across
+the cannabis-dispensary literature specifically. We verified every citation below against the publishing
+journal or a repository record before inclusion; we found no paper, in economics or the cannabis-policy
+literature, that documents or models a distinctive effect specifically associated with a market's second
+dispensary.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{Extended Literature Summary}
+\label{tab:app_literature}
+\begin{tabular}{p{2.6cm}p{3.6cm}p{2.6cm}p{2.3cm}p{3.5cm}}
+\toprule
+Paper & Question / mechanism & Setting & 1st/2nd/later distinction? & Relation to our result \\
+\midrule
+\citet{BresnahanReiss1990} & How does the market size needed to support $N$ firms scale with $N$? &
+  Isolated small-town markets (autos, etc.) & Yes, central object & Closest conceptual match: 2nd entry is
+  qualitatively different from 1st and from 4th+, but via cross-sectional market size, not timing \\
+\citet{BresnahanReiss1991} & Same question, five retail/professional industries & Doctors, dentists,
+  druggists, plumbers, tire dealers & Yes, explicitly & Establishes that ``almost all variation in
+  competitive conduct occurs with the entry of the second or third firm''; direct precedent for our
+  rank-specific pattern \\
+\citet{BerryReiss2007} & Survey of the entry-threshold literature & --- & Discusses generally & Background;
+  confirms this is a settled general result \\
+\citet{Berry1992} & Entry games with heterogeneous firms & Airline city-pairs & No, firms are heterogeneous
+  rather than ordered & General framing; origin of the discrete-game entry literature alongside
+  \citeauthor{BresnahanReiss1990} \\
+\citet{Mazzeo2002} & Entry with endogenous product-quality choice & Highway motels & Yes, asks how a 2nd
+  entrant's type choice responds to the 1st & Relevant if our 2nd dispensary differentiates from the 1st on
+  price or quality; untested here \\
+\citet{Seim2006} & Entry under incomplete information about rivals' locations & Video rental stores & Not by
+  rank & Background on returns to differentiation \\
+\citet{ToivanenWaterson2005} & How does a rival's presence affect a chain's own entry decisions? & UK burger
+  duopoly, panel & Implicitly, via rival's lagged presence & Closest \emph{dynamic/timing} match: rival
+  presence is a strong predictor of the other chain's subsequent entry \\
+\citet{IgamiYang2016} & Dynamic multi-store entry with unobserved market heterogeneity & Canadian hamburger
+  chains, 1970--2005 & Yes, sequential store-count dynamics & Methodological cousin (dynamic sequential
+  entry), but models a firm's own multi-store rollout, not a rival's second store \\
+\citet{GilbertVives1986} & Incumbents' joint incentive to deter entry & Theory & No & Background; deterrence,
+  not sequencing \\
+\citet{PrescottVisscher1977} & Sequential location with foresight & Theory & Yes, by construction & Framing
+  device for the timing model in Section~\ref{sec:model_timing} \\
+\citet{HollenbeckUetake2021} & Effect of WA's licensing restrictions on market power & WA dispensary
+  licensing & No & Market power under a fixed license count, not sequencing; already central to our revenue
+  discussion \\
+\citet{DongTyndall2024} & Effect of dispensary presence on crime & WA 2014 license lottery & No & Uses the
+  same WA lottery as our institutional discussion; no significant average crime effect \\
+\citet{ThomasTian2021} & Effect of dispensary presence on property values & WA license lottery & No & Home
+  prices fall 3--4\% within 0.36 miles of a new dispensary \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

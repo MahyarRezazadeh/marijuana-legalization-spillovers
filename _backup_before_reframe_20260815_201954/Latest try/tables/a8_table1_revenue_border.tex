@@ -1,0 +1,29 @@
+\begin{table}[htbp]
+\centering
+\caption{Revenue per Dispensary: Border vs.\ Interior Counties (Colorado + Washington)}
+\label{tab:a8_revenue_border}
+\small
+\begin{tabular}{p{5.6cm}cccc}
+\toprule
+Distance measure & Coef. & SE (HC1) & SE (cl.) & $p$ (cl.) \\
+\midrule
+Border $\le$70mi (binary), no controls & $+0.502$ & $0.101$ & $0.233$ & $0.031$ \\
+Border $\le$70mi (binary), full controls$^{a}$ & $+0.395$ & $0.074$ & $0.163$ & $0.015$ \\
+\quad excl.\ Sedgwick County, CO & $+0.302$ & $0.068$ & $0.147$ & $0.040$ \\
+\midrule
+log(distance), continuous, full controls$^{a}$ & $-0.182$ & $0.054$ & $0.118$ & $0.124$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(total county cannabis revenue $\div$ number of currently open dispensary
+stores). County-year panel, Colorado and Washington, $n=706$ (71 counties, 10 border and 61 interior at the
+70-mile threshold). $^{a}$Full controls: log(population), year fixed effects, state fixed effects. The
+continuous-distance coefficient is significant under heteroskedasticity-robust (HC1) inference
+($p<0.001$, not shown) but loses significance once standard errors are clustered by county; we report the
+more conservative clustered $p$-value here and discuss this openly rather than lead with the more favorable
+HC1 figure. The binary 70-mile result is robust to both inference methods and to excluding the single
+largest outlier county.
+\end{minipage}
+\end{table}

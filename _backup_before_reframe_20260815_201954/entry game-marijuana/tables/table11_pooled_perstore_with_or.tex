@@ -1,0 +1,39 @@
+\begin{table}[htbp]
+\centering
+\caption{Border-vs-Interior Estimates: Revenue per Store, Pooled Colorado + Washington + Oregon}
+\label{tab:pooled_perstore_or}
+\begin{tabular}{lcccc}
+\toprule
+Specification & Coefficient & SE (HC1) & SE (county-cl.) & $p$-value (county-cl.) \\
+\midrule
+No controls & $+0.526$ & $0.099$ & $0.226$ & $0.020$ \\
++ log(pop) + year FE + state FE & $+0.429$ & $0.074$ & $0.157$ & $0.006$ \\
+\quad excluding Sedgwick, CO and Malheur, OR & $+0.323$ & $0.067$ & $0.142$ & $0.023$ \\
+\midrule
+\multicolumn{5}{l}{\textit{Single-state estimates, + log(pop) [+ year FE for CO/WA] (all HC1 $p<0.01$)}} \\
+Colorado only & $+0.552$ & $0.088$ & -- & -- \\
+Washington only & $+0.441$ & $0.101$ & -- & -- \\
+Oregon only (2025 cross-section) & $+1.168$ & $0.433$ & -- & -- \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Adds Oregon to the Colorado+Washington revenue-per-store panel in
+Table~\ref{tab:revenue_perstore_border70}. Oregon's county sales come from OLCC's own Socrata series
+(2017--2025, all years complete); Oregon's store counts, unlike Colorado's and Washington's, cannot be
+built as a historical cumulative-open panel -- the geocoded dispensary listing used elsewhere in this
+project has real coverage gaps for Oregon specifically (several records geocode outside Oregon entirely,
+and Baker County, one of the three border counties, has zero matches despite recording revenue in every
+year 2017--2025) -- so Oregon instead contributes a single 2025 cross-section, pairing 2025 revenue with
+currently-active retailer counts from OLCC's own license registry (which tags county natively). Pooling
+this cross-section into the panel is valid despite the year mismatch: year fixed effects absorb any
+Oregon-specific 2025 level shock the same way they absorb Colorado's and Washington's own year effects,
+and state fixed effects absorb any state-level difference in revenue per store, so Oregon's within-state
+border/interior contrast is identified the same way Colorado's and Washington's are. Adding Oregon
+\emph{strengthens} the pooled estimate's significance under county-clustered SEs ($p=0.015\to p=0.006$),
+and all three states are independently positive and significant. Malheur County, OR (Ontario, directly
+across the Snake River from Fruitland/Payette, Idaho) plays the same outlier role for Oregon that Sedgwick
+County plays for Colorado; excluding both, the pooled estimate remains significant.
+\end{minipage}
+\end{table}

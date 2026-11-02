@@ -1,0 +1,11 @@
+{
+  "n_switcher_counties": 177,
+  "switcher_population": 32531125,
+  "coef": -3.414283063215298,
+  "se": 1.1593795370539641,
+  "averted_deaths": 1110.7046911483976,
+  "averted_lo": 371.4726465584427,
+  "averted_hi": 1849.9367357383526,
+  "remaining_le": 33.4,
+  "yll": 37097.53668435648
+}

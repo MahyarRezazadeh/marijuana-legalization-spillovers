@@ -1,0 +1,440 @@
+% ============================================================
+% Recreational Marijuana Legalization and Drug-Overdose
+% Mortality: A Cross-Border Distance Design
+% Formatted to Economic Inquiry (Wiley/WEAI) submission requirements.
+% Compile: pdfLaTeX -> BibTeX -> pdfLaTeX -> pdfLaTeX (Overleaf: Recompile)
+% ============================================================
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage[authoryear,round]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\doublespacing
+\titleformat{\section}{\normalfont\bfseries\large}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+% ============================================================
+% TITLE PAGE
+% ============================================================
+\begin{titlepage}
+\begin{center}
+\vspace*{1.5cm}
+{\LARGE \bfseries Recreational Marijuana Legalization and\\
+Drug-Overdose Mortality: A Cross-Border\\
+Distance Design\par}
+\vspace{0.3cm}
+{\large \itshape Evidence from Never-Legalizing-State Counties, 2020--2023\par}
+\vspace{1.2cm}
+{\large Author name(s) withheld for review\par}
+\vspace{0.3cm}
+{\normalsize Working Paper --- July 2026\par}
+\end{center}
+
+\vspace{1.2cm}
+\noindent\textbf{Abstract} \\[4pt]
+\noindent We test whether proximity to a newly legal recreational-
+marijuana market reduces drug-overdose mortality, using two
+co-primary treatments for counties in 32 never-legalizing states,
+2020--2023: the continuous change in distance to the nearest legal
+border, and a binary indicator for counties whose distance fell below
+50 miles (``switchers''). Switcher counties see overdose deaths fall
+3.5 more per 100,000 than controls ($p=0.030$), but the continuous-
+distance specification is not significant ($p=0.103$). A supplementary
+check using marijuana and alcohol arrest rates at the same threshold
+reproduces a companion paper's alcohol-arrest complementarity signal
+robustly across both continuous specifications. We map the legal-
+market's staggered rollout across four distinct legalization waves and
+interpret the overdose result as suggestive, not confirmed. \\[10pt]
+\noindent\textbf{JEL Classification:} I18, I12, K42 \\
+\noindent\textbf{Keywords:} recreational marijuana; opioid overdose
+mortality; cross-border spillover; drug policy;
+difference-in-differences
+
+\vfill
+\noindent\textbf{Abbreviations} \\[2pt]
+\noindent
+\begin{tabular}{@{}ll@{}}
+DiD    & Difference-in-differences \\
+FIPS   & Federal Information Processing Standard (county code) \\
+NCHS   & National Center for Health Statistics \\
+SE     & Standard error \\
+SRS    & Summary Reporting System (FBI arrest data) \\
+VSRR   & Vital Statistics Rapid Release \\
+\end{tabular}
+
+\vspace{0.5cm}
+\noindent{\footnotesize A separate Disclosure Statement accompanies this
+submission per Economic Inquiry policy and is not reproduced in this file.}
+\end{titlepage}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+Does living close to a legal recreational-marijuana market change
+drug-overdose mortality for residents who never cross the border
+themselves? The question sits inside a specific, contested empirical
+literature on whether marijuana access substitutes for opioids.
+\citet{Bachhuber2014} found early evidence that state medical-marijuana
+laws were associated with fewer opioid overdose deaths.
+\citet{Shover2019} showed the association reverses sign once later
+years of data are included, and \citet{PowellPaculaJacobson2018} found
+the effect, where present, is specific to dispensary-based legal
+designs rather than medical-marijuana laws generally.
+\citet{MathurRuhm2022} replicate and extend this line of work using
+generalized difference-in-differences and event-study models on
+state-level legalization timing, and conclude that legal retail
+dispensaries -- medical or recreational -- are, if anything, associated
+with \emph{higher} opioid mortality, casting further doubt on earlier
+protective-effect estimates. Most recently, \citet{Denkyirah2026} use a
+state-level two-way-fixed-effects design focused specifically on
+\emph{recreational} legalization and find a robust decline of
+approximately 3.5 opioid overdose deaths per 100,000 -- a magnitude we
+will return to, since our own switcher-county estimate lands in almost
+exactly the same place despite a completely different identification
+strategy.
+
+Every paper above identifies off the \emph{timing} of state policy
+adoption. None uses \emph{geography}: whether a county's proximity to
+an external legal market, in a state that has not itself legalized,
+predicts its own overdose trajectory. This is the design
+\citet{HaoCowan2020} developed for marijuana-possession arrests
+(finding a positive spillover in border counties of non-legal
+neighboring states) and that a companion project extends to
+marijuana/alcohol arrest substitution and, separately, to housing
+markets. To our knowledge, no paper combines this cross-border-
+distance design with drug-overdose mortality as the outcome -- the
+contribution of this paper.
+
+We report two treatments as co-primary rather than treating one as
+a robustness check for the other, for a substantive reason specific to
+this setting: the 2020--2023 window we study spans four \emph{distinct}
+legalization waves (Arizona in 2021; Rhode Island, Vermont, Montana,
+New Jersey, New Mexico, and New York in 2022; Connecticut, Maryland,
+and Missouri in 2023), so ``distance to the nearest legal border''
+is not one clean before/after event but a continuously shifting
+frontier (Figure~\ref{fig:rollout}). The continuous-distance
+specification uses all of this variation; the binary switcher
+specification collapses it to a single threshold crossing, which is
+cruder but matches the design most directly comparable to
+\citet{HaoCowan2020} and the companion arrest-substitution paper.
+Reporting both, rather than picking one, is itself informative here:
+where they agree, we have more confidence; where they disagree (as
+they do for our main overdose result), that disagreement is the
+finding.
+
+% ============================================================
+% 2. DATA AND DESIGN
+% ============================================================
+\section{Data and Design}
+
+\subsection{Treatment: Two Co-Primary Specifications at a 50-Mile Radius}
+
+We use a panel of 2,347 counties in the 32 U.S. states that had not
+legalized recreational marijuana through 2023, with each county's
+distance to the nearest legal-market county computed via Haversine
+distance between county centroids (Census Gazetteer coordinates),
+recomputed independently for this paper and validated against the
+companion project's original 2020/2023 endpoint distances (mean
+absolute discrepancy under 0.005 miles). We use a 50-mile
+switcher/control radius throughout, tighter than the 100 miles used in
+the companion arrest-substitution project.\footnote{We first attempted
+a 20-mile radius, which leaves only 32 switcher counties nationally --
+too few for reliable cluster-robust inference. Fifty miles yields 212.}
+
+\textbf{Continuous specification.} The primary continuous treatment is
+the raw change in distance to the nearest legal border,
+\begin{equation}
+  \Delta\text{Dist}_i \;=\; \text{Dist}_{i,2023} \;-\; \text{Dist}_{i,2020},
+  \label{eq:distmi}
+\end{equation}
+negative for counties that became closer. We estimate
+\begin{equation}
+  \Delta Y_i \;=\; \alpha \;+\; \beta \cdot \frac{\Delta\text{Dist}_i}{50} \;+\; \varepsilon_i,
+  \label{eq:distreg}
+\end{equation}
+scaled into 50-mile units, with a $\Delta\log(\text{distance})$
+robustness check alongside it.
+
+\textbf{Binary specification.} A county is a ``switcher'' if its
+distance to the nearest legal border was at least 50 miles in 2020 and
+fell below 50 miles by 2023; a ``control'' if it remained at least 50
+miles away in both years. Counties within 50 miles in \emph{both}
+years (54 counties) are excluded from the main sample, as in the
+companion paper. We estimate
+\begin{equation}
+  \Delta Y_i \;=\; \alpha \;+\; \gamma \cdot \text{Switcher}_i \;+\; \varepsilon_i.
+  \label{eq:switchreg}
+\end{equation}
+Standard errors are clustered by state throughout
+\citep{CameronMiller2015, BertrandDufloMullainathan2004}. The full
+panel is 212 switchers, 2,081 controls, and 54 always-near counties;
+the outcome data sources below cover smaller subsets of it.
+
+\subsection{The Legal-Market Rollout, 2020--2023}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig1_rollout_maps.png}
+  \caption{The Legal-Market Rollout and 50-Mile Treatment Frontier, by Year.}
+  \label{fig:rollout}
+\end{figure}
+
+Figure~\ref{fig:rollout} maps the never-legal-state counties within 50
+miles of a legal border at each snapshot year. The 2020 panel shows
+the pre-2020 baseline legal states (Washington, Oregon, California,
+Nevada, Colorado, Michigan, Massachusetts, Alaska); each subsequent
+panel adds that year's newly-legal states in a darker shade and shows
+the corresponding growth in treated (red-dot) counties along the new
+borders. The four panels make visually clear what
+Equations~\ref{eq:distreg}--\ref{eq:switchreg} handle statistically: a
+Missouri county's treatment status, for instance, does not change at
+all until 2023, while an Arizona-adjacent Utah county is treated
+starting in 2021.
+
+\subsection{Drug-Overdose Mortality: CDC VSRR Provisional County Data}
+
+County-level, cause-specific mortality is not available through any
+open, unauthenticated API: CDC WONDER, the relevant query tool, is not
+reachable from our data-collection environment, and its underlying
+mortality files require a manual query through its web interface. We
+instead use the CDC's Vital Statistics Rapid Release (VSRR)
+``Provisional County-Level Drug Overdose Death Counts,'' published on
+the open data.cdc.gov Socrata platform, which reports 12-month-ending
+drug-overdose death counts by county of residence. We take the count
+for the 12 months ending December 2020 and December 2023, divide by
+county population for a rate per 100,000, and take the first
+difference as the outcome.
+
+Two limitations are consequential enough to state plainly. First, per
+NCHS confidentiality standards, any county-month cell with 1--9 deaths
+is suppressed; this removes 1,505 of 3,144 counties nationally in 2020
+and 1,425 in 2023, shrinking our regression sample to 928 counties (81
+switchers, 847 controls) -- well under half the full treatment panel,
+disproportionately excluding small, rural counties, which are exactly
+the counties with the most identifying variation in a border-proximity
+design. Second, this is \emph{provisional} surveillance data subject
+to revision as death-certificate investigations close; it is not the
+final vital-statistics record. We treat our overdose result as
+suggestive for these reasons.
+
+\subsection{Supplementary: Marijuana and Alcohol Arrests at the Same Threshold}
+
+As a supplementary check, we rerun the companion project's SRS-style
+FBI Crime Data Explorer arrest-rate outcomes (marijuana possession/sale,
+codes 153+158; alcohol liquor-law and drunkenness, codes 270+280,
+excluding DUI as not substance-specific) at this paper's 50-mile
+threshold rather than the companion paper's original 100 miles, so
+that the arrest evidence and the overdose evidence share an identical
+treatment design. This is not, to our knowledge, an outcome combination
+used elsewhere in the econ literature alongside a cross-border overdose
+design, so we report it as a check on internal consistency rather than
+as an independent contribution.
+
+% ============================================================
+% 3. RESULTS
+% ============================================================
+\section{Results}
+
+\subsection{Drug-Overdose Mortality}
+
+\begin{table}[htbp]
+\centering
+\caption{Effect on Drug-Overdose Mortality, Both Treatment Specifications}
+\label{tab:overdose}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & Switcher (binary) & Distance, per 50 mi & Log-distance (robustness) \\
+\midrule
+Overdose rate per 100k & $-3.546^{**}$ (1.632) & $-0.554$ (0.340) & $+0.738$ (1.292) \\
+ & $p=0.030$ & $p=0.103$ & $p=0.568$ \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.9\textwidth}
+\footnotesize Note: Outcome is the change (2020--2023) in overdose
+deaths per 100{,}000. SE clustered by state in parentheses.
+$N=928$ non-suppressed counties (81 switchers, 847 controls).
+$^{**}p<0.05$.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/fig2_overdose_coefplot.png}
+  \caption{Effect on Drug-Overdose Mortality, Both Treatment Specifications (95\% CI).}
+  \label{fig:coefoverdose}
+\end{figure}
+
+Switcher counties saw overdose death rates fall by 3.5 more per
+100,000 than control counties over 2020--2023 ($p=0.030$;
+Figure~\ref{fig:overdosetrend} shows both groups' raw trends) -- a
+magnitude close to \citet{Denkyirah2026}'s state-level estimate of
+roughly 3.5 fewer deaths per 100,000, despite the two papers using
+unrelated identification strategies. However, the continuous-distance
+specification, which uses strictly more of the underlying variation
+(Section~2.2) and is our preferred specification on identification
+grounds, is not significant ($p=0.103$), and the log-distance
+robustness check flips sign entirely ($p=0.568$;
+Figure~\ref{fig:scatteroverdose} plots the continuous regression
+directly). A result present in the binary comparison but not the
+continuous one is real evidence, but weaker evidence than a result
+that holds across specifications -- combined with the sample reduction
+from suppression (Section~2.3), we read this as suggestive of an
+opioid-substitution channel, not confirmatory of one.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/fig3_overdose_trends.png}
+  \caption{Drug-Overdose Death Rate, Switchers vs. Controls, 2020--2023.}
+  \label{fig:overdosetrend}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figures/fig4_overdose_scatter.png}
+  \caption{The Continuous-Distance Regression: Distance Change vs. Overdose-Rate Change.}
+  \label{fig:scatteroverdose}
+\end{figure}
+
+\subsection{Supplementary: Marijuana and Alcohol Arrests}
+
+\begin{table}[htbp]
+\centering
+\caption{Supplementary: Effect on Marijuana and Alcohol Arrest Rates (50-Mile Threshold)}
+\label{tab:arrests}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & Switcher (binary) & Distance, per 50 mi & Log-distance (robustness) \\
+\midrule
+Marijuana arrests & $-2.242$ (1.587) & $-0.108$ (0.382) & $+0.874$ (1.508) \\
+ & $p=0.158$ & $p=0.778$ & $p=0.562$ \\
+\addlinespace
+Alcohol arrests & $+5.431$ (5.656) & $-3.174^{**}$ (1.413) & $-8.036^{**}$ (2.704) \\
+ & $p=0.337$ & $p=0.025$ & $p=0.003$ \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\begin{minipage}{0.95\textwidth}
+\footnotesize Note: SE clustered by state in parentheses. $N=1{,}894$
+counties (157 switchers, 1,737 controls). $^{**}p<0.05$.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig5_arrest_supp_coefplot.png}
+  \caption{Supplementary: Marijuana and Alcohol Arrest Rates at the Same 50-Mile Threshold (95\% CI).}
+  \label{fig:coefarrests}
+\end{figure}
+
+Marijuana arrests show no significant relationship with either
+treatment. Alcohol arrests, by contrast, \emph{rise} as counties become
+closer to a legal border -- significant in \emph{both} continuous
+specifications (distance, $p=0.025$; log-distance, $p=0.003$), though
+not in the binary switcher specification ($p=0.337$). This directly
+reproduces the companion paper's headline complementarity signal (a
+positive-on-closeness alcohol-arrest effect, the opposite sign from a
+substitution story) at a tighter radius and a different sample, and
+does so more robustly across specifications than our own overdose
+result manages. We read this as evidence that the underlying treatment
+design is capturing something real at the county level -- it is not
+that this design generically fails to find effects -- which raises our
+confidence in the overdose result's binary-specification finding even
+though the continuous specification does not corroborate it.
+
+% ============================================================
+% 4. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+Two results in this paper are more robust than one. The alcohol-arrest
+supplementary result holds across both continuous specifications
+(distance and log-distance) at a substantially tighter radius than the
+companion project used, which is a meaningful robustness confirmation
+of that earlier finding rather than a coincidence of specification
+choice. The overdose-mortality result, our primary interest, does not
+clear the same bar: it is sizable and significant in the binary
+switcher comparison, coincidentally close in magnitude to
+\citet{Denkyirah2026}'s state-level estimate, but null in the
+continuous-distance specification we otherwise prefer. Given that
+\citet{Shover2019} document exactly this kind of specification- and
+vintage-sensitivity in the broader medical-marijuana-opioid literature,
+we do not think our overdose finding should be read as resolving the
+substitution question, even directionally. It is, at minimum, the
+first evidence on this specific question -- a recreational-legalization,
+cross-border-distance design applied to overdose mortality -- and a
+motivation for revisiting it once final (non-provisional) NCHS
+mortality data for these years are released.
+
+% ============================================================
+% 5. LIMITATIONS
+% ============================================================
+\section{Limitations}
+
+\begin{enumerate}[label=(\arabic*), leftmargin=*]
+\item \textbf{Overdose mortality data are provisional, not final.}
+CDC's VSRR county file is explicitly a rapid-release product subject
+to revision; a final-data replication is not yet possible for 2023.
+\item \textbf{Small-cell suppression removes more than half the panel
+from the overdose regression.} Only 928 of 2,347 counties have
+non-suppressed data in both years, and excluded counties are
+disproportionately rural -- exactly where a border-proximity design has
+the most identifying variation.
+\item \textbf{The 50-mile radius is a data-driven compromise, not a
+theoretically ideal catchment distance.} We could not use an initially
+preferred 20-mile radius because it leaves only 32 switcher counties
+nationally.
+\item \textbf{Two-period design.} The switcher/control comparison uses
+only 2020 and 2023, precluding a formal pre-trend test, though
+Figure~\ref{fig:rollout} at least makes the staggered timing of
+treatment onset within that window visually explicit.
+\item \textbf{No mechanism decomposition.} We cannot distinguish
+substitution in pain management, recreational substitution, reduced
+enforcement freeing resources, or compositional change in who lives in
+switcher counties as the specific channel behind either the overdose
+or the arrest result.
+\end{enumerate}
+
+% ============================================================
+% 6. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+Using a cross-border continuous-distance design -- to our knowledge not
+previously applied to overdose mortality -- alongside a binary
+switcher comparison at a 50-mile radius, we find that counties that
+became close to a legal recreational-marijuana market saw a
+significant decline in drug-overdose deaths relative to counties that
+did not, but only in the binary specification; the continuous-distance
+result is not significant. A supplementary check using marijuana and
+alcohol arrest rates at the identical threshold reproduces a companion
+paper's alcohol-complementarity finding robustly across both
+continuous specifications, which we take as evidence the design itself
+is sound even where the overdose result is not fully conclusive. We
+recommend the overdose finding be treated as motivation for a
+follow-up using final mortality data, not as settled evidence of an
+opioid-substitution effect.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,39 @@
+\begin{table}[htbp]
+\centering
+\caption{Land-Value Border Gap by State Market Age, Including Pre-Launch Years}
+\label{tab:landvalue_marketage}
+\begin{tabular}{lcccc}
+\toprule
+Years relative to state's own retail launch & Border $\times$ Year coef. & SE (county-cl.) & $p$-value & $n$ \\
+\midrule
+\multicolumn{5}{l}{\textit{Pre-launch (no legal cannabis market yet exists in the state)}} \\
+$-4$ or earlier & $+0.054$ & $0.036$ & $0.129$ & 1{,}324 \\
+$-3$ & $-0.091$ & $0.050$ & $0.069$ & 157 \\
+$-2$ & $-0.111$ & $0.051$ & $0.031$ & 273 \\
+$-1$ & $+0.119$ & $0.046$ & $0.009$ & 296 \\
+\midrule
+\multicolumn{5}{l}{\textit{Post-launch}} \\
+0 & $+0.114$ & $0.101$ & $0.263$ & 204 \\
+2 & $-0.119$ & $0.057$ & $0.035$ & 154 \\
+3 & $-0.144$ & $0.073$ & $0.051$ & 185 \\
+4 & $-0.315$ & $0.158$ & $0.046$ & 72 \\
+7 & $-0.384$ & $0.144$ & $0.008$ & 36 \\
+8+ & $-0.390$ & $0.129$ & $0.002$ & 102 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(farmland value per acre); each row is the coefficient on
+Border\_70mi $\times$ (market-age-year indicator) from a single regression with county-clustered SEs,
+controlling for log(population), log(land area), state fixed effects, and market-age-year fixed effects.
+Market-age year 1 and year 5 are omitted -- state fixed effects fully absorb the border indicator in those
+bins (only one state contributes observations at that specific age), leaving the interaction
+unidentified rather than a genuine zero. Pre-launch years use NASS Census-of-Agriculture waves (2012,
+2017, 2022) that predate a state's own legalization -- e.g. all three waves predate Delaware's 2025
+launch, and 2012/2017 predate Illinois's 2020 launch -- so these are not a placebo constructed after the
+fact; the underlying land-value data genuinely exists before treatment for many states in this panel. See
+Figure~\ref{fig:landvalue_eventstudy} for the full coefficient path and Section~\ref{sec:landvalue_marketage}
+for why the pre-launch pattern complicates a simple causal reading of the post-launch decline.
+\end{minipage}
+\end{table}

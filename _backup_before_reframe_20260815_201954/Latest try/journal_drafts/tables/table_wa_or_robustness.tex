@@ -1,0 +1,25 @@
+\begin{table}[htbp]
+\centering
+\caption{Replication Attempt: Washington's Border with Oregon}
+\label{tab:wa_or}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Specification & Coef. & SE (HC1) & SE (cl.) & $p$ (cl.) \\
+\midrule
+Transition year only (FY2016 vs.\ FY2015) & $-0.545$ & $0.329$ & $0.336$ & $0.105$ \\
+DiD, post $=$ FY2016 onward & $+0.136$ & $0.381$ & $0.432$ & $0.753$ \\
+DiD, FY2016 dropped, post $=$ FY2017 onward & $+0.161$ & $0.380$ & $0.443$ & $0.716$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(revenue per active dispensary). Washington county-year panel, fiscal years
+2015--2025, $n=395$ (2015 is the only fully pre-legalization year). Treatment is the 13 Washington counties
+within 70 miles of Oregon; controls include the 4 Idaho-border counties, the remaining interior counties,
+log(population), and fiscal-year fixed effects. The transition-year estimate is directionally consistent with
+\citet{HansenMillerWeber2020} but only marginally significant; the longer-run DiD estimates are positive and
+insignificant, the opposite of sustained demand suppression. See Appendix~\ref{app:wa_or} for discussion.
+\end{minipage}
+\end{table}

@@ -1,0 +1,28 @@
+\begin{table}[htbp]
+\centering
+\caption{Border-Proximity Effect on Legal-Market County Revenue per Capita}
+\label{tab:supplyside_check}
+\begin{tabular}{lc}
+\toprule
+Specification & Coefficient ($p$-value) \\
+\midrule
+Distance to non-legal border (continuous), no controls & $-0.426$ (0.005) \\
+Distance to non-legal border (continuous), + pop.\ + year FE + state FE & $-0.079$ (0.539) \\
+$\leq$50mi of non-legal border (binary), + pop.\ + year FE + state FE & $+0.631$ (0.052) \\
+\quad excluding Sedgwick County, CO outlier & $+0.411$ (0.164) \\
+Distance to non-legal border (continuous), + controls, excl.\ outlier & $-0.003$ (0.981) \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(cannabis retail revenue per capita). County-fiscal-year panel, Colorado
+(2014--2025, 45 counties) and Washington (2015--2025, 38 counties), $n=815$. Distance is measured from each
+legal-market county to the nearest \emph{non-legal}-market state -- the reverse geographic direction from the
+paper's main treatment variable. $p$-values use county-clustered standard errors (81--82 clusters). Sedgwick
+County, CO (population 2{,}299, on the Nebraska border) is the only Colorado county within 50 miles of a
+non-legal state; its extreme per-capita revenue drives the apparent significance of the binary specification,
+which is not robust to its exclusion. All specifications with full controls collapse to a precise null once
+this single-county artifact is addressed.
+\end{minipage}
+\end{table}

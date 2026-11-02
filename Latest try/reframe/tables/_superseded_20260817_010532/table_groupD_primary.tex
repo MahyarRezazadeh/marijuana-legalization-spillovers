@@ -1,0 +1,38 @@
+\begin{table}[htbp]
+\centering
+\caption{Primary specification: border $\times$ regime interaction, Local barrier (CO+MT) vs.\ Free (NM + Oregon 2015--2021), Washington dropped}
+\label{tab:groupD_primary}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+& \multicolumn{2}{c}{Border} & \multicolumn{2}{c}{Local barrier} & \multicolumn{2}{c}{Border $\times$ Local barrier} & \\
+Outcome & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & $n$ \\
+\midrule
+\multicolumn{8}{l}{\textit{Standard panel}} \\
+Revenue per store & $+0.392$ ($+47.9\%$) & 0.113 & $+1.087$ ($+196.6\%$) & 0.000 & $+0.137$ ($+14.6\%$) & 0.633 & 570 \\
+Revenue per capita & $+1.036$ ($+181.7\%$) & 0.000 & $+0.866$ ($+137.8\%$) & 0.000 & $-0.828$ ($-56.3\%$) & 0.009 & 799 \\
+Dispensary density & $+0.697$ ($+100.7\%$) & 0.000 & $+0.121$ ($+12.9\%$) & 0.404 & $-0.972$ ($-62.2\%$) & 0.000 & 570 \\
+\midrule
+\multicolumn{8}{l}{\textit{Balanced panel} (counties reporting every year within their own state's window)} \\
+Revenue per store & -- & -- & -- & -- & \multicolumn{2}{c}{$p=0.145$} & 443 \\
+Revenue per capita & -- & -- & -- & -- & \multicolumn{2}{c}{$-55.2\%$, $p=0.007$} & 618 \\
+Dispensary density & -- & -- & -- & -- & \multicolumn{2}{c}{$-62.1\%$, $p=0.005$} & 443 \\
+\bottomrule
+\end{tabular}
+}
+\begin{minipage}{0.98\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Washington dropped entirely (neither a local-government restriction nor a free-entry case).
+Local barrier = Colorado and Montana, full panels; Free = New Mexico (all years) and Oregon's 2015--2021
+free period only. This is the most robust classification of the five entry-regulation groupings tested in this
+project (Table~\ref{tab:grouping_comparison}): it is the only one where both the density and revenue-per-capita
+interactions remain significant under county clustering in \emph{both} the standard and balanced-panel
+specifications, and the only one where the revenue-per-capita interaction's significance strengthens, rather
+than weakens, under the balanced-panel restriction. The balanced-panel rows restrict each side of the
+comparison to counties present in every year within their own state's reporting window, removing panel churn
+(e.g.\ Washington-style coverage collapse) documented as a source of event-study noise; no state fixed effects
+in either panel, since the regime indicator has no within-state variation in this filtered sample.
+\end{minipage}
+\end{table}

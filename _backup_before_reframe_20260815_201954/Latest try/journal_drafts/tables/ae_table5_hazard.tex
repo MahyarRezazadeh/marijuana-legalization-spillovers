@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\caption{Extension: Entry Speed Near the Border}
+\label{tab:ae_hazard}
+\small
+\begin{tabular}{lccc}
+\toprule
+Entrant rank & Hazard ratio, log(distance) & $p$-value & Events / at-risk \\
+\midrule
+1st (state launch $\to$ 1st dispensary) & $0.97$ & $0.803$ & 346 / 479 \\
+2nd (1st $\to$ 2nd dispensary) & $0.70$ & $0.003$ & 271 / 346 \\
+3rd (2nd $\to$ 3rd dispensary) & $0.85$ & $0.266$ & 224 / 271 \\
+4th (3rd $\to$ 4th dispensary) & $0.90$ & $0.496$ & 184 / 224 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Cox proportional-hazards models stratified by state, controlling log(population); nine-state
+entry-density universe (California, Colorado, Illinois, Massachusetts, Maine, New York, Ohio, Oregon,
+Washington; 479 counties), distinct from the two-state revenue panel used elsewhere in this paper. A hazard
+ratio below 1 means faster entry closer to a non-legal border. The effect is significant only for the second
+entrant and passes a placebo test against generic (legal-status-blind) border proximity, but its statistical
+significance is concentrated in three states (Illinois, Massachusetts, Ohio) outside this paper's core
+revenue sample; we report it as suggestive secondary evidence, not a central result.
+\end{minipage}
+\end{table}

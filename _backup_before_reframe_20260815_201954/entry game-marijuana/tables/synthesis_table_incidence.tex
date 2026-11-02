@@ -1,0 +1,30 @@
+\begin{table}[htbp]
+\centering
+\caption{Incidence of the Border Effect, by State and Margin}
+\label{tab:incidence}
+\small
+\begin{tabular}{lccc}
+\toprule
+& Colorado & Washington & Montana \\
+& (local-option bans) & (statewide cap, 334$\to$556) & (moratorium, 2020 medical only) \\
+\midrule
+Entry density (disp./1{,}000) & $+0.015$ & $-0.002$ & $+0.142^{a}$ \\
+& ($p=0.889$) & ($p=0.940$) & ($p=0.106$) \\
+Revenue per dispensary & $+0.552^{**}$ & $+0.233$ & $+0.012$ \\
+& ($p=0.005$) & ($p=0.334$) & ($p=0.958$) \\
+Revenue per capita & $-0.013$ & $+0.341^{b}$ & $+0.654^{**}$ \\
+& ($p=0.968$) & ($p=0.121$) & ($p=0.036$) \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} All coefficients from the same specification used throughout the paper (log outcome,
+border indicator, log population, year fixed effects where a panel), estimated separately by state
+rather than pooled. Entry density and revenue per dispensary use 2025 cross-sections; revenue per capita
+uses each state's full panel. $p$-values are county-clustered where a panel exists, HC1 for single-year
+cross-sections. $^{a}$Montana's entry-density coefficient is significant without the population control
+($p=0.035$) and marginal with it. $^{b}$Washington's revenue-per-capita coefficient is significant under
+HC1 ($p=0.001$) but not under county clustering; reported as fragile, not null. $^{**}p<0.05$.
+\end{minipage}
+\end{table}

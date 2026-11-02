@@ -1,0 +1,35 @@
+\begin{table}[htbp]
+\centering
+\caption{Main pooled specification: border $\times$ entry-regime interaction}
+\label{tab:main_pooled}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+& \multicolumn{2}{c}{Border} & \multicolumn{2}{c}{Capped} & \multicolumn{2}{c}{Border $\times$ Capped} & \\
+Outcome & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & Coef. (\%) & $p$ (cl.) & $n$ \\
+\midrule
+Revenue per store & $+0.395$ ($+48.4\%$) & 0.181 & $+1.050$ ($+185.9\%$) & 0.000 & $+0.081$ ($+8.5\%$) & 0.799 & 964 \\
+Revenue per capita & $+1.005$ ($+173.2\%$) & 0.001 & $+0.110$ ($+11.7\%$) & 0.242 & $-0.637$ ($-47.1\%$) & 0.048 & 1283 \\
+Dispensary density & $+0.683$ ($+98.1\%$) & 0.000 & $-0.259$ ($-22.8\%$) & 0.082 & $-0.569$ ($-43.4\%$) & 0.009 & 964 \\
+\bottomrule
+\end{tabular}
+}
+\begin{minipage}{0.98\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Pooled across Colorado, Washington, Oregon, Montana, and New Mexico. Coefficients are OLS,
+log-linear outcome; \% is $(e^{\hat\beta}-1)\times 100$. $p$ (cl.) is county-clustered. Revenue-per-store and
+dispensary-density specs omit state fixed effects because \texttt{entry\_capped} has no within-state variation
+in the per-store sample (Oregon's per-store data is a single 2025 cross-section), which would otherwise make
+it collinear with the state dummies. Revenue-per-capita includes state FE since Oregon's per-capita panel
+spans both its free (2015--2021) and capped (2022--2025) periods, giving genuine within-state identification.
+Border is county-to-state-line geometric adjacency (shares a common land border with a nonlegal-state county),
+time-varying by year (Section~\ref{sec:timevarying}), not a distance threshold. Entry-regime coding: Colorado,
+Washington, and Montana are capped for their entire panel (local-government control over licensing -- county
+opt-out bans in Colorado, opt-in requirements in Montana -- functions as a binding restriction even where no
+state-level numerical cap exists); Oregon is free 2015--2021 and capped 2022--2025; New Mexico is free
+throughout (statutory anti-cap provision, NMSA 1978 \S 26-2C-6(I)). The incomplete 2026 partial year is
+excluded throughout.
+\end{minipage}
+\end{table}

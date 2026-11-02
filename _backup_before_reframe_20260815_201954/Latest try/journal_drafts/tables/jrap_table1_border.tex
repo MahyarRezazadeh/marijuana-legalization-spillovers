@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\caption{Border Proximity and Revenue per Dispensary}
+\label{tab:jrap_border}
+\small
+\begin{tabular}{p{6.2cm}cccc}
+\toprule
+Specification & Coef. & SE (HC1) & SE (cl.) & $p$ (cl.) \\
+\midrule
+Border $\le$70mi, no controls & $+0.502$ & $0.101$ & $0.233$ & $0.031$ \\
+Border $\le$70mi, full controls$^{a}$ & $+0.395$ & $0.074$ & $0.163$ & $0.015$ \\
+\quad excl.\ Sedgwick County, CO & $+0.302$ & $0.068$ & $0.147$ & $0.040$ \\
+Colorado only & $+0.552$ & -- & $0.199$ & $0.005$ \\
+Washington only & $+0.441$ & -- & $0.263$ & $0.077$ \\
+\midrule
+log(distance), continuous, full controls$^{a}$ & $-0.182$ & $0.054$ & $0.118$ & $0.124$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(revenue per active dispensary). County-year panel, Colorado (2014--2025) and
+Washington (2015--2025), $n=706$. $^{a}$Full controls: log(population), year and state fixed effects. The
+continuous-distance result is significant under HC1 ($p<0.001$) but not once clustered by county; we report
+both.
+\end{minipage}
+\end{table}

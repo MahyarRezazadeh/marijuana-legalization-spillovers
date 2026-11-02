@@ -1,0 +1,36 @@
+\begin{table}[htbp]
+\centering
+\caption{Extension: Entry Speed Near the Border (corrected)}
+\label{tab:ae_hazard}
+\small
+\begin{tabular}{lccc}
+\toprule
+Entrant rank & Hazard ratio, log(distance) & $p$-value & Events / at-risk \\
+\midrule
+1st (state launch $\to$ 1st dispensary) & $0.93$ & $0.540$ & 271 / 479 \\
+2nd (1st $\to$ 2nd dispensary) & $0.61$ & $0.001$ & 211 / 271 \\
+3rd (2nd $\to$ 3rd dispensary) & $0.74$ & $0.090$ & 174 / 211 \\
+4th (3rd $\to$ 4th dispensary) & $0.84$ & $0.356$ & 142 / 174 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Cox proportional-hazards models stratified by state, controlling log(population); nine-state
+entry-density universe, distinct from the two-state revenue panel used elsewhere in this paper.
+\textbf{Corrected from the original version of this table}: every Colorado and Washington record in the
+underlying geocoded dispensary registry shares an identical placeholder open date (2015-01-01, tagged
+\texttt{date\_confidence=baseline\_assumed} in the source file), not an observed opening date. The original
+table included these records, producing degenerate zero-duration entry gaps for 58 percent of CO/WA counties
+(versus 18 percent pooling all nine states) and inflating the at-risk counts at every rank. This corrected
+version excludes all placeholder-dated records, leaving seven states with genuinely observed entry dates
+(California, Illinois, Massachusetts, Maine, New York, Ohio, Oregon; 479 counties, 271 with a first entrant).
+The second-entrant result is not an artifact of the excluded records: it survives, and its precision improves,
+on the clean sample (hazard ratio moves from 0.70, $p=0.003$, on the contaminated 346-county sample to 0.61,
+$p=0.001$, on this 271-county corrected sample). A hazard ratio below 1 means faster entry closer to a
+non-legal border. The effect remains significant only for the second entrant, weakening at the third
+(marginal) and vanishing by the fourth, consistent with a genuine second-entrant phenomenon rather than a
+generic proximity-always-speeds-entry pattern; we report it as suggestive secondary evidence, not a central
+result.
+\end{minipage}
+\end{table}

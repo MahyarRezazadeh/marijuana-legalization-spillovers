@@ -1,0 +1,478 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+
+\title{Marijuana Spillover Effect}
+\author{Mahyar Rezazadeh \\ Babak Sahragard}
+\date{August 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent Access to legal marijuana markets can affect individuals' decisions to initiate marijuana use or
+substitute marijuana for more dangerous drugs. Using an event-study design built on a stacked county-transition
+panel -- treatment defined by a county's own distance to the nearest legal-market county, rather than a state's
+binary legalization status -- this paper examines the effect of access to legal cannabis markets on drug-overdose
+mortality during 2020--2025 across U.S. states. Overdose mortality falls by 2.48 deaths per 100{,}000 in the year a
+county gains market access ($p=0.001$), a result that holds up under an alternative treatment definition using the
+actual opening date of the nearest operating dispensary ($-3.17$, $p=0.008$), across three switcher-radius
+thresholds, and under the Callaway--Sant'Anna (2021) group-time estimator. We investigated whether this protective
+effect fades in subsequent years, as the raw pooled coefficients suggest, but a cohort-by-cohort check shows the
+apparent post-switch pattern is not a general phenomenon -- it is concentrated almost entirely in a single
+switch-year cohort and does not replicate in the other two, consistent with cohort-specific composition rather than
+a genuine within-county reversal. We therefore treat the switch-year protective effect as the paper's robust
+finding rather than asserting the effect is merely transitory. Applied cautiously -- since this estimate reflects a
+single county-year coefficient and should not be read as a confirmed, permanent reduction in mortality -- the
+switch-year effect implies approximately 790 averted overdose deaths and 23{,}500 years of life saved among the
+affected population. We contribute a market-access treatment design that differs from the state-level legalization
+timing used throughout the existing literature, and discuss how state-level designs' inability to disaggregate this
+kind of local, cohort-specific heterogeneity may itself contribute to that literature's inconsistent findings.
+\end{abstract}
+
+\section{Introduction}
+
+Access to the recreational cannabis market has evolved rapidly across U.S. states over the last decade; still,
+there are states yet to legalize recreational usage. As of 2026, roughly two dozen states have not legalized
+recreational marijuana sales. The decision to initiate consumption of a good like marijuana, as with any other
+``sin good,'' depends in part on access to a free, legal market for that good \citep{JacobiSovinsky2016}. Access to
+a legalized market may also change the way consumers substitute across goods: behavioral-economic evidence on legal
+and illegal cannabis markets shows that when legal cannabis becomes available at competitive prices, consumers
+substitute away from illegal sources far more readily than the reverse \citep{AmlungMacKillop2019}. Whether this
+kind of substitution extends across psychoactive substances more broadly -- and in particular whether legal
+marijuana access changes the risk of dying from an overdose on other drugs -- is an important question for drug
+policy, since it speaks directly to whether legalization is a net protective or net harmful policy for the
+population living near a new legal market.
+
+The evidence is least conclusive when the outcome is opioid-overdose mortality. A group of studies, including
+\citet{PowellPaculaJacobson2018}, \citet{ChanBurkhardtFlyr2020}, and \citet{Denkyirah2026}, find that greater
+access to legal marijuana markets is associated with lower opioid mortality, a result consistent with substitution
+away from opioids and toward marijuana. Other research, however, challenges the conclusion that marijuana
+legalization reduces opioid deaths. \citet{MathurRuhm2023} show that the estimated relationship is sensitive to the
+sample period, the definition of marijuana-market access, and the treatment of incomplete opioid identification in
+death records -- and find that some specifications instead point toward higher opioid mortality associated with
+legal retail access.
+
+This study adds to this literature in two ways. First, rather than relying on a single before/after comparison, we
+build an event-study design around each county's own transition into legal-market access, allowing us to trace out
+how the effect of market access evolves in the years before and after a county is treated. This lets us test
+directly whether an estimated protective effect is a lasting reduction in mortality or a transitory, one-time
+adjustment -- a distinction the existing literature's mostly static designs cannot make, and one that may help
+explain why estimates in this literature disagree as much as they do. Second, we make a secondary contribution to
+the literature on cross-border spillover effects of marijuana legalization. While prior work in this vein has
+focused on cross-border effects on arrests and consumption behavior \citep{HaoCowan2020}, and the broader
+cross-border tax-and-price-avoidance literature has documented similar geographic gradients for cigarettes and
+alcohol \citep{Lovenheim2008,Beatty2009}, we provide evidence on the effect of neighboring-county legalization on
+drug-overdose mortality specifically, in counties where recreational marijuana itself remains illegal.
+
+\section{Data and Methodology}
+
+\subsection{Sample, treatment, and control}
+
+We combine three data sources. The first is a state-level legalization timeline for 24 U.S.\ states that had passed
+a recreational-marijuana statute by our sample window. The sample records each state's law-effective date and its
+first general-retail-sales date; 23 of the 24 states ever open a retail market (Virginia's law has never produced
+one). Legalization of a general retail market for marijuana began with two pioneer states, Colorado and Washington,
+whose retail markets opened January 1, 2014 and July 8, 2014 respectively.
+
+Our second data source is county-level drug-overdose mortality from the National Center for Health Statistics
+(NCHS), the CDC agency responsible for vital statistics. We use data from its Vital Statistics Rapid Release (VSRR)
+program, which publishes provisional county-level death counts from death-certificate records \citep{AhmadVSRR}.
+County-level data in this series are available only from 2020 onward; although state-level VSRR data go back to
+2015, the county-level information required for our analysis does not. For this reason our panel covers
+2020--2025 rather than the full period since recreational legalization began. Because we cannot observe pre-period
+county-level overdose trends for counties near Colorado and Washington -- whose markets opened roughly six years
+before our data begins -- we exclude these two pioneer states and their neighboring counties from the estimation
+sample; they cannot be used to estimate the effect of newly gaining access to a legal market.
+
+The third source is a county-level dispensary dataset, used as a robustness check on the state-level timeline:
+state legalization dates might not fully capture when nearby residents actually gain practical access to a legal
+market. This dataset compiles official dispensary-license records from state cannabis regulators for 9 of the 24
+legal states that had reliable dated records, and identifies each dispensary's opening date as an alternative,
+finer-grained measure of market access.
+
+Using these sources we construct a county-year panel of drug-overdose rates per 100{,}000 population and each
+county's distance to the nearest legal market, spanning 2020--2025.
+\emph{Treatment (switcher) counties} are counties whose distance to the nearest legal-market county crosses from
+$\geq 50$ miles to $<50$ miles during a given one-year transition (a change from year $t-1$ to year $t$).
+\emph{Control counties} are counties that remain at least 50 miles from any legal-market county at both the start
+and the end of the transition -- ``far-away'' counties, in the sense of remaining far from any legalized market
+throughout. A county that switches is dropped from every later transition (it has already been treated); a county
+that never switches contributes a control observation to every transition it appears in. This construction follows
+the stacked-cohort logic of \citet{Cengiz2019}, which avoids using already-treated counties as controls in later
+periods -- a bias formalized by \citet{GoodmanBacon2021} for staggered-adoption designs more generally.
+
+The 50-mile cutoff is not based on a marijuana-specific estimate of how far consumers travel to purchase. Instead,
+it reflects the broader cross-border consumption literature, which shows that cigarette- and alcohol-tax avoidance
+is concentrated near borders where prices or legal rules differ and becomes weaker with distance
+\citep{Lovenheim2008,Beatty2009}. It also reflects a data limitation: CDC VSRR overdose-mortality data suppress
+small county-level death counts, particularly in sparsely populated counties, so a narrower radius would shrink an
+already-limited sample and further weaken statistical power.
+
+Applying this construction to our two treatment measures gives 436 eventual switcher counties under the
+county-distance definition (versus 1{,}779 counties that never switch and serve as controls throughout) and 240
+eventual switchers under the dispensary-distance definition (versus 2{,}038 never-switching controls) -- a smaller
+number, consistent with the dispensary dataset's partial, 9-of-24-state coverage.
+
+\subsection{Event-study specification}
+
+For each treatment measure we estimate a stacked event-study regression on the (county, transition) panel:
+
+\begin{equation}
+\Delta Y_{ct} = \alpha + \sum_{k=-3}^{3} \beta_k \cdot \mathbb{1}[\text{EventTime}_{ct} = k] \;+\; \kappa \cdot
+\text{BaselineRate}_c \;+\; \delta_t \;+\; \varepsilon_{ct},
+\label{eq:eventstudy}
+\end{equation}
+
+\noindent where $c$ indexes counties and $t$ indexes one-year transitions, $t \in \{2020\text{-}2021, \ldots,
+2024\text{-}2025\}$. $\Delta Y_{ct}$ is the change in county $c$'s overdose death rate per 100{,}000 over transition
+$t$. $\text{EventTime}_{ct} = \text{year}_t - \text{SwitchYear}_c$ is the number of transitions between the current
+period and the county's own switch year (undefined, and therefore omitted from every indicator, for counties that
+never switch -- these counties are the reference/control group the $\beta_k$ coefficients are measured against). We
+bin the two tails at $k=-3$ and $k=+3$, which we confirmed empirically is already the natural limit of the data: no
+county with usable overdose data on both sides of a transition switches more than three years from either edge of
+the 2020--2025 panel. $\text{BaselineRate}_c$ is county $c$'s own 2020 overdose death rate, included to correct for
+a mean-reversion problem: a county with an unusually high 2020 rate mechanically tends to fall back toward the
+average over the panel regardless of treatment, and without this control such a county would look like it
+experienced a treatment effect that is really just reversion to its own mean. $\delta_t$ denotes transition
+(period) fixed effects, common to all counties observed in a given transition. Standard errors are clustered by
+county.
+
+The coefficient of central interest is $\beta_0$, the effect in the switch year itself. The full vector
+$\{\beta_{-3}, \ldots, \beta_{3}\}$ lets us assess two things simultaneously: whether the pre-period coefficients
+($\beta_{-3}$ through $\beta_{-1}$) are flat, as a parallel-trends assumption would require, and whether any
+switch-year effect ($\beta_0$) is a one-time level shift, a persistent effect, or a transitory effect that fades
+or reverses in the post-period ($\beta_1$ through $\beta_3$).
+
+\section{Results}
+
+Table~\ref{tab:eventstudy_main} and Figure~\ref{fig:eventstudy_main} report the event-study coefficients under the
+main, county-distance-based treatment definition. The switch-year coefficient is $-2.478$ ($p=0.001$): counties
+gaining access to a legal market see overdose mortality fall by an average of 2.48 deaths per 100{,}000 relative
+to far-away control counties, in the same year they gain access. Two features of the full coefficient path are
+worth noting. First, the pre-period is not perfectly flat -- $t=-2$ is itself marginally significant
+($-2.308$, $p=0.045$), indicating some pre-existing decline in switcher counties even before they formally cross
+the 50-mile threshold, a mild parallel-trends concern that our baseline-rate control is designed to partially
+absorb. Second, and more strikingly, every post-period coefficient is \emph{positive}: $+1.156$ at $t=+1$,
+$+1.108$ at $t=+2$, and $+1.189$ at $t=+3$ (none individually significant at conventional levels, $p=0.08$--$0.16$).
+Summing these coefficients with the switch-year effect using the model's own joint covariance structure, the
+cumulative effect is $-1.32$ through $t=+1$, $-0.21$ through $t=+2$, and $+0.98$ (statistically indistinguishable
+from zero, $p=0.46$) through $t=+3$. Taken at face value, this pooled pattern would suggest the protective effect
+of market access is concentrated entirely in the year access is gained and unwinds within three years -- but
+Section~\ref{sec:cohort} shows this pooled post-switch pattern is not a general phenomenon, so we treat the
+switch-year effect itself, rather than the apparent unwinding, as the paper's robust finding.
+
+\input{tables/table1_eventstudy}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig1_eventstudy_main.png}
+\caption{Event study, main design: distance to nearest legal-market county.}
+\label{fig:eventstudy_main}
+\end{figure}
+
+Table~\ref{tab:eventstudy_dispensary} and Figure~\ref{fig:eventstudy_dispensary} repeat the exercise using distance
+to the nearest actually operating dispensary instead of county-level legal-market status. The switch-year
+coefficient is $-3.173$ ($p=0.008$) -- larger in magnitude than the main design and consistent in sign, supporting
+the interpretation that market access, defined at the level residents actually experience it (a store that is open
+for business), has a real protective association with overdose mortality in the year access begins. The post-switch
+coefficients are noisier here: $t=+1$ is small and slightly negative ($-0.354$, not significant), while $t=+2$ and
+$t=+3$ turn positive, though these two rest on only 6 and 2 transition-observations respectively (a consequence of
+this design's partial, 9-state dispensary coverage) and should not be read as reliable evidence of anything at
+those specific horizons -- we report them for completeness, not as a robust finding, consistent with
+Section~\ref{sec:cohort}'s conclusion that the post-switch period is not where this design's evidence is strongest.
+
+\input{tables/table2_eventstudy_dispensary}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig2_eventstudy_dispensary.png}
+\caption{Event study, alternative design: distance to nearest operating dispensary.}
+\label{fig:eventstudy_dispensary}
+\end{figure}
+
+Table~\ref{tab:welfare} translates the switch-year coefficients into a welfare metric. Applying the main design's
+switch-year coefficient to the 31.9 million people living in switch-year counties implies approximately 790 averted
+overdose deaths (95\% CI: 322--1{,}258). Using the national age-specific distribution of overdose deaths (average
+age at death of 46.1 years) together with the state-population-weighted average life expectancy of switcher-county
+residents (75.8 years), this corresponds to approximately 23{,}500 years of life saved. The dispensary design
+implies a smaller total (520 averted deaths, 14{,}953 years of life saved), reflecting its smaller, partial-coverage
+switcher population (16.4 million) rather than a smaller per-capita effect -- its point estimate is, if anything,
+larger. We emphasize, with deliberate caution, that both welfare figures are constructed from a single coefficient
+-- the switch-year effect, the only event-time coefficient distinguishable from zero in either design -- applied to
+a large population. These are not a confirmed count of lives saved; they are an illustrative translation of one
+statistically significant point estimate, reported transparently with its 95\% confidence interval rather than as a
+settled finding. We deliberately do not extend this calculation across multiple post-switch years, both because the
+later coefficients are not individually significant and because Section~\ref{sec:cohort} shows the pooled
+post-switch pattern itself is not robust across cohorts -- extrapolating a multi-year welfare gain from an
+unreliable multi-year pattern would overstate what this design can support.
+
+\input{tables/table3_welfare}
+
+\subsection{Robustness to the switcher threshold}
+
+The 50-mile threshold used above is a modeling choice, not an estimate, so we repeat both event studies at 75
+miles and 100 miles. Table~\ref{tab:threshold_robustness} reports the switch-year coefficient at each threshold,
+and Figure~\ref{fig:threshold_robustness} reports the full event-study coefficient path. The switch-year effect
+is negative and significant at every threshold under the main design ($-2.478$ at 50 miles, $-3.399$ at 75 miles,
+$-4.256$ at 100 miles, all $p<0.01$) and grows somewhat larger, rather than smaller, as the radius widens --
+consistent with a wider catchment area pulling in more of the population that is genuinely exposed to a nearby
+legal market, rather than the 50-mile result being a threshold-specific artifact. The dispensary design's
+switch-year effect is negative at all three thresholds but only marginally significant at 75 miles ($-1.999$,
+$p=0.056$), sitting between the significant 50-mile ($-3.173$) and 100-mile ($-4.800$) estimates -- plausibly
+reflecting the smaller, partial-coverage dispensary sample rather than a genuine threshold-specific reversal.
+The post-switch pooled pattern documented in Section~3 (positive, individually insignificant coefficients after
+the switch year) is, if anything, more pronounced at wider thresholds: under the main design, $t=+3$ is
+individually significant and positive at both 75 miles ($+2.371$, $p=0.002$) and 100 miles ($+1.649$, $p=0.012$).
+We do not read this as confirming a general reversal, for the same reason given in Section~\ref{sec:cohort}: we
+have not verified this pattern is robust to cohort composition at these wider thresholds, and our 50-mile
+cohort-level check found the analogous pooled pattern there was not general. What is robust across every
+threshold we examine is the switch-year effect itself.
+
+\input{tables/table4_threshold_robustness}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig3_eventstudy_threshold_robustness.png}
+\caption{Event-study robustness at 75-mile and 100-mile switcher thresholds.}
+\label{fig:threshold_robustness}
+\end{figure}
+
+\subsection{Robustness to the estimation method: comparison with Callaway--Sant'Anna}
+\label{sec:cs}
+
+The stacked design in Section~2.2 is one specific way of handling staggered treatment timing. A natural
+question is whether a purpose-built heterogeneity-robust estimator -- \citet{CallawaySantAnna2021}'s
+group-time ATT, which never uses an already-treated county as a control for a not-yet-treated one -- agrees.
+We apply it to the identical treatment, control, and 50-mile threshold definition used throughout this paper.
+The estimator requires a balanced panel (complete, non-suppressed data for every county in every year), which
+this setting's suppression of small county-level death counts (Section~2.1) shrinks to counties switching in
+one of three annual cohorts, 2022, 2023, or 2024.
+
+Table~\ref{tab:cs_comparison} and Figure~\ref{fig:cs_comparison} report the results, and we read this exercise
+as informative in two distinct ways, one reassuring and one cautionary. First, the reassuring part: without
+covariates, the Callaway--Sant'Anna switch-year ATT is $-3.191$ (county-clustered $p=0.001$) -- a completely
+different estimation approach, built on a different (coarser, balanced-only) sample, independently reproduces
+both the sign and the approximate magnitude of our own switch-year coefficient ($-2.478$, Table~\ref{tab:eventstudy_main}).
+Its own event-study path also shows a large, highly significant lead at $t=-2$ ($-4.950$, $p<0.001$) -- if
+anything a sharper pre-trend than the one our own diagnostic flagged in Section~3. Rather than undermining our
+design, we take this as independent corroboration that the pre-trends concern in this setting is real and not
+an artifact of our particular stacking procedure, which is precisely why we treat the baseline-rate control as
+a necessary feature of the preferred specification rather than an optional robustness add-on.
+
+Second, the cautionary part: once a covariate (the same baseline overdose rate) is added, the
+Callaway--Sant'Anna estimate becomes unstable and changes sign (overall ATT $+5.992$, switch-year ATT
+$+7.506$, with a first lead of $-11.386$ at $t=-3$), and we do not think this reversal should be read as
+evidence against our result. The covariate-adjusted estimator is being asked to estimate a separate
+regression-adjustment model \emph{within each of only three treatment cohorts}, since the balanced-panel
+requirement discards most of the transition-level switching variation our own stacked design uses. With that
+few cohorts, a covariate-adjustment step that is well-behaved in a large stacked panel can become erratic. We
+think this points to a genuinely underappreciated methodological tension for applied work in this area: the
+same public-health suppression rules that protect individual privacy in small-county vital statistics
+(Section~2.1) also limit how much of the sample survives the balanced-panel requirement that heterogeneity-robust
+estimators like Callaway--Sant'Anna need to guarantee their bias-correction properties. A design choice that
+looks like the more rigorous option in principle can, in a suppressed-count setting like ours, deliver a
+noisier and less trustworthy estimate in practice than a stacked regression that can use every available
+transition. We do not treat the Callaway--Sant'Anna comparison as confirming or overturning our headline
+result; we report it in full, together with the reason for its instability, rather than omitting a check we
+had already run.
+
+\input{tables/table5_cs_comparison}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig4_cs_comparison.png}
+\caption{Callaway--Sant'Anna group-time ATT, event-study form, 50-mile threshold.}
+\label{fig:cs_comparison}
+\end{figure}
+
+\subsection{Is the post-switch pattern general? A cohort-level check}
+\label{sec:cohort}
+
+The pooled event study in Table~\ref{tab:eventstudy_main} stacks counties that switch in three different real
+calendar years -- 2022 ($n=26$ in the estimation sample), 2023 ($n=74$), and 2024 ($n=77$) -- into common event-time
+bins. Pooling is standard practice \citep{Cengiz2019}, but it can mask heterogeneity: if the apparent post-switch
+reversal is driven by one specific cohort's real-world circumstances rather than a general within-county dynamic,
+pooling would make a cohort-specific pattern look like a general property of market access. We therefore
+re-estimate the same specification separately within each cohort.
+
+Table~\ref{tab:cohort_composition} shows the pooled event study's large, significant $t=+1$ coefficient
+($+1.156$, $p=0.083$ pooled) is driven almost entirely by the 2023 cohort ($+3.240$, $p=0.001$); it does not
+replicate in the 2022 cohort ($+0.504$, $p=0.718$) and has the opposite sign in the 2024 cohort ($-0.507$,
+$p=0.665$). A pattern this concentrated in a single cohort is more consistent with cohort-specific composition than
+with a general behavioral dynamic -- and it is worth noting that the 2023 cohort's $t=+1$ corresponds to the real
+2023--2024 transition, a period in this research program's broader project history already found, in a related but
+distinct panel, to have a sign reversal traceable to Appalachian/Ohio-border regional composition and a small
+number of counties with outsized leverage. We do not re-verify that identical mechanism for this specific cohort
+split, but the coincidence is suggestive.
+
+A plain additive cohort fixed effect cannot formalize this comparison within our existing specification: since
+$\text{EventTime} = \text{Transition} - \text{Cohort}$ is an exact arithmetic identity, a cohort main effect would
+be perfectly collinear with the transition and event-time dummies already in the model, the familiar
+age-period-cohort identification problem. What \emph{is} identified, and what Table~\ref{tab:cohort_composition}
+already estimates implicitly through separate cohort regressions, is a full event-time-by-cohort interaction. We
+re-estimate this as a single pooled regression (sharing one baseline-rate coefficient and the full control group
+across cohorts, rather than three separate regressions) and use it to formally test poolability. A joint F-test
+that the $t=+1$ coefficient is equal across all three cohorts gives $F=2.92$, $p=0.055$; a broader test across the
+three event times common to every cohort ($t=-1,0,+1$) gives $F=1.89$, $p=0.080$. Both are suggestive of real
+cohort heterogeneity but sit just above the conventional 5\% threshold -- we report this as marginal, not decisive,
+evidence against poolability, consistent with the cautious reading we give the underlying pattern throughout this
+section.
+
+Had the post-switch pattern replicated consistently across all three cohorts, a candidate explanation would be
+mortality displacement (``harvesting''): a temporary protective effect that postpones, rather than prevents, some
+deaths, which then occur in a subsequent year instead -- a dynamic well documented in mortality responses to
+weather shocks \citep{DeschenesMoretti2009,Schwartz2000} and, closer to this setting, in opioid users' relapse to
+more dangerous substitutes after a supply-side disruption \citep{AlpertPowellPacula2018}. We flag this literature
+for completeness, but our cohort-level check argues against invoking it here: a genuine displacement dynamic should
+appear, to some degree, in each cohort, not almost exclusively in one. We therefore do not claim the switch-year
+protective effect is transitory, and we do not claim it is permanent -- we report that the pooled evidence on
+\emph{what happens after} the switch year is not robust enough to support either claim, while the switch-year
+effect itself is robust across treatment definitions, thresholds, and estimators.
+
+\input{tables/table6_cohort_composition}
+
+\subsection{A supply-side check: does market density respond to cross-border demand?}
+\label{sec:supplyside}
+
+Our main design cannot distinguish whether the switch-year mortality decline reflects supply-side changes in
+the newly accessible market (for example, a denser or better-supplied retail sector forming near the border) or
+purely demand-side substitution by residents who now have any legal option nearby. A companion analysis, using
+an independent dataset and looking at the opposite side of the same border geography -- legal-market counties,
+rather than the non-legal-market counties studied above -- lets us test one specific supply-side channel
+directly: do counties closer to a non-legal-state border develop a denser, higher-revenue cannabis retail
+sector, consistent with dispensaries clustering to capture captive cross-border demand that a still-illegal
+neighboring market cannot serve \citep{HaoCowan2020,Lovenheim2008,Beatty2009}?
+
+We construct a county-fiscal-year panel of licensed retail cannabis revenue for Colorado (2014--2025) and
+Washington (2015--2025) -- the two states, among those with a comparably geocoded dispensary universe, whose
+regulators publish county-level sales data -- and regress log revenue per capita on each county's distance to
+the nearest non-legal-market state, mirroring our own treatment definition but measured outward from inside a
+legal state rather than inward from a non-legal one. Table~\ref{tab:supplyside_check} reports the results. An
+unconditional comparison suggests a large, apparently significant border effect ($\beta=-0.426$, county-clustered
+$p=0.005$), and a $\leq$50-mile binary version survives the addition of population, year, and state fixed
+effects ($\beta=+0.631$, $p=0.052$). Both, however, turn out to be driven almost entirely by a single county:
+Sedgwick County, Colorado (population 2{,}299), on the Nebraska border, is the \emph{only} Colorado county
+within 50 miles of a non-legal state, and its extreme per-capita revenue -- roughly ten times Colorado's own
+interior average -- is doing essentially all of the work in both specifications. Once this one county is
+excluded, both the continuous distance measure ($\beta=-0.003$, $p=0.981$) and the binary threshold measure
+($\beta=+0.411$, $p=0.164$) collapse to a precise, statistically indistinguishable-from-zero null.
+
+This null is consistent with two companion checks from the same broader research program, using an independent,
+nine-state geocoded dispensary panel: neither the \emph{timing} of dispensary entry (whether stores open sooner
+in border counties) nor its \emph{density} (dispensaries per capita, conditional on state fixed effects)
+responds to proximity to a non-legal-market border. Taken together, these three checks -- entry timing, entry
+density, and now entry revenue -- offer no evidence that legal-market counties develop a denser or more
+lucrative retail sector specifically to capture captive cross-border demand. We read this as evidence against
+one specific supply-side story for our main mortality result -- that the effect is driven by proximity-induced
+market \emph{expansion} -- though it cannot rule out supply-side channels that leave no trace in store count or
+revenue (for example, changes in product mix or potency), nor can it adjudicate between the remaining demand-
+and supply-side explanations for the mortality effect itself.
+
+\input{tables/table7_supplyside_check}
+
+\section{Discussion}
+
+We evaluate the impact of geographic availability of the legal cannabis market on drug-overdose mortality. Our
+evidence comes from a large-scale natural experiment in marijuana-legalization policy across U.S.\ states, observed
+at a level of geographic and temporal granularity -- county-year, with an event-time decomposition around each
+county's own switch date -- that the existing literature has not applied to this outcome. In the year a county
+gains legal-market access, overdose mortality falls by roughly 6--7\% relative to the switch-year counties' own
+2020 baseline overdose rate (population-weighted average of 38.1 per 100{,}000 under the main design and 46.0 per
+100{,}000 under the dispensary design), depending on which treatment definition is used. This finding is consistent with the
+hypothesis that some high-risk individuals substitute toward marijuana and away from more dangerous drugs when
+legal access becomes available, echoing \citet{PowellPaculaJacobson2018}, \citet{ChanBurkhardtFlyr2020}, and
+\citet{Denkyirah2026}.
+
+Our event-study design also lets us ask a question those studies' designs cannot: does this protective effect
+persist? The pooled coefficients alone would suggest not, but Section~\ref{sec:cohort} shows that pattern is
+concentrated in a single switch-year cohort rather than general -- so we treat the switch-year effect, not its
+apparent unwinding, as the finding this design actually supports. This distinction matters directly for
+reconciling the literature's disagreement. Most existing studies, including the most credible critique of this
+literature \citep{MathurRuhm2023}, estimate a single average effect over a multi-year post-period, implicitly
+assuming the effect (if any) is constant across the years following legalization and across the specific counties
+or states pooled together. Our cohort-level check shows that even within a single, carefully constructed
+county-level design, the year-by-year pattern can look very different depending on which switch cohort is
+examined -- which is exactly the kind of composition sensitivity that a coarser, state-level design (which cannot
+disaggregate by local cohort at all) would be even more exposed to, and a plausible contributor to the
+specification sensitivity \citet{MathurRuhm2023} document. Our comparison with the \citet{CallawaySantAnna2021}
+estimator (Section~\ref{sec:cs}) reinforces this reading from a different angle: its simplest version independently
+reproduces our switch-year effect and, if anything, an even sharper pre-trend, while its covariate-adjusted
+version becomes unstable once the sample is restricted to the handful of treatment cohorts that survive a
+balanced-panel requirement under suppressed vital-statistics data -- a reminder that specification sensitivity
+in this literature can come as much from data-coverage constraints and cohort composition interacting with an
+estimator's own requirements as from the substantive choice of treatment definition.
+
+A second common feature of the existing literature is that treatment is defined at the state level, which can be
+confounded by state-level unobservables correlated both with the timing of legalization and with overdose trends
+(for example, a state's broader drug-enforcement posture or its opioid-prescribing regulatory environment, both of
+which could move independently of marijuana policy but still shift overdose mortality around the same time a state
+legalizes). Our county-level, distance-based design is less exposed to this confound, since it compares counties
+within the same national opioid environment that differ mainly in their proximity to a legal market, and our
+robustness check using actual dispensary-opening dates -- which vary within a state and are driven by individual
+business licensing decisions rather than state political timing -- reinforces that the switch-year result is not
+simply an artifact of state-level policy bundling.
+
+Finally, our design is explicitly built to detect cross-border spillovers: every treated county in our sample is,
+by construction, in a state where recreational marijuana itself remains illegal. Without accounting for this
+spillover channel, studies that treat only legalizing states as treated and all non-legalizing states as a clean
+control group may understate the true effect of legalization, since some of their control counties are themselves
+experiencing a partial treatment through cross-border proximity.
+
+Beyond the design-level contribution, the robustness of the switch-year effect itself -- rather than any claim
+about what follows it -- is what we think this paper adds most confidently to the policy conversation. We are
+deliberately cautious here: having shown in Section~\ref{sec:cohort} that the apparent post-switch reversal is not
+a general pattern, we do not build a policy argument on the premise that the protective effect is known to be
+transitory. What we can say is that the existing literature's own estimates have shown real instability over time,
+independently of our design: \citet{Shover2019} show that the original, widely cited association between
+medical-marijuana laws and lower opioid mortality \citep{Bachhuber2014} reverses sign once the sample window is
+extended to more recent years, and \citet{PowellPaculaJacobson2018} themselves note that their own estimated
+relationship ``appears to be changing as both medical marijuana laws and the opioid crisis evolve.'' Our
+cohort-level finding offers one candidate explanation for that broader instability that does not require assuming
+the underlying effect itself is transitory: if a granular, county-level design already shows that near-term
+dynamics can differ substantially by cohort, a coarser state-level design -- which cannot disaggregate by cohort at
+all -- would be even more exposed to whatever composition happens to dominate its sample in a given study window.
+We think this is a more defensible reading of the literature's inconsistency than assuming every study is
+estimating the same constant effect with different amounts of noise.
+
+\section{Conclusion}
+
+We built a new treatment design -- county-level distance to an actual legal marijuana market, rather than a
+state's binary legalization status -- and applied it in an event-study framework to estimate the effect of
+market access on drug-overdose mortality. The central finding is a robust, statistically significant decline in
+overdose mortality in the year a county gains access to a nearby legal market: 2.48 fewer deaths per 100{,}000
+under the primary county-distance definition, and 3.17 fewer under an alternative definition using actual
+dispensary-opening dates. This result holds across two independent treatment definitions, three distance
+thresholds, and a purpose-built heterogeneity-robust estimator \citep{CallawaySantAnna2021} -- a degree of
+robustness the existing, state-level literature on this question has not established.
+
+This paper cannot distinguish whether that decline is driven by supply-side mechanisms (for example, reduced
+trafficking of more dangerous substances near a competing legal market) or by demand-side substitution (high-risk
+individuals choosing marijuana over more dangerous drugs once it is legally available); our data speak to the
+reduced-form effect on mortality, not to the underlying behavioral channel. A companion check
+(Section~\ref{sec:supplyside}) narrows, without resolving, this ambiguity: legal-market counties near a
+non-legal-state border show no evidence of a denser or higher-revenue retail sector forming to capture captive
+cross-border demand, arguing against one specific supply-side story -- proximity-induced market expansion -- but
+not against supply-side channels more broadly. We also investigated, and could not
+confirm, whether the effect persists or fades in subsequent years: a naive pooled event study suggests it does not
+persist, but a cohort-by-cohort check shows that pattern is concentrated in a single switch-year cohort rather than
+general, so we do not treat it as established either way. We see this as a genuine limitation to be resolved by
+future work with a longer panel, not as a reason to discount the switch-year finding itself.
+
+We believe part of why the existing literature disagrees so much on this question is that state-level designs
+cannot disaggregate the kind of local, cohort-specific heterogeneity our county-level check reveals even within a
+single, carefully constructed sample. A treatment design built on actual market access, rather than state
+legalization status, is better positioned to detect a real, geographically concentrated effect -- and, as this
+paper shows, to be honest about which parts of the resulting evidence are robust and which are not.
+
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

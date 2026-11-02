@@ -1,0 +1,263 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\title{License-Cap Policy Evaluation: A Synthesis\\
+\large Incidence, Magnitude, and the Politics of the Local-Option Margin}
+\author{Working notes -- entry game-marijuana project}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent This note assembles a policy-evaluation section from results already estimated across
+Colorado, Washington, and Montana, plus one new test. Three points are established. First,
+\textbf{incidence}: where cannabis license entry is restricted (Colorado's local-option bans,
+Washington's statewide numerical cap), a cross-border demand shock lands on revenue per existing
+dispensary rather than on the number of dispensaries or revenue per capita; this holds not just in the
+pooled Colorado-Washington estimate but in each state's licensing regime tested independently. Where
+entry is not capped by a fixed number (Montana, under a moratorium restricted to already-licensed 2020
+medical operators), the same shock shows up on revenue per capita instead. Second, \textbf{magnitude}:
+using each state's best-supported coefficient, the capped regime captures roughly 88\% (\$164M) of the
+combined 2025 border-effect premium and Montana 12\% (\$23M); normalized by the population of nearby
+non-legal-state residents each regime could plausibly draw from, the capped regime still extracts about
+2.7 times more per potential customer, so this is not simply a market-size artifact. Third, a genuinely
+new result: Colorado's border counties are, if anything, \emph{less} likely to ever have permitted an
+operating dispensary than interior counties (43\% vs.\ 72\%, $p=0.036$), the opposite of what a simple
+fiscal-capture theory of local opt-in decisions would predict. This is reported as an open, unresolved
+finding, not smoothed into the main story, and is discussed as a direction for a genuinely new
+contribution rather than a robustness check.
+\end{abstract}
+
+\tableofcontents
+
+\section{Framing}
+
+The paper's core empirical pattern is that dispensaries in counties near a non-legal-state border earn
+more revenue than interior dispensaries of the same state, and that this shows up on different margins
+depending on how restrictive each state's entry policy is. This note turns that pattern into an explicit
+policy-evaluation section, organized around three questions a referee is likely to ask:
+
+\begin{enumerate}
+\item \textbf{Does the incidence result generalize across different licensing mechanisms}, or is it an
+artifact of one particular policy design (e.g., Washington's specific numerical cap)?
+\item \textbf{How large is the transfer in dollar terms}, and is the difference across regimes just a
+market-size effect?
+\item \textbf{Is there a political-economy mechanism behind the local-option version of the cap}
+(Colorado), where local governments choose whether to allow retail marijuana at all?
+\end{enumerate}
+
+Consistent with the rest of the project, none of what follows is presented as a structural welfare
+estimate. The revenue data contain no prices or quantities, so nothing here can separate a genuine
+increase in served demand from market power at capped, scarce locations. The contribution is a clean,
+falsifiable description of \emph{where} a real, sizable demand shock lands under different licensing
+regimes, and a preliminary look at \emph{why} local governments themselves might restrict entry.
+
+\section{Part 1: Incidence Generalizes Across Cap Mechanisms}
+\label{sec:incidence}
+
+Colorado and Washington restrict entry through different institutional channels. Washington caps the
+statewide number of retail licenses (334 initially, raised to 556 in 2016). Colorado imposes no statewide
+number at all; instead, Amendment 64 gives every county and municipality the authority to ban retail
+marijuana outright, and most have. If the incidence result, effect concentrated in revenue per
+dispensary, not in entry or revenue per capita, is really about entry restriction as a general
+phenomenon, it should hold independently in \emph{both} states, not just in a pooled estimate that could
+be driven by one of them.
+
+\input{tables/synthesis_table_incidence}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{synthesis_fig_incidence.png}
+\caption{Border coefficient on three outcomes, each state's licensing regime tested independently.
+Entry density and revenue per dispensary are estimated the same way throughout the paper; revenue per
+capita uses the same specification, run separately by state rather than pooled.}
+\label{fig:incidence}
+\end{figure}
+
+Table~\ref{tab:incidence} and Figure~\ref{fig:incidence} show the result holds up. In Colorado, entry
+density is a precise null ($b=+0.015$, $p=0.89$) and revenue per dispensary is large and significant
+($b=+0.552$, $p=0.005$). In Washington, entry density is likewise a precise null ($b=-0.002$, $p=0.94$)
+and revenue per dispensary is positive, though not significant on its own ($b=+0.233$, $p=0.33$). Both
+states independently show the same qualitative pattern that the pooled estimate shows: no detectable
+entry response, and a demand shock that concentrates in revenue per existing store. This is the single
+most useful fact for a referee, the result is not an artifact of Washington's specific 334/556-license
+cap; a completely different institutional mechanism, Colorado's local-option ban authority, produces the
+same signature.
+
+One nuance worth stating directly: Washington's revenue-per-capita coefficient ($b=+0.341$) is
+significant under HC1 ($p=0.001$) but not under county clustering ($p=0.12$), so Washington shows a
+weak, statistically fragile hint of a per-capita response that Colorado does not share at all
+($b=-0.013$, $p=0.97$). This is consistent with Washington's licensing regime being formally a numerical
+cap but administered with periodic capacity increases (334 to 556 in 2016), giving it slightly more
+flexibility than Colorado's local-option bans, which, once a jurisdiction opts out, do not expire on
+their own. Montana, with no numerical cap of either kind, shows the reverse signature throughout: entry
+density positive and marginal ($b=+0.142$, $p=0.11$; significant without controls, $p=0.035$), revenue
+per dispensary a precise null ($b=+0.012$, $p=0.96$), and revenue per capita significant
+($b=+0.654$, $p=0.036$).
+
+\section{Part 2: Magnitude, and Whether It Is Just Market Size}
+\label{sec:magnitude}
+
+\input{tables/synthesis_table_magnitude}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{visualized_premium_share.png}
+\caption{Left: share of the combined 2025 border-effect premium captured by each regime. Right: the same
+premium normalized by catchment population, the union of non-legal-state counties within 70 miles of any
+of that regime's border counties, not a per-county sum, to avoid double-counting overlapping catchments.}
+\label{fig:magnitude}
+\end{figure}
+
+Table~\ref{tab:magnitude} and Figure~\ref{fig:magnitude} report the dollar magnitude, using each regime's
+own best-supported coefficient: Colorado and Washington's 2025-specific coefficient ($b=0.614$,
+$p=0.002$, well-powered given a full decade of data and 12 border counties), and Montana's pooled
+2022--2025 coefficient ($b=0.654$, $p=0.036$), since Montana's 2025-only estimate is not significant on
+its own (only 8 border counties in one year). Of the \$187.2M combined premium, the capped regime
+captures 88\% (\$164M) and Montana 12\% (\$23M).
+
+Raw dollars conflate two things: a genuinely different regime effect, and the simple fact that Colorado
+and Washington's cannabis economy is much larger than Montana's. To separate them, we computed each
+regime's \emph{catchment population}, the union of non-legal-state counties within 70 miles of any of
+that regime's own border counties (20 counties across UT/WY/NE/ID for Colorado+Washington, 512{,}162
+residents; 10 counties across ID/ND/WY for Montana, 198{,}016 residents). Catchment population is 2.6
+times larger for the capped regime, but the dollar transfer is 4.45 times larger, so market size explains
+part, but not all, of the gap. Normalized per catchment resident, the capped regime still extracts about
+\$320 versus Montana's \$117, roughly 2.7 times more per potential cross-border customer. The capped
+regime is not simply bigger, it appears to be more effective at converting a given pool of nearby
+non-legal-state residents into revenue, consistent with the idea that restricting entry concentrates
+demand onto fewer, more capitalized locations rather than diffusing it across many marginal ones.
+
+We do not read this as a pure regime effect. Colorado and Washington's markets are also roughly eight
+years older than Montana's (2014/2015 launch vs.\ 2022), and the paper's own market-age event study found
+the Colorado-Washington premium was not reliably significant until roughly year 7 of a state's market
+life. Montana's own within-state trend across its four available years does not show the same
+build-up, its per-capita border gap is roughly flat (58\% in 2022, 65\% in 2023, 55\% in 2024, 64\% in
+2025), so market immaturity alone does not cleanly explain the gap either. Untangling market age from
+regime type would need more years of Montana data than currently exist.
+
+\section{Part 3: A Falsifiable Prediction, Not Just a Pattern}
+\label{sec:prediction}
+
+What separates a policy-evaluation section from a restatement of results is a claim the data could have
+contradicted. The prediction here is explicit: \emph{under a binding entry restriction, a cross-border
+demand shock cannot expand the number of sellers, so it must appear as higher revenue per existing
+seller; under unrestricted entry, the same shock should instead expand the number of sellers, and revenue
+per seller should not need to rise as much.} This is not fit to the data after the fact, it is the same
+logic already in the paper's conceptual framework (Section~3, citing Bresnahan and Reiss's classic
+entry-threshold result), and Montana was chosen as a test case specifically because it is the one sample
+state without a statewide numerical cap, before its entry-density and revenue-per-capita results were
+run.
+
+The prediction could have failed in an observable way, Montana could have shown the same
+per-dispensary-only pattern as Colorado and Washington, which would have undercut the license-cap
+interpretation entirely. It did not: Montana's reversal (per-capita significant, per-dispensary null) is
+exactly the mirror image the prediction implies. The New Mexico natural experiment (paper
+Section~6.1) adds a second, independent falsification opportunity on a different margin: if the premium
+is capacity-constrained demand rather than a stable, unobserved difference between border and interior
+counties, it should fall when a neighboring county's non-legal-state neighbor itself legalizes. It does,
+by 38.6\% in Colorado counties newly bordering New Mexico, precisely timed to New Mexico's own 2022
+retail opening, not before.
+
+\section{Part 4: A New Result, and an Honest Reversal}
+\label{sec:politicaleconomy}
+
+Colorado's cap is not really a cap at all, it is a collection of independent local opt-in/opt-out
+decisions under Amendment 64. This opens a question the paper has not tested: \textbf{do local
+governments in border counties, who stand to capture the fiscal windfall documented in
+Sections~\ref{sec:incidence}--\ref{sec:magnitude}, allow retail marijuana at a higher rate than interior
+counties?} A pure fiscal-competition story predicts yes.
+
+\input{tables/synthesis_table_politicaleconomy}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.68\textwidth]{synthesis_fig_politicaleconomy.png}
+\caption{Share of Colorado's 64 counties that ever had an operating dispensary between 2015 and 2025,
+border vs.\ interior.}
+\label{fig:politicaleconomy}
+\end{figure}
+
+\textbf{Data and limitation, stated up front.} No compiled, county-level dataset of actual municipal
+marijuana-ban ordinances exists for Colorado; opt-out decisions are made city by city, not uniformly by
+county, and building one from scratch would require manually compiling ordinance records for dozens of
+jurisdictions, the kind of labor-intensive reconstruction this project has elsewhere judged not worth
+attempting without a clearer payoff. The proxy used here instead is whether a county ever had \emph{any}
+operating dispensary across the full 2015--2025 panel. This is imperfect: a county with zero dispensaries
+could reflect an active local ban, or simply no operator choosing to enter a small, low-demand market even
+where retail is legal. It is directionally informative, not a direct measure of ordinance status, and
+should be described that way in any writeup.
+
+Table~\ref{tab:politicaleconomy} and Figure~\ref{fig:politicaleconomy} report the result, using the full
+64-county Colorado universe (not just the 42 counties already in the revenue panel, which by construction
+excludes the counties this test needs). \textbf{The finding is the opposite of the fiscal-capture
+prediction.} Only 43\% of Colorado's 14 border counties (within 70 miles of Utah, Wyoming, or Nebraska)
+ever had an operating dispensary, versus 72\% of the 50 interior counties, a gap that is significant with
+a population control ($b=-0.263$, $p=0.036$) and marginal without one ($p=0.051$). Restricting to counties
+with at least 5{,}000 residents, to rule out the smallest, commercially thinnest rural counties, shrinks
+the gap somewhat (56\% vs.\ 79\%) and weakens its significance ($p=0.105$), but the direction does not
+reverse.
+
+\textbf{We report this as a genuine, unresolved finding, not something to explain away.} A plausible
+account is that Colorado's non-legal-state neighbors, Utah, Wyoming, and Nebraska, border its Eastern
+Plains and southwestern counties, a more rural, culturally conservative part of the state where local
+opposition to retail marijuana plausibly runs higher regardless of the fiscal upside, meaning local
+political preference dominates fiscal self-interest rather than the reverse. That account is speculative
+and not tested here; it would need actual voting or demographic data on these specific counties, not just
+the border-status regression. What can be said with the current test is narrower but still useful: the
+data reject the simple version of the fiscal-capture story, and whatever is determining Colorado
+municipalities' opt-in decisions, it is not primarily "does this county sit next to a captive
+non-legal-market population."
+
+\section{Discussion: Assembling This Into the Paper}
+
+Sections~\ref{sec:incidence}--\ref{sec:prediction} require no new empirical work; they are a synthesis of
+results already estimated, organized around the three questions a referee is most likely to raise, and
+strengthened by two calculations that were not previously in the paper (Colorado- and Washington-specific
+entry density, and Colorado- and Washington-specific revenue per capita). These fill a real gap: the
+paper previously only showed the entry-density null pooled, which leaves open the objection that it is
+specific to Washington's cap design. That objection is now closed.
+
+Section~\ref{sec:politicaleconomy} is different in kind. It is a genuinely new empirical result, not a
+repackaging, and it does not confirm the story one might have hoped for. That is, on balance, a point in
+its favor for publication: reviewers are more persuaded by a paper that reports a result it did not
+expect and explains honestly what it can and cannot conclude than by one that only reports confirming
+evidence. Two honest paths forward with it:
+
+\begin{enumerate}
+\item \textbf{Report it as a limitation-flagged secondary finding}, exactly as written above, a real
+pattern in the data, with the has-any-dispensary proxy's limitations stated plainly, and no causal claim
+about local political preferences beyond noting it as the most plausible untested explanation.
+\item \textbf{Invest in actually collecting municipal ordinance or vote-share data} for Colorado's border
+region specifically, which would let the paper distinguish "local political opposition" from "no operator
+ever tried" and would turn this from a suggestive reversal into a real political-economy result. This is
+real additional work, not something to promise without doing it.
+\end{enumerate}
+
+\section{Caveats Carried Through From the Rest of the Project}
+
+\begin{itemize}
+\item All dollar figures here are accounting decompositions of an already-estimated coefficient, not
+independent causal magnitudes; they cannot distinguish genuine demand absorption from market power at
+capped locations, consistent with the paper's existing Discussion section and Hollenbeck and Uetake's
+(2021) market-power finding for Washington specifically.
+\item The core revenue analysis still rests on two states with usable administrative data (Colorado,
+Washington) plus Montana as a single institutional contrast; none of the calculations here add a fourth
+state.
+\item Montana's revenue-per-dispensary test remains a single 2025 cross-section (no historical dispensary
+open-dates exist in Montana's registry), materially weaker than its revenue-per-capita panel; this
+asymmetry is inherited by every Montana number in this note.
+\item The political-economy test's has-any-dispensary proxy conflates active local bans with no operator
+ever entering; treat Section~\ref{sec:politicaleconomy} as suggestive, not as evidence of specific
+municipal ordinance behavior.
+\end{itemize}
+
+\end{document}

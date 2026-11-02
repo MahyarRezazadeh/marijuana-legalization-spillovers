@@ -1,0 +1,30 @@
+\begin{table}[htbp]
+\centering
+\caption{Crop Substitution Event Study, Oregon Only (Illustrative)}
+\label{tab:cropsub_eventstudy}
+\begin{tabular}{lcccc}
+\toprule
+Event year (calendar year) & Border $\times$ Year coef. & SE (county-cl.) & $p$-value \\
+\midrule
+$-3$ (2012) & $+0.776$ & $0.425$ & $0.068$ \\
+$+2$ (2017) & $+0.812$ & $0.430$ & $0.059$ \\
+$+7$ (2022) & $+0.731$ & $0.393$ & $0.063$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(harvested cropland acres), \emph{levels}, not the change used in
+Table~\ref{tab:cropsub_border70}. $n=108$ (36 Oregon counties $\times$ 3 NASS years), only 3 border
+counties (Baker, Malheur, Wallowa) at every year, so treat as illustrative rather than well-powered.
+Unlike the other three outcomes in this paper, Oregon is the only state with usable crop-substitution
+data, so there is no cross-state market-age clock to stack on -- this event study uses Oregon's own 3
+NASS waves (2012, 2017, 2022) relative to its 2015 retail launch. The coefficient is nearly identical
+across all three years, \emph{including 2012, three years before Oregon legalized}: border counties simply
+have more harvested cropland than interior counties in level terms throughout the entire period (Baker,
+Malheur, and Wallowa are large wheat-growing counties in eastern Oregon), a fixed characteristic unrelated
+to legalization timing. This is precisely why the main cross-sectional analysis
+(Table~\ref{tab:cropsub_border70}) uses the \emph{change} in cropland rather than its level: differencing
+removes this stable level gap, which is exactly what makes it not the right measure for a treatment effect.
+\end{minipage}
+\end{table}

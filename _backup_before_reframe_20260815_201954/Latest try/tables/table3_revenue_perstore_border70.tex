@@ -1,0 +1,36 @@
+\begin{table}[htbp]
+\centering
+\caption{Border-vs-Interior Estimates: Cannabis Revenue per Dispensary Store (CO + WA)}
+\label{tab:revenue_perstore_border70}
+\begin{tabular}{lcccc}
+\toprule
+Specification & Coefficient & SE (HC1) & SE (county-cl.) & $p$-value (county-cl.) \\
+\midrule
+No controls & $+0.502$ & $0.101$ & $0.233$ & $0.031$ \\
++ log(pop) + year FE + state FE & $+0.395$ & $0.074$ & $0.163$ & $0.015$ \\
+\quad excluding Sedgwick County, CO & $+0.302$ & $0.068$ & $0.147$ & $0.040$ \\
+\midrule
+\multicolumn{5}{l}{\textit{Single-state estimates, + log(pop) + year FE (both HC1 $p<0.001$)}} \\
+Colorado only (42 counties) & $+0.552$ & $<0.001$ & $0.199$ & $0.005$ \\
+Washington only (29 counties) & $+0.441$ & $<0.001$ & $0.263$ & $0.077$ \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Outcome is log(total county cannabis revenue $\div$ number of currently-open dispensary
+stores). Store counts are cumulative-open-by-year, built from geocoded dispensary license records
+point-in-polygon assigned to counties, counted as open if the license's open date precedes each
+fiscal/calendar year's own reporting cutoff (matching each state's revenue-reporting convention). Sample
+restricted to county-years with at least one open store, $n=706$ (71 counties, 10 border and 61
+interior). Unlike the revenue-per-capita and dispensary-density checks reported elsewhere in this
+project -- both of which are null -- revenue per store is significantly \emph{higher} in border counties,
+robust to dropping Sedgwick County (the single-county outlier that drove an earlier, non-robust
+50-mile-threshold result) and to estimating each state separately. This is the only significant result
+of the checks reported in this project's border-competition research thread, and it is directly
+consistent with the license-cap explanation proposed when the original entry-density check came back null:
+if border-county demand is genuinely elevated but the number of licensed stores is capped by state
+regulation, the excess demand should appear as higher revenue per existing store rather than as more
+stores or higher aggregate per-capita revenue -- exactly the pattern observed here.
+\end{minipage}
+\end{table}

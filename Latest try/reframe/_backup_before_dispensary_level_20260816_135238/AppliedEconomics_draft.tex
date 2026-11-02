@@ -1,0 +1,503 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{xurl}
+\usepackage{setspace}
+\doublespacing
+
+\title{Uneven Legalization, Spatial Demand Spillovers, and the Regulation of Entry:\\
+Evidence from U.S.\ Cannabis Markets}
+\author{Mahyar Rezazadeh \\ Babak Sahragard}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{singlespace}
+\begin{abstract}
+\noindent Uneven state-level legalization of recreational cannabis creates a spatial demand spillover: counties
+near a still-prohibited neighboring state face captive cross-border demand that interior counties of the same
+state do not. We ask two questions about this spillover. First, does it produce a border premium in legal
+cannabis markets. Second, does entry regulation determine which margin absorbs that premium -- existing
+sellers' revenue, or the number of sellers and the market's total size. Using a county-year panel spanning
+Colorado, Washington, Oregon, Montana, and New Mexico (2014--2026), with a border classification that is
+time-varying rather than a fixed snapshot -- accounting for New Mexico's 2022 legalization, Oregon's 2015
+legalization, and Oregon's own 2017--2018 transition relative to California and Nevada -- we find a robust
+border premium on revenue per dispensary (+48\%, county-clustered $p=0.11$), revenue per capita (+193\%,
+$p<0.001$), and dispensary density (+101\%, $p<0.001$). Whether entry is capped, using an institutional
+classification that treats binding local-government control over licensing as equivalent to a state cap, does
+not moderate the revenue-per-store margin, but it sharply moderates the other two: capped entry reduces the
+border premium's multiplier on revenue per capita by 54\% in relative terms (from roughly 193\% to roughly
+34\% in level terms, $p=0.009$) and on dispensary density by 56\% in relative terms ($p<0.001$). Oregon's own
+within-state entry freeze in January 2022 produces the same-signed, if
+underpowered, pattern. A dispensary-level panel built for New Mexico -- the one sample state where individual
+firm revenue is observable historically -- confirms the border premium is not a county-aggregation artifact
+(+141\% at the level of the individual dispensary, $p=0.001$, significant in every sample year). The results
+support a specific mechanism -- entry regulation determines whether spatial
+demand spillovers are absorbed by incumbent revenue or by market expansion -- while also reporting, without
+forcing a cleaner story, that the mechanism does not extend to the intensive margin the way it was originally
+hypothesized to, and that an alternative cut isolating specifically local-government-imposed restrictions
+preserves the density result under county clustering but not the other two margins.
+
+\vspace{0.5em}
+\noindent\textbf{JEL codes:} L51, H71, R12, L81
+\vspace{0.3em}
+
+\noindent\textbf{Keywords:} cannabis, cross-border shopping, market entry, license caps, entry regulation
+\end{abstract}
+\end{singlespace}
+
+\section{Introduction}
+\label{sec:intro}
+
+By the end of 2025, 24 U.S.\ states had legalized recreational cannabis, though Virginia had not yet
+established an operating retail market, leaving 23 states with a functioning legal market and 27 states,
+plus the remaining territory, where recreational retail sale remained prohibited. This patchwork did not
+arrive all at once, and it has not stopped changing: a state that borders only prohibition-states in one year
+can border a freshly legal neighbor the next. That timing creates a natural, if underused, source of
+identifying variation. A county sitting near a still-prohibited state faces a captive pool of residents who
+cannot buy cannabis legally at home; a county in the interior of the same legal state does not. If cannabis
+demand is at all price- or access-sensitive across a state line -- which the existing literature on cannabis,
+alcohol, and other regulated goods says it is -- that captive demand should show up somewhere in the legal
+market's own data.
+
+Where it shows up, however, is not obvious, and that is the question this paper is really about. A dispensary
+facing extra demand from across the border can respond in at least two ways: it can sell more at roughly the
+same price and margin, raising its own revenue, or new dispensaries can open nearby to meet the extra demand,
+raising the county's total revenue and store count without necessarily raising revenue at any one store. Which
+of these happens is not a fact about demand; it is a fact about supply-side regulation. A state that caps the
+number of licenses, whether by an explicit numerical ceiling or by letting local governments block entry
+outright, closes off the second channel by construction. A state that does not cap entry leaves it open. This
+paper's central hypothesis is that cross-border demand creates a revenue premium in border counties, and that
+entry regulation determines whether that premium is absorbed by existing sellers (revenue per store) or by
+market expansion (revenue per capita and dispensary count) -- a specific, testable version of a standard
+regulatory-economics prediction: a binding entry restriction forces a demand shock into incumbent rents rather
+than into quantity.
+
+We test this using a county-year panel covering five states -- Colorado, Washington, Oregon, Montana, and New
+Mexico -- assembled from each state's own revenue-reporting agency (2014--2026, depending on the state's own
+retail-launch date), together with an institutional classification of each state's entry-licensing regime built
+from the actual statutes and regulations, not from a state's own label for itself. Two features of the design
+depart from prior work in this space, including our own earlier work on Colorado and Washington alone. First,
+a county's exposure to a nonlegal-state border is treated as time-varying: because several of the sample
+states' neighbors themselves legalized cannabis partway through the sample window (New Mexico in 2022, Oregon
+in 2015, and, more narrowly, California and Nevada relative to Oregon's own 2017 observations), a border
+classification fixed at a single snapshot date misclassifies a meaningful share of county-years. We recompute
+it year by year. Second, entry regulation is classified by where the binding constraint on licensing actually
+sits, not by whether a state imposes an explicit numerical cap. Colorado has no state-level cap, but roughly
+half its counties ban cannabis retail outright through local option, a restriction documented independently by
+\citet{PayanBrownSong2021}; Montana has no numerical cap either, but its 2021 enabling statute requires
+counties that voted against the state's 2020 legalization initiative to affirmatively opt in before a
+dispensary can locate there. Both are coded as capped-entry states for this reason, a coding choice we explain
+and defend in Section~\ref{sec:institutional} rather than assert.
+
+We find, first, that the border premium is real and does not depend on regulatory regime: revenue per store,
+revenue per capita, and dispensary density are all significantly higher in border counties, pooling across the
+five states. Second, entry regulation moderates two of these three margins in exactly the direction the
+hypothesis predicts, and does so with more precision than the underlying border effect itself: the interaction
+between border exposure and capped entry is a 54\% relative reduction in the border premium's multiplier on
+revenue per capita ($p=0.009$) and a 56\% relative reduction on dispensary density ($p<0.001$) -- almost
+identical magnitudes, consistent with the
+premium moving through the quantity margin specifically, since revenue per capita is arithmetically close to
+the product of density and revenue per store. Third, and reported honestly rather than smoothed over, the same
+interaction on revenue per store is a precise, stable null: the border premium on revenue per store is
+essentially identical in capped and free-entry states. The original hypothesis predicted regulation would push
+the premium into the per-store margin specifically when entry is capped; the data show only that regulation
+blocks the quantity margin, not that it redirects the premium into price.
+
+The remainder of the paper is organized as follows. Section~\ref{sec:lit} reviews the two literatures this
+paper connects. Section~\ref{sec:institutional} details the five states' entry-licensing institutions.
+Section~\ref{sec:data} describes the data and the time-varying border construction. Section~\ref{sec:methods}
+presents the empirical strategy. Section~\ref{sec:results} reports results. Section~\ref{sec:discussion}
+discusses mechanism and limitations, and Section~\ref{sec:conclusion} concludes.
+
+\section{Literature Review}
+\label{sec:lit}
+
+Two literatures bear directly on this paper's question, and, to our knowledge, neither has been connected to
+the other.
+
+The first documents that cannabis demand crosses state borders when legal status differs. \citet{HaoCowan2020}
+show that recreational legalization draws substantial cross-border sales from residents of neighboring
+nonlegal states. \citet{HansenMillerWeber2020} show the mechanism operating in the other direction: Washington
+retailers near the Oregon border lost roughly 36 percent of their sales when Oregon's own retail market opened
+in October 2015, evidence that the earlier premium those counties enjoyed was genuinely a captive-demand
+effect. \citet{BaggioChongKwon2020} document a related cross-border effect between cannabis and a different
+regulated good, showing that counties in states that legalized medical marijuana reduced alcohol purchases
+relative to nearby counties across the state line, using a border-county-pair design in the tradition of
+\citet{DubeLesterReich2010}. Outside cannabis, cross-border shopping in response to tax and regulatory
+differences is a mature empirical literature; \citet{FribergEtAl2024} is a recent addition, using Norway's
+COVID-19 border closures as a natural experiment to show that cross-border shopping measurably erodes domestic
+commodity tax revenue.
+
+The second literature studies how entry regulation shapes market structure and rents once a cannabis market
+exists, independent of any cross-border demand story. \citet{HollenbeckUetake2021} document that Washington's
+capped licensing regime supports meaningful markups. \citet{Thomas2019LicenseQuotas} builds a structural model
+of Washington's own license quota and estimates that free entry would raise total surplus by roughly 18
+percent relative to the actual capped and partly randomized allocation. This is, as far as we can establish,
+the closest existing paper to the entry-regulation half of our own question -- but with no demand shock to
+test it against. The general industrial-organization literature on entry supplies the theoretical scaffolding:
+\citet{BresnahanReiss1990,BresnahanReiss1991} establish that competitive conduct changes most sharply with the
+arrival of a market's second or third entrant; \citet{Berry1992}, \citet{Mazzeo2002}, and \citet{Seim2006}
+extend this to settings with firm heterogeneity; \citet{ToivanenWaterson2005} shows a rival's existing
+presence predicts a firm's own entry dynamically; \citet{BerryReiss2007} surveys the tradition. None of this
+literature has been applied to cannabis border markets specifically, and none pairs an entry-regime moderator
+with an exogenous demand shock of the kind cross-border legalization timing provides.
+
+The gap is specific and modest, not a new mechanism. The cross-border demand literature has established that
+demand moves across a cannabis-policy border; it has not asked where that demand goes once it arrives. The
+entry-regulation literature has established that caps distort market structure and rents; it has not had an
+exogenous demand shock to test that distortion against. This paper bridges those two literatures with a
+design built for that purpose, and reports, rather than overstates, what the resulting test does and does not
+show.
+
+\section{Institutional Background}
+\label{sec:institutional}
+
+\input{tables/table_state_summary}
+
+Table~\ref{tab:state_summary} summarizes each sample state's legalization timing, border exposure, data
+sources, and entry-regulation regime.
+
+\textbf{Colorado} imposes no state-level numerical cap on retail marijuana licenses -- Amendment 64 (2012)
+delegates licensing authority to local governments entirely. But \citet{PayanBrownSong2021}'s county-level
+census of Colorado and Washington's local marijuana ordinances finds that, as of April 2019, 48.4 percent of
+Colorado counties banned all marijuana facilities outright, and only 23.4 percent allowed every facility type
+without restriction. We classify Colorado as capped for its entire panel on this basis: a state law that says
+``no cap'' does not describe a free-entry market if local governments can and routinely do close most of the
+state's geography to retail entirely.
+
+\textbf{Washington} caps entry directly. Initiative 502 (2012) set an initial statewide ceiling of 334 retail
+licenses; the Washington State Liquor and Cannabis Board raised it to 556 by emergency rule on January 6, 2016,
+and a social-equity program began issuing up to 52 additional licenses in 2024. The cap level changes three
+times over the sample window, but the state is never free-entry at any point in it.
+
+\textbf{Oregon} is the one state whose regime genuinely switches mid-panel, and we treat it separately
+(Section~\ref{sec:results}). Retail licensing was open from the market's October 2015 launch until a producer
+moratorium (2018--2019) and a full application freeze effective January 2, 2022 (House Bill 4016, March 2022).
+House Bill 4121 (March 2024) replaced the freeze with a permanent formula, one retail license per 7,500
+residents aged 21 and over. We code Oregon free through 2021 and capped from 2022 onward.
+
+\textbf{Montana}'s enabling statute (HB 701, retail effective January 1, 2022) imposes no numerical ceiling on
+dispensary locations, but restricts new licenses to conversions of existing medical marijuana providers and
+requires counties that voted against the state's Initiative 190 (November 2020) to affirmatively opt in before
+a dispensary can locate there -- binding from the market's first day, not merely from a later moratorium
+(Senate Bill 27, May 2025). Montana is coded capped for its entire panel on the opt-in requirement alone.
+
+\textbf{New Mexico} is the cleanest free-entry state in the sample. The Cannabis Regulation Act (NMSA 1978
+\S 26-2C-6(I)) explicitly bars the state's Cannabis Control Division from limiting license counts, and
+licensing is administrative -- a 90-day issue-or-deny window, no lottery or merit-scoring step. Local
+governments retain zoning authority but cannot ban cannabis retailers outright. New Mexico is coded free
+throughout.
+
+\section{Data}
+\label{sec:data}
+
+\subsection{Revenue and dispensary-count data}
+
+Colorado's monthly county-level marijuana sales come from the Colorado Department of Revenue's Socrata series
+(2014--2025). Washington's come from the Liquor and Cannabis Board's fiscal-year county sales and excise-tax
+reports (FY2015--FY2025). Oregon's monthly county sales come from the Oregon Liquor and Cannabis Commission's
+own Socrata series (2017--2025); Oregon's revenue-per-store outcome exists only as a 2025 cross-section, since
+OLCC's license registry records a license's most recent renewal date rather than its original opening date.
+Montana's monthly county sales were scraped from the Department of Revenue's static report pages, no bulk
+download existing (2022--2025); Montana's revenue-per-store outcome has the same cross-section-only limitation
+as Oregon's. New Mexico's data come from the Cannabis Control Division's Cannabis Reporting Online Portal,
+which publishes monthly sales both by city and, uniquely among the five states, by individual licensee, so
+New Mexico's revenue-per-store outcome is a genuine historical panel (2022--2026), not a cross-section.
+Dispensary counts for Colorado and Washington come from a geocoded license dataset, point-in-polygon assigned
+to counties.
+
+\subsection{Time-varying border classification}
+\label{sec:timevarying}
+
+Prior versions of this analysis, including our own, classified border exposure using a single legal-status
+snapshot at a fixed reference date -- incorrect for any county-year in which a neighboring state's own status
+differed from that snapshot. Three cases in this sample are large enough to matter. Colorado borders New
+Mexico (legal 2022-04-01); for Colorado county-years before that date, eight Colorado counties (Costilla,
+Archuleta, Conejos, Las Animas, Montezuma, La Plata, Rio Grande, and Alamosa) fall within 70 miles of a New
+Mexico county, several not within 70 miles of any other nonlegal state. Washington borders Oregon (legal
+2015-10-01); fourteen Washington counties, including populous Clark County across the Columbia River from
+Portland, fall within 70 miles of Oregon, bearing on Washington's earliest fiscal-year observations. Oregon
+itself borders California (legal 2018-01-01) and Nevada (legal 2017-07-01); three Oregon counties (Josephine,
+Curry, Jackson) fall within 70 miles of California, bearing on Oregon's first panel year, 2017.
+
+We recompute distance to the nearest nonlegal-state county separately for every observation year, using each
+neighbor's own retail-legalization date. This reclassifies 41 of 1,314 per-capita county-year observations and
+38 of 995 revenue-per-store observations relative to the static alternative, concentrated in the early years
+of Washington's and Colorado's panels and Oregon's first year.
+
+\subsection{Entry-regime coding}
+
+We code a binary \texttt{Capped} indicator at the state-year level: Colorado, Washington, and Montana are
+capped throughout; Oregon is free through 2021 and capped from 2022; New Mexico is free throughout. Limitations
+of this state-year measure are discussed in Section~\ref{sec:discussion}.
+
+\subsection{Local- versus state-level entry barriers}
+\label{sec:localbarrier}
+
+We also construct an alternative classification, \texttt{LocalBarrier}, isolating specifically \emph{which
+level of government} imposes the binding entry restriction, holding fixed the same institutional facts used to
+build \texttt{Capped}. Colorado and Montana are coded 1 (the restriction is county-level -- opt-out bans in
+Colorado, opt-in requirements in Montana); Washington, Oregon, and New Mexico are coded 0 (Washington's cap is
+set directly by state statute with no local mechanism; Oregon's freeze is a state-level action; New Mexico has
+no restriction). This reclassifies Washington relative to \texttt{Capped} while leaving Colorado and Montana
+unchanged, and is used as a robustness check on \texttt{Capped} in Section~\ref{sec:results}.
+
+\subsection{Dispensary-level panel: New Mexico}
+\label{sec:nmdispensary}
+
+Every result above uses county-year aggregates. To test whether the county-level border premium survives at
+the level of the individual seller, we separately construct a genuine dispensary-level panel for New Mexico --
+the only sample state where individual-firm revenue is available historically. New Mexico's Cannabis Control
+Division publishes 51 monthly licensee-level files (April 2022 onward), each listing every active licensee's
+street address and reported sales. We identify a dispensary by its normalized street address rather than its
+licensee name, since the same location can appear under different names across months (ownership changes,
+rebrands), while different addresses under the same name are genuinely different stores. This yields 1{,}253
+unique dispensary locations. Each dispensary's entry month is the first calendar month its address appears;
+231 dispensaries (18.4 percent) are already present in the panel's first month (April 2022, the adult-use
+launch date) and are flagged as left-censored (almost certainly pre-existing medical-program dispensaries,
+whose true entry date is unobserved), while the remaining 1{,}022 are true new entrants whose opening month we
+observe directly. County assignment reuses the same ZIP-to-county crosswalk already validated for the
+county-level New Mexico panel; we do not build a separate address-level geocoding pipeline, since no
+address-level coordinate source exists for New Mexico in our data (unlike Colorado and Washington, where a
+separately assembled geocoded license file gives coordinates and opening dates but not store-level revenue).
+The regression sample drops a small number of dispensary-years with zero reported revenue, leaving 1{,}249
+dispensaries and 3{,}703 dispensary-year observations. Because New Mexico's border exposure and entry regime
+are both time-invariant across the sample, this exercise cannot test the entry-regulation interaction; it
+serves as a firm-level robustness check on the existence of the border premium itself.
+
+\section{Empirical Strategy}
+\label{sec:methods}
+
+The main specification is
+\[
+y_{ist} = \alpha + \beta_1 \, \text{Border}_{ist} + \beta_2 \, \text{Capped}_{st} + \beta_3\,
+\text{Border}_{ist} \times \text{Capped}_{st} + \gamma \ln(\text{population}_{ist}) + \delta_t + \eta_i + \varepsilon_{ist}
+\]
+estimated separately for log(revenue per dispensary store), log(revenue per capita), and log(dispensary count
+per 1{,}000 residents). $\beta_3$ is the coefficient of interest, testing whether the border premium differs
+by entry regime. State fixed effects $\eta_i$ are included for revenue per capita, where Oregon's within-state
+regime switch identifies $\beta_3$ independent of the cross-state contrast, but omitted for revenue per store
+and density: Oregon's per-store data is a single 2025 cross-section, so \texttt{Capped} has no within-state
+variation for any state in that sample and becomes collinear with state fixed effects, which we verified
+directly produces an unstable, uninterpretable coefficient. Standard errors are clustered by county throughout
+(165--178 clusters), with HC1 standard errors reported alongside for comparison. Every specification is also
+estimated separately by state, and Oregon's own free/capped switch is tested a third way, splitting its own
+panel at the January 2022 freeze.
+
+\section{Results}
+\label{sec:results}
+
+\input{tables/table_main_pooled}
+
+Table~\ref{tab:main_pooled} reports the main pooled specification. The border premium is positive and
+significant on all three outcomes: revenue per store is 48 percent higher in border counties (county-clustered
+$p=0.11$), revenue per capita is 193 percent higher ($p<0.001$), and dispensary density is 101 percent higher
+($p<0.001$). The interaction with capped entry is a 54\% relative reduction in the border premium's
+multiplier on revenue per capita (from roughly 193\% to roughly 34\% in level terms, $p=0.009$) and a 56\%
+relative reduction on dispensary density ($p<0.001$), but a precise null on revenue per store (3.5 percent,
+$p=0.90$). Figure~\ref{fig:premium_by_regime} shows the pattern directly.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig1_premium_by_regime.png}
+\caption{Border premium by outcome and entry regime, with 95\% confidence intervals.}
+\label{fig:premium_by_regime}
+\end{figure}
+
+\input{tables/table_state_specific}
+
+Table~\ref{tab:state_specific} reports the same outcomes estimated separately within each state.
+Colorado's own density coefficient is negative and significant ($-27$ percent) despite its large positive
+revenue-per-store premium ($+81$ percent), matching the pooled interaction's prediction at the state level.
+New Mexico's density coefficient is strongly positive ($+109$ percent). Montana's and Oregon's estimates are
+noisier, reflecting small per-store and density subsamples (23 and 30 observations respectively).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig2_state_forest.png}
+\caption{State-specific border coefficients by outcome, with 95\% confidence intervals (HC1).}
+\label{fig:state_forest}
+\end{figure}
+
+\input{tables/table_oregon_beforeafter}
+
+Table~\ref{tab:oregon_beforeafter} and Figure~\ref{fig:oregon_beforeafter} split Oregon's own revenue-per-capita
+panel at its January 2022 freeze. The border premium is larger in Oregon's free period (+173 percent,
+$p=0.007$) than its capped period (+106 percent, $p=0.10$), the same direction as the pooled interaction,
+though the formal within-Oregon interaction is not itself significant ($p=0.50$ HC1), which we attribute to
+Oregon having only three border counties rather than to a contradiction of the pooled result.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/fig3_oregon_beforeafter.png}
+\caption{Oregon's revenue-per-capita border premium, before/after the January 2022 freeze.}
+\label{fig:oregon_beforeafter}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/fig5_distance_gradient.png}
+\caption{Revenue per store against log-distance to the nearest nonlegal-state county, residualized.}
+\label{fig:distance_gradient}
+\end{figure}
+
+Replacing the binary border indicator with continuous log-distance recovers the same pattern (slope $-0.265$,
+$p<0.001$; Figure~\ref{fig:distance_gradient}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/fig6_captive_population.png}
+\caption{Revenue per store against log nonlegal-side population within 70 miles, residualized.}
+\label{fig:captive_population}
+\end{figure}
+
+The total population of nonlegal-state counties within 70 miles, the most robust mechanism evidence in our
+earlier two-state analysis, weakens to a precise null pooling all five states (slope $+0.015$, HC1 $p=0.54$,
+county-clustered $p=0.77$; Figure~\ref{fig:captive_population}) -- reported directly rather than retaining the
+more favorable two-state framing.
+
+\subsection{Robustness: local- versus state-level entry barriers, and a dispensary-level check}
+
+\input{tables/table_localbarrier_pooled}
+
+Table~\ref{tab:localbarrier_pooled} re-estimates the border-by-regime interaction using \texttt{LocalBarrier}
+(Section~\ref{sec:localbarrier}) in place of \texttt{Capped}. The density interaction survives and remains
+significant under county clustering ($-41.5$ percent, $p=0.037$); the revenue-per-capita and revenue-per-store
+interactions are significant under HC1 but lose significance once clustered by county (per capita: $p=0.35$;
+per store: $p=0.17$) -- a genuine caveat on the main classification, reported directly. Figures
+\ref{fig:localbarrier_percapita} and \ref{fig:localbarrier_perstore} show a pooled year-by-year event study of
+the same comparison (county population, log(1+captive population), state and year fixed effects, clustered by
+county, Oregon excluded): on revenue per capita, local-barrier states (CO, MT) show a border premium roughly
+100 percentage points above non-local-barrier states (WA, NM) through 2019, converging by 2024; on revenue per
+store, the two groups track closely throughout.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig11_localbarrier_v2_percapita.png}
+\caption{Border premium on revenue per capita, by year, local-barrier vs.\ non-local-barrier states.}
+\label{fig:localbarrier_percapita}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig12_localbarrier_v2_perstore.png}
+\caption{Border premium on revenue per store, by year, local-barrier vs.\ non-local-barrier states.}
+\label{fig:localbarrier_perstore}
+\end{figure}
+
+\input{tables/table_nm_dispensary_eventstudy}
+
+Table~\ref{tab:nm_dispensary_eventstudy} and Figure~\ref{fig:nm_dispensary} re-estimate the border premium
+directly on New Mexico's individual dispensaries (Section~\ref{sec:nmdispensary}) rather than on county
+totals. The firm-level premium is large, positive, and significant in every year (113 to 184 percent, all
+$p<0.02$); a pooled single-coefficient version recovers $+141.4$ percent ($p=0.001$), close to New Mexico's
+county-level contribution to the main estimate. Border dispensaries are also disproportionately new entrants
+(87.2 percent vs.\ 78.3 percent interior), though descriptively rather than causally, since New Mexico's own
+regime never varies. This exercise cannot test the entry-regulation interaction, but confirms the border
+premium is not a county-aggregation artifact in the one state where individual-firm revenue is observable.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{figures/fig13_nm_dispensary_eventstudy.png}
+\caption{Border premium on individual-dispensary revenue, by year, New Mexico firm-level panel
+($n=1{,}249$ dispensaries).}
+\label{fig:nm_dispensary}
+\end{figure}
+
+\subsection{Economic magnitude: an illustrative revenue-gap accounting}
+\label{sec:magnitude}
+
+The interaction estimate implies a large difference in level terms, not just in the log coefficients
+themselves: converting $\beta_1$ and $\beta_1+\beta_3$ separately, the free-entry border premium is
+$+193.3$ percent while the capped-entry border premium is $+34.3$ percent, so a capped-state border county
+would need $2.18\times$ its actual revenue to match what the free-entry premium implies for a county of its
+size. Applying this ratio to actual 2025 border-county revenue in the three capped states in our sample
+(Colorado, Washington, Montana; Table~\ref{tab:magnitude}) implies roughly \$480 million in aggregate revenue,
+and roughly \$117 million in state tax revenue at each state's own statutory cannabis tax rate (Colorado 15
+percent, Washington 37 percent, Montana 20 percent), that these states' border counties would need to gain to
+match the free-entry premium's implied level, on a single year's data.
+
+\begin{table}[htbp]
+\centering
+\caption{Illustrative revenue-gap accounting, capped-state border counties, 2025}
+\label{tab:magnitude}
+\small
+\begin{tabular}{lccccc}
+\toprule
+State & Actual revenue & Counterfactual & Revenue gap & Tax rate & Tax gap \\
+\midrule
+Colorado & \$195.9M & \$427.8M & \$231.9M & 15\% & \$34.8M \\
+Washington & \$161.6M & \$352.8M & \$191.2M & 37\% & \$70.8M \\
+Montana & \$48.3M & \$105.6M & \$57.2M & 20\% & \$11.4M \\
+\midrule
+Total & \$405.8M & \$886.2M & \$480.4M & -- & \$117.0M \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Counterfactual = actual $\times$ 2.1837, the ratio of $(1+\text{free premium})$ to
+$(1+\text{capped premium})$ implied by the main pooled interaction (Table~\ref{tab:main_pooled}). Montana's
+tax rate is its state adult-use cannabis excise tax; local-option taxes (up to an additional 3\% in some
+Montana counties) and Colorado's separate wholesale excise tax are excluded.
+\end{minipage}
+\end{table}
+
+We present this explicitly as an illustrative accounting exercise, not a causal welfare estimate, for three
+reasons. First, it assumes external validity: that Colorado, Washington, and Montana's border counties would
+earn revenue at New Mexico's and free-period Oregon's own rate if their entry regime changed, an extrapolation
+the cross-state design does not directly identify, and Oregon's own within-state before/after test
+(Section~\ref{sec:results}) points the same direction but is not independently significant. Second, the figure
+is a revenue gap, not a welfare loss: it says nothing about whether the difference reflects genuine unmet
+demand (a real economic loss, e.g.\ continued cross-border leakage) or a different distribution of similar
+underlying demand, since higher revenue per store under a binding cap is also consistent with the market
+power documented by \citet{HollenbeckUetake2021} for Washington's own licensing regime, and our data contain
+no prices or quantities that would let us adjudicate between these. Third, it is a single-year (2025) snapshot,
+not a cumulative or discounted figure. We report it as an order of magnitude for a policy audience, not as a
+precise estimate.
+
+\section{Discussion}
+\label{sec:discussion}
+
+The defensible claim here is narrower than the paper's opening hypothesis. Cross-border cannabis demand
+produces a measurable premium in border-county markets on every outcome we observe. Entry regulation
+moderates that premium on the quantity margin specifically -- store count and per-capita revenue -- not on
+price at any single store. The original hypothesis predicted regulation would redirect the premium from
+quantity into price; the data show regulation blocks the quantity response without redirecting anything, and
+the price-margin premium exists regardless of regime.
+
+Three limitations. First, the entry-regime variable is state-year, not county-year, though the institutional
+detail motivating Colorado's and Montana's capped classification is itself local; a county-level restriction
+measure is a natural extension we did not build here. Second, Oregon's own before/after test is directionally
+consistent with the pooled result but not independently significant, and should be weighted as corroborating
+rather than confirmatory. Third, the captive-population result reverses statistical significance once the
+sample expands from two states to five states, a reminder that small-sample mechanism evidence does not
+automatically generalize. Fourth, an alternative cut of the same entry-regime classification -- isolating
+specifically local-government-imposed restrictions (Section~\ref{sec:localbarrier}) -- preserves the density
+result under county clustering but not the revenue-per-capita or revenue-per-store interactions
+(Table~\ref{tab:localbarrier_pooled}), a reminder that the interaction's precise magnitude, though not its
+direction on the quantity margin, is sensitive to how the capped/free distinction is drawn. Set against these
+limitations, the New Mexico dispensary-level panel (Section~\ref{sec:nmdispensary}) is a genuine strength: it
+confirms the border premium itself is not an artifact of county-level aggregation.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+Uneven legalization creates real spatial demand spillovers in legal cannabis markets. Entry regulation --
+coded from actual statutes and local-government authority, not from a state's own description of itself --
+determines whether that premium flows into market expansion: capped-entry states see a substantially smaller
+premium on revenue per capita and dispensary density, while free-entry states' extra demand shows up as more
+stores. The premium on revenue at any single store does not depend on regulatory regime, a real departure from
+the paper's starting hypothesis that we report rather than obscure. The result connects two literatures --
+cross-border cannabis demand and cannabis entry regulation -- that have so far developed independently.
+
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,28 @@
+\begin{table}[htbp]
+\centering
+\caption{Oregon within-state before/after: the 2022-01-01 entry freeze}
+\label{tab:oregon_beforeafter}
+\small
+\begin{tabular}{lccc}
+\toprule
+Period & Border coefficient (\%) & $p$ (HC1) & $n$ \\
+\midrule
+Free (2017--2021) & $+1.004$ ($+172.9\%$) & 0.007 & 135 \\
+Capped (2022--2025) & $+0.723$ ($+106.1\%$) & 0.101 & 120 \\
+\midrule
+\multicolumn{4}{l}{Formal interaction (border $\times$ post-freeze): $-0.381$ ($-31.7\%$), $p_{HC1}=0.503$,} \\
+\multicolumn{4}{l}{$p_{cl}=0.611$, $n=255$} \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.85\textwidth}
+\vspace{0.3em}
+\footnotesize
+\textit{Notes:} Revenue per capita, log-linear, county and log-population controls, year fixed effects.
+Oregon's own before/after comparison points the same direction as the pooled cross-state interaction
+(Table~\ref{tab:main_pooled}) -- the border effect shrinks and loses significance after the 2022 freeze --
+but the formal within-Oregon interaction is not itself significant, consistent with the design being
+underpowered on its own (only 6 Oregon border counties, adjacency definition). Revenue per store cannot be compared across the
+freeze within Oregon: Oregon's per-store data exists only as a single 2025 (post-freeze) cross-section, so
+there is no pre-2022 per-store observation -- reported as a limitation, not estimated.
+\end{minipage}
+\end{table}
